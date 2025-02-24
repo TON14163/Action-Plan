@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 40px;
+    background-image: linear-gradient(to right bottom, #daf3fb, #dbf0fd, #deecfe, #e4e8fd, #eae4f9, #eadef5, #ebd9f1, #ecd3eb, #e7cae6, #e3c2e1, #deb9dc, #dab1d7);
+    background-attachment: fixed;
+}
+
+
+/* โทรศัพท์ ไอแพด */
+@media only screen and (max-width: 768px) {
+    .menu-nav1 ,
+    .menu-nav1 a{
+        color: #aa91dc; 
+        display: flex; 
+        align-items: center; 
+        padding:5px;
+    }
+    .menu-nav0 {
+        display: flex;
+        justify-content: space-between;
+        flex-direction:column;
+        padding: 5px;
+        background-color: #FFFFFF;
+    }
+    .menu-nav2 {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        flex-direction:column;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    .arrow-drop-down ,
+    .arrow-drop-down-right{
+        min-width: 100%; 
+    }
+}
+
+/* โน็ตบุ๊ค คอมจอใหญ่ */
+@media only screen and (min-width: 769px) {
+    .menu-nav1 ,
+    .menu-nav1 a{
+        color: #aa91dc; 
+        display: flex; 
+        align-items: center; 
+        padding: 0 20px;
+    }
+    .menu-nav0 {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        background-color: #FFFFFF;
+    }
+    .menu-nav2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .arrow-drop-down ,
+    .arrow-drop-down-right{
+        min-width: 300px; 
+    }
+}
+
+.menu-nav2 li {
+    margin-right: 10px;
+}
+
+.menu-nav2 li a , span{
+    color: #000000; 
+    text-decoration: none;
+    display: block; 
+    padding: 10px; 
+}
+.arrow-top-down {
+    position: relative; 
+    /* border: 3px solid rgb(223, 205, 108); */
+}
+.arrow-top-down::after {
+    content: ' ▼';  /* เพิ่มสัญลักษณ์ ▼ หลังลิงก์ */
+}
+.arrow-top-down:hover::after {
+    content: ' ▲';  /* เปลี่ยนเป็น ▲ เมื่อ hover */
+}
+
+.arrow-drop-down {
+    display: none;
+    position: absolute; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    border-radius: 2px; 
+    top: 38px; 
+    left: 0; 
+    padding:4px; 
+    line-height:2; 
+    font-size:14px;
+}
+.arrow-drop-down-right { 
+    display: none;
+    position: absolute; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    border-radius: 2px; 
+    top: 39px; 
+    right: 0; 
+    padding:4px; 
+    line-height:2; 
+    font-size:14px;
+}
+.hover-nav-item{ display: flex; align-items: center; }
+.hover-nav-item:hover {
+    color: #FFFFFF; 
+    background-color:#aa91dc;
+    border-radius: 2px;
+
+    .arrow-drop-down ,
+    .arrow-drop-down-right{ /* ถ้าเกิดมีการ hover ส่วนนี้ขึ้น ให้แสดง menu */
+        display: block;
+        padding: 5px; 
+        background-color:#FFFFFF;
+        z-index:99;
+    }
+    .arrow-drop-down a ,
+    .arrow-drop-down-right a{ /* ถ้าเกิดมีการ hover ส่วนนี้ขึ้น ให้แสดง menu */
+        padding: 5px; 
+    }
+    .arrow-drop-down a:hover,
+    .arrow-drop-down-right a:hover {
+        padding: 5px;
+        background-color: #efeff8;
+    }
+}
+
+input {
+    width: 233px;
+    height: 24px;
+    padding:0px 10px;
+    border: 1px solid #A2A0DD;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+.cus_search { // search ที่มี icon ค้นหา
+    width: 233px;
+    height: 24px;
+    padding: 0px 30px 0px 10px;
+    border: 1px solid #A2A0DD;
+    border-radius: 25px;
+    margin-right: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23A2A0DD' d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    outline: none;
+}
+
+.cus_button{
+    background-color:#9A9A9A;
+    height: 24px;
+    padding: 0px 10px;
+    border: 1px solid #F1E1FF;
+    border-radius: 25px;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+}
