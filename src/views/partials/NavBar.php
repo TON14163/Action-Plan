@@ -1,10 +1,16 @@
 <!-- ใน navbar.php -->
 <link rel="stylesheet" href="assets/css/NavBar.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/NavBar.js"></script>
 <nav class="menu-nav0">
     <div class="menu-nav1">
         <a href="/Action-Plan/home" style="text-decoration: none;"><img src="assets/images/Awl-logo.png" style="width: 90px; height: auto;">&nbsp; ERP</a>
+        
     </div>
+        <!-- <div>
+            <span class="menu-nav4" onclick="menuNav4()"><img src="assets/images/icon_system/iconamoon--menu-burger-vertical-fill.png" style="width: 23px; height: 23px; "></span>
+            <span class="menu-nav3" onclick="menuNav3()"><img src="assets/images/icon_system/famicons--menu.svg" style="width: 23px; height: 23px; "></span>
+        </div> -->
     <!-- ถ้าเพิ่มเมนูต้องไปกำหนด routes ที่หน้า index ด้วย -->
     <ul class="menu-nav2">
         <li><a class="hover-nav-item" href="/Action-Plan/actionplan">Action Plan</a></li>
@@ -34,6 +40,22 @@
                 </span>
             </span>
         </li>
-        <!-- <li><a class="hover-nav-item" href="/Action-Plan/nullfile">Icon User</a></li> -->
     </ul>
+    
 </nav>
+
+
+<!-- <script>
+    function menuNav3(){
+        document.querySelector('.menu-nav3').style.display = 'none';
+        document.querySelector('.menu-nav4').style.display = 'block';
+        document.querySelector('.menu-nav0').style.flexDirection = 'column';
+        document.querySelector('.menu-nav2').style.flexDirection = 'row';
+    }
+    function menuNav4(){
+        document.querySelector('.menu-nav4').style.display = 'none';
+        document.querySelector('.menu-nav3').style.display = 'block';
+        document.querySelector('.menu-nav0').style.flexDirection = 'column';
+        document.querySelector('.menu-nav2').style.flexDirection = 'row';
+    }
+</script> -->
