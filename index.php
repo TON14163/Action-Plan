@@ -15,7 +15,15 @@ $routes = [
     'report' => 'src/views/report.php',
     'list_receive_the_matter' => 'src/views/list_receive_the_matter.php',
     'user' => 'src/views/user.php',
-    'home' => 'src/views/home.php'
+    'home' => 'src/views/home.php',
+    'dallyreport_register' => 'src/views/dallyreport_register.php',
+    'report_actionplan' => 'src/views/report_actionplan.php',
+    'report_daily_report' => 'src/views/report_daily_report.php',
+    'report_quotation' => 'src/views/report_quotation.php',
+    'report_sales_closure' => 'src/views/report_sales_closure.php',
+    'report_forecast_time' => 'src/views/report_forecast_time.php',
+    'report_forecast_product' => 'src/views/report_forecast_product.php',
+    'report_competitor' => 'src/views/report_competitor.php',
 ];
 
 // echo "URL: " . $url . "<br>";

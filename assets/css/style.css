@@ -1,9 +1,17 @@
 
 input[type="text"], 
 input[type="password"], 
-input[type="date"], 
 input[type="datetime"], 
 input[type="datetime-local"] {
+    height: 24px;
+    padding:0px 10px;
+    border: 1px solid #A2A0DD;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+input[type="date"]{
+    text-align: center;
     height: 24px;
     padding:0px 10px;
     border: 1px solid #A2A0DD;
@@ -20,6 +28,36 @@ select ,
     margin-right: 10px;
 }
 
+textarea {
+    border-radius:15px;
+    border: 1px solid #202020;
+}
+
+input[type="checkbox"] {  
+    accent-color: white; /* ปรับสีของ checkbox */  
+    width: 14px; /* ปรับขนาดให้เหมาะสม */  
+    height: 14px; /* ปรับขนาดให้เหมาะสม */  
+    cursor: pointer; /* เปลี่ยนรูปแบบของเคอร์เซอร์ */  
+    appearance: none; /* ทำให้ไม่มีการจัดรูปแบบของเบราว์เซอร์ */  
+    border: 0.5px solid black; /* ขอบของ checkbox */  
+    outline: none; /* ลบเส้นขอบเมื่อเลือก */  
+    display: inline-block; /* แก้ไขการแสดงผลให้ถูกต้อง */  
+    vertical-align: middle; /* ทำให้ align กับข้อความ */  
+}  
+
+input[type="checkbox"]:checked {  
+    background-color: white; /* สีพื้นเมื่อเลือก */  
+    border: 0.5px solid black; /* ขอบเมื่อเลือก */  
+}  
+
+/* เพิ่มเครื่องหมายถูก */  
+input[type="checkbox"]:checked::before {  
+    content: '✓'; /* สัญลักษณ์ที่ใช้แทนเครื่องหมายถูก */  
+    color: black; /* สีของเครื่องหมายถูก */  
+    position: relative;  
+    left: 1.5px; /* ปรับตำแหน่งตามต้องการ */  
+    top:-5px;
+}
 
 .form-search-custom-awl { // search ที่มี icon ค้นหา
     width: 233px;
@@ -44,6 +82,7 @@ select ,
     text-align: center;
     color: #FFFFFF;
     font-weight: bold;
+    font-size: 12px;
 }
 
 
@@ -62,3 +101,7 @@ select ,
     text-align: center;
 }
 
+
+.font-custom-awl-14{
+    font-size:14px;
+}

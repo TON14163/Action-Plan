@@ -1,6 +1,6 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">Report</b>
+    <b style="font-size: 20px;">รายงานปิดการขาย</b>
 </div>
 <h1>r</h1>
 <?php 

@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr style="background-color: #FFFFFF;">
                 <td><input style="width: 15px; height: 15px;" type="checkbox" name="" id=""></td>
                 <td>โรงพยาบาล</td>
                 <td>ตึก</td>

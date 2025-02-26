@@ -24,7 +24,7 @@
             <kbd style="background-color: #66FFFF; width: 20px; height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Sup ไปแล้ว
             <kbd style="background-color: #FFCC99; width: 20px; height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Copy งานเดิม
         </div>
-        <div><a href="#"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
+        <div><a href="dallyreport_register"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
     </div>
 </p>
 <br>
@@ -51,7 +51,7 @@
                 <td>หน่วยงาน</td>
                 <td>ผู้ติดต่อ</td>
                 <td>ผู้ติดต่อ</td>
-                <td><img src="assets/images/icon_system/edit.png" style="width: 18px; height: 18px;"></td>
+                <td><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></td>
             </tr>
             <tr style="background-color: #FFFF99;">
                 <td>14 ม.ค. 2568</td>
@@ -61,7 +61,7 @@
                 <td>หน่วยงาน</td>
                 <td>ผู้ติดต่อ</td>
                 <td>ผู้ติดต่อ</td>
-                <td><img src="assets/images/icon_system/edit.png" style="width: 18px; height: 18px;"></td>
+                <td><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></td>
             </tr>
         </tbody>
     </table>
