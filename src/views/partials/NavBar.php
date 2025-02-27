@@ -1,12 +1,13 @@
-<!-- ใน navbar.php -->
-<!-- ถ้าเพิ่มเมนูต้องไปกำหนด routes ที่หน้า index ด้วยสำคัญมากเพราะถ้าไม่ใส่จะขึ้น Error 404 -->
+<!-- 
+ใน navbar.php 
+ถ้าเพิ่มเมนูต้องไปกำหนด routes ที่หน้า index_chk ด้วยสำคัญมากเพราะถ้าไม่ใส่จะขึ้น Error 404 
+-->
 <link rel="stylesheet" href="assets/css/NavBar.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/NavBar.js"></script>
 <nav class="menu-nav0">
     <div class="menu-nav1">
         <a href="/Action-Plan/home" style="text-decoration: none;"><img src="assets/images/Awl-logo.png" style="width: 90px; height: auto;">&nbsp; ERP</a>
-        
     </div>
 
         <!-- <div>

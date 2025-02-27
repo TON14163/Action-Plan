@@ -51,7 +51,7 @@
         </thead>
         <tbody>
             <tr style="background-color: #FFFFFF;">
-                <td>วันที่</tdle=>
+                <td>วันที่</td>
                 <td>โรงพยาบาล</td>
                 <td>หน่วยงาน</td>
                 <td>ประเภทสินค้า</td>

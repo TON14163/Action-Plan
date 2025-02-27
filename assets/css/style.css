@@ -1,3 +1,31 @@
+@font-face {
+    font-family: 'Prompt-awl';
+    src: url('assets/fonts/prompt/Prompt-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Prompt-awl';
+}
+
+/* scrollbar Start */
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    border: solid 5px transparent;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.075);
+  }
+  ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px 5px  #8080c0;
+  }
+/* scrollbar END */
 
 input[type="text"], 
 input[type="password"], 

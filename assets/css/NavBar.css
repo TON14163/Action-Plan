@@ -121,11 +121,12 @@ body {
     line-height:2; 
     font-size:14px;
 }
-.hover-nav-item{ display: flex; align-items: center; }
+.hover-nav-item{ display: flex; align-items: center; transition: 1s; }
 .hover-nav-item:hover {
     color: #FFFFFF; 
     background-color:#aa91dc;
     border-radius: 2px;
+    transition: 1s;
 
     .arrow-drop-down ,
     .arrow-drop-down-right{ /* ถ้าเกิดมีการ hover ส่วนนี้ขึ้น ให้แสดง menu */
