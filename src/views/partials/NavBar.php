@@ -2,12 +2,22 @@
 ใน navbar.php 
 ถ้าเพิ่มเมนูต้องไปกำหนด routes ที่หน้า index_chk ด้วยสำคัญมากเพราะถ้าไม่ใส่จะขึ้น Error 404 
 -->
+
+<?php 
+$HTTP_HOSTS = $_SERVER['HTTP_HOST'];
+if($HTTP_HOSTS == 'testpr-wr.allwellcenter.com'){
+    $nameHost = "";
+} else {
+    $nameHost = "/Action-Plan/";
+}
+?>
+
 <link rel="stylesheet" href="assets/css/NavBar.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/NavBar.js"></script>
 <nav class="menu-nav0">
     <div class="menu-nav1">
-        <a href="/Action-Plan/home" style="text-decoration: none;"><img src="assets/images/Awl-logo.png" style="width: 90px; height: auto;">&nbsp; ERP</a>
+        <a href="<?php echo $nameHost;?>home" style="text-decoration: none;"><img src="assets/images/Awl-logo.png" style="width: 90px; height: auto;">&nbsp; ERP</a>
     </div>
 
         <!-- <div>
@@ -16,30 +26,30 @@
         </div> -->
     
     <ul class="menu-nav2">
-        <li><a class="hover-nav-item" href="/Action-Plan/actionplan">Action Plan</a></li>
-        <li><a class="hover-nav-item" href="/Action-Plan/dallyreport">Dally Report</a></li>
+        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>actionplan">Action Plan</a></li>
+        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>dallyreport">Dally Report</a></li>
         <li>
             <span class="hover-nav-item arrow-top-down">
             Report &nbsp;
                 <span class="arrow-drop-down">
-                    <a href="/Action-Plan/report_actionplan">รายงาน Action Plan</a>
-                    <a href="/Action-Plan/report_daily_report">รายงาน Daily Report</a>
-                    <a href="/Action-Plan/report_quotation">รายงานสรุปเสนอราคา</a>
-                    <a href="/Action-Plan/report_sales_closure">รายงานปิดการขาย</a>
-                    <a href="/Action-Plan/report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a>
-                    <a href="/Action-Plan/report_forecast_product">รายงานสรุปประมานการขายตามสินค้า</a>
-                    <a href="/Action-Plan/report_competitor">รายงานคู่แข่ง</a>
+                    <a href="<?php echo $nameHost;?>report_actionplan">รายงาน Action Plan</a>
+                    <a href="<?php echo $nameHost;?>report_daily_report">รายงาน Daily Report</a>
+                    <a href="<?php echo $nameHost;?>report_quotation">รายงานสรุปเสนอราคา</a>
+                    <a href="<?php echo $nameHost;?>report_sales_closure">รายงานปิดการขาย</a>
+                    <a href="<?php echo $nameHost;?>report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a>
+                    <a href="<?php echo $nameHost;?>report_forecast_product">รายงานสรุปประมานการขายตามสินค้า</a>
+                    <a href="<?php echo $nameHost;?>report_competitor">รายงานคู่แข่ง</a>
                 </span>
             </span>
         </li>
-        <li><a class="hover-nav-item" href="/Action-Plan/list_receive_the_matter">รายการรับเรื่อง</a></li>
+        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>list_receive_the_matter">รายการรับเรื่อง</a></li>
         <li>
             <span class="hover-nav-item arrow-top-down">
             <img src="assets/images/icon_system/lets-icons--user-cicrle-light.svg" style="width: 18px; height: auto;">&nbsp;User &nbsp;
                 <span class="arrow-drop-down-right">
-                    <a href="/Action-Plan/user-contact">ข้อมูลผู้ติดต่อ</a>
-                    <a href="/Action-Plan/user-change">เปลี่ยนรหัสผ่าน</a>
-                    <a href="/Action-Plan/user-logout">ออกจากระบบ</a>
+                    <a href="<?php echo $nameHost;?>user-contact">ข้อมูลผู้ติดต่อ</a>
+                    <a href="<?php echo $nameHost;?>user-change">เปลี่ยนรหัสผ่าน</a>
+                    <a href="<?php echo $nameHost;?>user-logout">ออกจากระบบ</a>
                 </span>
             </span>
         </li>

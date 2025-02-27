@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'Prompt-awl';
     src: url('assets/fonts/prompt/Prompt-Light.ttf') format('truetype');
     font-weight: normal;
@@ -7,7 +7,7 @@
 
 * {
     font-family: 'Prompt-awl';
-}
+} */
 
 /* scrollbar Start */
 ::-webkit-scrollbar {

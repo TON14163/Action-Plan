@@ -10,6 +10,18 @@
      <!-- ลิงก์ไปยัง CSS ของ AOS จาก CDN -->
      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+<style>
+@font-face {
+    font-family: 'Prompt-awl';
+    src: url('assets/fonts/prompt/Prompt-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Prompt-awl';
+}
+</style>
 <body>
     <?php require_once __DIR__ . '/../partials/NavBar.php'; ?>
 

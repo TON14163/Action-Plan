@@ -3,6 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+$PDO = require_once 'config/database.php'; // โหลดการเชื่อมต่อ
 
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'home';
 $urlParts = explode('/', $url);
