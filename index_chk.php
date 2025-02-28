@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-// $pdo = require_once __DIR__ . '/config/database.php'; 
+$pdo = require_once __DIR__ . '/config/database.php'; 
 
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'home';
 $urlParts = explode('/', $url);
@@ -17,6 +17,7 @@ $routes = [
     'list_receive_the_matter' => 'src/views/list_receive_the_matter.php',
     'user' => 'src/views/user.php',
     'home' => 'src/views/home.php',
+    'Home' => 'src/views/Home.php',
     'dallyreport_register' => 'src/views/dallyreport_register.php',
     'report_actionplan' => 'src/views/report_actionplan.php',
     'report_daily_report' => 'src/views/report_daily_report.php',
