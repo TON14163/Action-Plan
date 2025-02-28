@@ -3,6 +3,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index_chk.php?url=$1 [QSA,L]
 
+# ป้องกันการเข้าถึง .env
+RewriteRule ^\.env$ - [F]
 
 # ส่งทุก request ไปที่ index.php
 # RewriteRule ^([^\.]+)$ $1.php [NC,L]
