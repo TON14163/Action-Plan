@@ -10,7 +10,30 @@ if($HTTP_HOSTS == 'testpr-wr.allwellcenter.com'){
 } else {
     $nameHost = "/Action-Plan/";
 }
+if ($_SESSION['em_id'] == '' ) { ?> 
+    <script>
+            Swal.fire({
+            title: "คุณยังไม่ได้ Login / หมดเวลาการเข้าใช้งาน",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            backdrop: `
+                rgba(0,0,123,0.4)
+                url("/assets/images/background_main.jpg")
+                left top
+                no-repeat
+            `
+            });
+         
+    </script>
+<?php 
+    print "<meta http-equiv=refresh content=1;URL=index.php>"; 
+    session_destroy();
+    error_reporting(0); 
+    exit; 
+    } 
 ?>
+
 
 <link rel="stylesheet" href="assets/css/NavBar.css">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -45,9 +68,10 @@ if($HTTP_HOSTS == 'testpr-wr.allwellcenter.com'){
         <li><a class="hover-nav-item" href="<?php echo $nameHost;?>list_receive_the_matter">รายการรับเรื่อง</a></li>
         <li>
             <span class="hover-nav-item arrow-top-down">
-            <img src="assets/images/icon_system/lets-icons--user-cicrle-light.svg" style="width: 18px; height: auto;">&nbsp;User &nbsp;
+            <img src="assets/images/icon_system/lets-icons--user-cicrle-light.svg" style="width: 18px; height: auto;">&nbsp;<?php echo $_SESSION['name_show'].' '.$_SESSION['surname_show'];?> &nbsp;
                 <span class="arrow-drop-down-right">
                     <a href="<?php echo $nameHost;?>user-contact">ข้อมูลผู้ติดต่อ</a>
+                    <a href="<?php echo $nameHost;?>user-customer">ข้อมูลลูกค้า</a>
                     <a href="<?php echo $nameHost;?>user-change">เปลี่ยนรหัสผ่าน</a>
                     <a href="<?php echo $nameHost;?>user-logout">ออกจากระบบ</a>
                 </span>

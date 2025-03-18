@@ -7,8 +7,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <!-- ลิงก์ไปยัง CSS ของ AOS จาก CDN -->
-     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- ลิงก์ไปยัง CSS ของ AOS จาก CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- dataTables start -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <!-- dataTables end -->
 </head>
 <style>
 @font-face {
@@ -23,7 +30,16 @@
 }
 </style>
 <body>
-    <?php require_once __DIR__ . '/../partials/NavBar.php'; ?>
+    <?php 
+    require_once __DIR__ . '/../partials/NavBar.php';
+    require_once __DIR__ . '/../../controllers/DateThai.php';
+    if ($_SESSION['em_id'] == '') {
+        print "<meta http-equiv=refresh content=1;URL=index.php>"; 
+        session_destroy();
+        error_reporting(0); 
+        exit; 
+    } 
+    ?>
 
     <!-- เนื้อหาจะถูกแทรกที่นี่ -->
     <?php 

@@ -47,7 +47,7 @@
             alertDiv.style.transition = 'bottom 0.3s ease'; // เพิ่ม animation
             
             alertDiv.innerHTML = `
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" data-aos="fade-left" data-aos-delay="200">
                     <strong>#${currentRow} แจ้งเตือน</strong> เรื่องไรไม่รู้
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>

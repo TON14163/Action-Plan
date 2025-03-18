@@ -4,31 +4,41 @@ require_once __DIR__ . '/../vendor/autoload.php'; // โหลด Composer autol
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..'); // ชี้ไปที่ root
 $dotenv->load();
 
-$host = $_ENV['DB_HOST'] ?? 'localhost';
-$db   = $_ENV['DB_NAME'] ?? 'your_database';
-$user = $_ENV['DB_USER'] ?? 'root';
-$pass = $_ENV['DB_PASS'] ?? '';
-$port = $_ENV['DB_PORT'] ?? 3306;
+// ส่วนของ DB START
+    $host = $_ENV['DB_HOST'] ?? 'localhost-N/A';
+    $dbSale = $_ENV['DB_NAME1'] ?? 'your_database-N/A';
+    $dbSol = $_ENV['DB_NAME2'] ?? 'your_database-N/A';
+    $user = $_ENV['DB_USER'] ?? 'root-N/A';
+    $pass = $_ENV['DB_PASS'] ?? 'N/A';
+    $port = $_ENV['DB_PORT'] ?? 3306;
+// ส่วนของ DB START
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;port=$port", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $pdo;
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+// ส่วนของ API START
+    $dallyreport1_api = $_ENV['DALLYREPORT1_API'] ?? 'N/A';
+    $listreceivethematter1_api = $_ENV['LISTRECEIVETHEMATTER1_API'] ?? 'N/A';
+    $usercustomer1_api = $_ENV['USERCUSTOMER1_API'] ?? 'N/A';
+    
+// ส่วนของ API END
+
+$conn = mysqli_connect($host, $user, $pass, $dbSale);
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
+mysqli_set_charset($conn,"utf8");
 
+$sol = mysqli_connect($host, $user, $pass, $dbSol);
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+mysqli_set_charset($sol,"utf8");
 
-
-// $conn = mysqli_connect("localhost","test","test","test");
-// if (mysqli_connect_errno()) {
-//     echo "Failed to connect to MySQL: " . mysqli_connect_error();
+// $strSQL = "SELECT * FROM tb_register_data LIMIT 10 ";
+// $objQuery = mysqli_query($conn,$strSQL);
+// if (!$objQuery) {
+//     die("เกิดข้อผิดพลาด: " . mysqli_error($conn));
 // }
-// mysqli_set_charset($conn,"utf8");
-
-// $new = mysqli_connect("localhost","testt","testt","testt");
-// if (mysqli_connect_errno()){
-//     echo "Failed to connect to MySQL: " . mysqli_connect_error();
+// while($objResult = mysqli_fetch_array($objQuery)) {
+//     echo $objResult['id_work'].'<br>';
 // }
-// mysqli_set_charset($new,"utf8");
+
 ?>

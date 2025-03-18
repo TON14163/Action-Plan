@@ -115,18 +115,29 @@ input[type="checkbox"]:checked::before {
 
 
 .table-thead-custom-awl{
-    background-color:#ededed;
     width:100%;
-    padding: 0px 10px;
     border-collapse: collapse;
-    border:1px solid #202020;
 }
 
-.table-thead-custom-awl th,td {
-    padding: 10px 10px;
+.table-thead-custom-awl thead tr th {
     border-collapse: collapse;
-    border:1px solid #202020;
+    text-align:center; 
+    background-color:#ededed;
+    padding: 10px 0px;
+}
+.table-thead-custom-awl th {
+    border-collapse: collapse;
+    text-align:center; 
+    background-color:#ededed;
+    padding: 10px 0px;
+}
+.table-thead-custom-awl tbody tr td {
+    border-collapse: collapse;
     text-align: center;
+    /* background-color:#FFFFFF; */
+    vertical-align:middle;
+    padding: 5px 0px;
+    
 }
 
 

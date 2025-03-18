@@ -1,23 +1,24 @@
-<?php 
-
+<?php
+@session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$pdo = require_once __DIR__ . '/config/database.php'; 
+
+$pdo = require_once __DIR__ . '/config/database.php';
 
 $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : 'home';
 $urlParts = explode('/', $url);
 $url = strtolower(end($urlParts));
 
-// ตรวจหาไฟล์ว่ามีหรือไม่
 $routes = [
+    'check_login' => 'check_login.php',
+    'index' => 'index.php',
     'actionplan' => 'src/views/actionplan.php',
     'dallyreport' => 'src/views/dallyreport.php',
     'report' => 'src/views/report.php',
     'list_receive_the_matter' => 'src/views/list_receive_the_matter.php',
     'user' => 'src/views/user.php',
     'home' => 'src/views/home.php',
-    'Home' => 'src/views/Home.php',
     'dallyreport_register' => 'src/views/dallyreport_register.php',
     'report_actionplan' => 'src/views/report_actionplan.php',
     'report_daily_report' => 'src/views/report_daily_report.php',
@@ -28,20 +29,32 @@ $routes = [
     'report_competitor' => 'src/views/report_competitor.php',
     'user-change' => 'src/views/user-change.php',
     'user-contact' => 'src/views/user-contact.php',
+    'user-customer' => 'src/views/user-customer.php',
     'user-logout' => 'src/views/user-logout.php',
     'user-contact-register' => 'src/views/user-contact-register.php',
+    'dallyreport_fetch_api' => 'src/models/dallyreport_fetch_api.php',
+    'list_receive_the_matter_fetch_api' => 'src/models/list_receive_the_matter_fetch_api.php',
+    'user_contact_api' => 'src/models/user_contact_api.php',
+    'user_customer_api' => 'src/models/user_customer_api.php',
+    'user-change-edit' => 'src/models/user-change-edit.php',
+    'Loading-page' => 'src/models/Loading-page.php',
 ];
 
-// echo "URL: " . $url . "<br>";
-// echo "Full URL: " . $_GET['url'] . "<br>";
-
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {
-    require_once __DIR__ . '/src/views/'.$url.'.php'; 
-    ob_start();
-    require_once $routes[$url];
-    $content = ob_get_clean();
+    // ตรวจสอบว่าเป็น API จาก /models หรือไม่
+    if (strpos($routes[$url], 'src/models/') === 0) {
+        require_once $routes[$url]; // โหลด API โดยตรง ไม่ใช้ layout
+    } else {
+        require_once __DIR__ . '/src/views/'.$url.'.php'; 
+        ob_start();
+        require_once $routes[$url];
+        $content = ob_get_clean();
+    } 
 } else {
     http_response_code(404);
-    require_once 'src/views/404.php';
+    ob_start();
+    require_once __DIR__ . '/src/views/404.php';
+    $content = ob_get_clean();
+    require_once __DIR__ . '/src/views/layouts/Main.php';
 }
 ?>
