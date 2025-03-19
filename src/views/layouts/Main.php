@@ -3,12 +3,11 @@
 <head>
     <title>ERP Sale Report</title>
     <link rel= "icon" href ="assets/images/Awl-logo1.png" type = "image/x-icon">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- ลิงก์ไปยัง CSS ของ AOS จาก CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">  <!-- style custom -->
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">  <!-- Bootstrap CSS -->
+    <script type="module" src="node_modules/datalist-css/dist/datalist-css.min.js"></script>  <!-- datalist-css -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- sweetalert2 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- ลิงก์ไปยัง CSS ของ AOS จาก CDN -->
     <!-- dataTables start -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
