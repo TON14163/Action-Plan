@@ -33,7 +33,6 @@ $routes = [
     'user-customer' => 'src/views/user-customer.php',
     'user-logout' => 'src/views/user-logout.php',
     'user-contact-register' => 'src/views/user-contact-register.php',
-    'customers_json' => 'src/views/customers_json.php',
     'test' => 'src/views/test.php',
     'actionplan_list' => 'src/views/actionplan_list.php',
 
@@ -44,6 +43,8 @@ $routes = [
     'actionplan_api' => 'src/models/actionplan_api.php',
     'user-change-edit' => 'src/models/user-change-edit.php',
     'Loading-page' => 'src/models/Loading-page.php',
+    'customers_json' => 'src/models/customers_json.php',
+    'product_json' => 'src/models/product_json.php',
 
 ];
 
