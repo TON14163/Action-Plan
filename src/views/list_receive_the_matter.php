@@ -67,6 +67,8 @@
                 "searching": false, 
                 "processing": true,
                 "serverSide": true,
+                "pageLength": 50,
+                "order": [],
                 "ajax": {
                     "url": `<?php echo $listreceivethematter1_api;?>`, // เข้าถึงจาก env
                     "type": "POST",
@@ -107,6 +109,9 @@
                 "language": {
                     "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                     "infoFiltered": ""
+                },
+                "initComplete": function() {
+                    this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
                 }
             });
         });

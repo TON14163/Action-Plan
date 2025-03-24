@@ -1,4 +1,7 @@
 <?php
+error_reporting(0);
+@session_start();
+if($_SESSION['em_id'] != ''){
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
 
@@ -75,16 +78,6 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
     );
 }
 
-// รหัสลูกค้า zip_code
-// คำนำหน้า title_name
-// ชื่อลูกค้า customer_name
-// เขตการขาย sale_area
-// ที่อยู่ address_name
-// จังหวัด province
-// เบอร์โทรศัพท์ customer_tel
-// เครดิต customer_credit
-// Edit
-
 // สร้าง JSON response
 $response = array(
     "draw" => $draw,
@@ -100,4 +93,8 @@ echo json_encode($response);
 
 // ปิดการเชื่อมต่อ
 mysqli_close($conn);
+
+} else {
+    print "<meta http-equiv=refresh content=1;URL='https://www.google.co.th/search?sca_esv=4ad496d1768baf99&sxsrf=AHTn8zpQPrNhKqCEpDxCUBsIcsB9LU5aiQ:1742783288650&q=%E0%B8%81%E0%B8%A3%E0%B8%87&udm=2&fbs=ABzOT_CvTum9bfMS_keiIOkwIHYPyLRk8LKB_RhroNc3NpN1yQTaG3g7af7Cm37b7h9B7YJ8N4Ny7BtT2f9IHmME4ftR32IDq0YA12-ZvbYhRvM6OH2xa_EuAmTTzpSY3H3gDXV65qQhn3tO4GwABxMWgM7XAXWRu1uVY34Uot_-7U-KhVEaN3l-TwtbbdS8wvMSbm2WVPa9lbZZjqYWekJahi5QT_9hKrvbuLGFAPrp6q0lkdGen3cGhPp2pH0bNlNbIJz7wohktr8ZEKHWOF32HNc0XBw8rD3t71p3HSpK396vhSNUw18&sa=X&ved=2ahUKEwiZu9zW1aGMAxUGRmwGHcblAtEQtKgLegQIGBAB&biw=1366&bih=617&dpr=1'>"; 
+}
 ?>

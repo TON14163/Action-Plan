@@ -159,6 +159,8 @@
                 "searching": false, 
                 "processing": true, // แสดง "Processing..." ขณะโหลด
                 "serverSide": true, // เปิดใช้งาน Server-Side Processing
+                "pageLength": 50,
+                "order": [],
                 "ajax": {
                     "url": `<?=$usercustomer1_api;?>`, // เข้าถึงจาก env
                     "type": "POST", // ใช้ POST เพื่อส่งพารามิเตอร์
@@ -181,6 +183,9 @@
                 "language": {
                     "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                     "infoFiltered": "" // ลบส่วน filtered from ออก
+                },
+                "initComplete": function() {
+                    this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
                 }
             });
         });

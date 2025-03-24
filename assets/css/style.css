@@ -33,7 +33,7 @@ input[type="datetime"],
 input[type="datetime-local"] {
     height: 24px;
     padding:0px 10px;
-    border: 1px solid #A2A0DD;
+    border: 1px solid #202020;
     border-radius: 25px;
     margin-right: 10px;
 }
@@ -42,7 +42,7 @@ input[type="date"]{
     text-align: center;
     height: 24px;
     padding:0px 10px;
-    border: 1px solid #A2A0DD;
+    border: 1px solid #202020;
     border-radius: 25px;
     margin-right: 10px;
 }
@@ -51,7 +51,7 @@ select ,
 .form-select-custom-awl {
     height: 24px;
     padding:0px 10px;
-    border: 1px solid #A2A0DD;
+    border: 1px solid #202020;
     border-radius: 25px;
     margin-right: 10px;
 }
@@ -59,6 +59,13 @@ select ,
 textarea {
     border-radius:15px;
     border: 1px solid #202020;
+    padding:8px;
+}
+
+.textarea-form-control {
+    border-radius:15px;
+    border: 1px solid #202020;
+    padding:8px;
 }
 
 input[type="checkbox"] {  
@@ -91,7 +98,7 @@ input[type="checkbox"]:checked::before {
     width: 233px;
     height: 24px;
     padding: 0px 30px 0px 10px;
-    border: 1px solid #A2A0DD;
+    border: 1px solid #202020;
     border-radius: 25px;
     margin-right: 10px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23A2A0DD' d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
@@ -146,17 +153,30 @@ input[type="checkbox"]:checked::before {
 }
 
 
-#search_main .menu-nav2 li a, span {
-    padding: 0px;
-    height: 24px;
-    padding:0px 10px;
-    border: 1px solid #A2A0DD;
-    border-radius: 25px;
-    margin-right: 10px;
-}
-.select2-container .select2-selection--single {
-    border: 1px solid #A2A0DD; border-radius: 25px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23A2A0DD' d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
-    background-position: right 10px center;
-    background-repeat: no-repeat;
-}
+
+
+/* ((datalist-css)) customerSelect Start */
+datalist {
+    position: absolute;
+    max-height: 20em;
+    border: 0 none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 999;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius:8px;
+  }
+  
+  datalist option {
+    font-size: 0.8em;
+    padding: 0.3em 1em;
+    background-color: #FCFCFC;
+    cursor: pointer;
+  }
+  
+  datalist option:hover, datalist option:focus {
+    color: #8080c0;
+    background-color: #F1E1FF;
+    outline: 0 none;
+  }
+/* ((datalist-css)) customerSelect End */

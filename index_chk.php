@@ -13,6 +13,7 @@ $url = strtolower(end($urlParts));
 $routes = [
     'check_login' => 'check_login.php',
     'index' => 'index.php',
+
     'actionplan' => 'src/views/actionplan.php',
     'dallyreport' => 'src/views/dallyreport.php',
     'report' => 'src/views/report.php',
@@ -32,12 +33,18 @@ $routes = [
     'user-customer' => 'src/views/user-customer.php',
     'user-logout' => 'src/views/user-logout.php',
     'user-contact-register' => 'src/views/user-contact-register.php',
+    'customers_json' => 'src/views/customers_json.php',
+    'test' => 'src/views/test.php',
+    'actionplan_list' => 'src/views/actionplan_list.php',
+
     'dallyreport_fetch_api' => 'src/models/dallyreport_fetch_api.php',
     'list_receive_the_matter_fetch_api' => 'src/models/list_receive_the_matter_fetch_api.php',
     'user_contact_api' => 'src/models/user_contact_api.php',
     'user_customer_api' => 'src/models/user_customer_api.php',
+    'actionplan_api' => 'src/models/actionplan_api.php',
     'user-change-edit' => 'src/models/user-change-edit.php',
     'Loading-page' => 'src/models/Loading-page.php',
+
 ];
 
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {
