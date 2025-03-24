@@ -2,6 +2,9 @@
 error_reporting(0);
 @session_start();
 if($_SESSION['em_id'] != ''){
+    require_once __DIR__ . '/../../config/database.php';
+    require_once __DIR__ . '/../controllers/MainControllersAll.php';
+    
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *"); // ถ้าต้องการอนุญาต CORS
     $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' ORDER BY customer_name ASC ";

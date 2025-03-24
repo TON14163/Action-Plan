@@ -58,3 +58,20 @@
         document.getElementById("demo_product").deleteRow(-1);
     }
 </script>
+
+<script>
+    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
+    fetch('https://testpr-wr.allwellcenter.com/customers_json')
+        .then(response => response.json())
+        .then(data => {
+            var selectElement = document.getElementById('customerSelect');
+            
+            data.forEach(function(customer) {
+                var option = document.createElement('option');
+                option.value = customer.customer_name;
+                option.textContent = customer.customer_name;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
