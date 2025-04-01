@@ -180,3 +180,29 @@ datalist {
     outline: 0 none;
   }
 /* ((datalist-css)) customerSelect End */
+
+
+
+#item_product {
+    position: absolute;
+    max-height: 20em;
+    border: 0 none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 999;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius:8px;
+    background-color: #FFFFFF;
+    text-align: left;
+    font-weight: 100;
+}
+
+#item_product #item_product_row{
+    padding:4px 14px;
+}
+
+#item_product_row:hover {
+    color: #8080c0;
+    background-color: #F1E1FF;
+    outline: 0 none;
+}
