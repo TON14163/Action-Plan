@@ -22,7 +22,7 @@
 </p>
 <br>
 <div class="table-responsive mt-3 px-2">
-    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" >
+    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 5%;">Visit</th>
@@ -82,6 +82,7 @@
 <script>
     // ใช้ fetch API เพื่อดึงข้อมูลจาก API
     fetch('http://127.0.0.1:8080/Action-Plan/src/models/customers_json')
+        // fetch(<?php // echo $customerapi;?>)
         .then(response => response.json())
         .then(data => {
             var selectElement = document.getElementById('customerSelect');

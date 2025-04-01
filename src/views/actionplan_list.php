@@ -166,7 +166,7 @@ if($in_save != 'save'){
             $hospital_contact1SaveNew = isset($hospital_contact1Save[$key]) ? $hospital_contact1Save[$key] : '';
             $add_date = date('Y-m-d H:i:s');
 
-            echo '<hr>';
+            // echo '<hr>';
 
             $areaMain = "SELECT sale_code,sale_name FROM tb_team_ss1 
             UNION SELECT sale_code,sale_name FROM tb_team_ss2

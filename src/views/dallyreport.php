@@ -39,7 +39,7 @@
     </div>
 </section>
 <div class="table-responsive mt-3 px-2">
-    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" >
+    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 15%;">วันที่</th>
