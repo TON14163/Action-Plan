@@ -20,14 +20,14 @@ if($in_save != 'save'){
     if(is_array($list_chk) != '1'){
         $text = '<font style="color:#FF8080;"> ⚠️ ไม่พบรายการที่ท่านเลือก ❌ 🙅‍♂️🙅 ❗❗</font>';
         require_once __DIR__ . '/../views/Loading_page.php';
-        print "<meta http-equiv=refresh content=3;URL='../../actionplan'>"; 
+        print "<meta http-equiv=refresh content=3;URL='/Action-Plan/actionplan'>"; 
         mysqli_close($conn);
         exit;
     }
     if($customer == ''){
         $text = '<font style="color:#FF8080;"> ⚠️ ไม่พบข้อมูลชื่อลูกค้า ❌ 🙅‍♂️🙅 ❗❗</font>';
         require_once __DIR__ . '/../views/Loading_page.php';
-        print "<meta http-equiv=refresh content=3;URL='../../actionplan'>"; 
+        print "<meta http-equiv=refresh content=3;URL='/Action-Plan/actionplan'>"; 
         mysqli_close($conn);
         exit;
     }
@@ -68,7 +68,7 @@ if($in_save != 'save'){
                             <?php
                             $text = '<font style="color:#FF8080;"> ⚠️ ไม่พบข้อมูลวัตถุประสงค์ทั้งหมดหรือบางรายการ ❌ 🙅‍♂️🙅 ❗❗</font>';
                             require_once __DIR__ . '/../views/Loading_page.php';
-                            print "<meta http-equiv=refresh content=3;URL='../../actionplan'>"; 
+                            print "<meta http-equiv=refresh content=3;URL='/Action-Plan/actionplan'>"; 
                             mysqli_close($conn);
                             exit;
                         }
@@ -136,7 +136,7 @@ if($in_save != 'save'){
 
 }
     if($in_save == 'save'){
-        echo 'save'.'<hr>';
+        // echo 'save'.'<hr>';
         $in_dateSave = $_POST['in_date'];
         $id_customerSave = $_POST['id_customer'];
         $objectiveSave = $_POST['objective'];
@@ -243,19 +243,19 @@ if($in_save != 'save'){
             '".$id_refSave."',
             '".$head_team."')";
 
-            // $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());
-            echo $strSQL1;
+            $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());
+            // echo $strSQL1;
 
             if($id_refSave!=""){
             $strSQL11 =  "UPDATE tb_register_salemk SET ckk_open = '1' , id_customer = '".$id_customerSaveNew."'  WHERE  id ='".$id_refSave."'";
-            // $objQuery11 = mysqli_query($conn,$strSQL11) or die(mysqli_error());	
-            echo $strSQL11;
+            $objQuery11 = mysqli_query($conn,$strSQL11) or die(mysqli_error());	
+            // echo $strSQL11;
             }
         }
 
         $text = '<font style="color:#007700;">ดำเนินการเสร็จสิ้น</font>';
         require_once __DIR__ . '/../views/Loading_page.php';
-        print "<meta http-equiv=refresh content=3;URL='../../actionplan'>"; 
+        print "<meta http-equiv=refresh content=3;URL='../Action-Plan/actionplan'>"; 
         mysqli_close($conn);
         exit;
 
