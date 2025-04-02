@@ -6,6 +6,7 @@
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
         <b>Sale</b> 
+        <?php echo $_SESSION['em_id'];?>
         <select class="form-select-custom-awl" name="sale_code" id="sale_code">
             <option value="">Please Select</option>
             <?php
