@@ -2,9 +2,9 @@
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">สร้าง Dally Report</b>
 </div>
-<p style="padding: 0px 20px;">
+<p>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-        <b>วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
+        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
         <b>Sale</b> 
         <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
             <select class="form-select-custom-awl" name="sale_code" id="sale_code">
@@ -32,6 +32,7 @@
 <section class="font-custom-awl-14 px-2">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div style="font-weight: bold;">
+        &nbsp;
             <kbd style="background-color: #EBE4ED; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ plan ไว้แล้ว
             <kbd style="background-color: #FFFF99; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ไม่ได้ plan ไว้
             <kbd style="background-color: #99FF33; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Sup เพิ่มให้
