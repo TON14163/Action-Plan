@@ -25,7 +25,7 @@
                 <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
             </span>
         </div>
-        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" onclick="copyPlan();"></div>
+        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php echo $_REQUEST['id_work'];?>);"></div>
 
         <div class="col-3">
             <div class="row d-flex align-items-center">
@@ -146,13 +146,13 @@
     <?php include 'components/dallyreport_register_part4.php'; // ข้อมูลคู่เเข่ง ?>
 </section>
 
-<a href=""><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> แบบฟอร์มข้อร้องเรียน</span></a>
+<a href="https://allwellcenter.com/voc/" target="_blank"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> แบบฟอร์มข้อร้องเรียน</span></a>
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;" class="mt-4">
-    <span class="badge rounded-pill" style="background-color: #19D700; color:#FFFFFF; padding-left: 15px; padding-right: 15px; margin-right: 10px; display: flex; align-items: center;">
+    <span class="badge rounded-pill" style="background-color: #19D700; color:#FFFFFF; padding-left: 15px; padding-right: 15px; margin-right: 10px; display: flex; align-items: center;"  >
         <img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;" > &nbsp; บันทึก
     </span>
-    <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
+    <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; cursor: pointer;" onclick="deletePlan(<?php echo $_REQUEST['id_work'];?>);">
         <img src="assets/images/icon_system/trash-alt-solid-24.png" style="width:15px; height:15px;"> &nbsp; Delete
     </span>
 </div>
@@ -166,9 +166,8 @@
     require_once __DIR__ . '/layouts/Main.php';
 ?>
 
-
-
 <script>
+
 function copyPlan(idCopy){
 
     Swal.fire({
@@ -188,4 +187,25 @@ function copyPlan(idCopy){
     }
     });
 }
+
+function deletePlan(idDelete){
+
+    Swal.fire({
+    title: `<font color='#d33' >ลบงานที่ Plan นี้ !!</font>`,
+    text: "คุณแน่ใจว่าต้องการ Delete Plan ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire({
+        title: "Delete!",
+        icon: "success"
+        });
+    }
+    });
+}
+
 </script>
