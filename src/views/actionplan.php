@@ -9,6 +9,7 @@
 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
 <p style="padding: 0px 20px;">
     <label for="customer"><b>ค้นหาลูกค้า</b></label>
+    <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
     <input type="search" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php  echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
     <datalist id="customerSelect">
         <option value="">-- เลือกลูกค้า --</option>
@@ -19,6 +20,7 @@
 <hr style="margin: 20px 0px;">
 <form action="actionplan_list" enctype="multipart/form-data" method="POST">
 <?php if(isset($_GET["id"])){?><input type='hidden' id="id_ref" name="id_ref" value="<?php echo $_GET["id"]; ?>"><?php } ?>
+<?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
 <p style="padding: 0px 20px;">
     <b>วันที่</b>
     <input type="date" name="date_keyword" id="date_keyword">
