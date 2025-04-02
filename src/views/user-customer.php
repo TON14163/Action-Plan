@@ -134,7 +134,7 @@
 <hr style="margin: 20px 0px;">
 
 <div class="table-responsive font-custom-awl-14 px-2">
-    <table id="unitTable"  class="table-thead-custom-awl table-bordered border-secondary">
+    <table id="unitTable"  class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 11%;">รหัสลูกค้า</th>

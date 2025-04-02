@@ -35,11 +35,11 @@
             <kbd style="background-color: #66FFFF; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Sup ไปแล้ว
             <kbd style="background-color: #FFCC99; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Copy งานเดิม
         </div>
-        <div><a href="dallyreport_register"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
+        <div><a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
     </div>
 </section>
 <div class="table-responsive mt-3 px-2">
-    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
+    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 15%;">วันที่</th>

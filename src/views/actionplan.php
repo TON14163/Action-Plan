@@ -22,7 +22,7 @@
 </p>
 <br>
 <div class="table-responsive mt-3 px-2">
-    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
+    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 5%;">Visit</th>

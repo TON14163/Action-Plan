@@ -42,7 +42,7 @@
     </div>
 </p>
 <div class="table-responsive mt-3 px-2">
-    <table id="the_matter" class="table-thead-custom-awl table-bordered border-secondary p-0" >
+    <table id="the_matter" class="table-thead-custom-awl table-bordered border-secondary p-0 w-100" >
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 10%;">วันที่</th>

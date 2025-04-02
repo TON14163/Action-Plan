@@ -35,7 +35,7 @@ if($in_save != 'save'){
 <form action="<?php echo $url;?>" method="post">
 <?php if(isset($_GET["id"])){?><input type='hidden' id="id_ref" name="id_ref" value="<?php echo $id_ref; ?>"><?php } ?>
 <div class="table-responsive mt-3 px-2">
-    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary" >
+    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100" >
         <thead>
             <tr>
                 <th style="width: 10%;">วันที่</th>

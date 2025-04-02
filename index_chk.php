@@ -16,11 +16,11 @@ $routes = [
 
     'actionplan' => 'src/views/actionplan.php',
     'dallyreport' => 'src/views/dallyreport.php',
+    'daily_report_edit' => 'src/views/daily_report_edit.php',
     'report' => 'src/views/report.php',
     'list_receive_the_matter' => 'src/views/list_receive_the_matter.php',
     'user' => 'src/views/user.php',
     'home' => 'src/views/home.php',
-    'dallyreport_register' => 'src/views/dallyreport_register.php',
     'report_actionplan' => 'src/views/report_actionplan.php',
     'report_daily_report' => 'src/views/report_daily_report.php',
     'report_quotation' => 'src/views/report_quotation.php',

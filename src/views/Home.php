@@ -39,7 +39,7 @@
         const container = document.getElementById('alertContainer');
         container.innerHTML = ''; // ล้างเนื้อหาเก่า
         
-        for (let currentRow = 1; currentRow <= 9; currentRow++) {
+        for (let currentRow = 1; currentRow <= 2; currentRow++) {
             const alertDiv = document.createElement('div');
             alertDiv.style.position = 'fixed';
             alertDiv.style.bottom = `${0 + (currentRow * 70)}px`;
