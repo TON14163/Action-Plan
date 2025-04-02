@@ -52,9 +52,10 @@ if($in_save != 'save'){
                 <th style="width: 10%;">ชั้น</th>
                 <th style="width: 10%;">ward</th>
                 <th style="width: 20%;">แผนงาน</th>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <th style="width: 10%;">Sup</th>
                 <th style="width: 15%;">ผู้รับผิดชอบ</th>
-            <?php } ?>
+            <?php } } ?>
                 
             </tr>
         </thead>
@@ -103,7 +104,9 @@ if($in_save != 'save'){
                             <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="plan_work[<?php echo htmlspecialchars($itemNew);?>]" name="plan_work[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_contact1New);?> / <?php echo htmlspecialchars($type_1New);?></textarea></td>
                             <?php if(isset($_POST["dallyadd"])){ ?>
                                 <input type="hidden" id="dallyadd" name="dallyadd" value="1">
-                            <?php } else { ?>
+                            <?php } else {
+                                if($_SESSION['typelogin'] == 'Supervisor'){ 
+                                ?>
                                 <td><input type="checkbox" id="daily[<?php echo htmlspecialchars($itemNew);?>]" name="daily[<?php echo htmlspecialchars($itemNew);?>]" value="4"></td>
                                 <td style="text-align: center; padding-left: 10px;">
                                     <select class="form-select-custom-awl" name="sale_code[<?php echo htmlspecialchars($itemNew);?>]" id="sale_code[<?php echo htmlspecialchars($itemNew);?>]" required>
@@ -121,7 +124,7 @@ if($in_save != 'save'){
                                         ?>
                                     </select>
                                 </td>
-                            <?php } ?>
+                            <?php } } ?>
                         </tr>
                     </tbody>
                     <?php }
@@ -155,6 +158,7 @@ if($in_save != 'save'){
         $plan_workSave = $_POST['plan_work'];
         $dailySave = $_POST['daily'];
         $sale_codeSave = $_POST['sale_code'];
+
         $id_refSave = $_POST['id_ref'];
         $dallyaddSave = $_POST['dallyadd'];
 
@@ -168,12 +172,24 @@ if($in_save != 'save'){
             $id_customerSaveNew = isset($id_customerSave[$key]) ? $id_customerSave[$key] : '';
             $objectiveSaveNew = isset($objectiveSave[$key]) ? $objectiveSave[$key] : '';
             $plan_workSaveNew = isset($plan_workSave[$key]) ? $plan_workSave[$key] : '';
+
             if(isset($dallyaddSave)){
                 $dailySaveNew = '1';
             } else {
-                $dailySaveNew = isset($dailySave[$key]) ? $dailySave[$key] : '2';
+                if($_SESSION['typelogin'] == 'Supervisor'){ 
+                    $dailySaveNew = isset($dailySave[$key]) ? $dailySave[$key] : '2';
+                } else {
+                    $dailySaveNew = '0';
+                }
             }
-            $sale_codeSaveNew = isset($sale_codeSave[$key]) ? $sale_codeSave[$key] : '';
+
+            if($_SESSION['typelogin'] == 'Supervisor'){ 
+                $sale_codeSaveNew = isset($sale_codeSave[$key]) ? $sale_codeSave[$key] : '';
+            } else {
+                $sale_codeSaveNew = $_SESSION['em_id'];
+            }
+    
+
 
             $hospital_classSaveNew = isset($hospital_classSave[$key]) ? $hospital_classSave[$key] : '';
             $hospital_buidingSaveNew = isset($hospital_buidingSave[$key]) ? $hospital_buidingSave[$key] : '';
@@ -259,7 +275,7 @@ if($in_save != 'save'){
             '".$head_team."')";
 
             $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());
-            // echo $strSQL1;
+            echo $strSQL1;
             
 
             if($id_refSave!=""){
@@ -268,7 +284,7 @@ if($in_save != 'save'){
             // echo $strSQL11;
             }
         }
-
+        exit;
         $text = '<font style="color:#007700;">ดำเนินการเสร็จสิ้น</font>';
         require_once __DIR__ . '/../views/Loading_page.php';
         print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
