@@ -38,6 +38,14 @@ if($in_save != 'save'){
     <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100" >
         <thead>
             <tr>
+            <?php if(isset($_POST["dallyadd"])){ ?>
+                <th style="width: 10%;">วันที่</th>
+                <th style="width: 20%;">โรงพยาบาล</th>
+                <th style="width: 10%;">ตึก</th>
+                <th style="width: 10%;">ชั้น</th>
+                <th style="width: 20%;">ward</th>
+                <th style="width: 30%;">แผนงาน</th>
+            <?php } else { ?>
                 <th style="width: 10%;">วันที่</th>
                 <th style="width: 15%;">โรงพยาบาล</th>
                 <th style="width: 10%;">ตึก</th>
@@ -46,6 +54,8 @@ if($in_save != 'save'){
                 <th style="width: 20%;">แผนงาน</th>
                 <th style="width: 10%;">Sup</th>
                 <th style="width: 15%;">ผู้รับผิดชอบ</th>
+            <?php } ?>
+                
             </tr>
         </thead>
         <?php
@@ -91,25 +101,27 @@ if($in_save != 'save'){
                             <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_classNew);?></textarea></td>
                             <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_wardNew);?></textarea></td>
                             <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="plan_work[<?php echo htmlspecialchars($itemNew);?>]" name="plan_work[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_contact1New);?> / <?php echo htmlspecialchars($type_1New);?></textarea></td>
-                            <td>
-                                <input type="checkbox" id="daily[<?php echo htmlspecialchars($itemNew);?>]" name="daily[<?php echo htmlspecialchars($itemNew);?>]" value="4">
-                            </td>
-                            <td style="text-align: center; padding-left: 10px;">
-                                <select class="form-select-custom-awl" name="sale_code[<?php echo htmlspecialchars($itemNew);?>]" id="sale_code[<?php echo htmlspecialchars($itemNew);?>]" required>
-                                    <option value="">Please Select</option>
-                                    <?php
-                                    $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                    UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                    UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                    ";
-                                    $objQuery5 = mysqli_query($conn, $strSQL5);
-                                    while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                                        $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                                        echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </td>
+                            <?php if(isset($_POST["dallyadd"])){ ?>
+                                <input type="hidden" id="dallyadd" name="dallyadd" value="1">
+                            <?php } else { ?>
+                                <td><input type="checkbox" id="daily[<?php echo htmlspecialchars($itemNew);?>]" name="daily[<?php echo htmlspecialchars($itemNew);?>]" value="4"></td>
+                                <td style="text-align: center; padding-left: 10px;">
+                                    <select class="form-select-custom-awl" name="sale_code[<?php echo htmlspecialchars($itemNew);?>]" id="sale_code[<?php echo htmlspecialchars($itemNew);?>]" required>
+                                        <option value="">Please Select</option>
+                                        <?php
+                                        $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                        UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                                        UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                                        ";
+                                        $objQuery5 = mysqli_query($conn, $strSQL5);
+                                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            <?php } ?>
                         </tr>
                     </tbody>
                     <?php }
@@ -144,20 +156,23 @@ if($in_save != 'save'){
         $dailySave = $_POST['daily'];
         $sale_codeSave = $_POST['sale_code'];
         $id_refSave = $_POST['id_ref'];
+        $dallyaddSave = $_POST['dallyadd'];
 
         $hospital_classSave = $_POST['hospital_class'];
         $hospital_buidingSave = $_POST['hospital_buiding'];
         $hospital_wardSave = $_POST['hospital_ward'];
         $hospital_contact1Save = $_POST['hospital_contact1'];
 
-       
-
         foreach ($id_customerSave as $key => $value) {
             $in_dateSaveNew = isset($in_dateSave[$key]) ? $in_dateSave[$key] : '';
             $id_customerSaveNew = isset($id_customerSave[$key]) ? $id_customerSave[$key] : '';
             $objectiveSaveNew = isset($objectiveSave[$key]) ? $objectiveSave[$key] : '';
             $plan_workSaveNew = isset($plan_workSave[$key]) ? $plan_workSave[$key] : '';
-            $dailySaveNew = isset($dailySave[$key]) ? $dailySave[$key] : '2';
+            if(isset($dallyaddSave)){
+                $dailySaveNew = '1';
+            } else {
+                $dailySaveNew = isset($dailySave[$key]) ? $dailySave[$key] : '2';
+            }
             $sale_codeSaveNew = isset($sale_codeSave[$key]) ? $sale_codeSave[$key] : '';
 
             $hospital_classSaveNew = isset($hospital_classSave[$key]) ? $hospital_classSave[$key] : '';
@@ -245,6 +260,7 @@ if($in_save != 'save'){
 
             $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());
             // echo $strSQL1;
+            
 
             if($id_refSave!=""){
             $strSQL11 =  "UPDATE tb_register_salemk SET ckk_open = '1' , id_customer = '".$id_customerSaveNew."'  WHERE  id ='".$id_refSave."'";
@@ -255,7 +271,7 @@ if($in_save != 'save'){
 
         $text = '<font style="color:#007700;">ดำเนินการเสร็จสิ้น</font>';
         require_once __DIR__ . '/../views/Loading_page.php';
-        print "<meta http-equiv=refresh content=3;URL='../Action-Plan/actionplan'>"; 
+        print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
         mysqli_close($conn);
         exit;
 

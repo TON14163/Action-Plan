@@ -34,6 +34,8 @@ $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความ�
 
 if (!empty($cus_Keyword)) {
     $where .= " AND customer_name = '" . mysqli_real_escape_string($conn, $cus_Keyword) . "' ";
+} else {
+    $where .= " AND customer_name = 'N/A' ";
 }
 
 // เพิ่ม $where เข้ากับ $sql และ $countSql
