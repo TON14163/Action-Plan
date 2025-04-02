@@ -6,21 +6,24 @@
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
         <b>Sale</b> 
-        <?php echo $_SESSION['em_id'];?>
-        <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-            <option value="">Please Select</option>
-            <?php
-            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-            UNION SELECT sale_code,sale_name FROM tb_team_ss2
-            UNION SELECT sale_code,sale_name FROM tb_team_ss3
-            ";
-            $objQuery5 = mysqli_query($conn, $strSQL5);
-            while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-            }
-            ?>
-        </select>
+        <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
+            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                <option value="">Please Select</option>
+                <?php
+                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                ";
+                $objQuery5 = mysqli_query($conn, $strSQL5);
+                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                    $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                    echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                }
+                ?>
+            </select>
+        <?php } else { $saleSet = $_SESSION['em_id']; ?> 
+            <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
+        <?php } ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -36,7 +39,11 @@
             <kbd style="background-color: #66FFFF; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Sup ไปแล้ว
             <kbd style="background-color: #FFCC99; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Copy งานเดิม
         </div>
-        <div><a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
+        <div>
+            <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+                <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a>
+            <?php } ?>
+        </div>
     </div>
 </section>
 <div class="table-responsive mt-3 px-2">
@@ -57,7 +64,7 @@
     <script>
         $(document).ready(function() {
             var datePlan = "<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>";
-            var saleCode = "<?php echo !empty($_GET['sale_code']) ? htmlspecialchars($_GET['sale_code']) : ''; ?>";
+            var saleCode = "<?php echo !empty($saleSet) ? htmlspecialchars($saleSet) : ''; ?>";
             
             $('#unitTable').DataTable({
                 "lengthChange": false,
