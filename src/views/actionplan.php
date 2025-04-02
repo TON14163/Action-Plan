@@ -1,9 +1,13 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">สร้าง Action Plan</b>
+    <?php if(isset($_GET["dallyadd"])){ ?>
+        <b style="font-size: 20px;">Daily Report Add</b>
+    <?php } else { ?>
+        <b style="font-size: 20px;">สร้าง Action Plan</b>
+    <?php } ?>
 </div>
 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-<p style="padding: 10px 20px;">
+<p style="padding: 0px 20px;">
     <label for="customer"><b>ค้นหาลูกค้า</b></label>
     <input type="search" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php  echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
     <datalist id="customerSelect">
@@ -20,8 +24,7 @@
     <input type="date" name="date_keyword" id="date_keyword">
     <button class="btn-custom-awl" style="background-color: #16BE00;">ส่งข้อมูล</button>
 </p>
-<br>
-<div class="table-responsive mt-3 px-2">
+<div class="table-responsive px-2">
     <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
