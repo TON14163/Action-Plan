@@ -173,10 +173,10 @@ if(!empty($_REQUEST['id_work'])){
 <hr class="my-4">
 
 <section class="accordion font-custom-awl-14" style="font-weight:bold;" id="accordionPanelsStayOpenExample">
-    <?php include 'components/dallyreport_register_part1.php'; // ประมาณการขาย ?>
-    <?php include 'components/dallyreport_register_part2.php'; // Demo ทดลองสินค้า ?>
-    <?php include 'components/dallyreport_register_part3.php'; // ออกบูธ (Group Presentation) ?>
-    <?php include 'components/dallyreport_register_part4.php'; // ข้อมูลคู่เเข่ง ?>
+    <?php include 'components/dallyreport_register_list1.php'; // ประมาณการขาย ?>
+    <?php include 'components/dallyreport_register_list2.php'; // Demo ทดลองสินค้า ?>
+    <?php include 'components/dallyreport_register_list3.php'; // ออกบูธ (Group Presentation) ?>
+    <?php include 'components/dallyreport_register_list4.php'; // ข้อมูลคู่เเข่ง ?>
 </section>
 
 <a href="https://allwellcenter.com/voc/" target="_blank"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> แบบฟอร์มข้อร้องเรียน</span></a>
