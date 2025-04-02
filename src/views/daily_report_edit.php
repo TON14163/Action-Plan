@@ -25,7 +25,7 @@
                 <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
             </span>
         </div>
-        <div class="col-3 text-end" ><a href="dallyreport_register"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
+        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" onclick="copyPlan();"></div>
 
         <div class="col-3">
             <div class="row d-flex align-items-center">
@@ -165,3 +165,27 @@
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
 ?>
+
+
+
+<script>
+function copyPlan(idCopy){
+
+    Swal.fire({
+    title: "<font color='#FFCC99' >งานที่ Copy งานเดิม !!</font>",
+    text: "คุณแน่ใจว่าต้องการ Copy Plan ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire({
+        title: "COPY!",
+        icon: "success"
+        });
+    }
+    });
+}
+</script>
