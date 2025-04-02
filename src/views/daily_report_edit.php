@@ -8,6 +8,7 @@ if(!empty($_REQUEST['id_work'])){
         if($dc == '1'){
             $text = 'กำลังดำเนินการ COPY ข้อมูล กรุณารอสักครู่...';
             require_once __DIR__ . '/../views/Loading_page.php';
+            require_once __DIR__ . '/../models/daily_report_copy.php';
             print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
             mysqli_close($conn);
             exit;
