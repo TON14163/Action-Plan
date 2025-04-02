@@ -1,4 +1,37 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+if(!empty($_REQUEST['id_work'])){
+    
+    $id_work = $_REQUEST['id_work'];
+
+    if(!empty(($_REQUEST['dc']))){
+        $dc = $_REQUEST['dc'];
+        if($dc == '1'){
+            $text = 'กำลังดำเนินการ COPY ข้อมูล กรุณารอสักครู่...';
+            require_once __DIR__ . '/../views/Loading_page.php';
+            require_once __DIR__ . '/../models/daily_report_copy.php';
+            print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
+            mysqli_close($conn);
+            exit;
+        } else if($dc == '2'){
+            $text = 'กำลังดำเนินการ Delete ข้อมูล กรุณารอสักครู่...';
+            require_once __DIR__ . '/../views/Loading_page.php';
+            require_once __DIR__ . '/../models/daily_report_delete.php';
+            print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
+            mysqli_close($conn);
+            exit;
+        }
+    }
+
+} else {
+
+    $text = 'ไม่พบเลขที่อ้างอิงกรุณาดำเนินการใหม่อีกครั้ง';
+    require_once __DIR__ . '/../views/Loading_page.php';
+    print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
+    mysqli_close($conn);
+    exit;
+
+}
+?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">ลงทะเบียน Daily Report</b>
 </div>
@@ -25,7 +58,7 @@
                 <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
             </span>
         </div>
-        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php echo $_REQUEST['id_work'];?>);"></div>
+        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"></div>
 
         <div class="col-3">
             <div class="row d-flex align-items-center">
@@ -152,7 +185,7 @@
     <span class="badge rounded-pill" style="background-color: #19D700; color:#FFFFFF; padding-left: 15px; padding-right: 15px; margin-right: 10px; display: flex; align-items: center;"  >
         <img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;" > &nbsp; บันทึก
     </span>
-    <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; cursor: pointer;" onclick="deletePlan(<?php echo $_REQUEST['id_work'];?>);">
+    <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; cursor: pointer;" onclick="deletePlan(<?php if(isset($id_work)){ echo $id_work; } ?>);">
         <img src="assets/images/icon_system/trash-alt-solid-24.png" style="width:15px; height:15px;"> &nbsp; Delete
     </span>
 </div>
@@ -168,23 +201,28 @@
 
 <script>
 
-function copyPlan(idCopy){
-
+function copyPlan(idCopy) {
     Swal.fire({
-    title: "<font color='#FFCC99' >งานที่ Copy งานเดิม !!</font>",
-    text: "คุณแน่ใจว่าต้องการ Copy Plan ?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes!"
+        title: "<font color='#FFCC99'>งานที่ Copy งานเดิม !!</font>",
+        text: "คุณแน่ใจว่าต้องการ Copy Plan?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!",
+        cancelButtonText: "Cancel"
     }).then((result) => {
-    if (result.isConfirmed) {
-        Swal.fire({
-        title: "COPY!",
-        icon: "success"
-        });
-    }
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "COPY!",
+                text: "กำลังทำการคัดลอกแผน...",
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = `daily_report_edit?id_work=${idCopy}&dc=1`;
+            });
+        }
     });
 }
 
@@ -201,8 +239,12 @@ function deletePlan(idDelete){
     }).then((result) => {
     if (result.isConfirmed) {
         Swal.fire({
-        title: "Delete!",
-        icon: "success"
+            title: "Delete!",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location.href = `daily_report_edit?id_work=${idDelete}&dc=2`;
         });
     }
     });
