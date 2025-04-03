@@ -48,30 +48,78 @@
             </div>
         </div>
         <div class="col-2 d-flex align-items-center"> <?php echo $show->showCustomerLevel($id_work);?> </div>
+        <!--  -->
         <div class="col-3">
             <div class="row d-flex align-items-center">
                 <label for="" class="col-3 col-form-label">ผู้ติดต่อ</label>
                 <div class="col-9">
-                <input type="text" class="form-control text-center" id="hospital_contact" name="hospital_contact" value="<?php echo $show->showDetails($id_work,'hospital_contact');?>" >
+                <input type="text" class="form-control text-center" id="hospital_contact" name="hospital_contact" value="<?php echo $show->showDetails($id_work,'hospital_contact');?>" placeholder="ผู้ติดต่อ 1">
                 </div>
             </div>
+            <?php 
+            for ($i = 1; $i <= 9; $i++) { 
+            $hospital_contact = 'hospital_contact' . $i;
+                if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
+                    <div class="row d-flex align-items-center">
+                        <label for="" class="col-3 col-form-label">ผู้ติดต่อ</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control text-center" id="<?php echo $hospital_contact;?>" name="<?php echo $hospital_contact;?>" value="<?php echo $show->showDetails($id_work, $hospital_contact);?>" placeholder="ผู้ติดต่อ <?php echo $i+1;?>">
+                        </div>
+                    </div>
+                <?php 
+                }
+            } 
+            ?>
         </div>
         <div class="col-4">
-            <div class="row d-flex align-items-center">
+        <div class="row d-flex align-items-center">
                 <label for="" class="col-4 col-form-label">เบอร์โทร</label>
                 <div class="col-8">
-                <input type="text" class="form-control text-center" id="hospital_mobile1" name="hospital_mobile1" value="<?php echo $show->showDetails($id_work,'hospital_mobile1');?>" >
+                <input type="text" class="form-control text-center" id="hospital_mobile1" name="hospital_mobile1" value="<?php echo $show->showDetails($id_work,'hospital_mobile1');?>" placeholder="เบอร์โทร 1">
                 </div>
-            </div>
+        </div>
+        <?php 
+            for ($i = 1; $i <= 9; $i++) { 
+            $hospital_contact = 'hospital_contact'.$i;
+            $hospital_mobile = 'hospital_mobile'.$i;
+            if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
+                    <div class="row d-flex align-items-center">
+                        <label for="" class="col-4 col-form-label">เบอร์โทร</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control text-center" id="<?php echo $hospital_mobile;?>" name="<?php echo $hospital_mobile;?>" value="<?php echo $show->showDetails($id_work, $hospital_mobile);?>" placeholder="เบอร์โทร <?php echo $i+1;?>">
+                        </div>
+                    </div>
+                <?php 
+                }
+            } 
+            ?>
         </div>
         <div class="col-3">
             <div class="row d-flex align-items-center">
                 <label for="" class="col-4 col-form-label">E-mail</label>
                 <div class="col-8">
-                <input type="text" class="form-control" id="email_contact1" name="email_contact1" value="<?php echo $show->showDetails($id_work,'email_contact1');?>" >
+                <input type="text" class="form-control text-center" id="email_contact1" name="email_contact1" value="<?php echo $show->showDetails($id_work,'email_contact1');?>" placeholder="E-mail 1" >
                 </div>
             </div>
+
+            <?php 
+            for ($i = 1; $i <= 9; $i++) { 
+            $hospital_contact = 'hospital_contact'.$i;
+            $email_contact = 'email_contact'.$i;
+            if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
+                    <div class="row d-flex align-items-center">
+                        <label for="" class="col-4 col-form-label">E-mail</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control text-center" id="<?php echo $email_contact;?>" name="<?php echo $email_contact;?>" value="<?php echo $show->showDetails($id_work, $email_contact);?>" placeholder="E-mail <?php echo $i+1;?>">
+                        </div>
+                    </div>
+                <?php 
+                }
+            } 
+            ?>
+
         </div>
+        <!--  -->
         <div class="col-2 d-flex align-items-center"><font style="font-size: 10px; color:red;">*หมายเหตุ : หากแก้ไขข้อมูลลูกค้า ข้อมูลจะถูก Save ทับข้อมูลเดิมในฐานอัตโนมัติ</font></div>
 
     </div>
