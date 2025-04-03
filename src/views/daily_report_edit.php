@@ -22,6 +22,9 @@ if(!empty($_REQUEST['id_work'])){
         }
     }
 
+    require_once __DIR__ . '/../controllers/daily_report_edit_controllers.php'; // ข้อมูลทั้งหมดจะอยู่ในส่วนนี้
+    $show = new DailyReportEdit(); // เรียกใช้งาน class DailyReportEdit นี้ที่มีข้อมูลอยู่มาแสดง
+
 } else {
 
     $text = 'ไม่พบเลขที่อ้างอิงกรุณาดำเนินการใหม่อีกครั้ง';
@@ -35,142 +38,9 @@ if(!empty($_REQUEST['id_work'])){
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">ลงทะเบียน Daily Report</b>
 </div>
-<section>
-    <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;">
-        <div class="col-3">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-3 col-form-label">วันที่</label>
-                <div class="col-9">
-                <input type="date" class="form-control" id="">
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-4 col-form-label">โรงพยาบาล</label>
-                <div class="col-8">
-                <input type="text" class="form-control" id="" value="ซีจีเอส สายไหม">
-                </div>
-            </div>
-        </div>
-        <div class="col-2 d-flex align-items-center">
-            <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
-                <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
-            </span>
-        </div>
-        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"></div>
 
-        <div class="col-3">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-3 col-form-label">ตึก</label>
-                <div class="col-9">
-                <input type="text" class="form-control" id="">
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-4 col-form-label">ชั้น</label>
-                <div class="col-8">
-                <input type="text" class="form-control text-center" id="" value="G">
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-4 col-form-label">หน่วยงาน</label>
-                <div class="col-8">
-                <input type="text" class="form-control text-center" id="" value="LAB">
-                </div>
-            </div>
-        </div>
-        <div class="col-2 d-flex align-items-center">
-            <span class="badge rounded-pill text-bg-secondary" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
-                <img src="assets/images/icon_system/user-solid-24.png" style="width:15px; height:15px; color:#FFFFFF;"> &nbsp; VVIP
-            </span>
-        </div>
-
-        <div class="col-3">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-3 col-form-label">ผู้ติดต่อ</label>
-                <div class="col-9">
-                <input type="text" class="form-control text-center" id="" value="พี่เบส">
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-4 col-form-label">เบอร์โทร</label>
-                <div class="col-8">
-                <input type="text" class="form-control" id="">
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="row d-flex align-items-center">
-                <label for="" class="col-4 col-form-label">E-mail</label>
-                <div class="col-8">
-                <input type="text" class="form-control" id="">
-                </div>
-            </div>
-        </div>
-        <div class="col-2 d-flex align-items-center"><font style="font-size: 10px; color:red;">*หมายเหตุ : หากแก้ไขข้อมูลลูกค้า ข้อมูลจะถูก Save ทับข้อมูลเดิมในฐานอัตโนมัติ</font></div>
-
-    </div>
-</section>
-
-<hr class="my-4">
-
-<section>
-    <div class="row font-custom-awl-14" style="padding: 0px 20px; font-weight: bold;">
-        <div class="col-2">เลือกสินค้า</div>
-        <div class="col-8">
-            <table class="table table-borderless" style="width: 100%; border: hidden; padding:0;">
-                <tr>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="1" id="1"> <label for="1">เตียงผู้ป่วยไฟฟ้า</label></td>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="2" id="2"> <label for="2">เตียงกายภาพ</label></td>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="3" id="3"> <label for="3">ที่นอนโฟม</label></td>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="4" id="4"> <label for="4">เครื่องดูดเสมหะ</label></td>
-                </tr>
-                <tr>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="5" id="5"> <label for="5">เตียงตรวจ OPD</label></td>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="6" id="6"> <label for="6">เตียงเคลื่อนย้าย</label></td>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="7" id="7"> <label for="7">เครื่องวัดน้ำตาล</label></td>
-                    <td style="border: hidden; text-align:left; padding:0;"><input type="checkbox" name="8" id="8"> <label for="8">อื่นๆ / สินค้ารวม</label></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</section>
-
-<hr class="my-4">
-
-<section>
-    <div class="row font-custom-awl-14" style="padding: 0px 20px; font-weight: bold;">
-        <div class="col-2">แผนงาน</div>
-        <div class="col-8">
-            <p>
-            เครื่องวัดน้ำตาล 
-            <select class="form-select-custom-awl" name="" id="">
-                <option value="">Please Select</option>
-                <option value="1">แจก Catalog</option>
-                <option value="2">พูดคุย นำเสนอ</option>
-            </select>
-            </p>
-            
-            อื่นๆ / สินค้ารวม
-            <select class="form-select-custom-awl" name="" id="">
-                <option value="">Please Select</option>
-                <option value="1">แจก Catalog</option>
-                <option value="2">พูดคุย นำเสนอ</option>
-            </select>
-        </div>
-        <div class="col-3">&nbsp;</div>
-        <div class="col-12"><textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea></div>
-    </div>
-</section>
-
-<hr class="my-4">
+<?php require_once __DIR__ . '/../views/components/dallyreport_register_details1.php';?>
+<?php require_once __DIR__ . '/../views/components/dallyreport_register_details2.php';?>
 
 <section class="accordion font-custom-awl-14" style="font-weight:bold;" id="accordionPanelsStayOpenExample">
     <?php include 'components/dallyreport_register_list1.php'; // ประมาณการขาย ?>
