@@ -3,7 +3,7 @@
     <b style="font-size: 20px;">เปลี่ยนรหัสผ่าน</b>
 </div>
 
-<form action="../../user-change-edit" enctype="multipart/form-data" method="post">
+<form action="<?php echo $_SESSION['thisDomain'];?>user-change-edit" enctype="multipart/form-data" method="post">
 <section style="padding: 10px 0px; font-weight: bold;" class="font-custom-awl-14 row">
     <div class="col-4 m-2" style="line-height: 0.9;">
         <span style="background-color: #FAFAFA;">

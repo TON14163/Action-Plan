@@ -52,6 +52,18 @@ $date = date('Y-m-d H:i:s');
 $timestamp = strtotime($date);
 $timestamp1 = $timestamp*1000;
 
+// เช็ค domain เพื่อใช้รัน ระบบในเครื่องหรือบน domain   Start
+$domain = $_SERVER['HTTP_HOST'];
+$domain_only = explode(':', $domain)[0]; // ตัดพอร์ตออก
+
+if ($domain_only === '127.0.0.1') {
+    $thisDomain = "/Action-Plan/";
+} elseif ($domain_only === 'testpr-wr.allwellcenter.com') {
+    $thisDomain =  "/";
+} else {
+    echo "ไม่รู้จักโดเมนนี้";
+}
+// เช็ค domain เพื่อใช้รัน ระบบในเครื่องหรือบน domain   END
 
     if($rows==1){
         @session_start();
@@ -66,6 +78,7 @@ $timestamp1 = $timestamp*1000;
         $_SESSION["pass"] = $data["pass"];
         $_SESSION["type_sale"] = $data["type_sale"];
         $_SESSION["mail_intra"] = $data["mail_intra"];
+        $_SESSION['thisDomain'] =  $thisDomain;
 
         if($_SESSION['typelogin']=="ACC"){
             // header("location:main_acc");

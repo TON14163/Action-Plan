@@ -86,7 +86,7 @@
 
 <script>
     // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch('http://127.0.0.1:8080/Action-Plan/src/models/customers_json')
+    fetch(`<?php echo $cumapi;?>`)
         // fetch(<?php // echo $customerapi;?>)
         .then(response => response.json())
         .then(data => {

@@ -14,7 +14,7 @@ if($num_user == 0){
 
     $text = 'รหัสเดิมไม่ถูกต้อง';
     require_once __DIR__ . '/../views/Loading_page.php';
-    print "<meta http-equiv=refresh content=3;URL='../../user-change'>"; 
+    echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-change>"; 
     mysqli_close($conn);
     exit;
     
@@ -29,7 +29,7 @@ if($passOld != '' && $passNew != '' && $passNewChk != ''){
 
         $text = '';
         require_once __DIR__ . '/../views/Loading_page.php';
-        print "<meta http-equiv=refresh content=3;URL='../../user-change'>"; 
+        echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-change>"; 
         mysqli_close($conn);
         exit; 
 
@@ -37,7 +37,7 @@ if($passOld != '' && $passNew != '' && $passNewChk != ''){
 
         $text = 'รหัสใหม่ / ยืนยันรหัสใหม่ ไม่ตรงกัน กรุณาดำเนินการใหม่อีกครั้ง !!';
         require_once __DIR__ . '/../views/Loading_page.php';
-        print "<meta http-equiv=refresh content=3;URL='../../user-change'>"; 
+        echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-change>"; 
         mysqli_close($conn);
         exit; 
 
@@ -47,7 +47,7 @@ if($passOld != '' && $passNew != '' && $passNewChk != ''){
 
     $text = 'กรุณาตรวจสอบข้อมูลของท่าน';
     require_once __DIR__ . '/../views/Loading_page.php';
-    print "<meta http-equiv=refresh content=3;URL='../../user-change'>"; 
+    echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-change>"; 
     mysqli_close($conn);
     exit; 
 

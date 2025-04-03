@@ -18,7 +18,7 @@ $dotenv->load();
     $listreceivethematter1_api = $_ENV['LISTRECEIVETHEMATTER1_API'] ?? 'N/A';
     $usercustomer1_api = $_ENV['USERCUSTOMER1_API'] ?? 'N/A';
     $actionplan_api = $_ENV['ACTIONPLAN1_API'] ?? 'N/A';
-    $customerapi = $_ENV['CUSTOMERS_API'] ?? 'N/A';
+    $cumapi = $_ENV['CUMAPI'] ?? 'N/A';
 // ส่วนของ API END
 
 $conn = mysqli_connect($host, $user, $pass, $dbSale);

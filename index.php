@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$domain = $_SERVER['HTTP_HOST'];
+$domain_only = explode(':', $domain)[0]; // ตัดพอร์ตออก
 
+if ($domain_only === '127.0.0.1') {
+    $thisDomain = "/Action-Plan/";
+} elseif ($domain_only === 'testpr-wr.allwellcenter.com') {
+    $thisDomain =  "/";
+} else {
+    echo "ไม่รู้จักโดเมนนี้";
+}
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +34,7 @@
 <body class="text-center" >
 
     <main class="flex flex-row items-stretch p-10" style="background-color: #F1E1FF;">
-        <section class="basis-2/5 self-stretch rounded-l-lg" style="height:100vh; background-color:#FFFFFF; "><img class="mx-auto h-full w-full object-cover" src="/Action-Plan/assets/images/icon_allwell_name_2D.png" alt="Your Company"></section>
+        <section class="basis-2/5 self-stretch rounded-l-lg" style="height:100vh; background-color:#FFFFFF; "><img class="mx-auto h-full w-full object-cover" src="<?php echo $thisDomain;?>assets/images/icon_allwell_name_2D.png" alt="Your Company"></section>
         <section class="basis-3/5 self-stretch rounded-r-lg" style="height:100vh; background-color:#FFFFFF; background-size: 20%; background-repeat: no-repeat; background-position: center center; transition: 1s;" id="imageSection">
         <script>
                 // อาร์เรย์ของรูปภาพที่ต้องการสลับ
