@@ -30,17 +30,15 @@
 
             <br><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="myCreateFunction2()" ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มรุ่นสินค้า</span>
 
-            <p class="mt-3">
-                รายละเอียดเพิ่มเติม
-                <textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea>
-                <br>
-                
+            <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea> </p>
+
+            <p>
                 แนบไฟล์
                 <input type="file" id="fileInput" style="display: none;">
                 <label for="fileInput"><span class="badge border border-1 rounded-0 text-dark">Choose File</span></label>
                 <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์</span>
-                
             </p>
+
         </div>
     </div>
 </div>
