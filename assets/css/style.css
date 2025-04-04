@@ -156,6 +156,12 @@ input[type="checkbox"]:checked::before {
 
 
 /* ((datalist-css)) customerSelect Start */
+
+.product-data-container {
+    position: relative; /* ทำให้ container เป็นจุดอ้างอิงสำหรับ positioning */
+    display: inline-block; /* หรือ block ขึ้นอยู่กับ layout ของคุณ */
+}
+
 datalist {
     position: absolute;
     max-height: 20em;
@@ -165,22 +171,27 @@ datalist {
     z-index: 999;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border-radius:8px;
-  }
-  
-  datalist option {
+}
+
+datalist option {
     font-size: 0.8em;
     padding: 0.3em 1em;
     background-color: #FCFCFC;
     cursor: pointer;
-  }
-  
-  datalist option:hover, datalist option:focus {
+    text-align:left;
+
+}
+
+datalist option:hover, datalist option:focus {
     color: #8080c0;
     background-color: #F1E1FF;
     outline: 0 none;
-  }
+}
 /* ((datalist-css)) customerSelect End */
 
+.solnamehover:hover { /* ส่วนของหน้า product_list_controllers */
+    background-color: #F1E1FF;
+}
 
 
 #item_product {

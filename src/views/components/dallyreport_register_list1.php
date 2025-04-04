@@ -9,7 +9,6 @@
     <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">
         <div class="accordion-body">
             <!--  -->
-            <div class="table-responsive">
                 <table class="table-thead-custom-awl table-bordered border-secondary">
                     <tr>
                         <th>ลำดับ</th>
@@ -20,13 +19,18 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td><input class="form-search-custom-awl" type="text" name="" id="" placeholder="Product Search"></td>
+                        <td>
+                            <div class="product-data-container">
+                                <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist[]" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" />
+                                <input type="hidden" name="product_outlistone1" id="product_outlistone1" />
+                                <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
+                            </div>
+                        </td>
                         <td><input class="text-center" type="text" name="" id="" placeholder="0"></td>
                         <td><input class="text-center" type="text" name="" id="" placeholder="0.00"></td>
                         <td><input class="text-center" type="text" name="" id="" placeholder="0.00"></td>
                     </tr>
                 </table>
-            </div>
             <div class="d-flex align-items-center justify-content-between my-4">
                 <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
                 <select name="" id="" style="width: 100px;">
