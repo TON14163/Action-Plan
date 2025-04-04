@@ -99,7 +99,7 @@
             viewItem.id = `item-${keyId}`;
             viewItem.innerHTML = `
                     ${keyValue}
-                    <select class="form-select-custom-awl mt-1" name="planitemlist[]" id="planitemlist">
+                    <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
                         <option value="">Please Select</option>
                         <option value="${keyValue}:1">แจก Catalog</option>
                         <option value="${keyValue}:2">พูดคุย นำเสนอ</option>

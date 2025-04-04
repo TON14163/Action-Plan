@@ -22,24 +22,6 @@
                 </p>
 
                 <div class="row my-2" style="width: 80%;">
-
-                    <div class="col-2"> เลือกสินค้า </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> เตียงผู้ป่วยไฟฟ้า </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> เตียงกายภาพ </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> ที่นอนโฟม </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> เครื่องดูดเสมหะ </div>
-                    <div class="col-2"></div>
-
-                    <div class="col-2"></div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> เตียงตรวจ OPD </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> เตียงเคลื่อนย้าย </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> เครื่องวัดน้ำตาล </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> อื่นๆ / สินค้ารวม </div>
-                    <div class="col-2"></div>
-
-                </div>
-
-                <div class="row my-2" style="width: 80%;">
                     <div class="col-2"> การนำเสนอ </div>
                     <div class="col-2"> <input type="checkbox" name="" id=""> Powerpoint </div>
                     <div class="col-2"> <input type="checkbox" name="" id=""> นำสินค้าไปสาธิต </div>
