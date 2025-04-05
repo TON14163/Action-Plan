@@ -1,8 +1,8 @@
 <div class="accordion-item rounded-0 border border-0" style="margin: 20px 0px;">
     <p class="accordion-header">
-      <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA;" >
-      <input type="checkbox" name="44" id="44" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4"> &nbsp; &nbsp; <label for="44">ข้อมูลคู่เเข่ง</label>
-      </span>
+        <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA;" >
+        <input type="checkbox" name="44" id="44" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4"> &nbsp; &nbsp; <label for="44">ข้อมูลคู่เเข่ง</label>
+        </span>
     </p>
     <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">
         <div class="accordion-body">
