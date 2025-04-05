@@ -65,7 +65,7 @@ if ($domain_only === '127.0.0.1') {
 }
 // เช็ค domain เพื่อใช้รัน ระบบในเครื่องหรือบน domain   END
 
-    if($rows==1){
+    if($rows == 1){
         @session_start();
         $_SESSION['user_id_login'] = $data["user_id"];
         $_SESSION['name_show'] = $data["name"];
@@ -80,16 +80,8 @@ if ($domain_only === '127.0.0.1') {
         $_SESSION["mail_intra"] = $data["mail_intra"];
         $_SESSION['thisDomain'] =  $thisDomain;
 
-        if($_SESSION['typelogin']=="ACC"){
-            // header("location:main_acc");
-            header("location:home");
-        } else if($_SESSION['typelogin']=="Marketing"){
-            // header("location:main_mk");
-            header("location:home");
-        } else {
-            // header("location:main_sale");
-            header("location:home");
-        }
+        header("location:home");
+        
     } else {
         echo  "<script>alert('Login Failed! Please check your username and password'); window.location='index.php'</script>";
     }

@@ -20,7 +20,12 @@
                         <th style="width: 10%;">วันที่เปิดซอง</th>
                     </tr>
                     <tr>
-                        <td style="padding: 8px;"><input class="form-search-custom-awl" type="search" name="" id="" placeholder="Search" ></td>
+                        <td style="padding: 8px;">
+                            <select class="form-search-custom-awl" name="h_product_rival" id="h_product_rival">
+                                <option value="">Search</option>
+                                <?php echo $show->showProrival();?>
+                            </select>
+                        </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""  placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""  placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""  placeholder="Please fill out"></td>
@@ -38,12 +43,30 @@
             </p>
 
             <div style="display: flex; justify-content: space-between; margin-top: -10px;">
-                <span>
-                แนบไฟล์
-                <input type="file" id="fileInput" style="display: none;">
-                <label for="fileInput"><span class="badge border border-1 rounded-0 text-dark">Choose File</span></label>
-                <a href=""><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์</span></a>
-                </span>
+                <div>
+                    <div style="margin-bottom: 5px;">
+                        <label for="list4file1">แนบไฟล์</label> 
+                        <input style="width: 300px;" type="file" name="list4file[]" id="list4file1">
+                        <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow4()">
+                            <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์
+                        </span>
+                    </div>
+
+                    <div id="fileRowsContainer4"></div>
+
+                    <script>
+                        function addFileRow4() {
+                            const container = document.getElementById('fileRowsContainer4');
+                            const rowCount = container.children.length + 2; // Start from 2 since the first row is already present
+                            const newRow = document.createElement('div');
+                            newRow.innerHTML = `
+                                <label for="list4file${rowCount}">แนบไฟล์</label> 
+                                <input style="width: 300px; margin: 5px 0px;" type="file" name="list4file[]" id="list4file${rowCount}">
+                            `;
+                            container.appendChild(newRow);
+                        }
+                    </script>
+                </div>
                 
                 <span>
                 <a href=""><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มข้อมูลคู่เเข่ง</span></a>

@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../../config/database.php'; // ข้อมูลของ  DB Connection
+
 $q = $_GET['q'] ?? ''; // เนื้อหาที่ต้องการค้นหา
 $rowNum = $_GET['rowNum'] ?? ''; // ลำดับของบรรทัดนั้น
 $fieldName = $_GET['fieldName'] ?? ''; // product_outlist1 ชื่อของ input ที่ต้องการให้เก็บ ผลลัพธ์ = product_ID

@@ -32,12 +32,28 @@
 
             <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea> </p>
 
-            <p>
-                แนบไฟล์
-                <input type="file" id="fileInput" style="display: none;">
-                <label for="fileInput"><span class="badge border border-1 rounded-0 text-dark">Choose File</span></label>
-                <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์</span>
-            </p>
+                <div style="margin-bottom: 5px;">
+                    <label for="list2file1">แนบไฟล์</label> 
+                    <input style="width: 300px;" type="file" name="list2file[]" id="list2file1">
+                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow2()">
+                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์
+                    </span>
+                </div>
+
+                <div id="fileRowsContainer2"></div>
+
+                <script>
+                    function addFileRow2() {
+                        const container = document.getElementById('fileRowsContainer2');
+                        const rowCount = container.children.length + 2; // Start from 2 since the first row is already present
+                        const newRow = document.createElement('div');
+                        newRow.innerHTML = `
+                            <label for="list2file${rowCount}">แนบไฟล์</label> 
+                            <input style="width: 300px; margin: 5px 0px;" type="file" name="list2file[]" id="list2file${rowCount}">
+                        `;
+                        container.appendChild(newRow);
+                    }
+                </script>
 
         </div>
     </div>
@@ -67,9 +83,8 @@
     function myDeleteFunction() {
         document.getElementById("demo_product").deleteRow(-1);
     }
-</script>
 
-<script>
+
     // ใช้ fetch API เพื่อดึงข้อมูลจาก API
     fetch('https://testpr-wr.allwellcenter.com/customers_json')
         .then(response => response.json())
@@ -84,10 +99,9 @@
             });
         })
         .catch(error => console.error('Error:', error));
-</script>
 
 
-<script>
+
 function addProductRow(rowNum, fieldName, searchTerm,txtHint,product_twolist) {
     if (!searchTerm.trim() || searchTerm.length == 0) {
         document.getElementById(`${txtHint}`).innerHTML = "";
@@ -103,7 +117,8 @@ function addProductRow(rowNum, fieldName, searchTerm,txtHint,product_twolist) {
         }
     };
     
-    xhr.open("GET", `product_list_controllers?q=${encodeURIComponent(searchTerm)}&rowNum=${rowNum}&fieldName=${encodeURIComponent(fieldName)}&txtHint=${encodeURIComponent(txtHint)}&product_twolist=${encodeURIComponent(product_twolist)}`, true);
+    xhr.open("GET", "./src/controllers/product_list_controllers.php?q=" + encodeURIComponent(searchTerm) + "&rowNum=" + rowNum + "&fieldName=" + encodeURIComponent(fieldName) + "&txtHint=" + encodeURIComponent(txtHint) + "&product_twolist=" + encodeURIComponent(product_twolist), true);
     xhr.send();
 }
+
 </script>

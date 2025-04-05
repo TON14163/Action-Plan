@@ -37,5 +37,19 @@ class DailyReportEdit {
         }
         return $type_cus;
     }
+
+    function showProrival(){
+        $this->conn = $GLOBALS['conn'];
+
+        $sql = "SELECT id,prorival_name FROM tb_prorival ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $prorival_name = [];
+        while($vsql = mysqli_fetch_array($qsql)){
+            $prorival_name .= '<option value="'.$vsql['id'].'">'.$vsql['prorival_name'].'</option>';
+        }
+
+        return $prorival_name;
+    }
+
 }
 ?>
