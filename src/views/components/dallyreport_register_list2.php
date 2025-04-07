@@ -19,18 +19,17 @@
                         <td>
                             <div class="product-data-container">
                                 <input class="form-search-custom-awl" type="text" list="product_twodata1" name="product_twolist[]" id="product_twolist1" onkeyup="addProductRow('1','product_outlist1',this.value,'txtHint1','product_twolist1')" placeholder="Product Search" autocomplete="off" />
-                                <input type="hidden" name="product_outlist1" id="product_outlist1" />
+                                <input type="text" name="product_outlist[]" id="product_outlist1" />
                                 <div id="txtHint1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
                             </div>
                         </td>
-                        <td><input class="text-center" type="text" name="" id="" placeholder=""></td>
-                        <td><input class="text-center" type="text" name="" id="" placeholder=""></td>
+                        <td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like" ></td>
+                        <td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike" ></td>
                     </tr>
                 </table>
 
-            <br><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="myCreateFunction2()" ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มรุ่นสินค้า</span>
-
-            <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea> </p>
+                <br><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="myCreateFunction2()" ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มรุ่นสินค้า</span>
+                <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="cuspre_descript" id="cuspre_descript"  rows="3"></textarea> </p>
 
                 <div style="margin-bottom: 5px;">
                     <label for="list2file1">แนบไฟล์</label> 
@@ -72,12 +71,12 @@
         cell2.innerHTML = `<td>
         <div class="product-data-container">
             <input class="form-search-custom-awl" type="text" list="product_twodata1" name="product_twolist[]" id="product_twolist${rowCount}" onkeyup="addProductRow('${rowCount}','product_outlist${rowCount}',this.value,'txtHint${rowCount}','product_twolist${rowCount}')" placeholder="Product Search" autocomplete="off" />
-            <input type="hidden" name="product_outlist${rowCount}" id="product_outlist${rowCount}" />
+            <input type="text" name="product_outlist[]" id="product_outlist${rowCount}" />
             <div id="txtHint${rowCount}" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
         </div>
         </td>`;
-        cell3.innerHTML = `<td><input class="text-center" type="text" name="" id="" placeholder=""></td>`;
-        cell4.innerHTML = `<td><input class="text-center" type="text" name="" id="" placeholder=""></td>`;
+        cell3.innerHTML = `<td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like" ></td>`;
+        cell4.innerHTML = `<td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike" ></td>`;
     }
 
     function myDeleteFunction() {

@@ -101,8 +101,8 @@
                     ${keyValue}
                     <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
                         <option value="">Please Select</option>
-                        <option value="${keyValue}:1">แจก Catalog</option>
-                        <option value="${keyValue}:2">พูดคุย นำเสนอ</option>
+                        <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
+                        <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
                     </select>
             `;
             demoPlanItem.appendChild(viewItem);

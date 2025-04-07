@@ -11,26 +11,26 @@
         <div class="accordion-body">
             <!--  -->
                 <p>
-                    ชื่องาน <input type="text" name="" id="" placeholder="Please fill out this field">
-                    วันที่จัดงาน <input type="date" name="" id="" >
-                    ถึง <input type="date" name="" id="" >
-                    งบค่าใช้จ่าย <input type="text" name="" id="" >
+                    ชื่องาน <input type="text" name="work_name" id="work_name" placeholder="Please fill out this field">
+                    วันที่จัดงาน <input type="date" name="work_date" id="work_date" >
+                    ถึง <input type="date" name="end_date" id="end_date" >
+                    งบค่าใช้จ่าย <input type="text" name="price_work" id="price_work" >
                 </p>
                 <p>
-                    จำนวนผู้เข้าร่วม <input type="text" name="" id="" >
-                    ผู้เข้าร่วม <input type="text" name="" id="" >
+                    จำนวนผู้เข้าร่วม <input type="text" name="count_work" id="count_work" >
+                    ผู้เข้าร่วม <input type="text" name="des_cus1" id="des_cus1" >
                 </p>
 
                 <div class="row my-2" style="width: 80%;">
                     <div class="col-2"> การนำเสนอ </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> Powerpoint </div>
-                    <div class="col-2"> <input type="checkbox" name="" id=""> นำสินค้าไปสาธิต </div>
+                    <div class="col-2"> <input type="checkbox" name="typ_work1" id="typ_work1" value="1"> <label for="typ_work1">Powerpoint</label> </div>
+                    <div class="col-2"> <input type="checkbox" name="typ_work2" id="typ_work2" value="1"> <label for="typ_work2">นำสินค้าไปสาธิต</label> </div>
                     <div class="col-6"></div>
                 </div>
 
                 <p>
                 มุมมอง "ลูกค้า" ต่อ "สินค้า & การแนะนำ & การซื้อ"
-                <textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea>
+                <textarea class="textarea-form-control" style="width:100%;" name="sum_wordpre" id="sum_wordpre"  rows="3"></textarea>
                 </p>
             <!--  -->
         </div>
