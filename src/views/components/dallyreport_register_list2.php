@@ -1,7 +1,7 @@
 <div class="accordion-item rounded-0 border border-0">
     <p class="accordion-header">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA; margin-top: 20px; border:0 none;" >
-            <input type="checkbox" name="22" id="22" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2"> &nbsp; &nbsp; <label for="22">Demo ทดลองสินค้า</label>
+            <input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2" value="1"> &nbsp; &nbsp; <label for="listmain2">Demo ทดลองสินค้า</label>
         </span>
     </p>
     <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">

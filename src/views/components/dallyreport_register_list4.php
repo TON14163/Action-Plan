@@ -1,7 +1,7 @@
 <div class="accordion-item rounded-0 border border-0" style="margin: 20px 0px;">
     <p class="accordion-header">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA;" >
-        <input type="checkbox" name="44" id="44" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4"> &nbsp; &nbsp; <label for="44">ข้อมูลคู่เเข่ง</label>
+        <input type="checkbox" name="listmain4" id="listmain4" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4" value="1"> &nbsp; &nbsp; <label for="listmain4">ข้อมูลคู่เเข่ง</label>
         </span>
     </p>
     <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">
@@ -21,25 +21,25 @@
                     </tr>
                     <tr>
                         <td style="padding: 8px;">
-                            <select class="form-search-custom-awl" name="h_product_rival" id="h_product_rival">
+                            <select class="form-search-custom-awl" name="h_product_rival[]" id="h_product_rival">
                                 <option value="">Search</option>
                                 <?php echo $show->showProrival();?>
                             </select>
                         </td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""  placeholder="Please fill out"></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""  placeholder="Please fill out"></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""  placeholder="Please fill out"></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="" id=""></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="date" name="" id=""></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="product_rival[]" id="product_rival" placeholder="Please fill out"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="company_rival[]" id="company_rival" placeholder="Please fill out"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_brand[]" id="rival_brand" placeholder="Please fill out"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_model[]" id="rival_model"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="unit[]" id="unit"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="promotion[]" id="promotion"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="date" name="date_open[]" id="date_open"></td>
                     </tr>
                 </table>
             </div>
 
             <p class="p-2">
             หมายเหตุ
-            <textarea class="textarea-form-control" style="width:100%;" name="" id=""  rows="3"></textarea>
+            <textarea class="textarea-form-control" style="width:100%;" name="description[]" id="description"  rows="3"></textarea>
             </p>
 
             <div style="display: flex; justify-content: space-between; margin-top: -10px;">
