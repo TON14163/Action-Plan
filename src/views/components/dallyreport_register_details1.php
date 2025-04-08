@@ -1,10 +1,11 @@
+<input type="hidden" name="id_work" id="id_work" value="<?php echo $id_work;?>">
 <section>
     <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;">
         <div class="col-3">
             <div class="row d-flex align-items-center">
                 <label for="" class="col-3 col-form-label">วันที่</label>
                 <div class="col-9">
-                <input type="date" class="form-control" id="" name="" value="<?php echo $show->showDetails($id_work,'date_plan');?>" readonly>
+                <input type="date" class="form-control" id="date_plan" name="date_plan" value="<?php echo $show->showDetails($id_work,'date_plan');?>" readonly>
                 </div>
             </div>
         </div>
@@ -81,7 +82,7 @@
         <?php 
             for ($i = 1; $i <= 9; $i++) { 
             $hospital_contact = 'hospital_contact'.$i;
-            $hospital_mobile = 'hospital_mobile'.$i;
+            $hospital_mobile = 'hospital_mobile'.$i+1;
             if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
                     <div class="row d-flex align-items-center">
                         <label for="" class="col-4 col-form-label">เบอร์โทร</label>
@@ -105,7 +106,7 @@
             <?php 
             for ($i = 1; $i <= 9; $i++) { 
             $hospital_contact = 'hospital_contact'.$i;
-            $email_contact = 'email_contact'.$i;
+            $email_contact = 'email_contact'.$i+1;
             if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
                     <div class="row d-flex align-items-center">
                         <label for="" class="col-4 col-form-label">E-mail</label>
