@@ -4,7 +4,7 @@
         <input type="checkbox" name="listmain4" id="listmain4" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4" value="1"> &nbsp; &nbsp; <label for="listmain4">ข้อมูลคู่เเข่ง</label>
         </span>
     </p>
-    <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">
+    <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" >
         <div class="accordion-body">
             <!--  -->
             <div class="table-responsive p-2">
@@ -47,7 +47,7 @@
                     <div style="margin-bottom: 5px;">
                         <label for="list4file1">แนบไฟล์</label> 
                         <input style="width: 300px;" type="file" name="list4file[]" id="list4file1">
-                        <span class="badge rounded-pill" style="background-color: #ff4444; color:#FFFFFF; padding: 5px 10px; margin-left: 5px; cursor: pointer;" onclick="myDeleteFunction(this)">ลบ</span>
+                        <span class="badge rounded-pill" style="background-color: #ff4444; color:#FFFFFF; padding: 5px 10px; margin-left: 5px; cursor: pointer;" >ลบ</span>
                         <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow4(1)">
                             <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์
                         </span>
@@ -55,9 +55,8 @@
                     <div id="file4RowsContainer1"></div>
                 </div>
                 <span>
-                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px;" 
-                    onclick="addMultiList()"
-                    ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มข้อมูลคู่เเข่ง</span>
+                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" 
+                    onclick="addMultiList()"><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มข้อมูลคู่เเข่ง</span>
                 </span>
             </div>
 
@@ -75,7 +74,7 @@
         newRow.innerHTML = `
             <label for="list4file${multiNum}_${rowCount}">แนบไฟล์</label> 
             <input style="width: 300px; margin: 5px 0px;" type="file" name="list4file[]" id="list4file${multiNum}_${rowCount}">
-            <span class="badge rounded-pill" style="background-color: #ff4444; color:#FFFFFF; padding: 5px 10px; margin-left: 5px; cursor: pointer;" onclick="myDeleteFunction(this)">ลบ</span>
+            <span class="badge rounded-pill" style="background-color: #ff4444; color:#FFFFFF; padding: 5px 10px; margin-left: 5px; cursor: pointer;">ลบ</span>
         `;
         container.appendChild(newRow);
     }

@@ -10,11 +10,26 @@ class DailyReportEdit {
         $this->conn = $GLOBALS['conn'];
         $this->id_work = htmlspecialchars($id_work, ENT_COMPAT, 'UTF-8');
         $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
-
         $sql = "SELECT $this->columnsName FROM tb_register_data WHERE id_work = '".$this->id_work."' ";
         $qsql = mysqli_query($this->conn,$sql);
         $vsql = mysqli_fetch_array($qsql);
         return $vsql[$this->columnsName];
+    }
+
+    function showDelivery($id_work,$columnsName) {
+        $this->conn = $GLOBALS['conn'];
+        $this->id_work = htmlspecialchars($id_work, ENT_COMPAT, 'UTF-8');
+        $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
+        
+        $sql = "SELECT $this->columnsName FROM tb_product_delivery WHERE ref_idwork = '".$this->id_work."' ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $nsql = mysqli_num_rows($qsql);
+        $vsql = mysqli_fetch_array($qsql);
+        if($nsql > 0){
+            return $vsql[$this->columnsName];
+        } else {
+            return '';
+        }
     }
 
     function showCustomerLevel($id_work) {
@@ -36,6 +51,20 @@ class DailyReportEdit {
             default: $type_cus = ''; break;
         }
         return $type_cus;
+    }
+
+    function showCustomerLevelNumber($id_work) {
+        $this->conn = $GLOBALS['conn'];
+        $this->id_work = htmlspecialchars($id_work, ENT_COMPAT, 'UTF-8');
+
+        $sql = "SELECT r.id_customer,c.id_customer,c.type_cus
+        FROM tb_register_data r
+        RIGHT JOIN tb_customer_contact c
+        ON r.id_customer = c.id_customer
+        WHERE id_work = '".$this->id_work."' ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $vsql = mysqli_fetch_array($qsql);
+        return $vsql['type_cus'];
     }
 
     function showProrival(){

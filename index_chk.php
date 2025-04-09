@@ -35,6 +35,8 @@ $routes = [
     'user-contact-register' => 'src/views/user-contact-register.php',
     'test' => 'src/views/test.php',
     'actionplan_list' => 'src/views/actionplan_list.php',
+    'register_user' => 'src/views/register_user.php',
+
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
 
     'dallyreport_fetch_api' => 'src/models/dallyreport_fetch_api.php',

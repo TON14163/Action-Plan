@@ -7,7 +7,7 @@
             <a href=""><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> Google Form เบิกของออกบูท</span></a>
         </span>
     </p>
-    <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">
+    <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse" >
         <div class="accordion-body">
             <!--  -->
                 <p>

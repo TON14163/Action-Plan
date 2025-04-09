@@ -47,7 +47,6 @@ $Com_name=gethostbyaddr($_SERVER['REMOTE_ADDR']);
 $ip=GetHostByName($_SERVER['REMOTE_ADDR']);
 
 $date_today = date('Y-m-d H:i:s');
-		
 $date = date('Y-m-d H:i:s');
 $timestamp = strtotime($date);
 $timestamp1 = $timestamp*1000;
@@ -56,7 +55,7 @@ $timestamp1 = $timestamp*1000;
 $domain = $_SERVER['HTTP_HOST'];
 $domain_only = explode(':', $domain)[0]; // ตัดพอร์ตออก
 
-if ($domain_only === '127.0.0.1') {
+if ($domain_only === '127.0.0.1' || $domain_only === '37d4-184-82-245-228.ngrok-free.app') {
     $thisDomain = "/Action-Plan/";
 } elseif ($domain_only === 'testpr-wr.allwellcenter.com') {
     $thisDomain =  "/";
@@ -78,6 +77,7 @@ if ($domain_only === '127.0.0.1') {
         $_SESSION["pass"] = $data["pass"];
         $_SESSION["type_sale"] = $data["type_sale"];
         $_SESSION["mail_intra"] = $data["mail_intra"];
+        $_SESSION["head_area"] = $data["head_area"];
         $_SESSION['thisDomain'] =  $thisDomain;
 
         header("location:home");

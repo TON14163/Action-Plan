@@ -282,7 +282,7 @@ if($in_save != 'save'){
             // echo $strSQL11;
             }
         }
-        $text = '<font style="color:#007700;">ดำเนินการเสร็จสิ้น</font>';
+        $text = '<font>ดำเนินการเสร็จสิ้น</font>';
         require_once __DIR__ . '/../views/Loading_page.php';
         echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."dallyreport>"; 
 

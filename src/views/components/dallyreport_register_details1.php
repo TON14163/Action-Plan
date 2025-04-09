@@ -1,4 +1,6 @@
 <input type="hidden" name="id_work" id="id_work" value="<?php echo $id_work;?>">
+<input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showDetails($id_work,'id_customer');?>">
+<input type="hidden" name="id_pro" id="id_pro" value="<?php echo $show->showDelivery($id_work,'id_pro');?>">
 <section>
     <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;">
         <div class="col-3">
@@ -48,7 +50,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 d-flex align-items-center"> <?php echo $show->showCustomerLevel($id_work);?> </div>
+        <div class="col-2 d-flex align-items-center"> 
+            <?php echo $show->showCustomerLevel($id_work);?> 
+            <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
+        </div>
         <!--  -->
         <div class="col-3">
             <div class="row d-flex align-items-center">

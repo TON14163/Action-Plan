@@ -6,7 +6,7 @@
             <a href="https://sol.allwellcenter.com/" target="_blank"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ERP SALE</span></a>
         </span>
     </p>
-    <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;">
+    <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse">
         <div class="accordion-body">
             <!--  -->
                 <table class="table-thead-custom-awl table-bordered border-secondary">
@@ -47,11 +47,11 @@
                 <label for="inputPassword" class="">ประเภท&nbsp;</label>
                 <select name="type_cus" id="type_cus"  style="width: 151px;">
                     <option value="">Please Select</option>
-                    <option value="">ProA (Project A+ / A)</option>
-                    <option value="">NewB (New Building)</option>
-                    <option value="">NewF (New Forecast)</option>
-                    <option value="">Pre/B (Present / Booth)</option>
-                    <option value="">ลูกค้าทั่วไป / เจ้าหน้าที่รพ.</option>
+                    <option value="1">ProA (Project A+ / A)</option>
+                    <option value="2">NewB (New Building)</option>
+                    <option value="3">NewF (New Forecast)</option>
+                    <option value="4">Pre/B (Present / Booth)</option>
+                    <option value="5">ลูกค้าทั่วไป / เจ้าหน้าที่รพ.</option>
                 </select>
             </div>
             <div>

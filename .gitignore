@@ -51,3 +51,5 @@ Thumbs.db
 # config ต่างๆ การเข้าถึงหน้าของข้อมูล
 .env
 .htaccess
+
+สำลอง_env.txt

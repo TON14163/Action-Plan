@@ -72,6 +72,7 @@ if ($_SESSION['em_id'] == '' ) { ?>
                 <span class="arrow-drop-down-right">
                     <a href="<?php echo $nameHost;?>user-contact">ข้อมูลผู้ติดต่อ</a>
                     <a href="<?php echo $nameHost;?>user-customer">ข้อมูลลูกค้า</a>
+                    <a href="<?php echo $nameHost;?>register_user">ข้อมูลผู้ใช้งาน</a>
                     <a href="<?php echo $nameHost;?>user-change">เปลี่ยนรหัสผ่าน</a>
                     <a href="<?php echo $nameHost;?>user-logout">ออกจากระบบ</a>
                 </span>
