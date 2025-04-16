@@ -1,6 +1,7 @@
 <input type="hidden" name="id_work" id="id_work" value="<?php echo $id_work;?>">
 <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showDetails($id_work,'id_customer');?>">
 <input type="hidden" name="id_pro" id="id_pro" value="<?php echo $show->showDelivery($id_work,'id_pro');?>">
+<input type="text" name="present_id" id="present_id" value="<?php echo $show->showBooth($id_work,'present_id');?>">
 <section>
     <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;">
         <div class="col-3">

@@ -3,8 +3,10 @@ require_once __DIR__ . '/../../config/database.php'; // ข้อมูลขอ
 
 class DailyReportEdit {
     public $id_work; // PK
+    public $product_ID; // PK
     public $columnsName; // Columns Name
     public $conn; // DB Connection allwell_sale
+    public $sol; // DB Connection allwell_sol
     
     function showDetails($id_work,$columnsName) {
         $this->conn = $GLOBALS['conn'];
@@ -22,6 +24,22 @@ class DailyReportEdit {
         $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
         
         $sql = "SELECT $this->columnsName FROM tb_product_delivery WHERE ref_idwork = '".$this->id_work."' ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $nsql = mysqli_num_rows($qsql);
+        $vsql = mysqli_fetch_array($qsql);
+        if($nsql > 0){
+            return $vsql[$this->columnsName];
+        } else {
+            return '';
+        }
+    }
+
+    function showBooth($id_work,$columnsName) {
+        $this->conn = $GLOBALS['conn'];
+        $this->id_work = htmlspecialchars($id_work, ENT_COMPAT, 'UTF-8');
+        $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
+        
+        $sql = "SELECT $this->columnsName FROM tb_present_booth WHERE ref_idwork = '".$this->id_work."' ";
         $qsql = mysqli_query($this->conn,$sql);
         $nsql = mysqli_num_rows($qsql);
         $vsql = mysqli_fetch_array($qsql);
@@ -78,6 +96,16 @@ class DailyReportEdit {
         }
 
         return $prorival_name;
+    }
+
+    function showProduct($product_ID,$columnsName) {
+        $this->sol = $GLOBALS['sol'];
+        $this->product_ID = htmlspecialchars($product_ID, ENT_COMPAT, 'UTF-8');
+        $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
+        $sql = "SELECT $this->columnsName FROM tb_product WHERE product_ID = '".$this->product_ID."' ";
+        $qsql = mysqli_query($this->sol,$sql);
+        $vsql = mysqli_fetch_array($qsql);
+        return $vsql[$this->columnsName];
     }
 
 }

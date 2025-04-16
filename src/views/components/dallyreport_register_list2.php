@@ -1,107 +1,126 @@
 <div class="accordion-item rounded-0 border border-0">
     <p class="accordion-header">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA; margin-top: 20px; border:0 none;" >
-            <input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2" value="1"> &nbsp; &nbsp; <label for="listmain2">Demo ทดลองสินค้า</label>
+            <input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2" value="1">     <label for="listmain2">Demo ทดลองสินค้า</label>
         </span>
     </p>
     <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" >
         <div class="accordion-body">
-            <!--  -->
-                <table id="demo_product" class="table-thead-custom-awl table-bordered border-secondary">
-                    <tr>
-                        <th>ลำดับ</th>
-                        <th>รายการสินค้า</th>
-                        <th>ต้องการ / ชอบ</th>
-                        <th>ไม่ต้องการ / ไม่ชอบ</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <div class="product-data-container">
-                                <input class="form-search-custom-awl" type="text" list="product_twodata1" name="product_twolist[]" id="product_twolist1" onkeyup="addProductRow('1','product_outlist1',this.value,'txtHint1','product_twolist1')" placeholder="Product Search" autocomplete="off" />
-                                <input type="text" name="product_outlist[]" id="product_outlist1" />
-                                <div id="txtHint1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
-                            </div>
-                        </td>
-                        <td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like" ></td>
-                        <td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike" ></td>
-                    </tr>
-                </table>
+            <table id="demo_product" class="table-thead-custom-awl table-bordered border-secondary">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รายการสินค้า</th>
+                    <th>ต้องการ / ชอบ</th>
+                    <th>ไม่ต้องการ / ไม่ชอบ</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <div class="product-data-container">
+                            <input class="form-search-custom-awl" type="text" list="product_twodata1" name="product_twolist[]" id="product_twolist1" onkeyup="addProductRow('1','product_outlist1',this.value,'txtHint1','product_twolist1')" placeholder="Product Search" autocomplete="off" />
+                            <input type="hidden" name="product_outlist[]" id="product_outlist1" />
+                            <div id="txtHint1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
+                        </div>
+                    </td>
+                    <td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like" ></td>
+                    <td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike" ></td>
+                </tr>
+            </table>
 
-                <br><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="myCreateFunction2()" ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มรุ่นสินค้า</span>
-                <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="cuspre_descript" id="cuspre_descript"  rows="3"></textarea> </p>
+            <br><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="myCreateFunction2()" ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มรุ่นสินค้า</span>
+            <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="cuspre_descript" id="cuspre_descript" rows="3"></textarea> </p>
 
-                <div style="margin-bottom: 5px;">
-                    <label for="list2file1">แนบไฟล์</label> 
-                    <input style="width: 300px;" type="file" name="list2file[]" id="list2file1">
-                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow2()">
-                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์
+            <div id="fileAttachmentsContainer">
+                <div class="file-section" data-row="1">
+                    <span class="badge rounded-pill mb-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(1)"> 
+                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ 1 
                     </span>
+                    <div id="fileRowsContainer1" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
+                        <div> <label for="list2file1_1">แนบไฟล์</label> <input style="width: 150px;" type="file" name="list2file[1][]" id="list2file1_1"> </div>
+                    </div>
                 </div>
-
-                <div id="fileRowsContainer2"></div>
-
-                <script>
-                    function addFileRow2() {
-                        const container = document.getElementById('fileRowsContainer2');
-                        const rowCount = container.children.length + 2; // Start from 2 since the first row is already present
-                        const newRow = document.createElement('div');
-                        newRow.innerHTML = `
-                            <label for="list2file${rowCount}">แนบไฟล์</label> 
-                            <input style="width: 300px; margin: 5px 0px;" type="file" name="list2file[]" id="list2file${rowCount}">
-                        `;
-                        container.appendChild(newRow);
-                    }
-                </script>
-
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    function myCreateFunction2() {
-        var table = document.getElementById("demo_product");
-        var rowCount = table.rows.length;
-        var row = table.insertRow(-1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        cell1.innerHTML = `<td>${rowCount}</td>`;
-        cell2.innerHTML = `<td>
+function myCreateFunction2() {
+    var table = document.getElementById("demo_product");
+    var rowCount = table.rows.length;
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    
+    cell1.innerHTML = `<td>${rowCount}</td>`;
+    cell2.innerHTML = `<td>
         <div class="product-data-container">
             <input class="form-search-custom-awl" type="text" list="product_twodata1" name="product_twolist[]" id="product_twolist${rowCount}" onkeyup="addProductRow('${rowCount}','product_outlist${rowCount}',this.value,'txtHint${rowCount}','product_twolist${rowCount}')" placeholder="Product Search" autocomplete="off" />
-            <input type="text" name="product_outlist[]" id="product_outlist${rowCount}" />
+            <input type="hidden" name="product_outlist[]" id="product_outlist${rowCount}" />
             <div id="txtHint${rowCount}" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
         </div>
-        </td>`;
-        cell3.innerHTML = `<td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like" ></td>`;
-        cell4.innerHTML = `<td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike" ></td>`;
+    </td>`;
+    cell3.innerHTML = `<td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like${rowCount}" ></td>`;
+    cell4.innerHTML = `<td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike${rowCount}" ></td>`;
+
+    // เพิ่มส่วนแนบไฟล์สำหรับแถวใหม่
+    const attachmentsContainer = document.getElementById('fileAttachmentsContainer');
+    const newFileSection = document.createElement('div');
+    newFileSection.className = 'file-section';
+    newFileSection.setAttribute('data-row', rowCount);
+    newFileSection.innerHTML = `
+        <span class="badge rounded-pill my-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(${rowCount})"> 
+            <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ ${rowCount} 
+        </span>
+        <div id="fileRowsContainer${rowCount}" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
+            <div> 
+                <label for="list2file${rowCount}_1">แนบไฟล์</label> 
+                <input style="width: 150px;" type="file" name="list2file[${rowCount}][]" id="list2file${rowCount}_1"> 
+            </div>
+        </div>
+    `;
+    attachmentsContainer.appendChild(newFileSection);
+}
+
+function addFileRow(rowNumber) {
+    const container = document.getElementById(`fileRowsContainer${rowNumber}`);
+    const rowCount = container.children.length + 1;
+    if(rowCount <= 10) {
+        const newRow = document.createElement('div');
+        newRow.innerHTML = `
+            <label for="list2file${rowNumber}_${rowCount}">แนบไฟล์</label> 
+            <input style="width: 150px; margin: 5px 0px;" type="file" name="list2file[${rowNumber}][]" id="list2file${rowNumber}_${rowCount}">
+        `;
+        container.appendChild(newRow);
     }
+}
 
-    function myDeleteFunction() {
-        document.getElementById("demo_product").deleteRow(-1);
+function myDeleteFunction() {
+    var table = document.getElementById("demo_product");
+    if(table.rows.length > 1) {
+        table.deleteRow(-1);
+        const attachmentsContainer = document.getElementById('fileAttachmentsContainer');
+        attachmentsContainer.lastElementChild.remove();
     }
+}
 
+// ใช้ fetch API เพื่อดึงข้อมูลจาก API
+fetch('<?php echo $cumapi;?>')
+    .then(response => response.json())
+    .then(data => {
+        var selectElement = document.getElementById('customerSelect');
+        data.forEach(function(customer) {
+            var option = document.createElement('option');
+            option.value = customer.customer_name;
+            option.textContent = customer.customer_name;
+            selectElement.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error:', error));
 
-    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch('https://testpr-wr.allwellcenter.com/customers_json')
-        .then(response => response.json())
-        .then(data => {
-            var selectElement = document.getElementById('customerSelect');
-            
-            data.forEach(function(customer) {
-                var option = document.createElement('option');
-                option.value = customer.customer_name;
-                option.textContent = customer.customer_name;
-                selectElement.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error:', error));
-
-
-
-function addProductRow(rowNum, fieldName, searchTerm,txtHint,product_twolist) {
+function addProductRow(rowNum, fieldName, searchTerm, txtHint, product_twolist) {
     if (!searchTerm.trim() || searchTerm.length == 0) {
         document.getElementById(`${txtHint}`).innerHTML = "";
         document.getElementById(`${txtHint}`).style.display = "none";
@@ -119,5 +138,4 @@ function addProductRow(rowNum, fieldName, searchTerm,txtHint,product_twolist) {
     xhr.open("GET", "./src/controllers/product_list_controllers.php?q=" + encodeURIComponent(searchTerm) + "&rowNum=" + rowNum + "&fieldName=" + encodeURIComponent(fieldName) + "&txtHint=" + encodeURIComponent(txtHint) + "&product_twolist=" + encodeURIComponent(product_twolist), true);
     xhr.send();
 }
-
 </script>

@@ -69,6 +69,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === '37d4-184-82-245-228.ngrok-
         $_SESSION['user_id_login'] = $data["user_id"];
         $_SESSION['name_show'] = $data["name"];
         $_SESSION['surname_show'] = $data["surname"];
+        $_SESSION['username'] = $_SESSION['name_show'].' .'.$_SESSION['surname_show'];
         $_SESSION['telephone'] = $data["tel"]; 
         $_SESSION['typelogin'] = $data["user_type"]; 
         $_SESSION['position']= $data["position"];

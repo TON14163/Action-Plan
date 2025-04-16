@@ -1,5 +1,5 @@
 <?php 
-// error_reporting(0);
+error_reporting(0);
 function FigString1($nameKey){
     global $conn; // ใช้ตัวแปร $conn ที่ประกาศไว้ภายนอกฟังก์ชัน
     if (isset($_POST[$nameKey]) && trim($_POST[$nameKey]) !== '') { 
@@ -35,6 +35,9 @@ function ModeProMain($keyID){
 }
 
 // dallyreport_register_details1
+
+$addDate = date('Y-m-d H:i:s');
+
 $id_work = $_POST['id_work'];
 $date_plan = $_POST['date_plan'];
 $id_customer = $_POST['id_customer'];
@@ -105,83 +108,101 @@ if (isset($_POST['listmain1'])){
     $cus_free = FigString2('cus_free');                                     // ประเภทลูกค้า
     $description_focastnew = FigString2('description_focastnew');           // รายละเอียด
 }
+
 // Demo ทดลองสินค้า
 if (isset($_POST['listmain2'])){
-// pro_img1
+        $product_outlist = $_POST['product_outlist'];       // รายการสินค้า
+        $cusrequest_like = $_POST['cusrequest_like'];       // ต้องการ / ชอบ
+        $cusrequest_dislike = $_POST['cusrequest_dislike']; // ไม่ต้องการ / ไม่ชอบ
 
-// echo multiArray('product_outlist');
-// echo multiArray('cusrequest_like');
-// echo multiArray('cusrequest_dislike');
+// แนบไฟล์ (รองรับ multiple files สำหรับแต่ละแถว) Start
+        if (isset($_FILES['list2file']) && !empty($_FILES['list2file']['name'])) {
+            $uploadDir = "uploads/";
+            $uploadedFiles = [];
 
-    $product_outlist = isset($_POST['product_outlist']); // รายการสินค้า
-    if($product_outlist == true ){
-        $product_outlist = $_POST['product_outlist'];
-        foreach($product_outlist as $key => $value) {
-            $product_outlist[$key] = htmlspecialchars(mysqli_real_escape_string($conn,$value),ENT_COMPAT);
-            echo $product_outlist[$key].'<br>';
-        }
-    }
-    $cusrequest_like = isset($_POST['cusrequest_like']); // ต้องการ / ชอบ
-    if($cusrequest_like == true ){
-        $cusrequest_like = $_POST['cusrequest_like'];
-        foreach($cusrequest_like as $key => $value) {
-            $cusrequest_like[$key] = htmlspecialchars(mysqli_real_escape_string($conn,$value),ENT_COMPAT);
-            echo $cusrequest_like[$key].'<br>';
-        }
-    }
-    $cusrequest_dislike = isset($_POST['cusrequest_dislike']); // ไม่ต้องการ / ไม่ชอบ
-    if($cusrequest_dislike == true ){
-        $cusrequest_dislike = $_POST['cusrequest_dislike'];
-        foreach($cusrequest_dislike as $key => $value) {
-            $cusrequest_dislike[$key] = htmlspecialchars(mysqli_real_escape_string($conn,$value),ENT_COMPAT);
-            echo $cusrequest_dislike[$key].'<br>';
-        }
-    }
+            // ตรวจสอบว่า folder uploads มีอยู่หรือไม่ ถ้าไม่มีให้สร้าง
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
 
-    $cuspre_descript = htmlspecialchars(mysqli_real_escape_string($conn,$_POST['cuspre_descript']),ENT_COMPAT); // รายละเอียดเพิ่มเติม
+            // วนลูปแต่ละแถว (row) ของรุ่นสินค้า
+            foreach ($_FILES['list2file']['name'] as $rowNumber => $files) {
+                $uploadedFiles[$rowNumber] = []; // เก็บชื่อไฟล์สำหรับแถวนี้
 
-    // แนบไฟล์ (รองรับ multiple files)
-    if (isset($_FILES['list2file']) && !empty($_FILES['list2file']['name'][0])) {
-        $uploadDir = "uploads/";
-        $uploadedFiles = [];
-        
-        // ตรวจสอบว่า folder uploads มีอยู่หรือไม่ ถ้าไม่มีให้สร้าง
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
+                // วนลูปจัดการแต่ละไฟล์ในแถว
+                foreach ($files as $index => $fileName) {
+                    if (!empty($fileName) && $_FILES['list2file']['error'][$rowNumber][$index] === UPLOAD_ERR_OK) {
+                        // แปลงชื่อไฟล์จาก UTF-8 เป็น TIS-620
+                        $safeFileName = iconv("UTF-8", "TIS-620", $fileName);
+                        // เพิ่ม timestamp เพื่อป้องกันชื่อไฟล์ซ้ำ
+                        $safeFileName = time() . '_' . $safeFileName;
+                        $filePath = $uploadDir . $safeFileName;
 
-        // วนลูปจัดการแต่ละไฟล์
-        for ($i = 0; $i < count($_FILES['list2file']['name']); $i++) {
-            if ($_FILES['list2file']['error'][$i] === UPLOAD_ERR_OK) {
-                // แปลงชื่อไฟล์จาก UTF-8 เป็น TIS-620
-                $fileName = iconv("UTF-8", "TIS-620", $_FILES['list2file']['name'][$i]);
-                // เพิ่ม timestamp เพื่อป้องกันชื่อไฟล์ซ้ำ
-                $fileName = time() . '_' . $fileName;
-                $filePath = $uploadDir . $fileName;
-
-                if (move_uploaded_file($_FILES['list2file']['tmp_name'][$i], $filePath)) {
-                    $safeFileName = htmlspecialchars(mysqli_real_escape_string($conn, $fileName), ENT_COMPAT);
-                    $uploadedFiles[] = $safeFileName;
-                    echo "File uploaded successfully: " . $safeFileName . '<br>';
-                } else {
-                    echo "Failed to upload file: " . $fileName . '<br>';
+                        // อัปโหลดไฟล์
+                        if (move_uploaded_file($_FILES['list2file']['tmp_name'][$rowNumber][$index], $filePath)) {
+                            // เก็บชื่อไฟล์ที่ปลอดภัย
+                            $escapedFileName = htmlspecialchars(mysqli_real_escape_string($conn, $safeFileName), ENT_COMPAT);
+                            $uploadedFiles[$rowNumber][] = $escapedFileName;
+                            // echo "File uploaded successfully for row $rowNumber: $escapedFileName<br>";
+                        } else {
+                            // echo "Failed to upload file for row $rowNumber: $safeFileName<br>";
+                        }
+                    } elseif ($_FILES['list2file']['error'][$rowNumber][$index] !== UPLOAD_ERR_NO_FILE) {
+                        // echo "Error uploading file for row $rowNumber: $fileName, Error: " . $_FILES['list2file']['error'][$rowNumber][$index] . "<br>";
+                    }
                 }
-            } else {
-                echo "Error uploading file " . $_FILES['list2file']['name'][$i] . ': ' . $_FILES['list2file']['error'][$i] . '<br>';
+            }
+
+            // แปลง array ของชื่อไฟล์เป็น string หรือบันทึกลงฐานข้อมูลตามต้องการ
+            $list2file = [];
+            foreach ($uploadedFiles as $rowNumber => $files) {
+                if (!empty($files)) {
+                    $list2file[$rowNumber] = implode('","', $files); // รวมชื่อไฟล์ในแถวด้วย comma
+                }
+            }
+
+            // หากต้องการเก็บทั้งหมดในตัวแปรเดียว (ขึ้นอยู่กับโครงสร้างฐานข้อมูล)
+            $list2fileString = json_encode($list2file[1]); // เก็บเป็น JSON หรือปรับตามความเหมาะสม
+            // echo strval(htmlspecialchars($list2fileString));
+
+        } else {
+            echo "No files uploaded or an error occurred.<br>";
+        }
+// แนบไฟล์ (รองรับ multiple files สำหรับแต่ละแถว) END
+
+        $MyProdoctDemoValue = [];
+        $myIdNum = 1;
+
+        foreach($product_outlist as $key => $value) {
+            $product_outlistNew = $product_outlist[$key];
+            $cusrequest_likeNew = $cusrequest_like[$key];
+            $cusrequest_dislikeNew = $cusrequest_dislike[$key];
+
+
+            if($product_outlistNew != ''){
+                $memoryfile[] = $myIdNum;
+                $MyProdoctDemoValue[] = [
+                    'id' => $myIdNum,
+                    'productname' => $product_outlistNew,
+                    'inlike' => $cusrequest_likeNew,
+                    'dislike' => $cusrequest_dislikeNew,
+                    'memoryfile' => json_encode($list2file[$myIdNum], JSON_UNESCAPED_UNICODE),
+                ];
+                $myIdNum++;
             }
         }
-        
-        // หากต้องการเก็บชื่อไฟล์ทั้งหมดในตัวแปรเดียว
-        if (!empty($uploadedFiles)) {
-            $list2file = implode(',', $uploadedFiles); // รวมชื่อไฟล์ด้วย comma
-        }
-    } else {
-        echo "No files uploaded or an error occurred.<br>";
-    }
+        $MyProdoctDemoValue = json_encode($MyProdoctDemoValue, JSON_UNESCAPED_UNICODE);
+        // echo $MyProdoctDemoValue;
+        // header('Content-type: application/json');
+// exit;
+    $cuspre_descript = htmlspecialchars(mysqli_real_escape_string($conn,$_POST['cuspre_descript']),ENT_COMPAT); // รายละเอียดเพิ่มเติม
+
+
 }
 
 // ออกบูธ (Group Presentation)
 if (isset($_POST['listmain3'])){
+    $present_id = FigString2('present_id');       // PK tb_present_booth
     $work_name = FigString2('work_name');         // ชื่องาน
     $work_date = FigString2('work_date');         // วันที่จัดงาน
     $end_date = FigString2('end_date');           // ถึง
@@ -224,6 +245,7 @@ echo multiArray('description');
 // --------------------------------------------------------------------- เก็บข้อมูลลงฐานข้อมูล
 
 if($product_present == '[]'){ $product_present = ''; }
+
 $sqlMainsave1 = "UPDATE tb_register_data SET date_plan = '".$date_plan."', description_focastnew = '".$description_focastnew."', product_present = '".$product_present."', hospital_contact = '".$hospital_contact."', hospital_contact1 = '".$hospital_contact1."', hospital_contact2 = '".$hospital_contact2."', hospital_contact3 = '".$hospital_contact3."', hospital_contact4 = '".$hospital_contact4."', hospital_contact5 = '".$hospital_contact5."', hospital_contact6 = '".$hospital_contact6."', hospital_contact7 = '".$hospital_contact7."', hospital_contact8 = '".$hospital_contact8."', hospital_contact9 = '".$hospital_contact9."' , hospital_mobile1 = '".$hospital_mobile1."', hospital_mobile2 = '".$hospital_mobile2."', hospital_mobile3 = '".$hospital_mobile3."', hospital_mobile4 = '".$hospital_mobile4."', hospital_mobile5 = '".$hospital_mobile5."', hospital_mobile6 = '".$hospital_mobile6."', hospital_mobile7 = '".$hospital_mobile7."', hospital_mobile8 = '".$hospital_mobile8."', hospital_mobile9 = '".$hospital_mobile9."', hospital_mobile10 = '".$hospital_mobile10."', email_contact1 = '".$email_contact1."', email_contact2 = '".$email_contact2."', email_contact3 = '".$email_contact3."', email_contact4 = '".$email_contact4."', email_contact5 = '".$email_contact5."', email_contact6 = '".$email_contact6."', email_contact7 = '".$email_contact7."', email_contact8 = '".$email_contact8."', email_contact9 = '".$email_contact9."', email_contact10 = '".$email_contact10."', hospital_buiding = '".$hospital_buiding."', hospital_class = '".$hospital_class."' , hospital_ward = '".$hospital_ward."', summary_product1 = '".$product_onelist."', unit_product1 = '".$unit_product1."', price_product1 = '".$price_product1."', price_unit1 = '".$price_unit1."', product_id1 = '".$product_outlistone1."', percent_name = '".$percent_code."', percent_id = '".$percent_id."', sum_price_product = '".$sum_price_product."', month_po = '".$month_po."', unit_name1 = '".UnitNameMain($product_outlistone1)."', mode_pro1 = '".ModeProMain($product_outlistone1)."', type_cus = '".$type_cus."', cus_free = '".$cus_free."', date_request = '".$date_request."', head_area = '".$_SESSION['head_area']."' WHERE id_work = '".$id_work."' ";
 $sqlMainsave2 = "INSERT INTO tb_regist_realtime (date_plan,description_focastnew,product_present,hospital_contact,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,hospital_buiding,hospital_class,hospital_ward,summary_product1,unit_product1,price_product1,product_id1,percent_name,sum_price_product,month_po,percent_id,unit_name1,price_unit1,mode_pro1,type_cus,cus_free,id_work,sale_area,sale_name,hospital_name,date_request,id_customer) VALUES ('".$date_plan."','".$description_focastnew."','".$product_present."','".$hospital_contact."','".$hospital_contact1."','".$hospital_contact2."','".$hospital_contact3."','".$hospital_contact4."','".$hospital_contact5."','".$hospital_contact6."','".$hospital_contact7."','".$hospital_contact8."','".$hospital_contact9."','".$hospital_mobile1."','".$hospital_mobile2."','".$hospital_mobile3."','".$hospital_mobile4."','".$hospital_mobile5."','".$hospital_mobile6."','".$hospital_mobile7."','".$hospital_mobile8."','".$hospital_mobile9."','".$hospital_mobile10."','".$email_contact1."','".$email_contact2."','".$email_contact3."','".$email_contact4."','".$email_contact5."','".$email_contact6."','".$email_contact7."','".$email_contact8."','".$email_contact9."','".$email_contact10."','".$hospital_buiding."','".$hospital_class."' ,'".$hospital_ward."','".$product_onelist."','".$unit_product1."','".$price_product1."','".$product_outlistone1."','".$percent_code."','".$sum_price_product."','".$month_po."','".$percent_id."','".UnitNameMain($product_outlistone1)."','".$price_unit1."','".ModeProMain($product_outlistone1)."','".$type_cus."','".$cus_free."','".$id_work."','".$_SESSION['em_id']."','".$_SESSION['name_show']."','".$hospital_name."','".$date_request."','".$id_customer."')";
 $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital_contact."',hospital_contact2 = '".$hospital_contact1."',hospital_contact3 = '".$hospital_contact2."',hospital_contact4 = '".$hospital_contact3."',hospital_contact5 = '".$hospital_contact4."',hospital_contact6 = '".$hospital_contact5."',hospital_contact7 = '".$hospital_contact6."',hospital_contact8 = '".$hospital_contact7."',hospital_contact9 = '".$hospital_contact8."',hospital_contact10 = '".$hospital_contact9."',hospital_mobile1 = '".$hospital_mobile1."',hospital_mobile2 = '".$hospital_mobile2."',hospital_mobile3 = '".$hospital_mobile3."',hospital_mobile4 = '".$hospital_mobile4."',hospital_mobile5 = '".$hospital_mobile5."',hospital_mobile6 = '".$hospital_mobile6."',hospital_mobile7 = '".$hospital_mobile7."',hospital_mobile8 = '".$hospital_mobile8."',hospital_mobile9 = '".$hospital_mobile9."',hospital_mobile10 = '".$hospital_mobile10."',email_contact1 = '".$email_contact1."',email_contact2 = '".$email_contact2."',email_contact3 = '".$email_contact3."',email_contact4 = '".$email_contact4."',email_contact5 = '".$email_contact5."',email_contact6 = '".$email_contact6."',email_contact7 = '".$email_contact7."',email_contact8 = '".$email_contact8."',email_contact9 = '".$email_contact9."',email_contact10 = '".$email_contact10."',hospital_buiding = '".$hospital_buiding."',hospital_class = '".$hospital_class."',hospital_ward = '".$hospital_ward."' WHERE id_customer = '".$id_customer."' ";
@@ -244,26 +266,34 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
 
 
 
-// ส่วนของ  Demo ทดลองสินค้า
-// ให้ Loop ตามการเพิ่ม รุ่นสินค้า
-// งง ตรงรูปรอสรุปก่อน
-    if($id_pro !=''){
-        $strSQLrival2 =  "UPDATE tb_product_delivery  SET  product_1='".$product_1."',product_2='".$product_2."',product_3='".$product_3."',cusrequest_like='".$cusrequest_like."',cusrequest_dislike='".$cusrequest_dislike."',cuspre_descript='".$cuspre_descript."',cus_service='".$cus_service."',product_pre='".$product_present1."',pro_img1='".$pro_img1."',pro_img2='".$pro_img2."',pro_img3='".$pro_img3."',pro_img4='".$pro_img4."',pro_img5='".$pro_img5."',pro_img6='".$pro_img6."',pro_img7='".$pro_img7."',pro_img8='".$pro_img8."',pro_img9='".$pro_img9."',pro_img10='".$pro_img10."'  where id_pro = '".$id_pro."' ";
-        // $objQueryrival2 = mysqli_query($conn,$strSQLrival2) or die(mysqli_error());
-        echo $strSQLrival2;
-    } else if($id_pro =='' and $product_1 !=''){
-        $strSQLrival2 =  "INSERT INTO  tb_product_delivery  (ref_idwork,id_customer,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_2,product_3,cusrequest_like,cusrequest_dislike,cuspre_descript,cus_service,product_pre,pro_img1,pro_img2,pro_img3,pro_img4,pro_img5,pro_img6,pro_img7,pro_img8,pro_img9,pro_img10) VALUES ('".$id_work."','".$id_customer."','".$hospital_name."','".$create_date."','".$sale_area."','".$add_date."','".$add_by."','".$product_1."','".$product_2."','".$product_3."','".$cusrequest_like."','".$cusrequest_dislike."','".$cuspre_descript."','".$cus_service."','".$product_present1."','".$pro_img1."','".$pro_img2."','".$pro_img3."','".$pro_img4."','".$pro_img5."','".$pro_img6."','".$pro_img7."','".$pro_img8."','".$pro_img9."','".$pro_img10."')   ";
-        // $objQueryrival2 = mysqli_query($conn,$strSQLrival2) or die(mysqli_error());
-        echo $strSQLrival2;
+    // ส่วนของ  Demo ทดลองสินค้า
+    // ให้ Loop ตามการเพิ่ม รุ่นสินค้า
+    if($id_pro != ''){
+        $sqlList2_1 =  "UPDATE tb_product_delivery SET id_customer = '".$id_customer."', ref_idwork = '".$id_work."', hospital_name = '".$hospital_name."', create_date = '".$addDate."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', product_1 = '".$MyProdoctDemoValue."', product_pre = '".$product_present."'  WHERE id_pro = '".$id_pro."' ";
+        $qsqlList2_1 = mysqli_query($conn,$sqlList2_1) or die(mysqli_error());
+        echo $sqlList2_1;
+    } else if($id_pro == '' and $MyProdoctDemoValue != ''){
+        $sqlList2_2 =  "INSERT INTO tb_product_delivery(id_customer,ref_idwork,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_pre) VALUES ('".$id_customer."','".$id_work."','".$hospital_name."','".$addDate."','".$_SESSION['em_id']."','".$addDate."','".$_SESSION['username']."','".$MyProdoctDemoValue."','".$product_present."')";
+        $qsqlList2_1 = mysqli_query($conn,$sqlList2_2) or die(mysqli_error());
+        echo $sqlList2_2;
     }
 
+    // ออกบูธ (Group Presentation)
+    if($present_id !='') {
+    $sqlList3 =  "UPDATE tb_present_booth  SET work_name='".$work_name."',work_date='".$work_date."',count_work='".$count_work."',price_work='".$price_work."',typ_work1='".$typ_work1."',typ_work2='".$typ_work2."',sum_wordpre='".$sum_wordpre."',end_date='".$end_date."'WHERE present_id = '".$present_id."' ";
+    $qsqlList3 = mysqli_query($conn,$sqlList3) or die(mysqli_error());
+    } else if($present_id =='') {
+    $sqlList3 = "INSERT INTO  tb_present_booth (ref_idwork,id_customer,hospital_name,create_date,sale_area,add_date,add_by,work_name,work_date,count_work,price_work,typ_work1,typ_work2,sum_wordpre,end_date) VALUES ('".$id_work."','".$id_customer."','".$hospital_name."','".$create_date."','".$sale_area."','".$add_date."','".$add_by."','".$work_name."','".$work_date."','".$count_work."','".$price_work."','".$typ_work1."','".$typ_work2."','".$sum_wordpre."','".$end_date."')";
+    $qsqlList3 = mysqli_query($conn,$sqlList3) or die(mysqli_error());
+    }
+    echo $sqlList3;
 
 
-echo $sqlMainsave1;
-echo $sqlMainsave2;
-echo $sqlMainsave3;
 
-// $sqlMainsave_1 = mysqli_query($conn,$sqlMainsave1) or die(mysqli_error($conn));
-// $sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
-// $sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
+echo $sqlMainsave1; // แก้ไขข้อมูลรายละเอียดที่ Plan ไว้
+$sqlMainsave_1 = mysqli_query($conn,$sqlMainsave1) or die(mysqli_error($conn));
+echo $sqlMainsave2; // เก็บเพิ่มไปเรื่อยๆตามการแก้ไขข้อมูล
+$sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
+echo $sqlMainsave3; // แก้ไขข้อมูลลูกค้า
+$sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
 ?>

@@ -91,20 +91,40 @@
 </section>
 
 <script>
-    function ListItemPlan(keyValue, keyId, isChecked) {
+    function ListItemPlan(keyValue, keyId, isChecked, keyEditValue) {
         const demoPlanItem = document.getElementById("demo_planitem");
         
         if (isChecked) {
             const viewItem = document.createElement('div');
             viewItem.id = `item-${keyId}`;
-            viewItem.innerHTML = `
-                    ${keyValue}
-                    <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
-                        <option value="">Please Select</option>
-                        <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
-                        <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
-                    </select>
-            `;
+            if(keyEditValue === '1'){
+                viewItem.innerHTML = `
+                        ${keyValue}
+                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
+                            <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
+                            <option value="">Please Select</option>
+                            <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
+                        </select>
+                `;
+            } else if(keyEditValue === '2'){
+                viewItem.innerHTML = `
+                        ${keyValue}
+                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
+                            <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
+                            <option value="">Please Select</option>
+                            <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
+                        </select>
+                `;
+            } else {
+                viewItem.innerHTML = `
+                        ${keyValue}
+                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
+                            <option value="">Please Select</option>
+                            <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
+                            <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
+                        </select>
+                `;
+            }
             demoPlanItem.appendChild(viewItem);
         } else {
             const itemToRemove = document.getElementById(`item-${keyId}`);
@@ -114,6 +134,30 @@
         }
     }
 </script>
+
+
+<?php echo "<script type='text/javascript'> let product_presents = '".$show->showDetails($id_work,'product_present')."' </script>"; ?>
+    <script>
+    // document.write(product_presents+`<br>`);
+    window.onload = function() {
+    product_presents = JSON.parse(product_presents);
+    product_presents.forEach(product_present => {
+        let product_present_value = product_present.itemlist.split(':')[1];
+        let product_present_cut = product_present.itemlist.slice(-1);
+        switch (product_present_cut) {
+            case '1': document.getElementById('item1').checked = true; ListItemPlan('เตียงผู้ป่วยไฟฟ้า', 'item1', true, product_present_value); break;
+            case '2': document.getElementById('item2').checked = true; ListItemPlan('เตียงกายภาพ', 'item2', true, product_present_value); break;
+            case '3': document.getElementById('item3').checked = true; ListItemPlan('ที่นอนโฟม', 'item3', true, product_present_value); break;
+            case '4': document.getElementById('item4').checked = true; ListItemPlan('เครื่องดูดเสมหะ', 'item4', true, product_present_value); break;
+            case '5': document.getElementById('item5').checked = true; ListItemPlan('เตียงตรวจ OPD', 'item5', true, product_present_value); break;
+            case '6': document.getElementById('item6').checked = true; ListItemPlan('เตียงเคลื่อนย้าย', 'item6', true, product_present_value); break;
+            case '7': document.getElementById('item7').checked = true; ListItemPlan('เครื่องวัดน้ำตาล', 'item7', true, product_present_value); break;
+            case '8': document.getElementById('item8').checked = true; ListItemPlan('อื่นๆ / สินค้ารวม', 'item8', true, product_present_value); break;
+            default: break;
+        }
+    });
+};
+    </script>
 
 <hr class="my-4">
 
@@ -127,3 +171,4 @@
     </div>
 </section>
 <hr class="my-4">
+
