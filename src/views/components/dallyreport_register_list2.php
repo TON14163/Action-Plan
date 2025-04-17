@@ -1,7 +1,8 @@
 <div class="accordion-item rounded-0 border border-0">
     <p class="accordion-header">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA; margin-top: 20px; border:0 none;" >
-            <input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2" value="1">     <label for="listmain2">Demo ทดลองสินค้า</label>
+            <input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2" value="1">
+            <label for="listmain2" style="margin-left: 20px;">Demo ทดลองสินค้า</label>
         </span>
     </p>
     <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" >
@@ -22,21 +23,26 @@
                             <div id="txtHint1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
                         </div>
                     </td>
-                    <td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like" ></td>
-                    <td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike" ></td>
+                    <td><input class="text-center" type="text" name="cusrequest_like[]" id="cusrequest_like1" ></td>
+                    <td><input class="text-center" type="text" name="cusrequest_dislike[]" id="cusrequest_dislike1" ></td>
                 </tr>
             </table>
 
             <br><span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="myCreateFunction2()" ><img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มรุ่นสินค้า</span>
-            <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="cuspre_descript" id="cuspre_descript" rows="3"></textarea> </p>
+            <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="cuspre_descript" id="cuspre_descript" rows="3"><?php echo $show->showDelivery($id_work,'cuspre_descript');?></textarea> </p>
 
             <div id="fileAttachmentsContainer">
                 <div class="file-section" data-row="1">
                     <span class="badge rounded-pill mb-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(1)"> 
                         <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ 1 
-                    </span>
+                    </span> 
+                    <div> <p>ไฟล์ที่แนบเข้ามา ลำดับ 1 [<font id="list2file1_allfile1"></font> ]</p> </div>
                     <div id="fileRowsContainer1" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
-                        <div> <label for="list2file1_1">แนบไฟล์</label> <input style="width: 150px;" type="file" name="list2file[1][]" id="list2file1_1"> </div>
+                        <div> 
+                            <label for="list2file1_1">แนบไฟล์</label> 
+                            <input style="width: 150px;" type="file" name="list2file[1][]" id="list2file1_1">
+                            <input type="text" name="list2_old_file[1][]" id="list2_old_file1_1">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,7 +50,36 @@
     </div>
 </div>
 
-<script>
+<?php  $productDemoValues = $show->showDelivery($id_work, 'product_1'); echo "<script type='text/javascript'>let productDemos = " . json_encode($productDemoValues) . ";</script>"; ?>
+<script type='text/javascript'>
+    // document.write(productDemos);
+    productDemos = JSON.parse(productDemos);
+    productDemos.forEach((productDemo, index) => {
+        // Add a new row for each productDemo if it's not the first one
+        if (index > 0) {
+            myCreateFunction2();
+        }
+        const rowId = index + 1; // Row IDs start from 1
+        document.getElementById(`product_twolist${rowId}`).value = productDemo.productname;
+        document.getElementById(`product_outlist${rowId}`).value = productDemo.productid;
+        document.getElementById(`cusrequest_like${rowId}`).value = productDemo.inlike;
+        document.getElementById(`cusrequest_dislike${rowId}`).value = productDemo.dislike;
+        document.getElementById(`list2_old_file1_${rowId}`).value = productDemo.memoryfile;
+        
+        if (Array.isArray(productDemo.memoryfile)) {
+            productDemo.memoryfile.forEach(memoryfilecut => {
+            const fileLink = document.createElement('a');
+            fileLink.href = `/Action-Plan/uploads/${memoryfilecut}`;
+            fileLink.target = '_blank';
+            fileLink.rel = 'noopener noreferrer';
+            fileLink.style.marginLeft = '5px';
+            fileLink.textContent = memoryfilecut;
+            const fileContainer = document.getElementById(`list2file1_allfile${rowId}`);
+            fileContainer.appendChild(fileLink);
+            });
+        } 
+    });
+
 function myCreateFunction2() {
     var table = document.getElementById("demo_product");
     var rowCount = table.rows.length;
@@ -74,10 +109,12 @@ function myCreateFunction2() {
         <span class="badge rounded-pill my-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(${rowCount})"> 
             <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ ${rowCount} 
         </span>
+        <div> <p>ไฟล์ที่แนบเข้ามา ลำดับ ${rowCount} [<font id="list2file1_allfile${rowCount}"></font> ]</p> </div>
         <div id="fileRowsContainer${rowCount}" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
             <div> 
                 <label for="list2file${rowCount}_1">แนบไฟล์</label> 
-                <input style="width: 150px;" type="file" name="list2file[${rowCount}][]" id="list2file${rowCount}_1"> 
+                <input style="width: 150px;" type="file" name="list2file[${rowCount}][]" id="list2file${rowCount}_1">
+                <input type="text" name="list2_old_file[${rowCount}][]" id="list2_old_file1_${rowCount}">
             </div>
         </div>
     `;
@@ -138,4 +175,15 @@ function addProductRow(rowNum, fieldName, searchTerm, txtHint, product_twolist) 
     xhr.open("GET", "./src/controllers/product_list_controllers.php?q=" + encodeURIComponent(searchTerm) + "&rowNum=" + rowNum + "&fieldName=" + encodeURIComponent(fieldName) + "&txtHint=" + encodeURIComponent(txtHint) + "&product_twolist=" + encodeURIComponent(product_twolist), true);
     xhr.send();
 }
+
+
+
+// function viewFile(){
+//     Swal.fire({
+//     title: "ไฟล์แนบที่พบ...",
+//     showConfirmButton: false,
+//     footer: '<a href="#">Why do I have this issue?</a> \n \n \n  <a href="#">Why do I have this issue?</a>'
+//     });
+// }
+
 </script>

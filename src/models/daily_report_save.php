@@ -1,5 +1,9 @@
 <?php 
 error_reporting(0);
+
+require_once __DIR__ . '/../controllers/daily_report_edit_controllers.php'; // ข้อมูลทั้งหมดจะอยู่ในส่วนนี้
+$show = new DailyReportEdit(); // เรียกใช้งาน class DailyReportEdit นี้ที่มีข้อมูลอยู่มาแสดง
+
 function FigString1($nameKey){
     global $conn; // ใช้ตัวแปร $conn ที่ประกาศไว้ภายนอกฟังก์ชัน
     if (isset($_POST[$nameKey]) && trim($_POST[$nameKey]) !== '') { 
@@ -93,20 +97,20 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
 
 // ประมาณการขาย
 if (isset($_POST['listmain1'])){
-    $product_onelist = FigString2('product_onelist');                       // รายการสินค้า Name
-    $product_outlistone1 = FigString2('product_outlistone1');               // รายการสินค้า ID
-    $unit_product1 = FigString2('unit_product1');                           // จำนวน
-    $price_unit1 = FigString2('price_unit1');                               // ราคา / หน่วย
-    $price_product1 = FigString2('price_product1');                         // มูลค่า
-    $percent_full = explode("|",FigString2('percent_code'));                // เปอร์เซ็นต์
-    $percent_code = $percent_full[0];                                       // เปอร์เซ็นต์
-    $percent_id = $percent_full[1];                                         // เปอร์เซ็นต์
-    $month_po = FigString2('month_po');                                     // วันที่จะได้รับ P/O
-    $sum_price_product = FigString2('sum_price_product');                   // มูลค่าทั้งหมด
-    $date_request = FigString2('date_request');                             // วันที่ต้องการสินค้า
-    $type_cus = FigString2('type_cus');                                     // ประเภท
-    $cus_free = FigString2('cus_free');                                     // ประเภทลูกค้า
-    $description_focastnew = FigString2('description_focastnew');           // รายละเอียด
+    $product_onelist = FigString2('product_onelist');                                                   // รายการสินค้า Name
+    $product_outlistone1 = FigString2('product_outlistone1');                                           // รายการสินค้า ID
+    $unit_product1 = FigString2('unit_product1');                                                       // จำนวน
+    $price_unit1 = FigString2('price_unit1');                                                           // ราคา / หน่วย
+    $price_product1 = FigString2('price_product1');                                                     // มูลค่า
+    $percent_full = explode("|",FigString2('percent_code'));                                            // เปอร์เซ็นต์
+    $percent_code = $percent_full[0];                                                                   // เปอร์เซ็นต์
+    $percent_id = $percent_full[1];                                                                     // เปอร์เซ็นต์
+    $month_po = FigString2('month_po');                                                                 // วันที่จะได้รับ P/O
+    $sum_price_product = FigString2('sum_price_product');                                               // มูลค่าทั้งหมด
+    $date_request = FigString2('date_request');                                                         // วันที่ต้องการสินค้า
+    $type_cus = FigString2('type_cus');                                                                 // ประเภท
+    $cus_free = FigString2('cus_free');                                                                 // ประเภทลูกค้า
+    $description_focastnew = FigString2('description_focastnew');                                       // รายละเอียด
 }
 
 // Demo ทดลองสินค้า
@@ -114,6 +118,7 @@ if (isset($_POST['listmain2'])){
         $product_outlist = $_POST['product_outlist'];       // รายการสินค้า
         $cusrequest_like = $_POST['cusrequest_like'];       // ต้องการ / ชอบ
         $cusrequest_dislike = $_POST['cusrequest_dislike']; // ไม่ต้องการ / ไม่ชอบ
+        $list2_old_file = $_POST['list2_old_file'];
 
 // แนบไฟล์ (รองรับ multiple files สำหรับแต่ละแถว) Start
         if (isset($_FILES['list2file']) && !empty($_FILES['list2file']['name'])) {
@@ -162,7 +167,7 @@ if (isset($_POST['listmain2'])){
             }
 
             // หากต้องการเก็บทั้งหมดในตัวแปรเดียว (ขึ้นอยู่กับโครงสร้างฐานข้อมูล)
-            $list2fileString = json_encode($list2file[1]); // เก็บเป็น JSON หรือปรับตามความเหมาะสม
+            $list2fileString = $list2file[1]; // เก็บเป็น JSON หรือปรับตามความเหมาะสม
             // echo strval(htmlspecialchars($list2fileString));
 
         } else {
@@ -178,26 +183,24 @@ if (isset($_POST['listmain2'])){
             $cusrequest_likeNew = $cusrequest_like[$key];
             $cusrequest_dislikeNew = $cusrequest_dislike[$key];
 
-
             if($product_outlistNew != ''){
                 $memoryfile[] = $myIdNum;
                 $MyProdoctDemoValue[] = [
                     'id' => $myIdNum,
-                    'productname' => $product_outlistNew,
+                    'productid' => $product_outlistNew,
+                    'productname' => $show->showProduct($product_outlistNew,'sol_name'),
                     'inlike' => $cusrequest_likeNew,
                     'dislike' => $cusrequest_dislikeNew,
-                    'memoryfile' => json_encode($list2file[$myIdNum], JSON_UNESCAPED_UNICODE),
+                    'memoryfile' => ([$list2file[$myIdNum]] != [null]) ? [$list2file[$myIdNum]] : $list2_old_file[$myIdNum],
                 ];
                 $myIdNum++;
             }
         }
         $MyProdoctDemoValue = json_encode($MyProdoctDemoValue, JSON_UNESCAPED_UNICODE);
-        // echo $MyProdoctDemoValue;
-        // header('Content-type: application/json');
-// exit;
-    $cuspre_descript = htmlspecialchars(mysqli_real_escape_string($conn,$_POST['cuspre_descript']),ENT_COMPAT); // รายละเอียดเพิ่มเติม
-
-
+        $cuspre_descript = htmlspecialchars(mysqli_real_escape_string($conn,$_POST['cuspre_descript']),ENT_COMPAT); // รายละเอียดเพิ่มเติม
+echo $MyProdoctDemoValue;
+header('Content-type: application/json');
+exit;
 }
 
 // ออกบูธ (Group Presentation)
@@ -269,22 +272,22 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
     // ส่วนของ  Demo ทดลองสินค้า
     // ให้ Loop ตามการเพิ่ม รุ่นสินค้า
     if($id_pro != ''){
-        $sqlList2_1 =  "UPDATE tb_product_delivery SET id_customer = '".$id_customer."', ref_idwork = '".$id_work."', hospital_name = '".$hospital_name."', create_date = '".$addDate."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', product_1 = '".$MyProdoctDemoValue."', product_pre = '".$product_present."'  WHERE id_pro = '".$id_pro."' ";
-        $qsqlList2_1 = mysqli_query($conn,$sqlList2_1) or die(mysqli_error());
+        $sqlList2_1 =  "UPDATE tb_product_delivery SET id_customer = '".$id_customer."', ref_idwork = '".$id_work."', hospital_name = '".$hospital_name."', create_date = '".$addDate."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', product_1 = '".$MyProdoctDemoValue."', product_pre = '".$product_present."', cuspre_descript='".$cuspre_descript."'  WHERE id_pro = '".$id_pro."' ";
+        $qsqlList2_1 = mysqli_query($conn,$sqlList2_1);
         echo $sqlList2_1;
     } else if($id_pro == '' and $MyProdoctDemoValue != ''){
-        $sqlList2_2 =  "INSERT INTO tb_product_delivery(id_customer,ref_idwork,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_pre) VALUES ('".$id_customer."','".$id_work."','".$hospital_name."','".$addDate."','".$_SESSION['em_id']."','".$addDate."','".$_SESSION['username']."','".$MyProdoctDemoValue."','".$product_present."')";
-        $qsqlList2_1 = mysqli_query($conn,$sqlList2_2) or die(mysqli_error());
+        $sqlList2_2 =  "INSERT INTO tb_product_delivery(id_customer,ref_idwork,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_pre,cuspre_descript) VALUES ('".$id_customer."','".$id_work."','".$hospital_name."','".$addDate."','".$_SESSION['em_id']."','".$addDate."','".$_SESSION['username']."','".$MyProdoctDemoValue."','".$product_present."','".$cuspre_descript."')";
+        $qsqlList2_1 = mysqli_query($conn,$sqlList2_2);
         echo $sqlList2_2;
     }
 
     // ออกบูธ (Group Presentation)
     if($present_id !='') {
-    $sqlList3 =  "UPDATE tb_present_booth  SET work_name='".$work_name."',work_date='".$work_date."',count_work='".$count_work."',price_work='".$price_work."',typ_work1='".$typ_work1."',typ_work2='".$typ_work2."',sum_wordpre='".$sum_wordpre."',end_date='".$end_date."'WHERE present_id = '".$present_id."' ";
-    $qsqlList3 = mysqli_query($conn,$sqlList3) or die(mysqli_error());
+    $sqlList3 =  "UPDATE tb_present_booth  SET work_name='".$work_name."',work_date='".$work_date."',count_work='".$count_work."',price_work='".$price_work."',typ_work1='".$typ_work1."',typ_work2='".$typ_work2."',sum_wordpre='".$sum_wordpre."',end_date='".$end_date."',des_cus1='".$des_cus1."' WHERE present_id = '".$present_id."' ";
+    $qsqlList3 = mysqli_query($conn,$sqlList3);
     } else if($present_id =='') {
-    $sqlList3 = "INSERT INTO  tb_present_booth (ref_idwork,id_customer,hospital_name,create_date,sale_area,add_date,add_by,work_name,work_date,count_work,price_work,typ_work1,typ_work2,sum_wordpre,end_date) VALUES ('".$id_work."','".$id_customer."','".$hospital_name."','".$create_date."','".$sale_area."','".$add_date."','".$add_by."','".$work_name."','".$work_date."','".$count_work."','".$price_work."','".$typ_work1."','".$typ_work2."','".$sum_wordpre."','".$end_date."')";
-    $qsqlList3 = mysqli_query($conn,$sqlList3) or die(mysqli_error());
+    $sqlList3 = "INSERT INTO  tb_present_booth (ref_idwork,id_customer,hospital_name,create_date,sale_area,add_date,add_by,work_name,work_date,count_work,price_work,typ_work1,typ_work2,sum_wordpre,end_date,des_cus1) VALUES ('".$id_work."','".$id_customer."','".$hospital_name."','".$create_date."','".$_SESSION['em_id']."','".$add_date."','".$add_by."','".$work_name."','".$work_date."','".$count_work."','".$price_work."','".$typ_work1."','".$typ_work2."','".$sum_wordpre."','".$end_date."','".$des_cus1."')";
+    $qsqlList3 = mysqli_query($conn,$sqlList3);
     }
     echo $sqlList3;
 

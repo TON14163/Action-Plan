@@ -100,7 +100,7 @@
             if(keyEditValue === '1'){
                 viewItem.innerHTML = `
                         ${keyValue}
-                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
+                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist" required>
                             <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
                             <option value="">Please Select</option>
                             <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
@@ -109,7 +109,7 @@
             } else if(keyEditValue === '2'){
                 viewItem.innerHTML = `
                         ${keyValue}
-                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
+                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist" required>
                             <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
                             <option value="">Please Select</option>
                             <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
@@ -118,7 +118,7 @@
             } else {
                 viewItem.innerHTML = `
                         ${keyValue}
-                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist">
+                        <select class="form-select-custom-awl" name="planitemlist[]" id="planitemlist" required>
                             <option value="">Please Select</option>
                             <option value="${keyValue}:1:${keyId}">แจก Catalog</option>
                             <option value="${keyValue}:2:${keyId}">พูดคุย นำเสนอ</option>
