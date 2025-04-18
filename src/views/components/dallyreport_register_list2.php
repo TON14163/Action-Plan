@@ -1,3 +1,12 @@
+<style>
+    .list2file1_allfile1Styel{
+        background-color: #525252;
+        border-radius: 15px;
+        font-size: 10px;
+        padding: 0px 10px;
+        color: #0080c0;
+    }
+</style>
 <div class="accordion-item rounded-0 border border-0">
     <p class="accordion-header">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA; margin-top: 20px; border:0 none;" >
@@ -41,7 +50,7 @@
                         <div> 
                             <label for="list2file1_1">แนบไฟล์</label> 
                             <input style="width: 150px;" type="file" name="list2file[1][]" id="list2file1_1">
-                            <input type="text" name="list2_old_file[1][]" id="list2_old_file1_1">
+                            <input type="hidden" name="list2_old_file[1][]" id="list2_old_file1_1">
                         </div>
                     </div>
                 </div>
@@ -64,16 +73,17 @@
         document.getElementById(`product_outlist${rowId}`).value = productDemo.productid;
         document.getElementById(`cusrequest_like${rowId}`).value = productDemo.inlike;
         document.getElementById(`cusrequest_dislike${rowId}`).value = productDemo.dislike;
-        document.getElementById(`list2_old_file1_${rowId}`).value = productDemo.memoryfile;
+        document.getElementById(`list2_old_file1_${rowId}`).value = productDemo.memoryfile.join('","');
         
         if (Array.isArray(productDemo.memoryfile)) {
             productDemo.memoryfile.forEach(memoryfilecut => {
             const fileLink = document.createElement('a');
-            fileLink.href = `/Action-Plan/uploads/${memoryfilecut}`;
+            fileLink.href = `<?php echo $_SESSION['thisDomain'];?>uploads/${memoryfilecut}`;
             fileLink.target = '_blank';
             fileLink.rel = 'noopener noreferrer';
             fileLink.style.marginLeft = '5px';
             fileLink.textContent = memoryfilecut;
+            fileLink.classList.add("list2file1_allfile1Styel");
             const fileContainer = document.getElementById(`list2file1_allfile${rowId}`);
             fileContainer.appendChild(fileLink);
             });
@@ -114,7 +124,7 @@ function myCreateFunction2() {
             <div> 
                 <label for="list2file${rowCount}_1">แนบไฟล์</label> 
                 <input style="width: 150px;" type="file" name="list2file[${rowCount}][]" id="list2file${rowCount}_1">
-                <input type="text" name="list2_old_file[${rowCount}][]" id="list2_old_file1_${rowCount}">
+                <input type="hidden" name="list2_old_file[${rowCount}][]" id="list2_old_file1_${rowCount}">
             </div>
         </div>
     `;

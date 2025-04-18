@@ -96,7 +96,7 @@ if (!empty($planitemlist)) {
 $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แปลงเป็น JSON string
 
 // ประมาณการขาย
-if (isset($_POST['listmain1'])){
+// if (isset($_POST['listmain1'])){
     $product_onelist = FigString2('product_onelist');                                                   // รายการสินค้า Name
     $product_outlistone1 = FigString2('product_outlistone1');                                           // รายการสินค้า ID
     $unit_product1 = FigString2('unit_product1');                                                       // จำนวน
@@ -111,10 +111,10 @@ if (isset($_POST['listmain1'])){
     $type_cus = FigString2('type_cus');                                                                 // ประเภท
     $cus_free = FigString2('cus_free');                                                                 // ประเภทลูกค้า
     $description_focastnew = FigString2('description_focastnew');                                       // รายละเอียด
-}
+// }
 
 // Demo ทดลองสินค้า
-if (isset($_POST['listmain2'])){
+// if (isset($_POST['listmain2'])){
         $product_outlist = $_POST['product_outlist'];       // รายการสินค้า
         $cusrequest_like = $_POST['cusrequest_like'];       // ต้องการ / ชอบ
         $cusrequest_dislike = $_POST['cusrequest_dislike']; // ไม่ต้องการ / ไม่ชอบ
@@ -179,6 +179,24 @@ if (isset($_POST['listmain2'])){
         $myIdNum = 1;
 
         foreach($product_outlist as $key => $value) {
+            
+            if([$list2file[$myIdNum]] != [null]){ // เก็บค่าใหม่ที่มี
+
+                if($list2file[$myIdNum] == [null]){ // เก็บค่าใหม่
+                    $memoryfileValue = [$list2file[$myIdNum]];
+                } else { // กรณีมีค่าเก่า และมีค่าใหม่ Add เข้ามาให้เอาค่าใหม่เข้าไปต่อค่าเก่า
+                    $memoryfileValue = $list2_old_file[$myIdNum];
+                    $memoryfileValue[] = $list2file[$myIdNum];
+                }
+
+            } else if([$list2file[$myIdNum]] == [null]){ // เก็บค่า เก่าที่มี
+                if($list2_old_file[$myIdNum] != [null]){
+                    $memoryfileValue = $list2_old_file[$myIdNum];
+                } else {
+                    $memoryfileValue = [];
+                }
+            }
+            
             $product_outlistNew = $product_outlist[$key];
             $cusrequest_likeNew = $cusrequest_like[$key];
             $cusrequest_dislikeNew = $cusrequest_dislike[$key];
@@ -191,7 +209,7 @@ if (isset($_POST['listmain2'])){
                     'productname' => $show->showProduct($product_outlistNew,'sol_name'),
                     'inlike' => $cusrequest_likeNew,
                     'dislike' => $cusrequest_dislikeNew,
-                    'memoryfile' => ([$list2file[$myIdNum]] != [null]) ? [$list2file[$myIdNum]] : $list2_old_file[$myIdNum],
+                    'memoryfile' => $memoryfileValue ,
                 ];
                 $myIdNum++;
             }
@@ -201,10 +219,10 @@ if (isset($_POST['listmain2'])){
 echo $MyProdoctDemoValue;
 header('Content-type: application/json');
 exit;
-}
+// }
 
 // ออกบูธ (Group Presentation)
-if (isset($_POST['listmain3'])){
+// if (isset($_POST['listmain3'])){
     $present_id = FigString2('present_id');       // PK tb_present_booth
     $work_name = FigString2('work_name');         // ชื่องาน
     $work_date = FigString2('work_date');         // วันที่จัดงาน
@@ -215,10 +233,10 @@ if (isset($_POST['listmain3'])){
     $sum_wordpre = FigString2('sum_wordpre');     // มุมมอง "ลูกค้า" ต่อ "สินค้า & การแนะนำ & การซื้อ"
     if (isset($_POST['typ_work1'])){ $typ_work1 = $_POST['typ_work1']; } else { $typ_work1 = 0; }  // Powerpoint
     if (isset($_POST['typ_work2'])){ $typ_work2 = $_POST['typ_work2']; } else { $typ_work2 = 0; }  // นำสินค้าไปสาธิต
-}
+// }
 
 // ข้อมูลคู่เเข่ง
-if (isset($_POST['listmain4'])){
+// if (isset($_POST['listmain4'])){
 
     function multiArray($keysNameinputs) {
         global $conn; // ใช้ตัวแปร $conn ที่ประกาศไว้ภายนอกฟังก์ชัน
@@ -233,16 +251,25 @@ if (isset($_POST['listmain4'])){
         }
     }
     
-echo multiArray('h_product_rival');
-echo multiArray('product_rival');
-echo multiArray('company_rival');
-echo multiArray('rival_brand');
-echo multiArray('rival_model');
-echo multiArray('promotion');
-echo multiArray('unit');
-echo multiArray('date_open');
-echo multiArray('description');
-}
+// echo 
+multiArray('h_product_rival');
+// echo 
+multiArray('product_rival');
+// echo 
+multiArray('company_rival');
+// echo 
+multiArray('rival_brand');
+// echo 
+multiArray('rival_model');
+// echo 
+multiArray('promotion');
+// echo 
+multiArray('unit');
+// echo 
+multiArray('date_open');
+// echo 
+multiArray('description');
+// }
 
 
 // --------------------------------------------------------------------- เก็บข้อมูลลงฐานข้อมูล
@@ -274,11 +301,11 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
     if($id_pro != ''){
         $sqlList2_1 =  "UPDATE tb_product_delivery SET id_customer = '".$id_customer."', ref_idwork = '".$id_work."', hospital_name = '".$hospital_name."', create_date = '".$addDate."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', product_1 = '".$MyProdoctDemoValue."', product_pre = '".$product_present."', cuspre_descript='".$cuspre_descript."'  WHERE id_pro = '".$id_pro."' ";
         $qsqlList2_1 = mysqli_query($conn,$sqlList2_1);
-        echo $sqlList2_1;
+        // echo $sqlList2_1;
     } else if($id_pro == '' and $MyProdoctDemoValue != ''){
         $sqlList2_2 =  "INSERT INTO tb_product_delivery(id_customer,ref_idwork,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_pre,cuspre_descript) VALUES ('".$id_customer."','".$id_work."','".$hospital_name."','".$addDate."','".$_SESSION['em_id']."','".$addDate."','".$_SESSION['username']."','".$MyProdoctDemoValue."','".$product_present."','".$cuspre_descript."')";
         $qsqlList2_1 = mysqli_query($conn,$sqlList2_2);
-        echo $sqlList2_2;
+        // echo $sqlList2_2;
     }
 
     // ออกบูธ (Group Presentation)
@@ -289,14 +316,21 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
     $sqlList3 = "INSERT INTO  tb_present_booth (ref_idwork,id_customer,hospital_name,create_date,sale_area,add_date,add_by,work_name,work_date,count_work,price_work,typ_work1,typ_work2,sum_wordpre,end_date,des_cus1) VALUES ('".$id_work."','".$id_customer."','".$hospital_name."','".$create_date."','".$_SESSION['em_id']."','".$add_date."','".$add_by."','".$work_name."','".$work_date."','".$count_work."','".$price_work."','".$typ_work1."','".$typ_work2."','".$sum_wordpre."','".$end_date."','".$des_cus1."')";
     $qsqlList3 = mysqli_query($conn,$sqlList3);
     }
-    echo $sqlList3;
+    // echo $sqlList3;
 
 
 
-echo $sqlMainsave1; // แก้ไขข้อมูลรายละเอียดที่ Plan ไว้
+// echo $sqlMainsave1; // แก้ไขข้อมูลรายละเอียดที่ Plan ไว้
 $sqlMainsave_1 = mysqli_query($conn,$sqlMainsave1) or die(mysqli_error($conn));
-echo $sqlMainsave2; // เก็บเพิ่มไปเรื่อยๆตามการแก้ไขข้อมูล
+// echo $sqlMainsave2; // เก็บเพิ่มไปเรื่อยๆตามการแก้ไขข้อมูล
 $sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
-echo $sqlMainsave3; // แก้ไขข้อมูลลูกค้า
+// echo $sqlMainsave3; // แก้ไขข้อมูลลูกค้า
 $sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
+
+
+$text = 'กำลังดำเนินการกรุณารอสักครู่...';
+require_once __DIR__ . '/../views/Loading_page.php';
+echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
+mysqli_close($conn);
+exit; 
 ?>
