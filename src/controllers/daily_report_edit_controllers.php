@@ -87,7 +87,6 @@ class DailyReportEdit {
 
     function showProrival(){
         $this->conn = $GLOBALS['conn'];
-
         $sql = "SELECT id,prorival_name FROM tb_prorival ";
         $qsql = mysqli_query($this->conn,$sql);
         $prorival_name = [];

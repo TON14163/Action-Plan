@@ -1,10 +1,17 @@
 <style>
     .list2file1_allfile1Styel{
-        background-color: #525252;
+        background-color: #FCFCFC;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         border-radius: 15px;
         font-size: 10px;
         padding: 0px 10px;
         color: #0080c0;
+    }
+    .file-section{
+        margin-top: 15px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        padding:5px 10px 15px 10px; 
+        border-radius: 15px;
     }
 </style>
 <div class="accordion-item rounded-0 border border-0">
@@ -41,11 +48,11 @@
             <p class="mt-3"> รายละเอียดเพิ่มเติม <textarea class="textarea-form-control" style="width:100%;" name="cuspre_descript" id="cuspre_descript" rows="3"><?php echo $show->showDelivery($id_work,'cuspre_descript');?></textarea> </p>
 
             <div id="fileAttachmentsContainer">
-                <div class="file-section" data-row="1">
+                <div class="file-section" data-row="1" style="padding-top:10px;">
                     <span class="badge rounded-pill mb-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(1)"> 
                         <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ 1 
                     </span> 
-                    <div> <p>ไฟล์ที่แนบเข้ามา ลำดับ 1 [<font id="list2file1_allfile1"></font> ]</p> </div>
+                    <div> <p><font id="list2file1_allfile1"></font></p> </div>
                     <div id="fileRowsContainer1" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
                         <div> 
                             <label for="list2file1_1">แนบไฟล์</label> 
@@ -119,7 +126,7 @@ function myCreateFunction2() {
         <span class="badge rounded-pill my-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(${rowCount})"> 
             <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ ${rowCount} 
         </span>
-        <div> <p>ไฟล์ที่แนบเข้ามา ลำดับ ${rowCount} [<font id="list2file1_allfile${rowCount}"></font> ]</p> </div>
+        <div> <p><font id="list2file1_allfile${rowCount}"></font></p> </div>
         <div id="fileRowsContainer${rowCount}" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
             <div> 
                 <label for="list2file${rowCount}_1">แนบไฟล์</label> 

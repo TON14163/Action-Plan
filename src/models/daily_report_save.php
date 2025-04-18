@@ -185,8 +185,17 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
                 if($list2file[$myIdNum] == [null]){ // เก็บค่าใหม่
                     $memoryfileValue = [$list2file[$myIdNum]];
                 } else { // กรณีมีค่าเก่า และมีค่าใหม่ Add เข้ามาให้เอาค่าใหม่เข้าไปต่อค่าเก่า
-                    $memoryfileValue = $list2_old_file[$myIdNum];
-                    $memoryfileValue[] = $list2file[$myIdNum];
+                    // สมมติว่า $list2_old_file และ $list2file เป็นอาร์เรย์ที่มีข้อมูล
+                    $memoryfileValue = $list2_old_file[$myIdNum]; // ได้ค่าจาก $list2_old_file
+                    $memoryfileValue[] = $list2file[$myIdNum];   // เพิ่มค่าใหม่จาก $list2file เข้าไปใน $memoryfileValue
+
+                    // กรองค่า "" ออกจาก $memoryfileValue (ไม่ใช่ $memoryfile)
+                    $filtered_array = array_filter($memoryfileValue, function($value) {
+                        return $value !== "";
+                    });
+
+                    // อัปเดต $memoryfileValue ด้วยอาร์เรย์ที่กรองแล้ว
+                    $memoryfileValue = array_values($filtered_array); // ใช้ array_values เพื่อจัดเรียงดัชนีใหม่
                 }
 
             } else if([$list2file[$myIdNum]] == [null]){ // เก็บค่า เก่าที่มี
@@ -216,9 +225,9 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
         }
         $MyProdoctDemoValue = json_encode($MyProdoctDemoValue, JSON_UNESCAPED_UNICODE);
         $cuspre_descript = htmlspecialchars(mysqli_real_escape_string($conn,$_POST['cuspre_descript']),ENT_COMPAT); // รายละเอียดเพิ่มเติม
-echo $MyProdoctDemoValue;
-header('Content-type: application/json');
-exit;
+// echo $MyProdoctDemoValue;
+// header('Content-type: application/json');
+// exit;
 // }
 
 // ออกบูธ (Group Presentation)
