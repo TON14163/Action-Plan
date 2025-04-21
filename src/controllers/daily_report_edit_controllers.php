@@ -49,6 +49,22 @@ class DailyReportEdit {
             return '';
         }
     }
+    
+    function showStoryrival($id_work,$columnsName) {
+        $this->conn = $GLOBALS['conn'];
+        $this->id_work = htmlspecialchars($id_work, ENT_COMPAT, 'UTF-8');
+        $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
+        
+        $sql = "SELECT $this->columnsName FROM tb_storyrival WHERE refid_work = '".$this->id_work."' ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $nsql = mysqli_num_rows($qsql);
+        $vsql = mysqli_fetch_array($qsql);
+        if($nsql > 0){
+            return $vsql[$this->columnsName];
+        } else {
+            return '';
+        }
+    }
 
     function showCustomerLevel($id_work) {
         $this->conn = $GLOBALS['conn'];
@@ -97,6 +113,22 @@ class DailyReportEdit {
         return $prorival_name;
     }
 
+    function showProrivalName(){
+        $this->conn = $GLOBALS['conn'];
+        $sql = "SELECT id,prorival_name FROM tb_prorival ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $vsql = mysqli_fetch_array($qsql);
+        return $vsql['prorival_name'];
+    }
+    
+    function showProrivalValue($idpk){
+        $this->conn = $GLOBALS['conn'];
+        $sql = "SELECT id,prorival_name FROM tb_prorival WHERE id = '".$idpk."' ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $vsql = mysqli_fetch_array($qsql);
+        return $vsql['prorival_name'];
+    }
+
     function showProduct($product_ID,$columnsName) {
         $this->sol = $GLOBALS['sol'];
         $this->product_ID = htmlspecialchars($product_ID, ENT_COMPAT, 'UTF-8');
@@ -106,6 +138,42 @@ class DailyReportEdit {
         $vsql = mysqli_fetch_array($qsql);
         return $vsql[$this->columnsName];
     }
+
+
+    function InfoList4Table($id_work){
+        $this->conn = $GLOBALS['conn'];
+        $this->id_work = htmlspecialchars($id_work, ENT_COMPAT, 'UTF-8');
+
+        $sql = "SELECT * FROM tb_storyrival WHERE refid_work = '".$this->id_work."' ORDER BY no_auto ASC ";
+        $qsql = mysqli_query($this->conn,$sql);
+        $nsql = mysqli_num_rows($qsql);
+
+        if($nsql > 0){
+            $viewMain = "";
+            while($vsql = mysqli_fetch_array($qsql)){
+            $viewMain .= "
+                <tr>
+                    <td style='padding: 8px;'>
+                        <select class='form-search-custom-awl' style='width: 100%;' name='h_product_rival[]' id='h_product_rival1'>
+                            <option value=''>Search</option>
+                            'showProrival()'
+                        </select>
+                    </td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='company_rival[]' id='company_rival1' placeholder='Please fill out' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_brand[]' id='rival_brand1' placeholder='Please fill out' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_model[]' id='rival_model1' placeholder='Please fill out' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='price_to_unit[]' id='price_to_unit1' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='unit[]' id='unit1' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='promotion[]' id='promotion1' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='date' name='date_open[]' id='date_open1' value=".$vsql['id_customer']."></td>
+                </tr>
+                ";
+            }
+            return $viewMain;
+        } 
+    }
+
+
 
 }
 ?>

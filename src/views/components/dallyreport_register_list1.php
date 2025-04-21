@@ -2,8 +2,8 @@
     <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;">
         <span class="rounded-0 border border-0"><input type="checkbox" name="listmain1" id="listmain1" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapse1" value="1"> &nbsp; &nbsp; <label for="listmain1">ประมาณการขาย</label></span>
         <span id="panelsStayOpen-collapse1" class="accordion-collapse collapse">
-            <a href="https://quotation.allwellcenter.com/" target="_blank"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ใบเสนอราคา</span></a>
-            <a href="https://sol.allwellcenter.com/" target="_blank"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ERP SALE</span></a>
+            <a href="https://quotation.allwellcenter.com/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ quotation.allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ใบเสนอราคา</span></a>
+            <a href="https://sol.allwellcenter.com/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ sol.allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ERP SALE</span></a>
         </span>
     </p>
     <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse">
@@ -42,7 +42,7 @@
                     <option value="0-50%|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50%'){ ?> selected <?php } ?>>0-50%</option>
                 </select>
                 <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="<?php echo $show->showDetails($id_work,'month_po');?>">
-                <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" readonly>
+                <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
                 <label for="inputPassword" class="">วันที่ต้องการสินค้า&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="date_request" id="date_request" value="<?php echo $show->showDetails($id_work,'date_request');?>">
                 <label for="inputPassword" class="">ประเภท&nbsp;</label>
                 <select name="type_cus" id="type_cus"  style="width: 151px;">

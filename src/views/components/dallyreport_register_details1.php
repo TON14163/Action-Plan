@@ -2,6 +2,7 @@
 <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showDetails($id_work,'id_customer');?>">
 <input type="hidden" name="id_pro" id="id_pro" value="<?php echo $show->showDelivery($id_work,'id_pro');?>">
 <input type="hidden" name="present_id" id="present_id" value="<?php echo $show->showBooth($id_work,'present_id');?>">
+<input type="text" name="id_story" id="id_story" value="<?php echo $show->showStoryrival($id_work,'id_story');?>">
 <section>
     <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;">
         <div class="col-3">
@@ -25,7 +26,7 @@
                 <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
             </span>
         </div>
-        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"></div>
+        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="Copy แผลนงานเดิม"></div>
 
         <div class="col-3">
             <div class="row d-flex align-items-center">
