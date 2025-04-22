@@ -41,7 +41,6 @@ function ModeProMain($keyID){
 // dallyreport_register_details1
 
 $addDate = date('Y-m-d H:i:s');
-
 $id_work = $_POST['id_work'];
 $date_plan = $_POST['date_plan'];
 $id_customer = $_POST['id_customer'];
@@ -233,16 +232,16 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
 
 // ออกบูธ (Group Presentation)
 // if (isset($_POST['listmain3'])){
-    $present_id = FigString2('present_id');       // PK tb_present_booth
-    $work_name = FigString2('work_name');         // ชื่องาน
-    $work_date = FigString2('work_date');         // วันที่จัดงาน
-    $end_date = FigString2('end_date');           // ถึง
-    $price_work = FigString2('price_work');       // งบค่าใช้จ่าย
-    $count_work = FigString2('count_work');       // จำนวนผู้เข้าร่วม
-    $des_cus1 = FigString2('des_cus1');           // ผู้เข้าร่วม
-    $sum_wordpre = FigString2('sum_wordpre');     // มุมมอง "ลูกค้า" ต่อ "สินค้า & การแนะนำ & การซื้อ"
-    if (isset($_POST['typ_work1'])){ $typ_work1 = $_POST['typ_work1']; } else { $typ_work1 = 0; }  // Powerpoint
-    if (isset($_POST['typ_work2'])){ $typ_work2 = $_POST['typ_work2']; } else { $typ_work2 = 0; }  // นำสินค้าไปสาธิต
+    $present_id = FigString2('present_id');                                                         // PK tb_present_booth
+    $work_name = FigString2('work_name');                                                           // ชื่องาน
+    $work_date = FigString2('work_date');                                                           // วันที่จัดงาน
+    $end_date = FigString2('end_date');                                                             // ถึง
+    $price_work = FigString2('price_work');                                                         // งบค่าใช้จ่าย
+    $count_work = FigString2('count_work');                                                         // จำนวนผู้เข้าร่วม
+    $des_cus1 = FigString2('des_cus1');                                                             // ผู้เข้าร่วม
+    $sum_wordpre = FigString2('sum_wordpre');                                                       // มุมมอง "ลูกค้า" ต่อ "สินค้า & การแนะนำ & การซื้อ"
+    if (isset($_POST['typ_work1'])){ $typ_work1 = $_POST['typ_work1']; } else { $typ_work1 = 0; }   // Powerpoint
+    if (isset($_POST['typ_work2'])){ $typ_work2 = $_POST['typ_work2']; } else { $typ_work2 = 0; }   // นำสินค้าไปสาธิต
 // }
 
 // ข้อมูลคู่เเข่ง
@@ -262,16 +261,13 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
     }
 
 // }
-
 // --------------------------------------------------------------------- เก็บข้อมูลลงฐานข้อมูล
-
 
 if($product_present == '[]'){ $product_present = ''; }
 
 $sqlMainsave1 = "UPDATE tb_register_data SET date_plan = '".$date_plan."', description_focastnew = '".$description_focastnew."', product_present = '".$product_present."', hospital_contact = '".$hospital_contact."', hospital_contact1 = '".$hospital_contact1."', hospital_contact2 = '".$hospital_contact2."', hospital_contact3 = '".$hospital_contact3."', hospital_contact4 = '".$hospital_contact4."', hospital_contact5 = '".$hospital_contact5."', hospital_contact6 = '".$hospital_contact6."', hospital_contact7 = '".$hospital_contact7."', hospital_contact8 = '".$hospital_contact8."', hospital_contact9 = '".$hospital_contact9."' , hospital_mobile1 = '".$hospital_mobile1."', hospital_mobile2 = '".$hospital_mobile2."', hospital_mobile3 = '".$hospital_mobile3."', hospital_mobile4 = '".$hospital_mobile4."', hospital_mobile5 = '".$hospital_mobile5."', hospital_mobile6 = '".$hospital_mobile6."', hospital_mobile7 = '".$hospital_mobile7."', hospital_mobile8 = '".$hospital_mobile8."', hospital_mobile9 = '".$hospital_mobile9."', hospital_mobile10 = '".$hospital_mobile10."', email_contact1 = '".$email_contact1."', email_contact2 = '".$email_contact2."', email_contact3 = '".$email_contact3."', email_contact4 = '".$email_contact4."', email_contact5 = '".$email_contact5."', email_contact6 = '".$email_contact6."', email_contact7 = '".$email_contact7."', email_contact8 = '".$email_contact8."', email_contact9 = '".$email_contact9."', email_contact10 = '".$email_contact10."', hospital_buiding = '".$hospital_buiding."', hospital_class = '".$hospital_class."' , hospital_ward = '".$hospital_ward."', summary_product1 = '".$product_onelist."', unit_product1 = '".$unit_product1."', price_product1 = '".$price_product1."', price_unit1 = '".$price_unit1."', product_id1 = '".$product_outlistone1."', percent_name = '".$percent_code."', percent_id = '".$percent_id."', sum_price_product = '".$sum_price_product."', month_po = '".$month_po."', unit_name1 = '".UnitNameMain($product_outlistone1)."', mode_pro1 = '".ModeProMain($product_outlistone1)."', type_cus = '".$type_cus."', cus_free = '".$cus_free."', date_request = '".$date_request."', head_area = '".$_SESSION['head_area']."' WHERE id_work = '".$id_work."' ";
 $sqlMainsave2 = "INSERT INTO tb_regist_realtime (date_plan,description_focastnew,product_present,hospital_contact,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,hospital_buiding,hospital_class,hospital_ward,summary_product1,unit_product1,price_product1,product_id1,percent_name,sum_price_product,month_po,percent_id,unit_name1,price_unit1,mode_pro1,type_cus,cus_free,id_work,sale_area,sale_name,hospital_name,date_request,id_customer) VALUES ('".$date_plan."','".$description_focastnew."','".$product_present."','".$hospital_contact."','".$hospital_contact1."','".$hospital_contact2."','".$hospital_contact3."','".$hospital_contact4."','".$hospital_contact5."','".$hospital_contact6."','".$hospital_contact7."','".$hospital_contact8."','".$hospital_contact9."','".$hospital_mobile1."','".$hospital_mobile2."','".$hospital_mobile3."','".$hospital_mobile4."','".$hospital_mobile5."','".$hospital_mobile6."','".$hospital_mobile7."','".$hospital_mobile8."','".$hospital_mobile9."','".$hospital_mobile10."','".$email_contact1."','".$email_contact2."','".$email_contact3."','".$email_contact4."','".$email_contact5."','".$email_contact6."','".$email_contact7."','".$email_contact8."','".$email_contact9."','".$email_contact10."','".$hospital_buiding."','".$hospital_class."' ,'".$hospital_ward."','".$product_onelist."','".$unit_product1."','".$price_product1."','".$product_outlistone1."','".$percent_code."','".$sum_price_product."','".$month_po."','".$percent_id."','".UnitNameMain($product_outlistone1)."','".$price_unit1."','".ModeProMain($product_outlistone1)."','".$type_cus."','".$cus_free."','".$id_work."','".$_SESSION['em_id']."','".$_SESSION['name_show']."','".$hospital_name."','".$date_request."','".$id_customer."')";
 $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital_contact."',hospital_contact2 = '".$hospital_contact1."',hospital_contact3 = '".$hospital_contact2."',hospital_contact4 = '".$hospital_contact3."',hospital_contact5 = '".$hospital_contact4."',hospital_contact6 = '".$hospital_contact5."',hospital_contact7 = '".$hospital_contact6."',hospital_contact8 = '".$hospital_contact7."',hospital_contact9 = '".$hospital_contact8."',hospital_contact10 = '".$hospital_contact9."',hospital_mobile1 = '".$hospital_mobile1."',hospital_mobile2 = '".$hospital_mobile2."',hospital_mobile3 = '".$hospital_mobile3."',hospital_mobile4 = '".$hospital_mobile4."',hospital_mobile5 = '".$hospital_mobile5."',hospital_mobile6 = '".$hospital_mobile6."',hospital_mobile7 = '".$hospital_mobile7."',hospital_mobile8 = '".$hospital_mobile8."',hospital_mobile9 = '".$hospital_mobile9."',hospital_mobile10 = '".$hospital_mobile10."',email_contact1 = '".$email_contact1."',email_contact2 = '".$email_contact2."',email_contact3 = '".$email_contact3."',email_contact4 = '".$email_contact4."',email_contact5 = '".$email_contact5."',email_contact6 = '".$email_contact6."',email_contact7 = '".$email_contact7."',email_contact8 = '".$email_contact8."',email_contact9 = '".$email_contact9."',email_contact10 = '".$email_contact10."',hospital_buiding = '".$hospital_buiding."',hospital_class = '".$hospital_class."',hospital_ward = '".$hospital_ward."' WHERE id_customer = '".$id_customer."' ";
-
 
 // แก้ไขข้อมูลผู้แข่ง
 $waranty = 1; // ประกัน
@@ -284,7 +280,6 @@ $waranty = 1; // ประกัน
     $price_to_unit = $_POST['price_to_unit'] ?? []; // ราคา/หน่วย
     $unit = $_POST['unit'] ?? []; // จำนวนซื้อ
     $promotion = $_POST['promotion'] ?? []; // เงื่อนไขพิเศษ
-    $date_open = $_POST['date_open'] ?? []; // วันที่เปิดซอง
     $description = $_POST['description'] ?? []; // หมายเหตุ
     $no_auto = $_POST['no_auto'] ?? []; // ลำดับรายการ
     
@@ -305,7 +300,6 @@ $waranty = 1; // ประกัน
         $price_to_unitNew = htmlspecialchars(mysqli_real_escape_string($conn, $price_to_unit[$key] ?? ''), ENT_COMPAT);
         $unitNew = htmlspecialchars(mysqli_real_escape_string($conn, $unit[$key] ?? ''), ENT_COMPAT);
         $promotionNew = htmlspecialchars(mysqli_real_escape_string($conn, $promotion[$key] ?? ''), ENT_COMPAT);
-        $date_openNew = htmlspecialchars(mysqli_real_escape_string($conn, $date_open[$key] ?? ''), ENT_COMPAT);
         $descriptionNew = htmlspecialchars(mysqli_real_escape_string($conn, $description[$key] ?? ''), ENT_COMPAT);
     
         // จัดการไฟล์แนบสำหรับ no_auto ปัจจุบัน
@@ -346,15 +340,15 @@ $waranty = 1; // ประกัน
     
         if ($id_story != '' ){
 
-            $strSQLrival =  "UPDATE tb_storyrival  SET no_auto = '".$current_no_auto."', refid_work = '".$id_work."', id_customer = '".$id_customer."', customer_name = '".$hospital_name."', create_date = '".$addDate."', product_rival = '".$show->showProrivalValue($h_product_rivalNew)."', company_rival = '".$company_rivalNew."', rival_brand = '".$rival_brandNew."', rival_model = '".$rival_modelNew."', price_to_unit = '".$price_to_unitNew."', unit = '".$unitNew."', waranty = '".$waranty."', promotion = '".$promotionNew."', description = '".$descriptionNew."', file_nap1 = '".$file_nap1."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', h_product_rival = '".$h_product_rivalNew."', date_open = '".$date_openNew."' WHERE id_story = '".$id_story."' ";
+            $strSQLrival =  "UPDATE tb_storyrival  SET no_auto = '".$current_no_auto."', refid_work = '".$id_work."', id_customer = '".$id_customer."', customer_name = '".$hospital_name."', create_date = '".$addDate."', product_rival = '".$show->showProrivalValue($h_product_rivalNew)."', company_rival = '".$company_rivalNew."', rival_brand = '".$rival_brandNew."', rival_model = '".$rival_modelNew."', price_to_unit = '".$price_to_unitNew."', unit = '".$unitNew."', waranty = '".$waranty."', promotion = '".$promotionNew."', description = '".$descriptionNew."', file_nap1 = '".$file_nap1."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', h_product_rival = '".$h_product_rivalNew."' WHERE id_story = '".$id_story."' ";
             // $objQueryrival = mysqli_query($conn,$strSQLrival) or die(mysqli_error());
             
-        } else if ($id_story == ''){ // and $product_rival != ''
-            $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, waranty, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival, date_open) 
+        } else if ($id_story == '' && $h_product_rivalNew != ''){ // and $product_rival != ''
+            $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, waranty, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
             VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', 
-            '$price_to_unitNew', '$unitNew', '$waranty', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew', '$date_openNew')";
+            '$price_to_unitNew', '$unitNew', '$waranty', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew')";
             $objQueryrival = mysqli_query($conn, $strSQLrival) or die(mysqli_error($conn));
-            echo $strSQLrival . '<hr>';
+            // echo $strSQLrival . '<hr>';
         }
 
     }
@@ -369,7 +363,7 @@ $waranty = 1; // ประกัน
     if($id_pro != ''){
         $sqlList2_1 =  "UPDATE tb_product_delivery SET id_customer = '".$id_customer."',
         ref_idwork = '".$id_work."', hospital_name = '".$hospital_name."', create_date = '".$addDate."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', product_1 = '".$MyProdoctDemoValue."', product_pre = '".$product_present."', cuspre_descript='".$cuspre_descript."'  WHERE id_pro = '".$id_pro."' ";
-        // $qsqlList2_1 = mysqli_query($conn,$sqlList2_1);
+        $qsqlList2_1 = mysqli_query($conn,$sqlList2_1);
         // echo $sqlList2_1;
     } else if($id_pro == '' and $MyProdoctDemoValue != ''){
         $sqlList2_2 =  "INSERT INTO tb_product_delivery(id_customer,ref_idwork,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_pre,cuspre_descript) VALUES ('".$id_customer."','".$id_work."','".$hospital_name."','".$addDate."','".$_SESSION['em_id']."','".$addDate."','".$_SESSION['username']."','".$MyProdoctDemoValue."','".$product_present."','".$cuspre_descript."')";
@@ -380,26 +374,26 @@ $waranty = 1; // ประกัน
     // ออกบูธ (Group Presentation)
     if($present_id !='') {
     $sqlList3 =  "UPDATE tb_present_booth  SET work_name='".$work_name."',work_date='".$work_date."',count_work='".$count_work."',price_work='".$price_work."',typ_work1='".$typ_work1."',typ_work2='".$typ_work2."',sum_wordpre='".$sum_wordpre."',end_date='".$end_date."',des_cus1='".$des_cus1."' WHERE present_id = '".$present_id."' ";
-    // $qsqlList3 = mysqli_query($conn,$sqlList3);
+    $qsqlList3 = mysqli_query($conn,$sqlList3);
     } else if($present_id =='') {
     $sqlList3 = "INSERT INTO  tb_present_booth (ref_idwork,id_customer,hospital_name,create_date,sale_area,add_date,add_by,work_name,work_date,count_work,price_work,typ_work1,typ_work2,sum_wordpre,end_date,des_cus1) VALUES ('".$id_work."','".$id_customer."','".$hospital_name."','".$create_date."','".$_SESSION['em_id']."','".$add_date."','".$add_by."','".$work_name."','".$work_date."','".$count_work."','".$price_work."','".$typ_work1."','".$typ_work2."','".$sum_wordpre."','".$end_date."','".$des_cus1."')";
-    // $qsqlList3 = mysqli_query($conn,$sqlList3);
+    $qsqlList3 = mysqli_query($conn,$sqlList3);
     }
     // echo $sqlList3;
     
     
 
 // echo $sqlMainsave1; // แก้ไขข้อมูลรายละเอียดที่ Plan ไว้
-// $sqlMainsave_1 = mysqli_query($conn,$sqlMainsave1) or die(mysqli_error($conn));
+$sqlMainsave_1 = mysqli_query($conn,$sqlMainsave1) or die(mysqli_error($conn));
 // // echo $sqlMainsave2; // เก็บเพิ่มไปเรื่อยๆตามการแก้ไขข้อมูล
-// $sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
+$sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
 // // echo $sqlMainsave3; // แก้ไขข้อมูลลูกค้า
-// $sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
+$sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
 
 
-// $text = 'กำลังดำเนินการกรุณารอสักครู่...';
-// require_once __DIR__ . '/../views/Loading_page.php';
-// echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
-// mysqli_close($conn);
-// exit; 
+$text = 'กำลังดำเนินการกรุณารอสักครู่...';
+require_once __DIR__ . '/../views/Loading_page.php';
+echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
+mysqli_close($conn);
+exit; 
 ?>

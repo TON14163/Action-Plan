@@ -1,7 +1,7 @@
 <div class="accordion-item rounded-0 border border-0">
     <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA; margin-top: 20px;">
         <span class="collapsed rounded-0 border border-0"><input type="checkbox" name="listmain3" id="listmain3" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse3" aria-expanded="false" aria-controls="panelsStayOpen-collapse3" value="1"> &nbsp; &nbsp; <label for="listmain3">ออกบูธ (Group Presentation)</label></span>
-        <span id="panelsStayOpen-collapse3" class="accordion-collapse collapse"><a href=""><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> Google Form เบิกของออกบูท</span></a></span>
+        <span id="panelsStayOpen-collapse3" class="accordion-collapse collapse"><a href="" data-bs-toggle="tooltip" data-bs-title="Google Form เบิกของออกบูท"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> Google Form เบิกของออกบูท</span></a></span>
     </p>
     <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse" >
         <div class="accordion-body">

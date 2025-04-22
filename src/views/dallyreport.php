@@ -42,7 +42,7 @@
         </div>
         <div>
             <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
-                <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a>
+                <a href="actionplan?dallyadd=1" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a>
             <?php } ?>
         </div>
     </div>
@@ -114,7 +114,12 @@
                 }
             });
         });
-    </script>
+
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+</script>
 </div>
 <?php 
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php

@@ -10,14 +10,13 @@
             <div class="table-responsive p-2">
                 <table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
                     <tr>
-                        <th style="width: 30%;">ประเภทสินค้า</th>
+                        <th style="width: 25%;">ประเภทสินค้า</th>
                         <th style="width: 15%;">บริษัท</th>
-                        <th style="width: 10%;">ยี่ห้อ</th>
-                        <th style="width: 10%;">รุ่น</th>
+                        <th style="width: 15%;">ยี่ห้อ</th>
+                        <th style="width: 15%;">รุ่น</th>
                         <th style="width: 10%;">ราคา/หน่วย</th>
                         <th style="width: 10%;">จำนวนซื้อ</th>
                         <th style="width: 10%;">เงื่อนไขพิเศษ</th>
-                        <th style="width: 10%;">วันที่เปิดซอง</th>
                     </tr>
                     <tr>
                         <td style="padding: 8px;">
@@ -32,7 +31,6 @@
                         <td style="padding: 8px;"><input style="width: 100%;" type="number" name="price_to_unit[]" id="price_to_unit1"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="number" name="unit[]" id="unit1"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="promotion[]" id="promotion1"></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="date" name="date_open[]" id="date_open1"></td>
                     </tr>
                 </table>
             </div>
@@ -106,14 +104,13 @@
                         <div class="table-responsive p-2">
                             <table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
                                 <tr>
-                                    <th style="width: 15%;">ประเภทสินค้า</th>
+                                    <th style="width: 25%;">ประเภทสินค้า</th>
                                     <th style="width: 15%;">บริษัท</th>
                                     <th style="width: 15%;">ยี่ห้อ</th>
                                     <th style="width: 15%;">รุ่น</th>
                                     <th style="width: 10%;">ราคา/หน่วย</th>
                                     <th style="width: 10%;">จำนวนซื้อ</th>
                                     <th style="width: 10%;">เงื่อนไขพิเศษ</th>
-                                    <th style="width: 10%;">วันที่เปิดซอง</th>
                                 </tr>
                                 <tr>
                                     <td style="padding: 8px;">
@@ -134,7 +131,6 @@
                                     <td style="padding: 8px;"><input style="width: 100%;" type="number" name="price_to_unit[]" id="price_to_unit${rowCount}"></td>
                                     <td style="padding: 8px;"><input style="width: 100%;" type="number" name="unit[]" id="unit${rowCount}"></td>
                                     <td style="padding: 8px;"><input style="width: 100%;" type="text" name="promotion[]" id="promotion${rowCount}"></td>
-                                    <td style="padding: 8px;"><input style="width: 100%;" type="date" name="date_open[]" id="date_open${rowCount}"></td>
                                 </tr>
                             </table>
                         </div>
