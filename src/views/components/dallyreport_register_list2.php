@@ -14,11 +14,12 @@
         border-radius: 15px;
     }
 </style>
-<div class="accordion-item rounded-0 border border-0">
-    <p class="accordion-header">
-        <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA; margin-top: 20px; border:0 none;" >
-            <input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="false" aria-controls="panelsStayOpen-collapse2" value="1">
-            <label for="listmain2" style="margin-left: 20px;">Demo ทดลองสินค้า</label>
+<div class="accordion-item rounded-0 border border-0" style="margin: 20px 0px;">
+    <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;">
+        <span class="rounded-0 border border-0"><input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapse2" value="1"> &nbsp; &nbsp; <label for="listmain2">Demo ทดลองสินค้า</label></span>
+        <span id="panelsStayOpen-collapse2" class="accordion-collapse collapse">
+            <a href="https://sol.allwellcenter.com/main_suphos_br.php" target="_blank" data-bs-toggle="tooltip" data-bs-title="ออกใบยืม sup"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ออกใบยืม</span></a>
+            <a href="https://sol.allwellcenter.com/main_salehos_br.php" target="_blank" data-bs-toggle="tooltip" data-bs-title="ออกใบยืม sale"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ออกใบยืม</span></a>
         </span>
     </p>
     <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" >
