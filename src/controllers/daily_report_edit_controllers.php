@@ -152,28 +152,54 @@ class DailyReportEdit {
             $viewMain = "";
             while($vsql = mysqli_fetch_array($qsql)){
             $viewMain .= "
+            <div class='table-responsive p-2'>
+            <table class='table-thead-custom-awl table-bordered border-secondary' style='width: 100%;'>
+                <tr>
+                    <th style='width: 30%;'>ประเภทสินค้า</th>
+                    <th style='width: 15%;'>บริษัท</th>
+                    <th style='width: 10%;'>ยี่ห้อ</th>
+                    <th style='width: 10%;'>รุ่น</th>
+                    <th style='width: 10%;'>ราคา/หน่วย</th>
+                    <th style='width: 10%;'>จำนวนซื้อ</th>
+                    <th style='width: 10%;'>เงื่อนไขพิเศษ</th>
+                    <th style='width: 10%;'>วันที่เปิดซอง</th>
+                </tr>
                 <tr>
                     <td style='padding: 8px;'>
                         <select class='form-search-custom-awl' style='width: 100%;' name='h_product_rival[]' id='h_product_rival1'>
+                        <option value=".$vsql['h_product_rival'].">".$vsql['product_rival']."</option>
                             <option value=''>Search</option>
                             'showProrival()'
                         </select>
                     </td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='company_rival[]' id='company_rival1' placeholder='Please fill out' value=".$vsql['id_customer']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_brand[]' id='rival_brand1' placeholder='Please fill out' value=".$vsql['id_customer']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_model[]' id='rival_model1' placeholder='Please fill out' value=".$vsql['id_customer']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='price_to_unit[]' id='price_to_unit1' value=".$vsql['id_customer']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='unit[]' id='unit1' value=".$vsql['id_customer']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='promotion[]' id='promotion1' value=".$vsql['id_customer']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='date' name='date_open[]' id='date_open1' value=".$vsql['id_customer']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='company_rival[]' id='company_rival1' placeholder='Please fill out' value=".$vsql['company_rival']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_brand[]' id='rival_brand1' placeholder='Please fill out' value=".$vsql['rival_brand']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_model[]' id='rival_model1' placeholder='Please fill out' value=".$vsql['rival_model']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='number' name='price_to_unit[]' id='price_to_unit1' value=".$vsql['price_to_unit']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='number' name='unit[]' id='unit1' value=".$vsql['unit']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='promotion[]' id='promotion1' value=".$vsql['promotion']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='date' name='date_open[]' id='date_open1' value=".$vsql['date_open']."></td>
                 </tr>
+            </table>
+            </div>
+            <p class='p-2'>
+                หมายเหตุ
+                <textarea class='textarea-form-control' style='width:100%;' name='description[]' id='description1' rows='3'>".$vsql['description']."</textarea>
+            </p>
+
+
+<span class='badge rounded-pill' style='background-color: #525252; color:#FFFFFF; padding-left: 10px; cursor: pointer;'>ไฟล์ที่แนบ</span>
+";
+$images = json_decode($vsql['file_nap1'], true);
+foreach ($images as $image) {
+    $viewMain .= "<a class='list2file1_allfile1Styel' href='uploads/{$image['file']}' target='_blank' rel='noopener noreferrer'>{$image['file']}</a>&nbsp;";
+}
+$viewMain .= "
+            <hr style='border: 1px dashed #000;'>
                 ";
             }
             return $viewMain;
         } 
     }
-
-
-
 }
 ?>

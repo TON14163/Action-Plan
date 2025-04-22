@@ -311,33 +311,35 @@ $waranty = 1; // ประกัน
         // จัดการไฟล์แนบสำหรับ no_auto ปัจจุบัน
         $file_nap1 = json_encode([], JSON_UNESCAPED_UNICODE); // Default to empty JSON
         $upload_dir = 'uploads/';
-        $allowed_extensions = ['svg', 'pdf', 'jpg', 'png']; // นามสกุลที่อนุญาต
+        $allowed_extensions = ['svg', 'pdf', 'jpg', 'png']; // นามสกุลที่อนุญาต 'svg', 'pdf', 'jpg', 'png'
     
         if (isset($_FILES['list4file']['name'][$current_no_auto]) && !empty($_FILES['list4file']['name'][$current_no_auto])) {
             // สร้างโฟลเดอร์ถ้ายังไม่มี
             if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0755, true);
+            mkdir($upload_dir, 0755, true);
             }
-    
+        
             $file_list = [];
             $file_names = $_FILES['list4file']['name'][$current_no_auto];
             $file_tmp_names = $_FILES['list4file']['tmp_name'][$current_no_auto];
             $file_errors = $_FILES['list4file']['error'][$current_no_auto];
-    
+        
             foreach ($file_names as $index => $file_name) {
-                if ($file_errors[$index] === UPLOAD_ERR_OK && !empty($file_name)) {
-                    // ตรวจสอบนามสกุลไฟล์
-                    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-                    if (in_array($file_ext, $allowed_extensions)) {
-                        // Sanitize ชื่อไฟล์
-                        $file_name_sanitized = htmlspecialchars(mysqli_real_escape_string($conn, $file_name), ENT_COMPAT);
-                        // ย้ายไฟล์ไปยังโฟลเดอร์
-                        $destination = $upload_dir . $file_name_sanitized;
-                        if (move_uploaded_file($file_tmp_names[$index], $destination)) {
-                            $file_list[] = ['file' => $file_name_sanitized];
-                        }
-                    }
+            if ($file_errors[$index] === UPLOAD_ERR_OK && !empty($file_name)) {
+                // ตรวจสอบนามสกุลไฟล์
+                $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                if (in_array($file_ext, $allowed_extensions)) {
+                // สร้างชื่อไฟล์ใหม่
+                $new_file_name = time() . '_' . $current_no_auto . '_' . $index . '.' . $file_ext;
+                // Sanitize ชื่อไฟล์
+                $file_name_sanitized = htmlspecialchars(mysqli_real_escape_string($conn, $new_file_name), ENT_COMPAT);
+                // ย้ายไฟล์ไปยังโฟลเดอร์
+                $destination = $upload_dir . $file_name_sanitized;
+                if (move_uploaded_file($file_tmp_names[$index], $destination)) {
+                    $file_list[] = ['file' => $file_name_sanitized];
                 }
+                }
+            }
             }
             $file_nap1 = json_encode($file_list, JSON_UNESCAPED_UNICODE);
         }

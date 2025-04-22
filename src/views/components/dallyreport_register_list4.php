@@ -1,11 +1,12 @@
 <div class="accordion-item rounded-0 border border-0" style="margin: 20px 0px;">
     <p class="accordion-header">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA;">
-            <input type="checkbox" name="listmain4" id="listmain4" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4" value="1"> &nbsp; <label for="listmain4">ข้อมูลคู่แข่ง</label>
+            <input type="checkbox" name="listmain4" id="listmain4" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4" value="1"> &nbsp; <label for="listmain4">&nbsp;&nbsp;ข้อมูลคู่แข่ง</label>
         </span>
     </p>
     <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse">
         <div class="accordion-body">
+            <?php echo $show->InfoList4Table($id_work);?>
             <div class="table-responsive p-2">
                 <table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
                     <tr>
@@ -18,7 +19,6 @@
                         <th style="width: 10%;">เงื่อนไขพิเศษ</th>
                         <th style="width: 10%;">วันที่เปิดซอง</th>
                     </tr>
-                    <?php echo $show->InfoList4Table($id_work);?>
                     <tr>
                         <td style="padding: 8px;">
                             <select class="form-search-custom-awl" style="width: 100%;" name="h_product_rival[]" id="h_product_rival1">
@@ -29,8 +29,8 @@
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="company_rival[]" id="company_rival1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_brand[]" id="rival_brand1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_model[]" id="rival_model1" placeholder="Please fill out"></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="price_to_unit[]" id="price_to_unit1"></td>
-                        <td style="padding: 8px;"><input style="width: 100%;" type="text" name="unit[]" id="unit1"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="number" name="price_to_unit[]" id="price_to_unit1"></td>
+                        <td style="padding: 8px;"><input style="width: 100%;" type="number" name="unit[]" id="unit1"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="promotion[]" id="promotion1"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="date" name="date_open[]" id="date_open1"></td>
                     </tr>
@@ -46,7 +46,7 @@
                 <div>
                     <div style="margin-bottom: 5px;">
                         <label for="list4file1">แนบไฟล์</label>
-                        <input style="width: 300px;" type="file" name="list4file[1][]" id="list4file1">
+                        <input style="width: 300px;" type="file" name="list4file[1][]" id="list4file1" data-bs-toggle="tooltip" data-bs-title="นามสกุลที่อนุญาต 'svg', 'pdf', 'jpg', 'png'">
                         <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow4(1)">
                             <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์
                         </span>
@@ -131,8 +131,8 @@
                                     <td style="padding: 8px;"><input style="width: 100%;" type="text" name="company_rival[]" id="company_rival${rowCount}" placeholder="Please fill out"></td>
                                     <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_brand[]" id="rival_brand${rowCount}" placeholder="Please fill out"></td>
                                     <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_model[]" id="rival_model${rowCount}" placeholder="Please fill out"></td>
-                                    <td style="padding: 8px;"><input style="width: 100%;" type="text" name="price_to_unit[]" id="price_to_unit${rowCount}"></td>
-                                    <td style="padding: 8px;"><input style="width: 100%;" type="text" name="unit[]" id="unit${rowCount}"></td>
+                                    <td style="padding: 8px;"><input style="width: 100%;" type="number" name="price_to_unit[]" id="price_to_unit${rowCount}"></td>
+                                    <td style="padding: 8px;"><input style="width: 100%;" type="number" name="unit[]" id="unit${rowCount}"></td>
                                     <td style="padding: 8px;"><input style="width: 100%;" type="text" name="promotion[]" id="promotion${rowCount}"></td>
                                     <td style="padding: 8px;"><input style="width: 100%;" type="date" name="date_open[]" id="date_open${rowCount}"></td>
                                 </tr>
@@ -143,7 +143,7 @@
                             <div>
                                 <div style="margin-bottom: 5px;">
                                     <label for="list4file${rowCount}">แนบไฟล์</label>
-                                    <input style="width: 300px;" type="file" name="list4file[${rowCount}][]" id="list4file${rowCount}">
+                                    <input style="width: 300px;" type="file" name="list4file[${rowCount}][]" id="list4file${rowCount}" data-bs-toggle="tooltip" data-bs-title="นามสกุลที่อนุญาต svg,pdf,jpg,png">
                                     <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow4(${rowCount})">
                                         <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์
                                     </span>
