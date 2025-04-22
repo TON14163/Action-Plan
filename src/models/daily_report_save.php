@@ -338,18 +338,41 @@ $waranty = 1; // ประกัน
             $file_nap1 = json_encode($file_list, JSON_UNESCAPED_UNICODE);
         }
     
-        if ($id_story != '' ){
 
-            $strSQLrival =  "UPDATE tb_storyrival  SET no_auto = '".$current_no_auto."', refid_work = '".$id_work."', id_customer = '".$id_customer."', customer_name = '".$hospital_name."', create_date = '".$addDate."', product_rival = '".$show->showProrivalValue($h_product_rivalNew)."', company_rival = '".$company_rivalNew."', rival_brand = '".$rival_brandNew."', rival_model = '".$rival_modelNew."', price_to_unit = '".$price_to_unitNew."', unit = '".$unitNew."', waranty = '".$waranty."', promotion = '".$promotionNew."', description = '".$descriptionNew."', file_nap1 = '".$file_nap1."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', h_product_rival = '".$h_product_rivalNew."' WHERE id_story = '".$id_story."' ";
-            // $objQueryrival = mysqli_query($conn,$strSQLrival) or die(mysqli_error());
-            
-        } else if ($id_story == '' && $h_product_rivalNew != ''){ // and $product_rival != ''
-            $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, waranty, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
-            VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', 
-            '$price_to_unitNew', '$unitNew', '$waranty', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew')";
-            $objQueryrival = mysqli_query($conn, $strSQLrival) or die(mysqli_error($conn));
-            // echo $strSQLrival . '<hr>';
-        }
+            if ($h_product_rivalNew != ''){ // and $product_rival != ''
+                $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, waranty, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
+                VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', 
+                '$price_to_unitNew', '$unitNew', '$waranty', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew')";
+                $objQueryrival = mysqli_query($conn, $strSQLrival) or die(mysqli_error($conn));
+                echo $strSQLrival . '<hr>';
+
+                if($id_story != '' ){
+                    $strSQLrivalUp =  "UPDATE tb_storyrival  SET 
+                    refid_work = '".$id_work."',
+                    id_customer = '".$id_customer."',
+                    customer_name = '".$hospital_name."',
+                    create_date = '".$addDate."',
+                    product_rival = '".$show->showProrivalValue($h_product_rivalNew)."',
+                    company_rival = '".$company_rivalNew."',
+                    rival_brand = '".$rival_brandNew."',
+                    rival_model = '".$rival_modelNew."',
+                    price_to_unit = '".$price_to_unitNew."',
+                    unit = '".$unitNew."',
+                    waranty = '".$waranty."',
+                    promotion = '".$promotionNew."',
+                    description = '".$descriptionNew."',
+                    file_nap1 = '".$file_nap1."',
+                    sale_area = '".$_SESSION['em_id']."',
+                    add_date = '".$addDate."',
+                    add_by = '".$_SESSION['username']."',
+                    h_product_rival = '".$h_product_rivalNew."' 
+                    WHERE id_story = '".$id_story."' AND no_auto = '".$current_no_auto."',
+                    ";
+                    // $objQueryrivalUp = mysqli_query($conn,$strSQLrivalUp) or die(mysqli_error());
+                    echo $strSQLrivalUp . '<hr>';
+                }
+            }
+        
 
     }
 
@@ -391,9 +414,9 @@ $sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
 $sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
 
 
-$text = 'กำลังดำเนินการกรุณารอสักครู่...';
-require_once __DIR__ . '/../views/Loading_page.php';
-echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
-mysqli_close($conn);
-exit; 
+// $text = 'กำลังดำเนินการกรุณารอสักครู่...';
+// require_once __DIR__ . '/../views/Loading_page.php';
+// echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
+// mysqli_close($conn);
+// exit; 
 ?>

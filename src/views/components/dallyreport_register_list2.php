@@ -18,12 +18,37 @@
     <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;">
         <span class="rounded-0 border border-0"><input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapse2" value="1"> &nbsp; &nbsp; <label for="listmain2">Demo ทดลองสินค้า</label></span>
         <span id="panelsStayOpen-collapse2" class="accordion-collapse collapse">
-            <a href="https://sol.allwellcenter.com/main_suphos_br.php" target="_blank" data-bs-toggle="tooltip" data-bs-title="ออกใบยืม sup"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ออกใบยืม</span></a>
+        <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
             <a href="https://sol.allwellcenter.com/main_salehos_br.php" target="_blank" data-bs-toggle="tooltip" data-bs-title="ออกใบยืม sale"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ออกใบยืม</span></a>
+        <?php } else { ?>
+            <a href="https://sol.allwellcenter.com/main_suphos_br.php" target="_blank" data-bs-toggle="tooltip" data-bs-title="ออกใบยืม sup"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ออกใบยืม</span></a>
+        <?php } ?>
         </span>
     </p>
     <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" >
         <div class="accordion-body">
+            <!-- มีเลขที่อ้างอิง ถึงแสดงส่วนนี้ -->
+            <table class="table-thead-custom-awl table-bordered border-secondary mb-4 mt-1">
+                <tr>
+                    <th style="width: 12.5%;">เลขที่อ้างอิง</th>
+                    <th style="width: 12.5%;">วันที่ออกเอกสาร</th>
+                    <th style="width: 12.5%;">เลขที่ใบยืม</th>
+                    <th style="width: 20%;">ชื่อลูกค้า</th>
+                    <th style="width: 22.5%;">รายการสินค้า</th>
+                    <th style="width: 10%;">จำนวน</th>
+                    <th style="width: 10%;">หน่วย</th>
+                </tr>
+                <tr>
+                    <td style="padding: 4px; ">BR680400070</td>
+                    <td style="padding: 4px; ">date_br</td>
+                    <td style="padding: 4px; ">BRNP.1594</td>
+                    <td style="padding: 4px; text-align: left;">customer</td>
+                    <td style="padding: 4px; text-align: left;">รายการสินค้า</td>
+                    <td style="padding: 4px; ">จำนวน</td>
+                    <td style="padding: 4px; ">หน่วย</td>
+                </tr>
+            </table>
+
             <table id="demo_product" class="table-thead-custom-awl table-bordered border-secondary">
                 <tr>
                     <th>ลำดับ</th>
