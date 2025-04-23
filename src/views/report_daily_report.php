@@ -1,4 +1,7 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+error_reporting(0);
+require_once __DIR__ . '/../controllers/MainControllersAll.php';
+?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">รายงาน Daily Report</b>
 </div>
@@ -26,8 +29,8 @@
     </div>
 </p>
 <br>
-<div class="table-responsive font-custom-awl-14">
-    <table class="table-thead-custom-awl">
+<div class="table-responsive">
+    <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
                 <th style="width: 10%;">วันที่</th>
@@ -40,18 +43,32 @@
                 <th style="width: 15%;">เขตการขาย</th>
             </tr>
         </thead>
+        <?php 
+         $sqlPlan = "SELECT * FROM tb_register_data ORDER BY id_work DESC LIMIT 40 ";
+        $resultPlan = mysqli_query($conn, $sqlPlan);
+        $numPlan = mysqli_num_rows($resultPlan);
+        while ($rowPlan = mysqli_fetch_array($resultPlan)) { ?>
         <tbody>
             <tr style="background-color: #FFFFFF;">
-                <td>14 ม.ค. 2568</td>
-                <td>โรงพยาบาล</td>
-                <td>ตึก</td>
-                <td>ชั้น</td>
-                <td>หน่วยงาน</td>
-                <td>พี่เมย์บอกว่าพี่เมย์สนใจที่จะนำเครื่องวัดน้ำตาลเข้าใช้ที่หน่วยฝากครรภ์เพราะเดิมปัจจุบันในส่วนของโรงบาลมีใช้อยู่สองยี่ห้อคือแอคคิวเช็คและ control พลัส ส่วนยี่ห้อวันทัชนั้น ทางหน่วยจะออกเป็นคูปองเพื่อให้ไปซื้อที่ร้านยา ศิริราชบำรุงเวชช ศิริราชบำรุงเวช ในราคาที่ 760 บาท ซึ่งจะถูกกว่าขายคนทั่วไปพี่เมย์บอกว่าหากสนใจที่จะนำทำเข้าโรงพยาบาลต้องไปเสนอที่อาจารย์ ดิฐกานต์ โดยอาจารย์จะลงตรวจทุกวันจันทร์ เพราะอาจารย์ก็ให้ยี่ห้อวันทัช เสนอเข้าเหมือนกัน</td>
-                <td>ผู้ติดต่อ</td>
-                <td>S24</td>
+                <td><?php echo DateThai($rowPlan['date_plan']);?></td>
+                <td><?php echo $rowPlan['hospital_name'];?></td>
+                <td><?php echo $rowPlan['hospital_ward'];?></td>
+                <td>
+                <?php
+                    $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
+                    $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
+                    while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
+                        echo $rowtypeproduct['product_rival'].'<br>';
+                    }
+                    ?>
+                </td>
+                <td><?php echo $rowPlan['ฟฟฟฟฟฟฟฟ'];?></td>
+                <td><?php echo $rowPlan['plan_work'];?></td>
+                <td><?php echo $rowPlan['hospital_contact'];?></td>
+                <td><?php echo $rowPlan['sale_area'];?></td>
             </tr>
         </tbody>
+        <?php } ?>
     </table>
     <br>
     <p>พบทั้งหมด 1 รายการ : จำนวน 1 หน้า : 1</p>

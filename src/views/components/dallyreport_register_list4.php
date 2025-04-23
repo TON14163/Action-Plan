@@ -57,7 +57,12 @@
                     </span>
                 </span>
             </div>
-            <input type="hidden" name="no_auto[]" id="no_auto1" value="1">
+            <?php if($show->showStoryrival($id_work,'id_story') == ''){?>
+                <input type="hidden" name="no_auto[]" id="no_auto1" value="1">
+            <?php } else { ?>
+                <input type="hidden" name="no_auto[]" id="no_auto1" value="<?php echo $show->showStoryrivalNo_auto($id_work,'no_auto');?>">
+            <?php } ?>
+
 
             <div id="multi4list"></div>
 
@@ -93,10 +98,15 @@
             <!-- เพิ่มแนบไฟล์ END -->
 
             <!-- เพิ่มข้อมูลคู่แข่ง Start -->
+            <?php if($show->showStoryrival($id_work,'id_story') == ''){?>
+                <?php echo "<script> let noAutoRowCount = 1 ; </script>";?>
+            <?php } else { ?>
+                <?php echo "<script> let noAutoRowCount = '".$show->showStoryrivalNo_auto($id_work,'no_auto')."'; </script>";?>
+            <?php } ?>
             <script>
                 function addMultiList() {
                     const container = document.getElementById('multi4list');
-                    const rowCount = container.children.length + 2;
+                    const rowCount = container.children.length + Number(noAutoRowCount)+1;
                     const newRow = document.createElement('div');
                     newRow.className = 'multi4list-group';
                     newRow.innerHTML = `
@@ -150,7 +160,8 @@
                                 <span class="badge rounded-pill multi-delete" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer;" onclick="myDeleteFunction4(this)"> - ลบข้อมูลคู่แข่ง</span>
                             </span>
                         </div>
-                        <input type="hidden" name="no_auto[]" id="no_auto${rowCount}" value="${rowCount}">
+                <input type="hidden" name="no_auto[]" id="no_auto${rowCount}" value="${rowCount}">
+                        
                     `;
                     container.appendChild(newRow);
                 }

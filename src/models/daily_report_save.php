@@ -45,7 +45,6 @@ $id_work = $_POST['id_work'];
 $date_plan = $_POST['date_plan'];
 $id_customer = $_POST['id_customer'];
 $id_pro = $_POST['id_pro'];
-$id_story = $_POST['id_story'];
 $hospital_buiding = FigString2('hospital_buiding');
 $hospital_class = FigString2('hospital_class');
 $hospital_ward = FigString2('hospital_ward');
@@ -270,7 +269,6 @@ $sqlMainsave2 = "INSERT INTO tb_regist_realtime (date_plan,description_focastnew
 $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital_contact."',hospital_contact2 = '".$hospital_contact1."',hospital_contact3 = '".$hospital_contact2."',hospital_contact4 = '".$hospital_contact3."',hospital_contact5 = '".$hospital_contact4."',hospital_contact6 = '".$hospital_contact5."',hospital_contact7 = '".$hospital_contact6."',hospital_contact8 = '".$hospital_contact7."',hospital_contact9 = '".$hospital_contact8."',hospital_contact10 = '".$hospital_contact9."',hospital_mobile1 = '".$hospital_mobile1."',hospital_mobile2 = '".$hospital_mobile2."',hospital_mobile3 = '".$hospital_mobile3."',hospital_mobile4 = '".$hospital_mobile4."',hospital_mobile5 = '".$hospital_mobile5."',hospital_mobile6 = '".$hospital_mobile6."',hospital_mobile7 = '".$hospital_mobile7."',hospital_mobile8 = '".$hospital_mobile8."',hospital_mobile9 = '".$hospital_mobile9."',hospital_mobile10 = '".$hospital_mobile10."',email_contact1 = '".$email_contact1."',email_contact2 = '".$email_contact2."',email_contact3 = '".$email_contact3."',email_contact4 = '".$email_contact4."',email_contact5 = '".$email_contact5."',email_contact6 = '".$email_contact6."',email_contact7 = '".$email_contact7."',email_contact8 = '".$email_contact8."',email_contact9 = '".$email_contact9."',email_contact10 = '".$email_contact10."',hospital_buiding = '".$hospital_buiding."',hospital_class = '".$hospital_class."',hospital_ward = '".$hospital_ward."' WHERE id_customer = '".$id_customer."' ";
 
 // แก้ไขข้อมูลผู้แข่ง
-$waranty = 1; // ประกัน
 
     $h_product_rival = $_POST['h_product_rival'] ?? []; // ประเภทสินค้า PK
     $product_rival = $_POST['product_rival'] ?? []; // ประเภทสินค้า
@@ -282,12 +280,7 @@ $waranty = 1; // ประกัน
     $promotion = $_POST['promotion'] ?? []; // เงื่อนไขพิเศษ
     $description = $_POST['description'] ?? []; // หมายเหตุ
     $no_auto = $_POST['no_auto'] ?? []; // ลำดับรายการ
-    
-    // ตรวจสอบว่ามีข้อมูล h_product_rival หรือไม่
-    if (empty($h_product_rival)) {
-        echo "ไม่มีข้อมูลคู่แข่ง";
-        exit;
-    }
+    $id_story = $_POST['id_story'] ?? []; // PK itemlist
     
     foreach ($h_product_rival as $key => $value) {
         // Sanitize inputs
@@ -301,6 +294,7 @@ $waranty = 1; // ประกัน
         $unitNew = htmlspecialchars(mysqli_real_escape_string($conn, $unit[$key] ?? ''), ENT_COMPAT);
         $promotionNew = htmlspecialchars(mysqli_real_escape_string($conn, $promotion[$key] ?? ''), ENT_COMPAT);
         $descriptionNew = htmlspecialchars(mysqli_real_escape_string($conn, $description[$key] ?? ''), ENT_COMPAT);
+        $id_storyNew = htmlspecialchars(mysqli_real_escape_string($conn, $id_story[$key] ?? ''), ENT_COMPAT);
     
         // จัดการไฟล์แนบสำหรับ no_auto ปัจจุบัน
         $file_nap1 = json_encode([], JSON_UNESCAPED_UNICODE); // Default to empty JSON
@@ -338,17 +332,12 @@ $waranty = 1; // ประกัน
             $file_nap1 = json_encode($file_list, JSON_UNESCAPED_UNICODE);
         }
     
+        // echo  $current_no_auto;
 
             if ($h_product_rivalNew != ''){ // and $product_rival != ''
-                $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, waranty, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
-                VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', 
-                '$price_to_unitNew', '$unitNew', '$waranty', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew')";
-                $objQueryrival = mysqli_query($conn, $strSQLrival) or die(mysqli_error($conn));
-                echo $strSQLrival . '<hr>';
 
-                if($id_story != '' ){
+                if($id_storyNew != '' ){
                     $strSQLrivalUp =  "UPDATE tb_storyrival  SET 
-                    refid_work = '".$id_work."',
                     id_customer = '".$id_customer."',
                     customer_name = '".$hospital_name."',
                     create_date = '".$addDate."',
@@ -358,19 +347,32 @@ $waranty = 1; // ประกัน
                     rival_model = '".$rival_modelNew."',
                     price_to_unit = '".$price_to_unitNew."',
                     unit = '".$unitNew."',
-                    waranty = '".$waranty."',
                     promotion = '".$promotionNew."',
                     description = '".$descriptionNew."',
-                    file_nap1 = '".$file_nap1."',
                     sale_area = '".$_SESSION['em_id']."',
                     add_date = '".$addDate."',
                     add_by = '".$_SESSION['username']."',
                     h_product_rival = '".$h_product_rivalNew."' 
-                    WHERE id_story = '".$id_story."' AND no_auto = '".$current_no_auto."',
+                    WHERE id_story = '".$id_storyNew."' 
                     ";
-                    // $objQueryrivalUp = mysqli_query($conn,$strSQLrivalUp) or die(mysqli_error());
-                    echo $strSQLrivalUp . '<hr>';
+                    $objQueryrivalUp = mysqli_query($conn,$strSQLrivalUp) or die(mysqli_error());
+                    // echo $strSQLrivalUp . '<hr>';
                 }
+
+                $chkSqlNoAuto = "SELECT * FROM tb_storyrival WHERE no_auto = '".$current_no_auto."' AND refid_work = '".$id_work."' ";
+                $chkQueryNoAuto = mysqli_query($conn,$chkSqlNoAuto);
+                $chkNumNoAuto = mysqli_num_rows($chkQueryNoAuto);
+                if($chkNumNoAuto == 0 ){
+                $rowNoAuto = mysqli_fetch_array($chkQueryNoAuto);
+
+                    $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
+                    VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', 
+                    '$price_to_unitNew', '$unitNew', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew')";
+                    $objQueryrival = mysqli_query($conn, $strSQLrival) or die(mysqli_error($conn));
+                    // echo $strSQLrival . '<hr>';
+
+                }
+
             }
         
 
@@ -414,9 +416,9 @@ $sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
 $sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
 
 
-// $text = 'กำลังดำเนินการกรุณารอสักครู่...';
-// require_once __DIR__ . '/../views/Loading_page.php';
-// echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
-// mysqli_close($conn);
-// exit; 
+$text = 'กำลังดำเนินการกรุณารอสักครู่...';
+require_once __DIR__ . '/../views/Loading_page.php';
+echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
+mysqli_close($conn);
+exit; 
 ?>

@@ -6,17 +6,27 @@ if(!empty($_REQUEST['id_work'])){
     if(!empty(($_REQUEST['dc']))){
         $dc = $_REQUEST['dc'];
         if($dc == '1'){
-            $text = 'กำลังดำเนินการ COPY ข้อมูล กรุณารอสักครู่...';
+            $text = 'กำลังดำเนินการ COPY Plan กรุณารอสักครู่...';
             require_once __DIR__ . '/../views/Loading_page.php';
             require_once __DIR__ . '/../models/daily_report_copy.php';
-            print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
+            echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."dallyreport>"; 
             mysqli_close($conn);
             exit;
         } else if($dc == '2'){
-            $text = 'กำลังดำเนินการ Delete ข้อมูล กรุณารอสักครู่...';
+            $text = 'กำลังดำเนินการ Delete Plan กรุณารอสักครู่...';
             require_once __DIR__ . '/../views/Loading_page.php';
             require_once __DIR__ . '/../models/daily_report_delete.php';
-            print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
+            echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."dallyreport>"; 
+            mysqli_close($conn);
+            exit;
+        } else if($dc == '3'){
+            if(!empty(($_REQUEST['id_story']))){
+                $id_story = $_REQUEST['id_story'];
+            }
+            $text = 'กำลังดำเนินการ Delete ข้อมูลคู่แข่ง กรุณารอสักครู่...';
+            require_once __DIR__ . '/../views/Loading_page.php';
+            require_once __DIR__ . '/../models/daily_report_deletelist.php';
+            echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
             mysqli_close($conn);
             exit;
         }
@@ -111,6 +121,30 @@ function deletePlan(idDelete){
             showConfirmButton: false
         }).then(() => {
             window.location.href = `daily_report_edit?id_work=${idDelete}&dc=2`;
+        });
+    }
+    });
+}
+
+function deleteList4(id_work,id_story){
+
+    Swal.fire({
+    title: `<font color='#d33' >ลบข้อมูลคู่แข่ง นี้ !!</font>`,
+    text: "คุณแน่ใจว่าต้องการ Delete ข้อมูลคู่แข่ง ?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        Swal.fire({
+            title: "Delete!",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location.href = `daily_report_edit?id_work=${id_work}&id_story=${id_story}&dc=3`;
         });
     }
     });

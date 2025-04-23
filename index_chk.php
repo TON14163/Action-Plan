@@ -50,6 +50,7 @@ $routes = [
     'product_json' => 'src/models/product_json.php',
     'daily_report_copy' => 'src/models/daily_report_copy.php',
     'daily_report_delete' => 'src/models/daily_report_delete.php',
+    'daily_report_deletelist' => 'src/models/daily_report_deletelist.php',
     'daily_report_save' => 'src/models/daily_report_save.php',
 
 ];
