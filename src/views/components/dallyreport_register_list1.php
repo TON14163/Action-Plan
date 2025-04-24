@@ -55,13 +55,19 @@
                 </select>
             </div>
             <div>
-                <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder="รายละเอียดงาน : ประมาณการขายใหม่"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
+                <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
+            </div>
+            <div class="mt-2">
+                <a href="http://" target="_blank" rel="noopener noreferrer">
+                    <span class="badge rounded-pill mb-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;"> 
+                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
+                    </span> 
+                </a>
             </div>
             <!--  -->
         </div>
     </div>
 </div>
-
 
 <script>
     function CalculatorItem() {
