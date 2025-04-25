@@ -1,12 +1,31 @@
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+if(!empty($_REQUEST['id_work'])){
+    $id_work = $_REQUEST['id_work'];
+    require_once __DIR__ . '/../controllers/daily_report_edit_controllers.php'; // ข้อมูลทั้งหมดจะอยู่ในส่วนนี้
+    $show = new DailyReportEdit(); // เรียกใช้งาน class DailyReportEdit นี้ที่มีข้อมูลอยู่มาแสดง
+
+} else {
+
+    $text = 'ไม่พบเลขที่อ้างอิงกรุณาดำเนินการใหม่อีกครั้ง';
+    require_once __DIR__ . '/../views/Loading_page.php';
+    print "<meta http-equiv=refresh content=3;URL='../Action-Plan/dallyreport'>"; 
+    mysqli_close($conn);
+    exit;
+
+}
+?>
+<div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
+    <b style="font-size: 20px;">ลงทะเบียน Daily Report ( เพิ่มประมาณการขายใหม่ )</b>
+</div>
 <div class="accordion-item rounded-0 border border-0">
     <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;">
-        <span class="rounded-0 border border-0"><input type="checkbox" name="listmain1" id="listmain1" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapse1" value="1"> &nbsp; &nbsp; <label for="listmain1">ประมาณการขาย</label></span>
-        <span id="panelsStayOpen-collapse1" class="accordion-collapse collapse">
-            <a href="https://quotation.allwellcenter.com/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ quotation.allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ใบเสนอราคา</span></a>
-            <a href="https://sol.allwellcenter.com/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ sol.allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ERP SALE</span></a>
+        <span class="rounded-0 border border-0"><input type="checkbox" name="listmain1" id="listmain1" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapse1" value="1" checked> &nbsp; &nbsp; <label for="listmain1">ประมาณการขาย</label></span>
+        <span id="panelsStayOpen-collapse1" class="accordion-collapse collapse show">
+            <!-- <a href="https://quotation.allwellcenter.com/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ quotation.allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ใบเสนอราคา</span></a>
+            <a href="https://sol.allwellcenter.com/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ sol.allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 15px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> ERP SALE</span></a> -->
         </span>
     </p>
-    <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse">
+    <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show">
         <div class="accordion-body">
             <!--  -->
                 <table class="table-thead-custom-awl table-bordered border-secondary">
@@ -61,20 +80,16 @@
                 </select>
             </div>
             <div>
-                <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
-            </div>
-            <div class="mt-2">
-                <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>" target="_blank" rel="noopener noreferrer">
-                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;"> 
-                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
-                    </span> 
-                </a>
+                <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : เพิ่มประมาณการขายใหม่"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
             </div>
             <!--  -->
         </div>
     </div>
 </div>
-
+<?php 
+    $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
+    require_once __DIR__ . '/layouts/Main.php';
+?>
 <script>
     function CalculatorItem() {
         let count = 0;
@@ -89,5 +104,24 @@
             document.getElementById('price_product1').value = "0.00";
             document.getElementById('sum_price_product').value = "0.00";
         }
+    }
+
+    function addProductRow(rowNum, fieldName, searchTerm, txtHint, product_twolist) {
+        if (!searchTerm.trim() || searchTerm.length == 0) {
+            document.getElementById(`${txtHint}`).innerHTML = "";
+            document.getElementById(`${txtHint}`).style.display = "none";
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById(`${txtHint}`).innerHTML = this.responseText;
+                document.getElementById(`${txtHint}`).style.display = "block";
+            }
+        };
+        
+        xhr.open("GET", "./src/controllers/product_list_controllers.php?q=" + encodeURIComponent(searchTerm) + "&rowNum=" + rowNum + "&fieldName=" + encodeURIComponent(fieldName) + "&txtHint=" + encodeURIComponent(txtHint) + "&product_twolist=" + encodeURIComponent(product_twolist), true);
+        xhr.send();
     }
 </script>

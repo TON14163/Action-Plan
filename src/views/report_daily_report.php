@@ -83,14 +83,14 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
 
     <label for="customer"><b>โรงพยาบาล</b></label>
     <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-    <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php  echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
+    <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php  echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>"  />
     <datalist id="customerSelect">
         <option value="">-- เลือกลูกค้า --</option>
     </datalist>
 
                 
-                <b>ตึก</b> &nbsp; <input type="text" class="form-search-custom-awl" name="hospital_buiding" id="hospital_buiding" placeholder="ระบุข้อมูล . . . " value="">
-                <b>หน่วยงาน</b>&nbsp;&nbsp;&nbsp; <input type="text" class="form-search-custom-awl" name="hospital_ward" id="hospital_ward" placeholder="ระบุข้อมูล . . . " value="">
+                <b>ตึก</b> &nbsp; <input type="text" class="form-search-custom-awl" name="hospital_buiding" id="hospital_buiding" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_buiding'])){} echo htmlspecialchars($_GET['hospital_buiding']); ?>">
+                <b>หน่วยงาน</b>&nbsp;&nbsp;&nbsp; <input type="text" class="form-search-custom-awl" name="hospital_ward" id="hospital_ward" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_ward'])){} echo htmlspecialchars($_GET['hospital_ward']); ?>">
                 <button class="btn-custom-awl">Search</button>
 
 </form>
@@ -108,8 +108,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             <kbd style="background-color: #FFCC99; width: 20px; height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Copy งานเดิม
         </div>
         <div>
-            <a href="dallyreport_register"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a>
-            <a href="dallyreport_register"><img src="assets/images/icon_system/print.png" style="width: 30px; height: 30px;"></a>
+            <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+                <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a>
+            <?php } ?>
+                <a href="report_daily_report_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&hospital_buiding=<?php if(!empty($_GET['hospital_buiding'])){ echo htmlspecialchars($_GET['hospital_buiding']);}?>&hospital_ward=<?php if(!empty($_GET['hospital_ward'])){ echo htmlspecialchars($_GET['hospital_ward']);}?>&hospital_name=<?php if(!empty($_GET['hospital_name'])){ echo htmlspecialchars($_GET['hospital_name']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
         </div>
     </div>
 </p>
@@ -141,6 +143,15 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sql_total .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
         }
+        if (!empty($_GET['hospital_buiding'])) {
+            $sql_total .= "AND hospital_buiding LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_buiding']) . "%' ";
+        }
+        if (!empty($_GET['hospital_ward'])) {
+            $sql_total .= "AND hospital_ward LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_ward']) . "%' ";
+        }
+        if (!empty($_GET['hospital_name'])) {
+            $sql_total .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
+        }
         if ($_SESSION['typelogin'] == 'Supervisor') { 
             $sale_code_safe = mysqli_real_escape_string($conn, $_GET['sale_code']);
             $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
@@ -158,6 +169,15 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         $sqlPlan = "SELECT * FROM tb_register_data WHERE 1=1 ";
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sqlPlan .= "AND date_plan BETWEEN '".$_GET['date_start']."' AND '".$_GET['date_end']."' ";
+        }
+        if (!empty($_GET['hospital_buiding'])) {
+            $sqlPlan .= "AND hospital_buiding LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_buiding']) . "%' ";
+        }
+        if (!empty($_GET['hospital_ward'])) {
+            $sqlPlan .= "AND hospital_ward LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_ward']) . "%' ";
+        }
+        if (!empty($_GET['hospital_name'])) {
+            $sqlPlan .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
         }
         if($_SESSION['typelogin'] == 'Supervisor'){ 
             if ($sale_code == '') {
@@ -242,10 +262,12 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <?php } ?>
             <?php } ?>
 
+            
+
             <!-- แสดงหน้าตามช่วง -->
             <?php for ($i = $start_page; $i <= $end_page; $i++) { ?>
                 <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $_GET['hospital_name'];?>&hospital_buiding=<?php echo $_GET['hospital_buiding'];?>&hospital_ward=<?php echo $_GET['hospital_ward'];?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
                 </li>
             <?php } ?>
 
@@ -257,13 +279,13 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                     </li>
                 <?php } ?>
                 <li class="page-item">
-                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&page=<?php echo $total_pages; ?>"><?php echo $total_pages; ?></a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_buiding=<?php echo $hospital_buiding;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $total_pages; ?>"><?php echo $total_pages; ?></a>
                 </li>
             <?php } ?>
 
             <!-- ปุ่ม Next -->
             <li class="page-item <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&page=<?php echo $current_page + 1; ?>">Next</a>
+                <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_buiding=<?php echo $hospital_buiding;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $current_page + 1; ?>">Next</a>
             </li>
         </ul>
     </nav>
@@ -300,20 +322,4 @@ $content = ob_get_clean(); // เก็บลงที่ตัวแปร cont
 require_once __DIR__ . '/layouts/Main.php';
 ?>
 
-<script>
-    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch(`<?php echo $cumapi;?>`)
-        // fetch(<?php // echo $customerapi;?>)
-        .then(response => response.json())
-        .then(data => {
-            var selectElement = document.getElementById('customerSelect');
-            
-            data.forEach(function(customer) {
-                var option = document.createElement('option');
-                option.value = customer.customer_name;
-                option.textContent = customer.customer_name;
-                selectElement.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error:', error));
-</script>
+<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script>

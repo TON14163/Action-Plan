@@ -88,7 +88,13 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             <kbd style="background-color: #DDA0DD; width: 30px; height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่สร้างจากประมาณการขาย
             <kbd style="background-color: #66FFFF; width: 30px; height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Sup ไปแล้ว
         </div>
-        <div><a href="dallyreport_register"><img src="assets/images/icon_system/print.png" style="width: 30px; height: 30px;"></a></div>
+        <div>
+        <?php if(!empty($_GET['date_start']) && !empty($_GET['date_end']) && !empty($_GET['sale_code'])){?>
+            <a href="report_actionplan_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>" data-bs-toggle="tooltip" data-bs-title="Export File.csv"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;"></a>
+        <?php } else {?>
+            <img src="assets/images/icon_system/vscode-icons--file-type-excel2.svg" style="width: 30px; height: 30px;"  data-bs-toggle="tooltip" data-bs-title="ไม่สามารถ Export File.csv โปรดกรองข้อมูล !!">
+        <?php } ?>
+        </div>
     </div>
 </p>
 <div class="table-responsive">
@@ -176,9 +182,9 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                     }
                     ?>
                 </td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['plan_work']; ?></td>
+                <td style="<?php echo $colorTable; ?>"></td>
                 <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;"></td>
+                <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
             </tr>
         <?php } } ?>
         </tbody>
@@ -271,9 +277,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function deletePlan(idDelete){
+
+Swal.fire({
+title: `<font color='#d33' >ลบงานที่ Plan นี้ !!</font>`,
+text: "คุณแน่ใจว่าต้องการ Delete Plan ?",
+icon: "warning",
+showCancelButton: true,
+confirmButtonColor: "#3085d6",
+cancelButtonColor: "#d33",
+confirmButtonText: "Yes!"
+}).then((result) => {
+if (result.isConfirmed) {
+    Swal.fire({
+        title: "Delete!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: false
+    }).then(() => {
+        window.location.href = `#?id_work=${idDelete}&dc=2`;
+    });
+}
+});
+}
+
+
 </script>
 
 <?php 
 $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
 require_once __DIR__ . '/layouts/Main.php';
 ?>
+

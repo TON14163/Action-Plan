@@ -17,6 +17,7 @@ $routes = [
     'actionplan' => 'src/views/actionplan.php',
     'dallyreport' => 'src/views/dallyreport.php',
     'daily_report_edit' => 'src/views/daily_report_edit.php',
+    'daily_report_edit_plannew' => 'src/views/daily_report_edit_plannew.php',
     'report' => 'src/views/report.php',
     'list_receive_the_matter' => 'src/views/list_receive_the_matter.php',
     'user' => 'src/views/user.php',
@@ -36,6 +37,8 @@ $routes = [
     'test' => 'src/views/test.php',
     'actionplan_list' => 'src/views/actionplan_list.php',
     'register_user' => 'src/views/register_user.php',
+    'report_actionplan_excel' => 'src/views/report_actionplan_excel.php',
+    'report_daily_report_excel' => 'src/views/report_daily_report_excel.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
 
@@ -47,6 +50,8 @@ $routes = [
     'user-change-edit' => 'src/models/user-change-edit.php',
     'Loading-page' => 'src/models/Loading-page.php',
     'customers_json' => 'src/models/customers_json.php',
+    'customer_buiding_json' => 'src/models/customer_buiding_json.php',
+    'customer_ward_json' => 'src/models/customer_ward_json.php',
     'product_json' => 'src/models/product_json.php',
     'daily_report_copy' => 'src/models/daily_report_copy.php',
     'daily_report_delete' => 'src/models/daily_report_delete.php',
