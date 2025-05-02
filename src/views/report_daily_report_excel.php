@@ -71,7 +71,7 @@ if ($auto_export) {
             $rowPlan['hospital_name'],
             $rowPlan['hospital_ward'],
             $product_rivals,
-            $rowPlan['objective'],
+            $rowPlan['description_focastnew'],
             $rowPlan['plan_work'],
             $rowPlan['hospital_contact'],
             $rowPlan['sale_area']
@@ -151,15 +151,15 @@ exit;
                 $colorTable = '';
                 if ($rowPlan['daily'] == '3') {
                     $colorTable = 'background-color: #DDA0DD;';
-                } elseif ($rowPlan['daily'] == '4') {
+                } else if ($rowPlan['daily'] == '4') {
                     $colorTable = 'background-color: #66FFFF;';
                 }
         ?>
             <tr style="background-color: #FFFFFF;">
-                <td style="<?php echo $colorTable; ?>"><?php echo DateThai($rowPlan['date_plan']); ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_name']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_ward']; ?></td>
-                <td style="<?php echo $colorTable; ?>">
+                <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
+                <td style="<?php echo $colorTable;?>">
                     <?php
                     $sqltypeproduct = "SELECT product_rival FROM tb_storyrival WHERE refid_work = '" . mysqli_real_escape_string($conn, $rowPlan['id_work']) . "' ORDER BY id_story DESC LIMIT 20";
                     $querytypeproduct = mysqli_query($conn, $sqltypeproduct) or die("Query failed: " . mysqli_error($conn));
@@ -168,10 +168,10 @@ exit;
                     }
                     ?>
                 </td>
-                <td style="<?php echo $colorTable; ?>"></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['plan_work']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_contact']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['description_focastnew'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['plan_work'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
             </tr>
         <?php } } ?>
         </tbody>

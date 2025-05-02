@@ -57,6 +57,7 @@ $routes = [
     'daily_report_delete' => 'src/models/daily_report_delete.php',
     'daily_report_deletelist' => 'src/models/daily_report_deletelist.php',
     'daily_report_save' => 'src/models/daily_report_save.php',
+    'daily_report_plannew_save' => 'src/models/daily_report_plannew_save.php',
 
 ];
 

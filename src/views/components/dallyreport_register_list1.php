@@ -22,7 +22,7 @@
                         <td>
                             <div class="product-data-container">
                                 <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" 
-                                <?php if($show->showDetails($id_work,'product_id1') != '' ){ ?>
+                                <?php if($show->showDetails($id_work,'product_id1') == '' || $show->showDetails($id_work,'product_id1') == '0' ){ ?>
                                         value=""
                                 <?php } else { ?>
                                         value="<?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?>"
@@ -41,11 +41,11 @@
                 <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
                 <select name="percent_code" id="percent_code" style="width: 100px;">
                     <option value="">Please Select</option>
-                    <option value="100%|1" <?php if($show->showDetails($id_work,'percent_name') == '100%'){ ?> selected <?php } ?>>100%</option>
-                    <option value="90-99%|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99%'){ ?> selected <?php } ?>>90-99%</option>
-                    <option value="80-89%|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89%'){ ?> selected <?php } ?>>80-89%</option>
-                    <option value="50-80%|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80%'){ ?> selected <?php } ?>>50-80%</option>
-                    <option value="0-50%|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50%'){ ?> selected <?php } ?>>0-50%</option>
+                    <option value="100 %|1" <?php if($show->showDetails($id_work,'percent_name') == '100 %'){ ?> selected <?php } ?>>100 %</option>
+                    <option value="90-99 %|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99 %'){ ?> selected <?php } ?>>90-99 %</option>
+                    <option value="80-89 %|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89 %'){ ?> selected <?php } ?>>80-89 %</option>
+                    <option value="50-80 %|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80 %'){ ?> selected <?php } ?>>50-80 %</option>
+                    <option value="0-50 %|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50 %'){ ?> selected <?php } ?>>0-50 %</option>
                 </select>
                 <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="<?php echo $show->showDetails($id_work,'month_po');?>">
                 <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>

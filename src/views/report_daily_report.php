@@ -205,10 +205,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             } 
         ?>
             <tr style="background-color: #FFFFFF; font-size: 14px;">
-                <td style="<?php echo $colorTable; ?>"><?php echo DateThai($rowPlan['date_plan']); ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_name']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_ward']; ?></td>
-                <td style="<?php echo $colorTable; ?>">
+                <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
+                <td style="<?php echo $colorTable;?>">
                     <?php
                     $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
                     $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
@@ -217,10 +217,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                     }
                     ?>
                 </td>
-                <td style="<?php echo $colorTable; ?>"></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['plan_work']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_contact']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['description_focastnew'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['plan_work'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
+                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
             </tr>
         <?php } } ?>
         </tbody>

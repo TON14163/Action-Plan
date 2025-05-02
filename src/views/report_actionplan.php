@@ -2,6 +2,20 @@
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
 (!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'] ;
+
+if(!empty(($_REQUEST['dc']))){
+    $dc = $_REQUEST['dc'];
+    $id_work = $_REQUEST['id_work'];
+    if($dc == '2'){
+        $text = 'กำลังดำเนินการ Delete Plan กรุณารอสักครู่...';
+        require_once __DIR__ . '/../views/Loading_page.php';
+        require_once __DIR__ . '/../models/daily_report_delete.php';
+        echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."report_actionplan>"; 
+        mysqli_close($conn);
+        exit;
+    }
+}
+
 ?>
 
 <style>
@@ -167,7 +181,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                     $colorTable = '';
                 }
         ?>
-            <tr style="background-color: #FFFFFF;">
+            <tr>
                 <td style="<?php echo $colorTable; ?>"><?php echo DateThai($rowPlan['date_plan']); ?></td>
                 <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_name']; ?></td>
                 <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_ward']; ?></td>
@@ -282,7 +296,7 @@ function deletePlan(idDelete){
 
 Swal.fire({
 title: `<font color='#d33' >ลบงานที่ Plan นี้ !!</font>`,
-text: "คุณแน่ใจว่าต้องการ Delete Plan ?",
+text: `คุณแน่ใจว่าต้องการ Delete Plan ?`,
 icon: "warning",
 showCancelButton: true,
 confirmButtonColor: "#3085d6",
@@ -291,12 +305,12 @@ confirmButtonText: "Yes!"
 }).then((result) => {
 if (result.isConfirmed) {
     Swal.fire({
-        title: "Delete!",
+        title: "Delete! ไม่สามารถนำกลับมาได้แล้ว ",
         icon: "success",
         timer: 1000,
         showConfirmButton: false
     }).then(() => {
-        window.location.href = `#?id_work=${idDelete}&dc=2`;
+        window.location.href = `report_actionplan?id_work=${idDelete}&dc=2`;
     });
 }
 });
