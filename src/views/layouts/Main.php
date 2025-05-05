@@ -3,7 +3,6 @@
 <head>
     <title>ERP Sale Report</title>
     <link rel= "icon" href ="assets/images/Awl-logo1.png" type = "image/x-icon">
-    <link rel="stylesheet" href="/assets/css/style.css">  <!-- style custom -->
     <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css">  <!-- Bootstrap CSS -->
     <script type="module" src="node_modules\datalist-css\dist\datalist-css.min.js"></script>  <!-- datalist-css -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- sweetalert2 -->

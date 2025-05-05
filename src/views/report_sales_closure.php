@@ -11,11 +11,32 @@
             <b>ถึง</b> <input type="date" name="" id="">
             <b>โรงพยาบาล</b> <input type="text" class="form-search-custom-awl" name="cuss_earch" id="cuss_earch" placeholder="ค้นหา รพ . . . ">
             <b>Sale</b> 
-            <select class="form-select-custom-awl" name="" id="">
-                <option value="">Please Select</option>
-                <option value="1">bsssssssss</option>
-                <option value="2">bsssssssss</option>
-            </select>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
+                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                        <option value="">Please Select</option>
+                        <?php
+                        switch ($_SESSION["head_area"]) {
+                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                            default:
+                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                UNION sale_code,sale_name FROM tb_team_ss2
+                                UNION sale_code,sale_name FROM tb_team_ss3
+                                UNION sale_code,sale_name FROM tb_team_sm1 ";
+                            break;
+                        }
+                        $objQuery5 = mysqli_query($conn, $strSQL5);
+                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                        }
+                        ?>
+                    </select>
+                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
+                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
+                <?php } ?>
             <button class="btn-custom-awl">Search</button>
         </div>
         <div>

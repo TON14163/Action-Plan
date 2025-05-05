@@ -73,24 +73,32 @@ if(!empty(($_REQUEST['dc']))){
         <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
         <b>Sale</b> 
-        <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                <option value="">Please Select</option>
-                <?php
-                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                ";
-                $objQuery5 = mysqli_query($conn, $strSQL5);
-                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                    $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                    echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                }
-                ?>
-            </select>
-        <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-            <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-        <?php } ?>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
+                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                        <option value="">Please Select</option>
+                        <?php
+                        switch ($_SESSION["head_area"]) {
+                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                            default:
+                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                UNION sale_code,sale_name FROM tb_team_ss2
+                                UNION sale_code,sale_name FROM tb_team_ss3
+                                UNION sale_code,sale_name FROM tb_team_sm1 ";
+                            break;
+                        }
+                        $objQuery5 = mysqli_query($conn, $strSQL5);
+                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                        }
+                        ?>
+                    </select>
+                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
+                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
+                <?php } ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -167,7 +175,7 @@ if(!empty(($_REQUEST['dc']))){
         } else {
             $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
         }
-        $sqlPlan .= "ORDER BY id_work DESC LIMIT $items_per_page OFFSET $offset";
+        $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
         $numPlan = mysqli_num_rows($queryPlan);
 

@@ -37,6 +37,7 @@ if ($_SESSION['em_id'] == '' ) { ?>
 
 <link rel="stylesheet" href="assets/css/NavBar.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/loadingNextPage.css">
 <script src="assets/js/NavBar.js"></script>
 <nav class="menu-nav0">
     <div class="menu-nav1">

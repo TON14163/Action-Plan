@@ -4,52 +4,6 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
 (!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'] ;
 ?>
 
-<style>
-/* CSS สำหรับ dots-flow loading animation */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.dots-flow {
-    display: flex;
-    gap: 10px;
-}
-
-.dots-flow span {
-    width: 12px;
-    height: 12px;
-    background: #ffffff;
-    border-radius: 50%;
-    animation: dots-flow 0.8s infinite;
-}
-
-.dots-flow span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.dots-flow span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes dots-flow {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
-</style>
-
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">รายงาน Daily Report</b>
 </div>
@@ -59,24 +13,32 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
                 <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
                 <b>Sale</b> 
-                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                        <option value="">Please Select</option>
-                        <?php
-                        $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                        UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                        UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                        ";
-                        $objQuery5 = mysqli_query($conn, $strSQL5);
-                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                        }
-                        ?>
-                    </select>
-                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-                <?php } ?>
+                    <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
+                        <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                            <option value="">Please Select</option>
+                            <?php
+                            switch ($_SESSION["head_area"]) {
+                                case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                                case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                                case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                                case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                                default:
+                                    $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                    UNION sale_code,sale_name FROM tb_team_ss2
+                                    UNION sale_code,sale_name FROM tb_team_ss3
+                                    UNION sale_code,sale_name FROM tb_team_sm1 ";
+                                break;
+                            }
+                            $objQuery5 = mysqli_query($conn, $strSQL5);
+                            while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                                $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                                echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                            }
+                            ?>
+                        </select>
+                    <?php } else { $saleSet = $_SESSION['em_id']; ?> 
+                        <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
+                    <?php } ?>
                 <b>ประเภทสินค้า</b> <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="">
         <br>
                 <br>
@@ -188,7 +150,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         } else {
             $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
         }
-        $sqlPlan .= "ORDER BY id_work DESC LIMIT $items_per_page OFFSET $offset";
+        $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
         $numPlan = mysqli_num_rows($queryPlan);
 
@@ -226,7 +188,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         </tbody>
     </table>
     <br>
-<div style="display: flex; justify-content: space-between; align-items: center; ">
+<section style="display: flex; justify-content: space-between; align-items: center; ">
 
     <p>พบทั้งหมด <?php echo $total_rows; ?> รายการ : จำนวน <?php echo $total_pages; ?> หน้า : หน้าปัจจุบัน <?php echo $current_page; ?></p>
 
@@ -289,7 +251,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             </li>
         </ul>
     </nav>
-</div>
+</section>
 
     <!-- Loading Animation -->
     <div class="loading-overlay" id="loadingOverlay">
@@ -322,4 +284,4 @@ $content = ob_get_clean(); // เก็บลงที่ตัวแปร cont
 require_once __DIR__ . '/layouts/Main.php';
 ?>
 
-<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script>
+<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script> <!-- โรงพยาบาล -->
