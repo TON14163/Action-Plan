@@ -50,7 +50,7 @@
 <hr style="margin:20px 0px;">
 <p class="font-custom-awl-14"><b>Total Hos</b></p>
 <div class="table-responsive font-custom-awl-14">
-    <table class="table-thead-custom-awl">
+    <table class="table-thead-custom-awl table-bordered border-secondary w-100 ">
         <thead>
             <tr>
                 <th style="width:10%">เปอร์เซ็นต์</th>
@@ -64,56 +64,6 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="background-color: #FFFFFF;">
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-            </tr>
-            <tr style="background-color: #FFFFFF;">
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-            </tr>
-            <tr style="background-color: #FFFFFF;">
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-            </tr>
-            <tr style="background-color: #FFFFFF;">
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-            </tr>
-            <tr style="background-color: #FFFFFF;">
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-                <td>num</td>
-            </tr>
             <tr style="background-color: #FFFFFF;">
                 <td>num</td>
                 <td>num</td>

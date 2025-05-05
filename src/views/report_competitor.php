@@ -1,4 +1,9 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+error_reporting(0);
+require_once __DIR__ . '/../controllers/MainControllersAll.php';
+(!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'] ;
+?>
+
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">รายงานคู่แข่ง</b>
 </div>
@@ -6,17 +11,24 @@
 <p style="padding: 10px 20px;" class="font-custom-awl-14">
 <div style="display:flex; justify-content: space-between; margin-bottom: 15px;">
 <div>
-    <b>วันที่</b> <input type="date" name="" id="">
-    <b>ถึง</b> <input type="date" name="" id="">
+    <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
+    <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
     </div>
         <div>
-            <a href="#"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a>
+            <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+                <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a>
+            <?php } ?>
         </div>
     </div>
-    <b>โรงพยาบาล</b> 
-    <input type="text" class="form-search-custom-awl" name="cuss_earch" id="cuss_earch" placeholder="ระบุข้อมูล . . . ">
-    <b>ประเภทสินค้า</b> 
-    <input type="text" class="form-search-custom-awl" name="cuss_earch" id="cuss_earch" placeholder="ระบุข้อมูล . . . ">
+
+    <label for="customer"><b>โรงพยาบาล</b></label>
+    <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
+    <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php  echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>"  />
+    <datalist id="customerSelect">
+        <option value="">-- เลือกลูกค้า --</option>
+    </datalist>
+
+    <b>ประเภทสินค้า</b> <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="">
     <b>Sale</b> 
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
                     <select class="form-select-custom-awl" name="sale_code" id="sale_code">
@@ -52,42 +64,48 @@
 <hr style="margin: 20px 0px;">
 
 <div class="table-responsive font-custom-awl-14">
-    <table class="table-thead-custom-awl">
+    <table class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
-                <th style="width: 5%;">วันที่</th>
-                <th style="width: 5%;">โรงพยาบาล</th>
-                <th style="width: 5%;">หน่วยงาน</th>
-                <th style="width: 5%;">ประเภทสินค้า</th>
-                <th style="width: 5%;">บริษัทคู่เเข่ง</th>
-                <th style="width: 5%;">ยี่ห้อ</th>
-                <th style="width: 5%;">รุ่น</th>
-                <th style="width: 5%;">ประเทศ</th>
-                <th style="width: 5%;">ราคา/หน่วย</th>
-                <th style="width: 5%;">จำนวนซื้อ</th>
-                <th style="width: 5%;">เงื่อนไขพิเศษ</th>
-                <th style="width: 5%;">วันที่เปิดซอง</th>
-                <th style="width: 5%;">เขตการขาย</th>
-                <th style="width: 5%;">Edit</th>
+                <th style="">วันที่</th>
+                <th style="">โรงพยาบาล</th>
+                <th style="">หน่วยงาน</th>
+                <th style="">ประเภทสินค้า</th>
+                <th style="">บริษัทคู่เเข่ง</th>
+                <th style="">ยี่ห้อ</th>
+                <th style="">รุ่น</th>
+                <th style="">ประเทศ</th>
+                <th style="">ราคา/หน่วย</th>
+                <th style="">จำนวนซื้อ</th>
+                <th style="">เงื่อนไขพิเศษ</th>
+                <th style="">วันที่เปิดซอง</th>
+                <th style="">เขตการขาย</th>
+                <th style="">Edit</th>
             </tr>
         </thead>
         <tbody>
+            <?php
+                $strSQL = "SELECT * FROM tb_storyrival WHERE 1 limit 30";
+                $objQuery  = mysqli_query($conn,$strSQL);
+                while($objResult = mysqli_fetch_array($objQuery)){
+            ?>
             <tr style="background-color: #FFFFFF;">
-                <td>วันที่</td>
-                <td>โรงพยาบาล</td>
-                <td>หน่วยงาน</td>
-                <td>ประเภทสินค้า</td>
-                <td>บริษัทคู่เเข่ง</td>
-                <td>ยี่ห้อ</td>
-                <td>รุ่น</td>
-                <td>ประเทศ</td>
-                <td>ราคา/หน่วย</td>
-                <td>จำนวนซื้อ</td>
-                <td>เงื่อนไขพิเศษ</td>
-                <td>วันที่เปิดซอง</td>
-                <td>เขตการขาย</td>
-                <td><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></td>
+                <td><?php echo  Datethai($objResult["create_date"]);?></td>
+                <td><?php echo $objResult["customer_name"];?></td>
+                <td><?php echo $objResult5["hospital_ward"];?></td>
+                <td><?php echo $objResult["product_rival"];?><?php if($objResult["product_rival"]=='อื่นๆ'){ ?><br> <?php echo $objResult["product_des"]; } ?> </td>
+                <td><?php echo $objResult["company_rival"];?></td>
+                <td><?php echo $objResult["rival_brand"];?></td>
+                <td><?php echo $objResult["rival_model"];?></td>
+                <td><?php echo $objResult["rival_country"];?></td>
+                <td align="right"><?php echo number_format($objResult["price_to_unit"],0)."";?></td>
+                <td align="right"><?php echo number_format($objResult["unit"],0)."";?></td>
+                <td><?php echo $objResult["waranty"];?></td>
+                <td><?php echo $objResult["sale_area"];?></td>
+                <td><?php if($objResult["date_open"]!='0000-00-00'){ echo Datethai($objResult["date_open"]); } ?></td>		
+                <td width="30" align="center"><a href="edit_rival.php?id_story=<?php echo $objResult["id_story"];?>"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>
             </tr>
+            <?php } ?>
         </tbody>
     </table>
     <br>
@@ -98,3 +116,5 @@
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
 ?>
+
+<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script> <!-- โรงพยาบาล -->
