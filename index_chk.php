@@ -39,6 +39,7 @@ $routes = [
     'register_user' => 'src/views/register_user.php',
     'report_actionplan_excel' => 'src/views/report_actionplan_excel.php',
     'report_daily_report_excel' => 'src/views/report_daily_report_excel.php',
+    'report_quotation_excel' => 'src/views/report_quotation_excel.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
 

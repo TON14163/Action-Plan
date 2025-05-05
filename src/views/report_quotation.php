@@ -23,7 +23,6 @@ function getPercentSummaries($conn) {
     
     // Single query to get all summaries
     $sqlHead = "SELECT 
-                percent_name, 
                 SUM(sum_price_product) AS sum_price_product,
                 SUM(unit_product1) AS unit_product1
             FROM tb_register_data 
@@ -36,15 +35,12 @@ function getPercentSummaries($conn) {
         $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
         $sqlHead .= "AND sale_area = '$em_id_safe' ";
     }
-    if ($_GET['hospital_name'] != '') {
-        $sqlHead .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
-    }
-    if ($_GET['percent_name'] != '') {
-        $sqlHead .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' ";
-    }
-    if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
-        $sqlHead .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
-    }
+    if ($_GET['hospital_name'] != '') { $sqlHead .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' "; }
+    if ($_GET['percent_name'] != '') { $sqlHead .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
+    if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sqlHead .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }
+    if (!empty($_GET['date1_buy']) && !empty($_GET['date2_buy'])) { $sqlHead .= "AND date_request BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date1_buy']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date2_buy']) . "' "; }
+    if($_GET['prorival_name'] !=""){ $sqlHead .= ' AND mode_pro1 = "'.$_GET['prorival_name'].'"'; }
+    if($_GET['type_cus'] !=""){ $sqlHead .= ' AND type_cus = "'.$_GET['type_cus'].'"'; }
     $sqlHead .= "GROUP BY percent_name WITH ROLLUP ";
     
     $query = mysqli_query($conn, $sqlHead) or die("Query Error: " . mysqli_error($conn));
@@ -81,8 +77,8 @@ function getPercentSummaries($conn) {
         <p style="margin: 5px 0;">
             <b>วันที่</b>&nbsp;&nbsp;<input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
             &nbsp;<b>ถึง</b>&nbsp;&nbsp;<input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
-            <b>วันที่สั่งของ</b> <input type="date">
-            <b>ถึง</b> <input type="date">
+            <b>วันที่สั่งของ</b>&nbsp;&nbsp;<input type="date" name="date1_buy" id="date1_buy" value="<?php echo !empty($_GET['date1_buy']) ? htmlspecialchars($_GET['date1_buy']) : ''; ?>">
+            &nbsp;<b>ถึง</b>&nbsp;&nbsp;<input type="date" name="date2_buy" id="date2_buy" value="<?php echo !empty($_GET['date2_buy']) ? htmlspecialchars($_GET['date2_buy']) : ''; ?>">
         </p>
         <p class="my-3">
             <label for="customer"><b>โรงพยาบาล</b></label>
@@ -120,7 +116,7 @@ function getPercentSummaries($conn) {
                         $sel = ""; 
                     }
                     ?>
-                <option value="<?php echo $objResuut5["id"];?>"<?php echo $sel;?>><?php echo $objResuut5["prorival_name"];?></option>
+                <option value="<?php echo $objResuut5["prorival_name"];?>"<?php echo $sel;?>><?php echo $objResuut5["prorival_name"];?></option>
                 <?php } ?>
             </select>
         </p>
@@ -180,7 +176,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
 ?>
 
 <div style="font-size: 14px; font-weight: bold; position: relative;" class="my-4">
-    <a href="dallyreport_register" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
+    <a href="report_quotation_excel?date_start=<?php echo $_GET['date_start'];?>&date_end=<?php echo $_GET['date_end'];?>&date1_buy=<?php echo $_GET['date1_buy'];?>&date2_buy=<?php echo $_GET['date2_buy'];?>&hospital_name=<?php echo $_GET['hospital_name'];?>&type_cus=<?php echo $_GET['type_cus'];?>&prorival_name=<?php echo $_GET['prorival_name'];?>&percent_name=<?php echo $_GET['percent_name'];?>&sale_code=<?php echo $_GET['sale_code'];?>" target="_blank" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
     <?php foreach ($ordered_ranges as $range): ?>
         <div style="text-align: center; background: <?php echo $colors[$range]; ?>; border: 0.1px solid #000; border-bottom: none;">
             <?php echo htmlspecialchars($range); ?> = <?php echo number_format($percent_data['ranges'][$range]['sum'], 0); ?> บาท
@@ -231,21 +227,18 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
             $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
             $sql_count .= "AND sale_area = '$em_id_safe' ";
         }
-        if ($_GET['hospital_name'] != '') {
-            $sql_count .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
-        }
-        if ($_GET['percent_name'] != '') {
-            $sql_count .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' ";
-        }
-        if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
-            $sql_count .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
-        }
+        if ($_GET['hospital_name'] != '') { $sql_count .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' "; }
+        if ($_GET['percent_name'] != '') { $sql_count .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
+        if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sql_count .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }
+        if (!empty($_GET['date1_buy']) && !empty($_GET['date2_buy'])) { $sql_count .= "AND date_request BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date1_buy']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date2_buy']) . "' "; }
+        if($_GET['prorival_name'] !=""){ $sql_count .= ' AND mode_pro1 = "'.$_GET['prorival_name'].'"'; }
+        if($_GET['type_cus'] !=""){ $sql_count .= ' AND type_cus = "'.$_GET['type_cus'].'"'; }
         $result_count = mysqli_query($conn, $sql_count) or die("Query Error: " . mysqli_error($conn));
         $total_rows = mysqli_fetch_assoc($result_count)['total'];
         $total_pages = ceil($total_rows / $items_per_page);
 
         // Query สำหรับดึงข้อมูลในหน้าปัจจุบัน
-        $sql = "SELECT id_work, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
+        $sql = "SELECT id_work, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
                 FROM tb_register_data 
                 WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
         if ($_SESSION['typelogin'] == 'Supervisor') {
@@ -253,17 +246,14 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         } else {
             $sql .= "AND sale_area = '$em_id_safe' ";
         }
-        if ($_GET['hospital_name'] != '') {
-            $sql .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
-        }
-        if ($_GET['percent_name'] != '') {
-            $sql .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' ";
-        }
-        if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
-            $sql .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
-        }
+        if ($_GET['hospital_name'] != '') { $sql .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' "; }
+        if ($_GET['percent_name'] != '') { $sql .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
+        if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sql .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }
+        if (!empty($_GET['date1_buy']) && !empty($_GET['date2_buy'])) { $sql .= "AND date_request BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date1_buy']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date2_buy']) . "' "; }
+        if($_GET['prorival_name'] !="" ){ $sql .= ' AND mode_pro1 = "'.$_GET['prorival_name'].'"'; }
+        if($_GET['type_cus'] !="" ){ $sql .= ' AND type_cus = "'.$_GET['type_cus'].'"'; }	
         $sql .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset ";
-
+        // echo $sql;
         $query = mysqli_query($conn, $sql) or die("Query Error: " . mysqli_error($conn));
         
         while ($row = mysqli_fetch_assoc($query)) {
@@ -374,14 +364,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
 </nav>
 </section>
 
-<!-- Loading Animation -->
-<div class="loading-overlay" id="loadingOverlay">
-    <div class="dots-flow">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
+<div class="loading-overlay" id="loadingOverlay"><div class="dots-flow"><span></span><span></span><span></span></div></div> <!-- Loading Animation -->
 
 </div>
 
