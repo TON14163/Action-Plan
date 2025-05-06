@@ -1,0 +1,43 @@
+/* CSS สำหรับ dots-flow loading animation */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.dots-flow {
+    display: flex;
+    gap: 10px;
+}
+
+.dots-flow span {
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: dots-flow 0.8s infinite;
+}
+
+.dots-flow span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dots-flow span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dots-flow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}

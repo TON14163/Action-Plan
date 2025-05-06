@@ -21,7 +21,13 @@
                         <td>1</td>
                         <td>
                             <div class="product-data-container">
-                                <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" value="<?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?>" />
+                                <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" 
+                                <?php if($show->showDetails($id_work,'product_id1') == '' || $show->showDetails($id_work,'product_id1') == '0' ){ ?>
+                                        value=""
+                                <?php } else { ?>
+                                        value="<?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?>"
+                                <?php } ?>
+                                />
                                 <input type="hidden" name="product_outlistone1" id="product_outlistone1" value="<?php echo $show->showDetails($id_work,'product_id1');?>" />
                                 <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?></div>
                             </div>
@@ -35,11 +41,11 @@
                 <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
                 <select name="percent_code" id="percent_code" style="width: 100px;">
                     <option value="">Please Select</option>
-                    <option value="100%|1" <?php if($show->showDetails($id_work,'percent_name') == '100%'){ ?> selected <?php } ?>>100%</option>
-                    <option value="90-99%|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99%'){ ?> selected <?php } ?>>90-99%</option>
-                    <option value="80-89%|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89%'){ ?> selected <?php } ?>>80-89%</option>
-                    <option value="50-80%|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80%'){ ?> selected <?php } ?>>50-80%</option>
-                    <option value="0-50%|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50%'){ ?> selected <?php } ?>>0-50%</option>
+                    <option value="100 %|1" <?php if($show->showDetails($id_work,'percent_name') == '100 %'){ ?> selected <?php } ?>>100 %</option>
+                    <option value="90-99 %|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99 %'){ ?> selected <?php } ?>>90-99 %</option>
+                    <option value="80-89 %|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89 %'){ ?> selected <?php } ?>>80-89 %</option>
+                    <option value="50-80 %|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80 %'){ ?> selected <?php } ?>>50-80 %</option>
+                    <option value="0-50 %|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50 %'){ ?> selected <?php } ?>>0-50 %</option>
                 </select>
                 <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="<?php echo $show->showDetails($id_work,'month_po');?>">
                 <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
@@ -55,13 +61,19 @@
                 </select>
             </div>
             <div>
-                <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder="รายละเอียดงาน : ประมาณการขายใหม่"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
+                <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
+            </div>
+            <div class="mt-2">
+                <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>" target="_blank" rel="noopener noreferrer">
+                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;"> 
+                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
+                    </span> 
+                </a>
             </div>
             <!--  -->
         </div>
     </div>
 </div>
-
 
 <script>
     function CalculatorItem() {

@@ -6,24 +6,32 @@
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
         <b>Sale</b> 
-        <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                <option value="">Please Select</option>
-                <?php
-                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                ";
-                $objQuery5 = mysqli_query($conn, $strSQL5);
-                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                    $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                    echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                }
-                ?>
-            </select>
-        <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-            <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-        <?php } ?>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
+                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                        <option value="">Please Select</option>
+                        <?php
+                        switch ($_SESSION["head_area"]) {
+                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                            default:
+                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                UNION sale_code,sale_name FROM tb_team_ss2
+                                UNION sale_code,sale_name FROM tb_team_ss3
+                                UNION sale_code,sale_name FROM tb_team_sm1 ";
+                            break;
+                        }
+                        $objQuery5 = mysqli_query($conn, $strSQL5);
+                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                        }
+                        ?>
+                    </select>
+                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
+                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
+                <?php } ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -42,7 +50,7 @@
         </div>
         <div>
             <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
-                <a href="actionplan?dallyadd=1" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a>
+                <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a>
             <?php } ?>
         </div>
     </div>
@@ -114,11 +122,7 @@
                 }
             });
         });
-
-
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
+        
 </script>
 </div>
 <?php 
