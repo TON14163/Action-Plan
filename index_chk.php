@@ -43,6 +43,7 @@ $routes = [
     'report_competitor_edit' => 'src/views/report_competitor_edit.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
+    'reportcompetitor' => 'src/controllers/reportcompetitor.php',
 
     'dallyreport_fetch_api' => 'src/models/dallyreport_fetch_api.php',
     'list_receive_the_matter_fetch_api' => 'src/models/list_receive_the_matter_fetch_api.php',
@@ -60,6 +61,7 @@ $routes = [
     'daily_report_deletelist' => 'src/models/daily_report_deletelist.php',
     'daily_report_save' => 'src/models/daily_report_save.php',
     'daily_report_plannew_save' => 'src/models/daily_report_plannew_save.php',
+    'report_competitor_save' => 'src/models/report_competitor_save.php',
 
 ];
 

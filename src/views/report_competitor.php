@@ -107,7 +107,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             if(!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sql_total .= "AND create_date BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }
             if(!empty($_GET['hospital_name'])){ $sql_total .= "AND customer_name LIKE '%".$_GET['hospital_name']."%' "; } // โรงพยาบาล
             if($_GET['product_rival'] != ''){ $sql_total .= "AND product_rival LIKE '%".$_GET['product_rival']."%' "; } // ประเภทสินค้า
-            if($_GET['open_ckk'] == '1'){ $sql_total .= "AND open_ckk = '1' "; } // ผลการเปิดซอง
+            if($_GET['open_ckk'] == '1'){ $sql_total .= "AND open_ckk = 1 "; } // ผลการเปิดซอง
             $result_total = mysqli_query($conn, $sql_total);
             $total_rows = mysqli_fetch_assoc($result_total)['total'];
             // คำนวณจำนวนหน้าทั้งหมด
@@ -125,7 +125,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 if(!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $strSQL .= "AND create_date BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }
                 if(!empty($_GET['hospital_name'])){ $strSQL .=  "AND customer_name LIKE '%".$_GET['hospital_name']."%' "; } // โรงพยาบาล
                 if($_GET['product_rival'] != ''){ $strSQL .=  "AND product_rival LIKE '%".$_GET['product_rival']."%' "; } // ประเภทสินค้า
-                if($_GET['open_ckk'] == '1'){ $strSQL .=  "AND open_ckk = '1' "; } // ผลการเปิดซอง
+                if($_GET['open_ckk'] == '1'){ $strSQL .=  "AND open_ckk = 1 "; } // ผลการเปิดซอง
                 $strSQL .= "ORDER BY create_date DESC LIMIT $items_per_page OFFSET $offset";
                 $objQuery  = mysqli_query($conn,$strSQL);
                 while($objResult = mysqli_fetch_array($objQuery)){
