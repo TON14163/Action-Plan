@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../config/database.php'; // ข้อมูลขอ
 
 class DailyReportEdit {
     public $id_work; // PK
+    public $id_story; // PK
     public $product_ID; // PK
     public $columnsName; // Columns Name
     public $conn; // DB Connection allwell_sale
