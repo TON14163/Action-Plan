@@ -44,6 +44,7 @@ $routes = [
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',
+    'report_forecast_time_controllers' => 'src/controllers/report_forecast_time_controllers.php',
 
     'dallyreport_fetch_api' => 'src/models/dallyreport_fetch_api.php',
     'list_receive_the_matter_fetch_api' => 'src/models/list_receive_the_matter_fetch_api.php',
