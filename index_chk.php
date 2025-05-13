@@ -41,6 +41,10 @@ $routes = [
     'report_daily_report_excel' => 'src/views/report_daily_report_excel.php',
     'report_quotation_excel' => 'src/views/report_quotation_excel.php',
     'report_competitor_edit' => 'src/views/report_competitor_edit.php',
+    'report_forecast_time_l1' => 'src/views/report_forecast_time_l1.php',
+    'report_forecast_time_l2' => 'src/views/report_forecast_time_l2.php',
+    'report_forecast_time_l3' => 'src/views/report_forecast_time_l3.php',
+    'report_forecast_time_l4' => 'src/views/report_forecast_time_l4.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',
