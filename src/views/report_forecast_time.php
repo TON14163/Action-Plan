@@ -18,7 +18,7 @@ $show = new ReportForecastTime();
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</b>
 </div>
-<form action="<?php echo htmlspecialchars($url);?>" enctype="multipart/form-data" method="get">
+<form action="<?php echo htmlspecialchars($url);?>" enctype="multipart/form-data" method="get"> 
     <div class="font-custom-awl-14">
         &nbsp;&nbsp;<b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>" required>
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>" required>
