@@ -16,7 +16,7 @@ $show = new ReportForecastTime();
     td:nth-child(8) { background-color: #FF3333; }
 </style>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</b>
+    <b style="font-size: 20px;">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</b> 
 </div>
 <form action="<?php echo htmlspecialchars($url);?>" enctype="multipart/form-data" method="get"> 
     <div class="font-custom-awl-14">
