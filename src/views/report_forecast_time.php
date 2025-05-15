@@ -53,13 +53,13 @@ $show = new ReportForecastTime();
                     ?>
                 </div>
             <?php } else { $saleSet = $_SESSION['em_id']; ?>
-                <input type="radio" name="sale_code" id="sale_code" value="<?php echo htmlspecialchars($_SESSION['em_id']); ?>" checked> <label for="sale_code"><?php echo htmlspecialchars($_SESSION['em_id']); ?></label>
+                <span><input type="radio" name="sale_code" id="sale_code" value="<?php echo htmlspecialchars($_SESSION['em_id']); ?>" checked> <label for="sale_code"><?php echo htmlspecialchars($_SESSION['em_id']); ?></label></span>
             <?php } ?>
         </div>
     </div>
     <p style="margin-left: 18%;"><button class="btn-custom-awl" style="font-size: 14px;">Search</button> <font style="color: #ff8080; font-size: 12px;">*เลือกได้แค่ 1 ตัวเลือก</font></p>
 </form>
-<?php if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {?>
+
 <hr style="margin:20px 0px;">
 <p class="font-custom-awl-14"><b><?php echo ($sale_code == 'Total') ? 'Total' : htmlspecialchars($sale_code);?></b></p>
 <?php 
@@ -81,6 +81,7 @@ $show = new ReportForecastTime();
                 <th style="width:10%">0-50%</th>
             </tr>
         </thead>
+        <?php if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {?>
         <tbody>
             <tr>
                 <td><a id="row1_0 " class="colall" target="_blank">100 %</a></td>
@@ -167,11 +168,12 @@ $show = new ReportForecastTime();
                 <td><a id="row7_7" class="colall" target="_blank"><?php echo number_format(($show->Actualsales(0,$_GET['date_start'],$_GET['date_end'],'date_update',$sale_code,5))+($show->Actualsales(0,$_GET['date_start'],$_GET['date_end'],'date_plan',$sale_code,5)),0)."";?></a></td>
             </tr>
         </tbody>
+        <?php } ?>
     </table>
 </div>
 
 <?php 
-}
+
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
 ?>

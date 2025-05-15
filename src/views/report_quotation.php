@@ -72,7 +72,7 @@ function getPercentSummaries($conn) {
 <div style="background: #F1E1FF; height: 45px; display: flex; align-items: center; padding: 0 20px; margin-bottom: 20px;">
     <b style="font-size: 20px;">รายงานสรุปเสนอราคา</b>
 </div>
-<form action="<?php echo $url; ?>" enctype="multipart/form-data" method="get">
+<form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
     <section style="padding: 10px 20px; font-size: 14px;">
         <p style="margin: 5px 0;">
             <b>วันที่</b>&nbsp;&nbsp;<input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
