@@ -97,7 +97,7 @@ if($_POST['save'] == '1'){
     hospital_mobile10 = '$hospital_mobile10',
     email_contact10 = '$email_contact10'
     WHERE id_customer = '$id_customer'";
-    // $qsqlUp = mysqli_query($conn, $sqlUp);
+    $qsqlUp = mysqli_query($conn, $sqlUp);
 
     require_once __DIR__ . '/../views/Loading_page.php';
     echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-contact>"; 
