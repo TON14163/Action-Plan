@@ -151,5 +151,3 @@ function deleteList4(id_work,id_story){
 }
 
 </script>
-
-<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/addProductRow.js"></script> <!-- ชื่อสินค้า -->

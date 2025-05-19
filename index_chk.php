@@ -67,7 +67,7 @@ $routes = [
     'daily_report_save' => 'src/models/daily_report_save.php',
     'daily_report_plannew_save' => 'src/models/daily_report_plannew_save.php',
     'report_competitor_save' => 'src/models/report_competitor_save.php',
-
+    'user_contact_save' => 'src/models/user_contact_save.php',
 ];
 
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {
