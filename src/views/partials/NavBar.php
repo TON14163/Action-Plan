@@ -61,7 +61,7 @@ if ($_SESSION['em_id'] == '' ) { ?>
                     <a href="<?php echo $nameHost;?>report_quotation">รายงานสรุปเสนอราคา</a>
                     <a href="<?php echo $nameHost;?>report_sales_closure">รายงานปิดการขาย</a>
                     <a href="<?php echo $nameHost;?>report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a>
-                    <a href="<?php echo $nameHost;?>report_forecast_product">รายงานสรุปประมานการขายตามสินค้า</a>
+                    <!-- <a href="<?php // echo $nameHost;?>report_forecast_product">รายงานสรุปประมานการขายตามสินค้า</a> --> <!-- ไม่ใช้แล้วนำไปรวมกับ รายงานสรุปเสนอราคา -->
                     <a href="<?php echo $nameHost;?>report_competitor">รายงานคู่แข่ง</a>
                 </span>
             </span>

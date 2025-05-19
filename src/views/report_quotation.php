@@ -2,7 +2,36 @@
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
 $sale_code = isset($_GET['sale_code']) ? $_GET['sale_code'] : ($_SESSION['em_id'] ?? '');
+?>
+<!-- <script src="<?php echo $_SESSION['thisDomain'];?>/assets/css/clearInput.css"></script> ล้างการค้นหาชื่อสินค้า -->
+<style>
+.search-wrapper {
+    position: relative;
+    width: 200px;
+}
 
+.search-input {
+    width: 100%;
+    padding-right: 30px;
+}
+
+.clear-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: none;
+    font-weight: bold;
+    font-size: 24px;
+    color: #FF0000;
+}
+
+.search-wrapper.show-clear .clear-button {
+    display: block;
+}
+</style>
+<?php
 // Function to generate colored percentage cells
 function percentItem($percent_id, $percent_name) {
     $colors = [
@@ -120,46 +149,84 @@ function getPercentSummaries($conn) {
                 <?php } ?>
             </select>
         </p>
-        <p style="margin: 5px 0;">
-            <b>เปอร์เซ็นต์</b> 
-            <select name="percent_name" id="percent_name" class="form-select-custom-awl">
-                <option value="">Please Select</option>
-                <option <?php if($_GET['percent_name'] == '100 %'){ ?> selected <?php } ?> value="100 %">100 %</option>
-                <option <?php if($_GET['percent_name'] == '90-99 %'){ ?> selected <?php } ?> value="90-99 %">90-99 %</option>
-                <option <?php if($_GET['percent_name'] == '80-89 %'){ ?> selected <?php } ?> value="80-89 %">80-89 %</option>
-                <option <?php if($_GET['percent_name'] == '50-80 %'){ ?> selected <?php } ?> value="50-80 %">50-80 %</option>
-                <option <?php if($_GET['percent_name'] == '0-50 %'){ ?> selected <?php } ?> value="0-50 %">0-50 %</option>
-            </select>
-            <b>Sale</b> 
-            <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                    <option>Please Select</option>
-                    <?php
-                    switch ($_SESSION["head_area"]) {
-                        case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                        case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                        case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                        case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                        default:
-                            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                        UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                        UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                        UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
-                            break;
-                    }
-                    $objQuery5 = mysqli_query($conn, $strSQL5);
-                    while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                        $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                        echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                    }
-                    ?>
+        <div style="margin: 5px 0; display: flex; align-items: center;">
+            <div>
+                <b>เปอร์เซ็นต์</b> 
+                <select name="percent_name" id="percent_name" class="form-select-custom-awl">
+                    <option value="">Please Select</option>
+                    <option <?php if($_GET['percent_name'] == '100 %'){ ?> selected <?php } ?> value="100 %">100 %</option>
+                    <option <?php if($_GET['percent_name'] == '90-99 %'){ ?> selected <?php } ?> value="90-99 %">90-99 %</option>
+                    <option <?php if($_GET['percent_name'] == '80-89 %'){ ?> selected <?php } ?> value="80-89 %">80-89 %</option>
+                    <option <?php if($_GET['percent_name'] == '50-80 %'){ ?> selected <?php } ?> value="50-80 %">50-80 %</option>
+                    <option <?php if($_GET['percent_name'] == '0-50 %'){ ?> selected <?php } ?> value="0-50 %">0-50 %</option>
                 </select>
-            <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id']; ?>" readonly> 
-            <?php } ?>
+            </div>
+
+            <div>
+                <b>Sale</b> 
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
+                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                        <option>Please Select</option>
+                        <?php
+                        switch ($_SESSION["head_area"]) {
+                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                            default:
+                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                            UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                                            UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                                            UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
+                                break;
+                        }
+                        $objQuery5 = mysqli_query($conn, $strSQL5);
+                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+                        }
+                        ?>
+                    </select>
+                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
+                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id']; ?>" readonly> 
+                <?php } ?>
+            </div>
+
+            <b>ชื่อสินค้า</b>&nbsp;&nbsp;
+            <div class="product-data-container search-wrapper" id="searchWrapper">
+                <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" value="<?php echo $_GET['product_onelist']; ?>" />
+                <span class="clear-button" id="clearButton">&times;</span>
+                <input type="hidden" name="product_outlistone1" id="product_outlistone1" value="<?php echo $_GET['product_outlistone1'];?>" />
+                <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"></div>
+            </div>&nbsp;&nbsp;&nbsp;
             <button class="btn-custom-awl">Search</button>
-        </p>
+
+        </div>
     </section>
+
+
+<script>
+    const input = document.getElementById('product_onelist1');
+    const product_outlistone1 = document.getElementById('product_outlistone1');
+    const clearBtn = document.getElementById('clearButton');
+    const wrapper = document.getElementById('searchWrapper');
+
+    input.addEventListener('input', () => {
+        if (input.value.length > 0) {
+        wrapper.classList.add('show-clear');
+        } else {
+        wrapper.classList.remove('show-clear');
+        }
+    });
+
+    clearBtn.addEventListener('click', () => {
+        input.value = '';
+        product_outlistone1.value = '';
+        wrapper.classList.remove('show-clear');
+        input.focus();
+    });
+</script>
+
 </form>
 <hr style="margin: 20px 0;">
 
@@ -176,7 +243,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
 ?>
 
 <div style="font-size: 14px; font-weight: bold; position: relative;" class="my-4">
-    <a href="report_quotation_excel?date_start=<?php echo $_GET['date_start'];?>&date_end=<?php echo $_GET['date_end'];?>&date1_buy=<?php echo $_GET['date1_buy'];?>&date2_buy=<?php echo $_GET['date2_buy'];?>&hospital_name=<?php echo $_GET['hospital_name'];?>&type_cus=<?php echo $_GET['type_cus'];?>&prorival_name=<?php echo $_GET['prorival_name'];?>&percent_name=<?php echo $_GET['percent_name'];?>&sale_code=<?php echo $_GET['sale_code'];?>" target="_blank" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
+    <a href="report_quotation_excel?date_start=<?php echo $_GET['date_start'];?>&date_end=<?php echo $_GET['date_end'];?>&date1_buy=<?php echo $_GET['date1_buy'];?>&date2_buy=<?php echo $_GET['date2_buy'];?>&hospital_name=<?php echo $_GET['hospital_name'];?>&type_cus=<?php echo $_GET['type_cus'];?>&prorival_name=<?php echo $_GET['prorival_name'];?>&percent_name=<?php echo $_GET['percent_name'];?>&sale_code=<?php echo $_GET['sale_code'];?>&product_outlistone1=<?php echo $_GET['product_outlistone1'];?>" target="_blank" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
     <?php foreach ($ordered_ranges as $range): ?>
         <div style="text-align: center; background: <?php echo $colors[$range]; ?>; border: 0.1px solid #000; border-bottom: none;">
             <?php echo htmlspecialchars($range); ?> = <?php echo number_format($percent_data['ranges'][$range]['sum'], 0); ?> บาท
@@ -252,6 +319,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         if (!empty($_GET['date1_buy']) && !empty($_GET['date2_buy'])) { $sql .= "AND date_request BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date1_buy']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date2_buy']) . "' "; }
         if($_GET['prorival_name'] !="" ){ $sql .= ' AND mode_pro1 = "'.$_GET['prorival_name'].'"'; }
         if($_GET['type_cus'] !="" ){ $sql .= ' AND type_cus = "'.$_GET['type_cus'].'"'; }	
+        if($_GET['product_outlistone1'] !="" ){ $sql .= ' AND product_id1 = "'.$_GET['product_outlistone1'].'"'; }	
         $sql .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset ";
         // echo $sql;
         $query = mysqli_query($conn, $sql) or die("Query Error: " . mysqli_error($conn));
@@ -292,7 +360,8 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         'hospital_ward' => isset($_GET['hospital_ward']) ? $_GET['hospital_ward'] : '',
         'date_start' => isset($_GET['date_start']) ? $_GET['date_start'] : '',
         'date_end' => isset($_GET['date_end']) ? $_GET['date_end'] : '',
-        'dallyadd' => isset($_GET['dallyadd']) ? $_GET['dallyadd'] : ''
+        'dallyadd' => isset($_GET['dallyadd']) ? $_GET['dallyadd'] : '',
+        'product_id1' => isset($_GET['product_id1']) ? $_GET['product_id1'] : ''
     ];
     $query_string = http_build_query(array_filter($base_params, function($value) {
         return $value !== '';
@@ -389,3 +458,4 @@ require_once __DIR__ . '/layouts/Main.php';
 ?>
 
 <script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script> <!-- โรงพยาบาล -->
+<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/addProductRow.js"></script> <!-- ชื่อสินค้า -->

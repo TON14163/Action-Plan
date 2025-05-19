@@ -32,7 +32,7 @@ function exportToExcel($conn) {
     fputcsv($output, $headers);
     
     // Query to fetch data (same as in the table, without LIMIT/OFFSET for full data)
-    $sql = "SELECT mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
+    $sql = "SELECT mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1, product_id1
             FROM tb_register_data 
             WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
             if($_GET['sale_code'] !="" ){ $sql .= ' AND sale_area = "'.$_GET['sale_code'].'"'; }
@@ -42,6 +42,7 @@ function exportToExcel($conn) {
             if(!empty($_GET['date1_buy']) && !empty($_GET['date2_buy'])) { $sql .= "AND date_request BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date1_buy']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date2_buy']) . "' "; }
             if($_GET['prorival_name'] !="" ){ $sql .= ' AND mode_pro1 = "'.$_GET['prorival_name'].'"'; }
             if($_GET['type_cus'] !="" ){ $sql .= ' AND type_cus = "'.$_GET['type_cus'].'"'; }
+            if($_GET['product_outlistone1'] !="" ){ $sql .= ' AND product_id1 = "'.$_GET['product_outlistone1'].'"'; }	
     $sql .= "ORDER BY date_plan DESC";
     $query = mysqli_query($conn, $sql) or die("Query Error: " . mysqli_error($conn));
     
