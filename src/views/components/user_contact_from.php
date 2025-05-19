@@ -8,37 +8,37 @@
         </div>
         <div class="modal-body">
             <div class="row" style="line-height: 2;">
-            <div class="col-6 d-flex justify-content-between">
-                โรงพยาบาล : <input type="text" name="customer_name" id="customer_name" required>
-            </div>
-            <div class="col-6"><font style="font-size: 10px; color:#ff8080;">**กรุณาพิมพ์ข้อมูลบางส่วนเพื่อเลือกชื่อโรงพยาบาล หากไม่มีชื่อโรงพยาบาลที่ต้องการรบกวนแจ้ง Admin เพื่อเพิ่มรายชื่อค่ะ</font></div>
-            <div class="col-6 d-flex justify-content-between">
-                <label for="hospital_buiding">ตึก : </label><input type="text" name="hospital_buiding" id="hospital_buiding" required>
-            </div>
-            <div class="col-6 d-flex justify-content-between">
-                <label for="hospital_class">ชั้น : </label><input type="text" name="hospital_class" id="hospital_class" required>
-            </div>
-            <div class="col-6 d-flex justify-content-between">
-                <label for="hospital_ward_present">กลุ่ม Ward : </label><input type="text" name="hospital_ward_present" id="hospital_ward_present" required>
-            </div>
-            <div class="col-6 d-flex justify-content-between">
-                <label for="hospital_ward">Ward : </label><input type="text" name="hospital_ward" id="hospital_ward" required>
-            </div>
-            <div class="col-12"><hr></div>
+                <div class="col-6 d-flex justify-content-between">
+                    โรงพยาบาล : <input type="text" name="customer_name" id="customer_name" required>
+                </div>
+                <div class="col-6"><font style="font-size: 10px; color:#ff8080;">**กรุณาพิมพ์ข้อมูลบางส่วนเพื่อเลือกชื่อโรงพยาบาล หากไม่มีชื่อโรงพยาบาลที่ต้องการรบกวนแจ้ง Admin เพื่อเพิ่มรายชื่อค่ะ</font></div>
+                <div class="col-6 d-flex justify-content-between">
+                    <label for="hospital_buiding">ตึก : </label><input type="text" name="hospital_buiding" id="hospital_buiding" required>
+                </div>
+                <div class="col-6 d-flex justify-content-between">
+                    <label for="hospital_class">ชั้น : </label><input type="text" name="hospital_class" id="hospital_class" required>
+                </div>
+                <div class="col-6 d-flex justify-content-between">
+                    <label for="hospital_ward_present">กลุ่ม Ward : </label><input type="text" name="hospital_ward_present" id="hospital_ward_present" required>
+                </div>
+                <div class="col-6 d-flex justify-content-between">
+                    <label for="hospital_ward">Ward : </label><input type="text" name="hospital_ward" id="hospital_ward" required>
+                </div>
+                <div class="col-12"><hr></div>
             
-            <div id="contact-rows">
-                <div class="contact-row d-flex justify-content-between" data-index="1">
-                <div class="col-4">
-                    ผู้ติดต่อ 1 : <input type="text" name="hospital_contact1" id="hospital_contact1">
+                <div id="contact-rows">
+                    <div class="contact-row d-flex justify-content-between" data-index="1">
+                    <div class="col-4">
+                        ผู้ติดต่อ 1 : <input type="text" name="hospital_contact1" id="hospital_contact1">
+                    </div>
+                    <div class="col-4">
+                        เบอร์โทร 1 : <input type="text" name="hospital_mobile1" id="hospital_mobile1">
+                    </div>
+                    <div class="col-4">
+                        email 1 : <input type="text" name="email_contact1" id="email_contact1">
+                    </div>
+                    </div>
                 </div>
-                <div class="col-4">
-                    เบอร์โทร 1 : <input type="text" name="hospital_mobile1" id="hospital_mobile1">
-                </div>
-                <div class="col-4">
-                    email 1 : <input type="text" name="email_contact1" id="email_contact1">
-                </div>
-                </div>
-            </div>
             
             <div class="col-12 mt-3">
                 <button type="button" id="add-row" class="btn-custom-awl btn btn-primary">เพิ่มแถว</button>

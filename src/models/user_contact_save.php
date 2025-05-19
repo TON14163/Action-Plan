@@ -1,7 +1,6 @@
 <?php
 @session_start();
 error_reporting(0);
-if($_POST['save'] == '1'){
     $save = $_POST['save'];
     $customer_name = $_POST['customer_name'];
     $hospital_buiding = $_POST['hospital_buiding'];
@@ -40,6 +39,8 @@ if($_POST['save'] == '1'){
     $email_contact10 = $_POST['email_contact10'];
     $sale_code = $_SESSION['em_id'];
 
+if($_POST['save'] == '1'){
+
     if($customer_name != '' ){
         require_once __DIR__ . '/../../config/database.php';
         $sql = "INSERT INTO tb_customer_contact (customer_name,hospital_buiding,hospital_class,hospital_ward,hospital_ward_present,sale_code,hospital_contact1,hospital_mobile1,email_contact1,hospital_contact2,hospital_mobile2,email_contact2,hospital_contact3,hospital_mobile3,email_contact3,hospital_contact4,hospital_mobile4,email_contact4,hospital_contact5,hospital_mobile5,email_contact5,hospital_contact6,hospital_mobile6,email_contact6,hospital_contact7,hospital_mobile7,email_contact7,hospital_contact8,hospital_mobile8,email_contact8,hospital_contact9,hospital_mobile9,email_contact9,hospital_contact10,hospital_mobile10,email_contact10)
@@ -48,14 +49,59 @@ if($_POST['save'] == '1'){
 
             $text = 'กำลังดำเนินการกรุณารอสักครู่...';
     } else {
-        $text = 'ไม่พบข้อมูลกรุณาดำเนินการใหม่อีกครั้ง';
+            $text = 'ไม่พบข้อมูลกรุณาดำเนินการใหม่อีกครั้ง';
     }
 
     require_once __DIR__ . '/../views/Loading_page.php';
-    require_once __DIR__ . '/../models/daily_report_delete.php';
     echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-contact>"; 
     mysqli_close($conn);
     exit;
 
+} else if($_POST['edit'] == '1'){
+    $id_customer = $_POST['id_customer'];
+    $sqlUp = "UPDATE tb_customer_contact SET 
+    customer_name = '$customer_name',
+    hospital_buiding = '$hospital_buiding',
+    hospital_class = '$hospital_class',
+    hospital_ward = '$hospital_ward',
+    hospital_ward_present = '$hospital_ward_present',
+    sale_code = '$sale_code',
+    hospital_contact1 = '$hospital_contact1',
+    hospital_mobile1 = '$hospital_mobile1',
+    email_contact1 = '$email_contact1',
+    hospital_contact2 = '$hospital_contact2',
+    hospital_mobile2 = '$hospital_mobile2',
+    email_contact2 = '$email_contact2',
+    hospital_contact3 = '$hospital_contact3',
+    hospital_mobile3 = '$hospital_mobile3',
+    email_contact3 = '$email_contact3',
+    hospital_contact4 = '$hospital_contact4',
+    hospital_mobile4 = '$hospital_mobile4',
+    email_contact4 = '$email_contact4',
+    hospital_contact5 = '$hospital_contact5',
+    hospital_mobile5 = '$hospital_mobile5',
+    email_contact5 = '$email_contact5',
+    hospital_contact6 = '$hospital_contact6',
+    hospital_mobile6 = '$hospital_mobile6',
+    email_contact6 = '$email_contact6',
+    hospital_contact7 = '$hospital_contact7',
+    hospital_mobile7 = '$hospital_mobile7',
+    email_contact7 = '$email_contact7',
+    hospital_contact8 = '$hospital_contact8',
+    hospital_mobile8 = '$hospital_mobile8',
+    email_contact8 = '$email_contact8',
+    hospital_contact9 = '$hospital_contact9',
+    hospital_mobile9 = '$hospital_mobile9',
+    email_contact9 = '$email_contact9',
+    hospital_contact10 = '$hospital_contact10',
+    hospital_mobile10 = '$hospital_mobile10',
+    email_contact10 = '$email_contact10'
+    WHERE id_customer = '$id_customer'";
+    // $qsqlUp = mysqli_query($conn, $sqlUp);
+
+    require_once __DIR__ . '/../views/Loading_page.php';
+    echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."user-contact>"; 
+    mysqli_close($conn);
+    exit;
 }
 ?>

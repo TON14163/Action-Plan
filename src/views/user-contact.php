@@ -91,10 +91,7 @@ error_reporting(0);
         <tbody>
             <?php
                 // Base SQL query
-                $cuss = "SELECT customer_name, hospital_buiding, hospital_class, hospital_ward, hospital_contact1 
-                         FROM tb_customer_contact 
-                         WHERE sale_code = '" . htmlspecialchars($sale_code) . "'";
-
+                $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code = '" . htmlspecialchars($sale_code) . "'";
                 // Add customer keyword filter if provided
                 if (!empty($_GET['cus_keyword'])) {
                     $cuss .= " AND customer_name LIKE '%" . htmlspecialchars($_GET['cus_keyword']) . "%'";
@@ -134,7 +131,46 @@ error_reporting(0);
                         <td><?php echo htmlspecialchars($customers['hospital_class']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_ward']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_contact1']); ?></td>
-                        <td><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></td>
+                        <td>
+                            <img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"  data-bs-toggle="modal" data-bs-target="#edit" 
+                            onclick="document.getElementById('customer_name').value = '<?php echo htmlspecialchars($customers['customer_name']);?>';
+                            document.getElementById('hospital_buiding').value = '<?php echo htmlspecialchars($customers['hospital_buiding']);?>';
+                            document.getElementById('hospital_class').value = '<?php echo htmlspecialchars($customers['hospital_class']);?>';
+                            document.getElementById('hospital_ward').value = '<?php echo htmlspecialchars($customers['hospital_ward']);?>';
+                            document.getElementById('hospital_contact1').value = '<?php echo htmlspecialchars($customers['hospital_contact1']);?>';
+                            document.getElementById('hospital_contact2').value = '<?php echo htmlspecialchars($customers['hospital_contact2']);?>';
+                            document.getElementById('hospital_contact3').value = '<?php echo htmlspecialchars($customers['hospital_contact3']);?>';
+                            document.getElementById('hospital_contact4').value = '<?php echo htmlspecialchars($customers['hospital_contact4']);?>';
+                            document.getElementById('hospital_contact5').value = '<?php echo htmlspecialchars($customers['hospital_contact5']);?>';
+                            document.getElementById('hospital_contact6').value = '<?php echo htmlspecialchars($customers['hospital_contact6']);?>';
+                            document.getElementById('hospital_contact7').value = '<?php echo htmlspecialchars($customers['hospital_contact7']);?>';
+                            document.getElementById('hospital_contact8').value = '<?php echo htmlspecialchars($customers['hospital_contact8']);?>';
+                            document.getElementById('hospital_contact9').value = '<?php echo htmlspecialchars($customers['hospital_contact9']);?>';
+                            document.getElementById('hospital_contact10').value = '<?php echo htmlspecialchars($customers['hospital_contact10']);?>';
+                            document.getElementById('hospital_mobile1').value = '<?php echo htmlspecialchars($customers['hospital_mobile1']);?>';
+                            document.getElementById('hospital_mobile2').value = '<?php echo htmlspecialchars($customers['hospital_mobile2']);?>';
+                            document.getElementById('hospital_mobile3').value = '<?php echo htmlspecialchars($customers['hospital_mobile3']);?>';
+                            document.getElementById('hospital_mobile4').value = '<?php echo htmlspecialchars($customers['hospital_mobile4']);?>';
+                            document.getElementById('hospital_mobile5').value = '<?php echo htmlspecialchars($customers['hospital_mobile5']);?>';
+                            document.getElementById('hospital_mobile6').value = '<?php echo htmlspecialchars($customers['hospital_mobile6']);?>';
+                            document.getElementById('hospital_mobile7').value = '<?php echo htmlspecialchars($customers['hospital_mobile7']);?>';
+                            document.getElementById('hospital_mobile8').value = '<?php echo htmlspecialchars($customers['hospital_mobile8']);?>';
+                            document.getElementById('hospital_mobile9').value = '<?php echo htmlspecialchars($customers['hospital_mobile9']);?>';
+                            document.getElementById('hospital_mobile10').value = '<?php echo htmlspecialchars($customers['hospital_mobile10']);?>';
+                            document.getElementById('email_contact1').value = '<?php echo htmlspecialchars($customers['email_contact1']);?>';
+                            document.getElementById('email_contact2').value = '<?php echo htmlspecialchars($customers['email_contact2']);?>';
+                            document.getElementById('email_contact3').value = '<?php echo htmlspecialchars($customers['email_contact3']);?>';
+                            document.getElementById('email_contact4').value = '<?php echo htmlspecialchars($customers['email_contact4']);?>';
+                            document.getElementById('email_contact5').value = '<?php echo htmlspecialchars($customers['email_contact5']);?>';
+                            document.getElementById('email_contact6').value = '<?php echo htmlspecialchars($customers['email_contact6']);?>';
+                            document.getElementById('email_contact7').value = '<?php echo htmlspecialchars($customers['email_contact7']);?>';
+                            document.getElementById('email_contact8').value = '<?php echo htmlspecialchars($customers['email_contact8']);?>';
+                            document.getElementById('email_contact9').value = '<?php echo htmlspecialchars($customers['email_contact9']);?>';
+                            document.getElementById('email_contact10').value = '<?php echo htmlspecialchars($customers['email_contact10']);?>';
+                            document.getElementById('id_customer').value = '<?php echo htmlspecialchars($customers['id_customer']);?>';
+                            "
+                            >
+                        </td>
                     </tr>
                 <?php } ?>
         </tbody>
@@ -198,7 +234,8 @@ error_reporting(0);
 </div>
 </div>
 
-<?php include 'components/user_contact_from.php'; // เพิ่มข้อมูลข้อมูลผู้ติดต่อ ?>
+<?php include 'components/user_contact_edit.php'; // แก้ไข ข้อมูลผู้ติดต่อ ?>
+<?php include 'components/user_contact_from.php'; // เพิ่ม  ข้อมูลผู้ติดต่อ ?>
 
 <?php 
 $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
