@@ -168,6 +168,10 @@ $show = new ReportForecastTime();
                 <td><a id="row7_7" class="colall" target="_blank"><?php echo number_format(($show->Actualsales(0,$_GET['date_start'],$_GET['date_end'],'date_update',$sale_code,5))+($show->Actualsales(0,$_GET['date_start'],$_GET['date_end'],'date_plan',$sale_code,5)),0)."";?></a></td>
             </tr>
         </tbody>
+        <?php } else { ?>
+            <tr>
+                <td colspan="8" style="color: #FF8080;">กรุณาระบุข้อมูล วันที่-ถึง</td>
+            </tr>
         <?php } ?>
     </table>
 </div>

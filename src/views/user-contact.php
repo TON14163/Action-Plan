@@ -132,43 +132,59 @@ error_reporting(0);
                         <td><?php echo htmlspecialchars($customers['hospital_ward']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_contact1']); ?></td>
                         <td>
-                            <img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"  data-bs-toggle="modal" data-bs-target="#edit" 
-                            onclick="document.getElementById('customer_name').value = '<?php echo htmlspecialchars($customers['customer_name']);?>';
-                            document.getElementById('hospital_buiding').value = '<?php echo htmlspecialchars($customers['hospital_buiding']);?>';
-                            document.getElementById('hospital_class').value = '<?php echo htmlspecialchars($customers['hospital_class']);?>';
-                            document.getElementById('hospital_ward').value = '<?php echo htmlspecialchars($customers['hospital_ward']);?>';
-                            document.getElementById('hospital_contact1').value = '<?php echo htmlspecialchars($customers['hospital_contact1']);?>';
-                            document.getElementById('hospital_contact2').value = '<?php echo htmlspecialchars($customers['hospital_contact2']);?>';
-                            document.getElementById('hospital_contact3').value = '<?php echo htmlspecialchars($customers['hospital_contact3']);?>';
-                            document.getElementById('hospital_contact4').value = '<?php echo htmlspecialchars($customers['hospital_contact4']);?>';
-                            document.getElementById('hospital_contact5').value = '<?php echo htmlspecialchars($customers['hospital_contact5']);?>';
-                            document.getElementById('hospital_contact6').value = '<?php echo htmlspecialchars($customers['hospital_contact6']);?>';
-                            document.getElementById('hospital_contact7').value = '<?php echo htmlspecialchars($customers['hospital_contact7']);?>';
-                            document.getElementById('hospital_contact8').value = '<?php echo htmlspecialchars($customers['hospital_contact8']);?>';
-                            document.getElementById('hospital_contact9').value = '<?php echo htmlspecialchars($customers['hospital_contact9']);?>';
-                            document.getElementById('hospital_contact10').value = '<?php echo htmlspecialchars($customers['hospital_contact10']);?>';
-                            document.getElementById('hospital_mobile1').value = '<?php echo htmlspecialchars($customers['hospital_mobile1']);?>';
-                            document.getElementById('hospital_mobile2').value = '<?php echo htmlspecialchars($customers['hospital_mobile2']);?>';
-                            document.getElementById('hospital_mobile3').value = '<?php echo htmlspecialchars($customers['hospital_mobile3']);?>';
-                            document.getElementById('hospital_mobile4').value = '<?php echo htmlspecialchars($customers['hospital_mobile4']);?>';
-                            document.getElementById('hospital_mobile5').value = '<?php echo htmlspecialchars($customers['hospital_mobile5']);?>';
-                            document.getElementById('hospital_mobile6').value = '<?php echo htmlspecialchars($customers['hospital_mobile6']);?>';
-                            document.getElementById('hospital_mobile7').value = '<?php echo htmlspecialchars($customers['hospital_mobile7']);?>';
-                            document.getElementById('hospital_mobile8').value = '<?php echo htmlspecialchars($customers['hospital_mobile8']);?>';
-                            document.getElementById('hospital_mobile9').value = '<?php echo htmlspecialchars($customers['hospital_mobile9']);?>';
-                            document.getElementById('hospital_mobile10').value = '<?php echo htmlspecialchars($customers['hospital_mobile10']);?>';
-                            document.getElementById('email_contact1').value = '<?php echo htmlspecialchars($customers['email_contact1']);?>';
-                            document.getElementById('email_contact2').value = '<?php echo htmlspecialchars($customers['email_contact2']);?>';
-                            document.getElementById('email_contact3').value = '<?php echo htmlspecialchars($customers['email_contact3']);?>';
-                            document.getElementById('email_contact4').value = '<?php echo htmlspecialchars($customers['email_contact4']);?>';
-                            document.getElementById('email_contact5').value = '<?php echo htmlspecialchars($customers['email_contact5']);?>';
-                            document.getElementById('email_contact6').value = '<?php echo htmlspecialchars($customers['email_contact6']);?>';
-                            document.getElementById('email_contact7').value = '<?php echo htmlspecialchars($customers['email_contact7']);?>';
-                            document.getElementById('email_contact8').value = '<?php echo htmlspecialchars($customers['email_contact8']);?>';
-                            document.getElementById('email_contact9').value = '<?php echo htmlspecialchars($customers['email_contact9']);?>';
-                            document.getElementById('email_contact10').value = '<?php echo htmlspecialchars($customers['email_contact10']);?>';
-                            document.getElementById('id_customer').value = '<?php echo htmlspecialchars($customers['id_customer']);?>';
-                            "
+                            <img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px; cursor:pointer;" data-bs-toggle="modal" data-bs-target="#edit"
+                                onclick="
+                                    const fields = [
+                                        'customer_name', 'hospital_buiding', 'hospital_class', 'hospital_ward',
+                                        'hospital_contact1', 'hospital_contact2', 'hospital_contact3', 'hospital_contact4', 'hospital_contact5',
+                                        'hospital_contact6', 'hospital_contact7', 'hospital_contact8', 'hospital_contact9', 'hospital_contact10',
+                                        'hospital_mobile1', 'hospital_mobile2', 'hospital_mobile3', 'hospital_mobile4', 'hospital_mobile5',
+                                        'hospital_mobile6', 'hospital_mobile7', 'hospital_mobile8', 'hospital_mobile9', 'hospital_mobile10',
+                                        'email_contact1', 'email_contact2', 'email_contact3', 'email_contact4', 'email_contact5',
+                                        'email_contact6', 'email_contact7', 'email_contact8', 'email_contact9', 'email_contact10',
+                                        'id_customer'
+                                    ];
+                                    const values = {
+                                        customer_name: '<?php echo htmlspecialchars($customers['customer_name'], ENT_QUOTES);?>',
+                                        hospital_buiding: '<?php echo htmlspecialchars($customers['hospital_buiding'], ENT_QUOTES);?>',
+                                        hospital_class: '<?php echo htmlspecialchars($customers['hospital_class'], ENT_QUOTES);?>',
+                                        hospital_ward: '<?php echo htmlspecialchars($customers['hospital_ward'], ENT_QUOTES);?>',
+                                        hospital_contact1: '<?php echo htmlspecialchars($customers['hospital_contact1'], ENT_QUOTES);?>',
+                                        hospital_contact2: '<?php echo htmlspecialchars($customers['hospital_contact2'], ENT_QUOTES);?>',
+                                        hospital_contact3: '<?php echo htmlspecialchars($customers['hospital_contact3'], ENT_QUOTES);?>',
+                                        hospital_contact4: '<?php echo htmlspecialchars($customers['hospital_contact4'], ENT_QUOTES);?>',
+                                        hospital_contact5: '<?php echo htmlspecialchars($customers['hospital_contact5'], ENT_QUOTES);?>',
+                                        hospital_contact6: '<?php echo htmlspecialchars($customers['hospital_contact6'], ENT_QUOTES);?>',
+                                        hospital_contact7: '<?php echo htmlspecialchars($customers['hospital_contact7'], ENT_QUOTES);?>',
+                                        hospital_contact8: '<?php echo htmlspecialchars($customers['hospital_contact8'], ENT_QUOTES);?>',
+                                        hospital_contact9: '<?php echo htmlspecialchars($customers['hospital_contact9'], ENT_QUOTES);?>',
+                                        hospital_contact10: '<?php echo htmlspecialchars($customers['hospital_contact10'], ENT_QUOTES);?>',
+                                        hospital_mobile1: '<?php echo htmlspecialchars($customers['hospital_mobile1'], ENT_QUOTES);?>',
+                                        hospital_mobile2: '<?php echo htmlspecialchars($customers['hospital_mobile2'], ENT_QUOTES);?>',
+                                        hospital_mobile3: '<?php echo htmlspecialchars($customers['hospital_mobile3'], ENT_QUOTES);?>',
+                                        hospital_mobile4: '<?php echo htmlspecialchars($customers['hospital_mobile4'], ENT_QUOTES);?>',
+                                        hospital_mobile5: '<?php echo htmlspecialchars($customers['hospital_mobile5'], ENT_QUOTES);?>',
+                                        hospital_mobile6: '<?php echo htmlspecialchars($customers['hospital_mobile6'], ENT_QUOTES);?>',
+                                        hospital_mobile7: '<?php echo htmlspecialchars($customers['hospital_mobile7'], ENT_QUOTES);?>',
+                                        hospital_mobile8: '<?php echo htmlspecialchars($customers['hospital_mobile8'], ENT_QUOTES);?>',
+                                        hospital_mobile9: '<?php echo htmlspecialchars($customers['hospital_mobile9'], ENT_QUOTES);?>',
+                                        hospital_mobile10: '<?php echo htmlspecialchars($customers['hospital_mobile10'], ENT_QUOTES);?>',
+                                        email_contact1: '<?php echo htmlspecialchars($customers['email_contact1'], ENT_QUOTES);?>',
+                                        email_contact2: '<?php echo htmlspecialchars($customers['email_contact2'], ENT_QUOTES);?>',
+                                        email_contact3: '<?php echo htmlspecialchars($customers['email_contact3'], ENT_QUOTES);?>',
+                                        email_contact4: '<?php echo htmlspecialchars($customers['email_contact4'], ENT_QUOTES);?>',
+                                        email_contact5: '<?php echo htmlspecialchars($customers['email_contact5'], ENT_QUOTES);?>',
+                                        email_contact6: '<?php echo htmlspecialchars($customers['email_contact6'], ENT_QUOTES);?>',
+                                        email_contact7: '<?php echo htmlspecialchars($customers['email_contact7'], ENT_QUOTES);?>',
+                                        email_contact8: '<?php echo htmlspecialchars($customers['email_contact8'], ENT_QUOTES);?>',
+                                        email_contact9: '<?php echo htmlspecialchars($customers['email_contact9'], ENT_QUOTES);?>',
+                                        email_contact10: '<?php echo htmlspecialchars($customers['email_contact10'], ENT_QUOTES);?>',
+                                        id_customer: '<?php echo htmlspecialchars($customers['id_customer'], ENT_QUOTES);?>'
+                                    };
+                                    fields.forEach(field => { 
+                                        if(document.getElementById(field)) document.getElementById(field).value = values[field];
+                                    });
+                                "
                             >
                         </td>
                     </tr>

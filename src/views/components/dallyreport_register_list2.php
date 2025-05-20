@@ -200,6 +200,10 @@ fetch('<?php echo $cumapi;?>')
     })
     .catch(error => console.error('Error:', error));
 
+
+
+
+
 // function viewFile(){
 //     Swal.fire({
 //     title: "ไฟล์แนบที่พบ...",

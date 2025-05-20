@@ -63,7 +63,6 @@
                 <input type="hidden" name="no_auto[]" id="no_auto1" value="<?php echo $show->showStoryrivalNo_auto($id_work,'no_auto');?>">
             <?php } ?>
 
-
             <div id="multi4list"></div>
 
             <!-- เพิ่มแนบไฟล์ Start -->

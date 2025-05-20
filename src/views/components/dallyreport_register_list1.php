@@ -65,9 +65,9 @@
             </div>
             <div class="mt-2">
                 <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>" target="_blank" rel="noopener noreferrer">
-                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;"> 
+                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Status งานที่สร้างจากประมาณการขาย"> 
                         <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
-                    </span> 
+                    </span>
                 </a>
             </div>
             <!--  -->

@@ -70,8 +70,8 @@ if(!empty(($_REQUEST['dc']))){
 
 <p>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
-        <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
+        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>" required>
+        <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>" required>
         <b>Sale</b> 
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
                     <select class="form-select-custom-awl" name="sale_code" id="sale_code">

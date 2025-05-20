@@ -305,7 +305,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         $total_pages = ceil($total_rows / $items_per_page);
 
         // Query สำหรับดึงข้อมูลในหน้าปัจจุบัน
-        $sql = "SELECT id_work, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
+        $sql = "SELECT id_work,id_customer, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
                 FROM tb_register_data 
                 WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
         if ($_SESSION['typelogin'] == 'Supervisor') {
@@ -343,14 +343,18 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <td><?php echo $row['date_request'] != '0000-00-00' ? DateThai($row['date_request']) : ''; ?></td>
                 <td><?php echo htmlspecialchars($row['sale_area']); ?></td>
                 <td style="text-align: center;">
-                    <a href="quo_edit.php?id_work=<?php echo $row['id_work']; ?>">
-                        <img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit">
-                    </a>
+                    <form action="report_quotation_edit" method="post">
+                        <input type="hidden" name="id_work" value="<?php echo htmlspecialchars($row['id_work']); ?>">
+                        <input type="hidden" name="id_customer" value="<?php echo htmlspecialchars($row['id_customer']); ?>">
+                        <button type="submit" style="border: hidden;"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit"></button>
+                    </form>
                 </td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
+
+
 
     <!-- สร้าง query string สำหรับพารามิเตอร์ทั้งหมด -->
     <?php
@@ -451,6 +455,8 @@ paginationLinks.forEach(link => {
 });
 });
 </script>
+
+<?php include 'components/report_quotation_edit.php'; // แก้ไขรายงานสรุปเสนอราคา ?>
 
 <?php 
 $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php

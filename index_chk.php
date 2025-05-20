@@ -45,6 +45,7 @@ $routes = [
     'report_forecast_time_l2' => 'src/views/report_forecast_time_l2.php',
     'report_forecast_time_l3' => 'src/views/report_forecast_time_l3.php',
     'report_forecast_time_l4' => 'src/views/report_forecast_time_l4.php',
+    'report_quotation_edit' => 'src/views/report_quotation_edit.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',

@@ -46,7 +46,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn-custom-awl btn bg-danger" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn-custom-awl btn bg-success">Edit</button>
+            <button type="submit" class="btn-custom-awl btn bg-warning">Edit</button>
             <input type="text" name="edit" id="edit" value="1" hidden>
         </div>
         </div>

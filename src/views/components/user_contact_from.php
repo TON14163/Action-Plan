@@ -48,7 +48,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn-custom-awl btn bg-danger" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn-custom-awl btn bg-success">Save Add</button>
+            <button type="submit" class="btn-custom-awl btn" style="background-color: #19D700;"> <img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;"> Save Add</button>
             <input type="text" name="save" id="save" value="1" hidden>
         </div>
         </div>
