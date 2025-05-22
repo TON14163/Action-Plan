@@ -4,7 +4,7 @@
 $domain = $_SERVER['HTTP_HOST'];
 $domain_only = explode(':', $domain)[0]; // ตัดพอร์ตออก
 
-if ($domain_only === '127.0.0.1' || $domain_only === '37d4-184-82-245-228.ngrok-free.app') {
+if ($domain_only === '127.0.0.1' || $domain_only === '3747-184-82-115-242.ngrok-free.app') {
     $thisDomain = "/Action-Plan/";
 } elseif ($domain_only === 'testpr-wr.allwellcenter.com') {
     $thisDomain =  "/";

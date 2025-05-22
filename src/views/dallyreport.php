@@ -60,8 +60,8 @@
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 15%;">วันที่</th>
-                <th data-orderable="false" style="width: 30%;">โรงพยาบาล</th>
-                <th data-orderable="false" style="width: 10%;">ตึก</th>
+                <th data-orderable="false" style="width: 20%;">โรงพยาบาล</th>
+                <th data-orderable="false" style="width: 20%;">ตึก</th>
                 <th data-orderable="false" style="width: 10%;">ชั้น</th>
                 <th data-orderable="false" style="width: 10%;">หน่วยงาน</th>
                 <th data-orderable="false" style="width: 10%;">ผู้ติดต่อ</th>
@@ -117,9 +117,9 @@
                     "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                     "infoFiltered": "" // ลบส่วน filtered from ออก
                 },
-                "initComplete": function() {
-                    this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
-                }
+                // "initComplete": function() {
+                //     this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
+                // }
             });
         });
         

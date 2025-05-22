@@ -7,7 +7,7 @@ if($_SESSION['em_id'] != ''){
     
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *"); // ถ้าต้องการอนุญาต CORS
-    $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' ORDER BY customer_name ASC ";
+    $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' AND sale_code = '".$_SESSION['em_id']."' ORDER BY customer_name ASC ";
     $qcus = mysqli_query($conn, $cuss);
     $customers = mysqli_fetch_all($qcus, MYSQLI_ASSOC);
     echo json_encode($customers);

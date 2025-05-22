@@ -2,6 +2,7 @@
 if(!empty($_REQUEST['id_work'])){
     
     $id_work = $_REQUEST['id_work'];
+    require_once __DIR__ . '/../controllers/DateThai.php'; // date thai
 
     if(!empty(($_REQUEST['dc']))){
         $dc = $_REQUEST['dc'];

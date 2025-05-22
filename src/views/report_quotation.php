@@ -246,9 +246,9 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
     <a href="report_quotation_excel?date_start=<?php echo $_GET['date_start'];?>&date_end=<?php echo $_GET['date_end'];?>&date1_buy=<?php echo $_GET['date1_buy'];?>&date2_buy=<?php echo $_GET['date2_buy'];?>&hospital_name=<?php echo $_GET['hospital_name'];?>&type_cus=<?php echo $_GET['type_cus'];?>&prorival_name=<?php echo $_GET['prorival_name'];?>&percent_name=<?php echo $_GET['percent_name'];?>&sale_code=<?php echo $_GET['sale_code'];?>&product_outlistone1=<?php echo $_GET['product_outlistone1'];?>" target="_blank" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
     <?php foreach ($ordered_ranges as $range): ?>
         <div style="text-align: center; background: <?php echo $colors[$range]; ?>; border: 0.1px solid #000; border-bottom: none;">
-            <?php echo htmlspecialchars($range); ?> = <?php echo number_format($percent_data['ranges'][$range]['sum'], 0); ?> บาท
+            <?php echo htmlspecialchars($range); ?> =  <font id="<?php echo htmlspecialchars($range);?>"></font> บาท
         </div>
-    <?php endforeach; ?>
+    <?php endforeach;?>
     <div style="text-align: center; background: #FFF; border: 0.1px solid #000;">
         จำนวนสินค้าทั้งหมด <?php echo number_format($percent_data['total_count'], 0); ?> ชิ้น ยอดรวมทั้งหมด <?php echo number_format($percent_data['total_sum'], 0); ?> บาท
     </div>
@@ -324,10 +324,28 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         // echo $sql;
         $query = mysqli_query($conn, $sql) or die("Query Error: " . mysqli_error($conn));
         
+        $sumArray100 = array();
+        $sumArray90_99 = array();
+        $sumArray80_89 = array();
+        $sumArray50_80 = array();
+        $sumArray0_50 = array();
+
         while ($row = mysqli_fetch_assoc($query)) {
             $type_sql = "SELECT type_code FROM tb_typecus WHERE id = '" . mysqli_real_escape_string($conn, $row['type_cus']) . "'";
             $type_query = mysqli_query($conn, $type_sql);
             $type_code = $type_query ? mysqli_fetch_assoc($type_query)['type_code'] ?? '' : '';
+        
+            if($row['percent_id'] == '1') {
+                $sumArray100[] = $row['sum_price_product'];
+            } else if($row['percent_id'] == '2') {
+                $sumArray90_99[] = $row['sum_price_product'];
+            } else if($row['percent_id'] == '3') {
+                $sumArray80_89[] = $row['sum_price_product'];
+            } else if($row['percent_id'] == '4') {
+                $sumArray50_80[] = $row['sum_price_product'];
+            } else if($row['percent_id'] == '5') {
+                $sumArray0_50[] = $row['sum_price_product'];
+            }
         ?>
             <tr>
                 <td><?php echo DateThai($row['date_plan']); ?></td>
@@ -354,7 +372,13 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         </tbody>
     </table>
 
-
+    <script>
+        document.getElementById('100 %').innerHTML = '<?php echo number_format(array_sum($sumArray100), 0); ?>';
+        document.getElementById('90-99 %').innerHTML = '<?php echo number_format(array_sum($sumArray90_99), 0); ?>';
+        document.getElementById('80-89 %').innerHTML = '<?php echo number_format(array_sum($sumArray80_89), 0); ?>';
+        document.getElementById('50-80 %').innerHTML = '<?php echo number_format(array_sum($sumArray50_80), 0); ?>';
+        document.getElementById('0-50 %').innerHTML = '<?php echo number_format(array_sum($sumArray0_50), 0); ?>';
+    </script>
 
     <!-- สร้าง query string สำหรับพารามิเตอร์ทั้งหมด -->
     <?php

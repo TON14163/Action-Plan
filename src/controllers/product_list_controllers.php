@@ -8,13 +8,12 @@ $txtHint = $_GET['txtHint'] ?? ''; // txtHint ส่วนที่แสดง 
 $product_twolist = $_GET['product_twolist'] ?? ''; // product_twolist ชื่อของ input ที่ส่งค่ามา   ผลลัพธ์ = เอาไปแสดงชื่อที่ผู้ใช้งานเลือก
 
 // ป้องกัน SQL Injection ด้วย prepared statement
-$sql = "SELECT product_ID, sol_name 
+$sql = "SELECT product_ID, product_name 
         FROM tb_product 
-        WHERE (product_ID LIKE ? OR sol_name LIKE ?) 
-        AND close_pro = '0' 
+        WHERE (product_ID LIKE ? OR product_name LIKE ?) 
         LIMIT 25";
 
-$stmt = mysqli_prepare($sol, $sql);
+$stmt = mysqli_prepare($conn, $sql);
 $searchTerm = "%{$q}%";
 mysqli_stmt_bind_param($stmt, "ss", $q, $searchTerm);
 mysqli_stmt_execute($stmt);
@@ -25,16 +24,16 @@ if ($result) {
     while ($row = mysqli_fetch_array($result)) {
         echo '<div class="solnamehover py-1" onclick="
         document.getElementById(\''.$fieldName.'\').value = \'' . htmlspecialchars($row['product_ID'], ENT_QUOTES, 'UTF-8') . '\'
-        document.getElementById(\''.$product_twolist.'\').value = \'' . htmlspecialchars($row['sol_name'], ENT_QUOTES, 'UTF-8') . '\'
+        document.getElementById(\''.$product_twolist.'\').value = \'' . htmlspecialchars($row['product_name'], ENT_QUOTES, 'UTF-8') . '\'
         document.getElementById(\''.$txtHint.'\').style.display = \'none\';
-        ">' . htmlspecialchars($row['sol_name'], ENT_QUOTES, 'UTF-8') . '</div>';
+        ">' . htmlspecialchars($row['product_name'], ENT_QUOTES, 'UTF-8') . '</div>';
     }
   } else {
     echo "No results found";
 }
 } else {
-echo "Error: " . mysqli_error($sol) . "";
+echo "Error: " . mysqli_error($conn) . "";
 }
 mysqli_stmt_close($stmt);
-mysqli_close($sol);
+mysqli_close($conn);
 ?>

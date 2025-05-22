@@ -57,8 +57,8 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
     <form action="<?php echo $url; ?>" method="get">
         <div style="display:flex; justify-content: space-between; margin-bottom: 10px;">
             <div>
-                <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" required>
-                <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : '' ?>" required>
+                <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" >
+                <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : '' ?>" >
                 <label for="customer"><b>โรงพยาบาล</b></label>
                 <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
                 <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ค้นหา รพ . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" />
@@ -124,14 +124,14 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <th style="width: 8%;">วันที่</th>
                 <th style="width: 10%;">โรงพยาบาล</th>
                 <th style="width: 10%;">หน่วยงาน</th>
-                <th style="width: 16%;">รายการ</th>
+                <th style="width: 21%;">รายการ</th>
                 <th style="width: 8%;">มูลค่า</th>
                 <th style="width: 8%;">เปอร์เซ็น</th>
                 <th style="width: 5%;">เขต</th>
                 <th style="width: 8%;">ซื้อ/ไม่ซื้อ</th>
                 <th style="width: 14%;">เหตุผล</th>
                 <th style="width: 8%;">วันที่ออกบิล</th>
-                <th style="width: 5%;">เพิ่มเติม</th>
+                <!-- <th style="width: 5%;">เพิ่มเติม</th> -->
             </tr>
         </thead>
         <tbody>
@@ -218,11 +218,11 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                     <td style="text-align: left; padding:4px;"><?php echo $objResult["description_order"]; ?></td>
                     <td><?php echo DateThai($objResult["date_order"]); ?></td>
                     <?php 
-                    switch ($objResult["summary_order"]) {
-                        case '1': echo '<td bgcolor="#ededed"></td>'; break;
-                        case '2': echo '<td><a href="http://"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>'; break;
-                        default: echo '<td bgcolor="#ededed"></td>'; break;
-                    }
+                    // switch ($objResult["summary_order"]) {
+                    //     case '1': echo '<td bgcolor="#ededed"></td>'; break;
+                    //     case '2': echo '<td><a href="http://"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>'; break;
+                    //     default: echo '<td bgcolor="#ededed"></td>'; break;
+                    // }
                     ?>
                 </tr>
             <?php } ?>
