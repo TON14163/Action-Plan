@@ -20,8 +20,8 @@ function FigString2($nameKey){
 }
 
 function UnitNameMain($keyID){
-    global $sol; // ใช้ตัวแปร $sol ที่ประกาศไว้ภายนอกฟังก์ชัน
-    $result = $sol->query("SELECT product_ID, unit_name FROM tb_product WHERE product_ID = '" . mysqli_real_escape_string($sol, $keyID) . "'");
+    global $conn; // ใช้ตัวแปร $conn ที่ประกาศไว้ภายนอกฟังก์ชัน
+    $result = $conn->query("SELECT product_ID, unit_name FROM tb_product WHERE product_ID = '" . mysqli_real_escape_string($conn, $keyID) . "'");
     if ($result && $row = $result->fetch_assoc()) {
         return $row['unit_name'];
     } else {
@@ -214,7 +214,7 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
                 $MyProdoctDemoValue[] = [
                     'id' => $myIdNum,
                     'productid' => $product_outlistNew,
-                    'productname' => $show->showProduct($product_outlistNew,'sol_name'),
+                    'productname' => $show->showProduct($product_outlistNew,'product_name'),
                     'inlike' => $cusrequest_likeNew,
                     'dislike' => $cusrequest_dislikeNew,
                     'memoryfile' => $memoryfileValue ,

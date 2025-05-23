@@ -10,7 +10,7 @@ if(!empty(($_REQUEST['dc']))){
         $text = 'กำลังดำเนินการ Delete Plan กรุณารอสักครู่...';
         require_once __DIR__ . '/../views/Loading_page.php';
         require_once __DIR__ . '/../models/daily_report_delete.php';
-        echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."report_actionplan>"; 
+        echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."report_actionplan>"; 
         mysqli_close($conn);
         exit;
     }

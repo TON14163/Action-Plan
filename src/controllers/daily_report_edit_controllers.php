@@ -147,11 +147,11 @@ class DailyReportEdit {
     }
 
     function showProduct($product_ID,$columnsName) {
-        $this->sol = $GLOBALS['sol'];
+        $this->conn = $GLOBALS['conn'];
         $this->product_ID = htmlspecialchars($product_ID, ENT_COMPAT, 'UTF-8');
         $this->columnsName = htmlspecialchars($columnsName, ENT_COMPAT, 'UTF-8');
         $sql = "SELECT $this->columnsName FROM tb_product WHERE product_ID = '".$this->product_ID."' ";
-        $qsql = mysqli_query($this->sol,$sql);
+        $qsql = mysqli_query($this->conn,$sql);
         $vsql = mysqli_fetch_array($qsql);
         return $vsql[$this->columnsName];
     }

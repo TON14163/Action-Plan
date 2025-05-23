@@ -26,7 +26,9 @@ if(!empty($_REQUEST['id_work'])){
         <div class="accordion-body p-3">
             <!--  -->
             <form action="daily_report_plannew_save" method="post">
+                <span class="my-2">วันที่ :  <input type="date" name="date_plan" id="date_plan" required></span>
                 <input type="hidden" name="id_work" id="id_work" value="<?php echo $id_work;?>">
+                <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showDetails($id_work,'id_customer');?>">
                 <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
                 <table class="table-thead-custom-awl table-bordered border-secondary">
                     <tr>
@@ -40,25 +42,25 @@ if(!empty($_REQUEST['id_work'])){
                         <td>1</td>
                         <td>
                             <div class="product-data-container">
-                                <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" value="" />
+                                <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" value="" required/>
                                 <input type="hidden" name="product_outlistone1" id="product_outlistone1" value="<?php echo $show->showDetails($id_work,'product_id1');?>" />
-                                <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?></div>
+                                <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'product_name');?></div>
                             </div>
                         </td>
-                        <td><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value=""></td>
-                        <td><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value=""></td>
+                        <td><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="" required></td>
+                        <td><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="" required></td>
                         <td><input class="text-center" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="" readonly></td>
                     </tr>
                 </table>
                 <div class="d-flex align-items-center justify-content-between my-4">
                     <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
-                    <select name="percent_code" id="percent_code" style="width: 100px;">
+                    <select name="percent_code" id="percent_code" style="width: 100px;" required>
                         <option value="">Please Select</option>
-                        <option value="100%|1">100%</option>
-                        <option value="90-99%|2">90-99%</option>
-                        <option value="80-89%|3">80-89%</option>
-                        <option value="50-80%|4">50-80%</option>
-                        <option value="0-50%|5">0-50%</option>
+                        <option value="100%|1">100 %</option>
+                        <option value="90-99%|2">90-99 %</option>
+                        <option value="80-89%|3">80-89 %</option>
+                        <option value="50-80%|4">50-80 %</option>
+                        <option value="0-50%|5">0-50 %</option>
                     </select>
                     <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="">
                     <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>

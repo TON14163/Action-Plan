@@ -59,7 +59,7 @@
                                     }
                                 ?>
                             </td>
-                            <td><a href="report_quotation_edit?id_work=<?php echo $show->showDetails($id_work,'id_work');?>&id_customer=<?php echo $show->showDetails($id_work,'id_customer');?>"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>
+                            <td><a href="report_quotation_edit?id_work=<?php echo $objResultne['id_work'];?>&id_customer=<?php echo $objResultne['id_customer'];?>"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -83,11 +83,11 @@
                                 <?php if($show->showDetails($id_work,'product_id1') == '' || $show->showDetails($id_work,'product_id1') == '0' ){ ?>
                                         value=""
                                 <?php } else { ?>
-                                        value="<?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?>"
+                                        value="<?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'product_name');?>"
                                 <?php } ?>
                                 />
                                 <input type="hidden" name="product_outlistone1" id="product_outlistone1" value="<?php echo $show->showDetails($id_work,'product_id1');?>" />
-                                <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'sol_name');?></div>
+                                <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'product_name');?></div>
                             </div>
                         </td>
                         <td><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="<?php echo $show->showDetails($id_work,'unit_product1');?>"></td>
