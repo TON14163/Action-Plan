@@ -2,19 +2,22 @@
     ob_start(); // เปิดใช้งานการเก็บข้อมูล content
     require_once __DIR__ . '/../controllers/report_quotation_controllers.php';
     $show = new ReportQuotation();
-    require_once __DIR__ . '/../controllers/daily_report_edit_controllers.php'; // ข้อมูลทั้งหมดจะอยู่ในส่วนนี้
-    $show1 = new DailyReportEdit(); // เรียกใช้งาน class DailyReportEdit นี้ที่มีข้อมูลอยู่มาแสดง
+    require_once __DIR__ . '/../controllers/daily_report_edit_controllers.php';
+    $show1 = new DailyReportEdit();
     $id_work = $_REQUEST['id_work'];
     $id_customer = $_REQUEST['id_customer'];
+    $warp = $_REQUEST['warp'];
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">รายงานประมาณการขาย [Forcast]</b>
 </div>
     <section style="padding: 10px 0%;" class="font-custom-awl-14">
-        <form action="" method="post">
-
+        <form action="report_quotation_save" method="post">
+            <span class="my-2">วันที่ :  <input type="date" name="date_plan" id="date_plan" required></span>
             <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showReportQuotation1($id_customer,'id_customer');?>">
             <input type="hidden" name="id_work" id="id_work" value="<?php echo $show->showReportQuotation2($id_work,'id_work');?>">
+            <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show1->showCustomerLevelNumber($id_work);?>">
+            <input type="hidden" name="warp" id="warp" value="<?php echo $warp;?>">
 
                 <div class="row p-3 pt-2 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; line-height: 2.5;">
                     <div class="col-12 d-flex justify-content-between">
@@ -34,7 +37,7 @@
 
                 <div class="row mt-3 p-3 pt-2 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; line-height: 2.5;">
                     <div class="row">
-                        <?php for ($i = 1; $i <= 1; $i++): ?>
+                        <?php for ($i = 1; $i <= 10; $i++): ?>
                             <div class="col-4">
                                 ผู้ติดต่อ <?php echo $i; ?> : 
                                 <input type="text" name="hospital_contact<?php echo $i; ?>" id="hospital_contact<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"hospital_contact$i");?>" >
@@ -49,26 +52,6 @@
                             </div>
                             <?php endfor; ?>
                     </div>
-                    
-                    <details>
-                        <summary class="rounded-3 mt-2" style="background-color: #ebebeb; text-align: left; padding:0px 10px;">เพิ่มเติมข้อมูล ผู้ติดต่อ,เบอร์โทร,email</summary>
-                        <div class="row">
-                            <?php for ($i = 2; $i <= 10; $i++): ?>
-                                <div class="col-4">
-                                    ผู้ติดต่อ <?php echo $i; ?> : 
-                                    <input type="text" name="hospital_contact<?php echo $i; ?>" id="hospital_contact<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"hospital_contact$i");?>" >
-                                </div>
-                                <div class="col-4">
-                                    เบอร์โทร <?php echo $i; ?> : 
-                                    <input type="text" name="hospital_mobile<?php echo $i; ?>" id="hospital_mobile<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"hospital_mobile$i");?>" >
-                                </div>
-                                <div class="col-4">
-                                    email <?php echo $i; ?> : 
-                                    <input type="text" name="email_contact<?php echo $i; ?>" id="email_contact<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"email_contact$i");?>" >
-                                </div>
-                            <?php endfor; ?>
-                        </div>
-                    </details>
                 </div>
 
                 <div class="row mt-3 p-3 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; line-height: 2.5;" >
@@ -169,3 +152,25 @@
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
 ?>
+
+
+<script>
+    function addProductRow(rowNum, fieldName, searchTerm, txtHint, product_twolist) {
+        if (!searchTerm.trim() || searchTerm.length == 0) {
+            document.getElementById(`${txtHint}`).innerHTML = "";
+            document.getElementById(`${txtHint}`).style.display = "none";
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById(`${txtHint}`).innerHTML = this.responseText;
+                document.getElementById(`${txtHint}`).style.display = "block";
+            }
+        };
+        
+        xhr.open("GET", "./src/controllers/product_list_controllers.php?q=" + encodeURIComponent(searchTerm) + "&rowNum=" + rowNum + "&fieldName=" + encodeURIComponent(fieldName) + "&txtHint=" + encodeURIComponent(txtHint) + "&product_twolist=" + encodeURIComponent(product_twolist), true);
+        xhr.send();
+    }
+</script>

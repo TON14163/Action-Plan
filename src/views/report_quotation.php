@@ -364,6 +364,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                     <form action="report_quotation_edit" method="post">
                         <input type="hidden" name="id_work" value="<?php echo htmlspecialchars($row['id_work']); ?>">
                         <input type="hidden" name="id_customer" value="<?php echo htmlspecialchars($row['id_customer']); ?>">
+                        <input type="hidden" name="warp" value="2">
                         <button type="submit" style="border: hidden;"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit"></button>
                     </form>
                 </td>

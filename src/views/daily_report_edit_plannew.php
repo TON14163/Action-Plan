@@ -56,11 +56,11 @@ if(!empty($_REQUEST['id_work'])){
                     <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
                     <select name="percent_code" id="percent_code" style="width: 100px;" required>
                         <option value="">Please Select</option>
-                        <option value="100%|1">100 %</option>
-                        <option value="90-99%|2">90-99 %</option>
-                        <option value="80-89%|3">80-89 %</option>
-                        <option value="50-80%|4">50-80 %</option>
-                        <option value="0-50%|5">0-50 %</option>
+                        <option value="100 %|1">100 %</option>
+                        <option value="90-99 %|2">90-99 %</option>
+                        <option value="80-89 %|3">80-89 %</option>
+                        <option value="50-80 %|4">50-80 %</option>
+                        <option value="0-50 %|5">0-50 %</option>
                     </select>
                     <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="">
                     <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
