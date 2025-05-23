@@ -23,6 +23,10 @@ $dotenv->load();
     $WARD_API = $_ENV['WARD_API'] ?? 'N/A';
 // ส่วนของ API END
 
+// ส่วนของ ngrok-free.app START
+    $IP_NAME_DOMAIN = $_ENV['IP_NAME_DOMAIN'] ?? 'N/A';
+// ส่วนของ ngrok-free.app END
+
 $conn = mysqli_connect($host, $user, $pass, $dbSale);
 if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();

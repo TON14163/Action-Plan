@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+require_once __DIR__ . '/config/database.php';
 $domain = $_SERVER['HTTP_HOST'];
 $domain_only = explode(':', $domain)[0]; // ตัดพอร์ตออก
 
-if ($domain_only === '127.0.0.1' || $domain_only === '3747-184-82-115-242.ngrok-free.app') {
+if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
     $thisDomain = "/Action-Plan/";
 } elseif ($domain_only === 'testpr-wr.allwellcenter.com') {
     $thisDomain =  "/";
