@@ -1,5 +1,6 @@
 <?php 
     ob_start(); // เปิดใช้งานการเก็บข้อมูล content
+    error_reporting(0);
     require_once __DIR__ . '/../controllers/report_quotation_controllers.php';
     $show = new ReportQuotation();
     require_once __DIR__ . '/../controllers/daily_report_edit_controllers.php';
@@ -9,24 +10,24 @@
     $warp = $_REQUEST['warp'];
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">รายงานประมาณการขาย [Forcast]</b>
+    <b style="font-size: 20px;">รายงานประมาณการขาย [ Forcast ]</b>
 </div>
-    <section style="padding: 10px 0%;" class="font-custom-awl-14">
-        <form action="report_quotation_save" method="post">
-            <span class="my-2">วันที่ :  <input type="date" name="date_plan" id="date_plan" required></span>
+    <section class="font-custom-awl-14" style="line-height: 2.5;">
+        <form action="report_quotation_save" method="post" >
             <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showReportQuotation1($id_customer,'id_customer');?>">
             <input type="hidden" name="id_work" id="id_work" value="<?php echo $show->showReportQuotation2($id_work,'id_work');?>">
             <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show1->showCustomerLevelNumber($id_work);?>">
             <input type="hidden" name="warp" id="warp" value="<?php echo $warp;?>">
 
-                <div class="row p-3 pt-2 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; line-height: 2.5;">
-                    <div class="col-12 d-flex justify-content-between">
+                <div class="p-2 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; ">
+
+                    <div class="d-flex justify-content-between">
                         <span><label for="hospital_name">โรงพยาบาล :&nbsp;</label><input type="text" name="hospital_name" id="hospital_name" value="<?php echo $show->showReportQuotation2($id_work,'hospital_name');?>" required></span>
                         <span><label for="hospital_buiding">ตึก :&nbsp;</label><input class="border border-danger" type="text" name="hospital_buiding" id="hospital_buiding" value="<?php  echo $show->showReportQuotation1($id_customer,'hospital_buiding');?>" required></span>
                         <span><label for="hospital_class">ชั้น :&nbsp;</label><input class="border border-danger" type="text" name="hospital_class" id="hospital_class" value="<?php  echo $show->showReportQuotation1($id_customer,'hospital_class');?>" required></span>
                         <span><label for="hospital_ward">Ward :&nbsp;</label><input class="border border-danger" type="text" name="hospital_ward" id="hospital_ward" value="<?php  echo $show->showReportQuotation1($id_customer,'hospital_ward');?>" required></span>
-                        
                     </div>
+
                     <div class="col-12" style="line-height: 1;">
                         <small style="font-size: 10px; color:#ff8080; ">
                             **กรุณาพิมพ์ข้อมูลบางส่วนเพื่อเลือกชื่อโรงพยาบาล หากไม่มีชื่อโรงพยาบาลที่ต้องการรบกวนแจ้ง IT <br>
@@ -34,10 +35,9 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="row mt-3 p-3 pt-2 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; line-height: 2.5;">
-                    <div class="row">
-                        <?php for ($i = 1; $i <= 10; $i++): ?>
+                <div class="mt-3 p-2 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                    <div class="row p-2">
+                        <?php for ($i = 1; $i <= 1; $i++): ?>
                             <div class="col-4">
                                 ผู้ติดต่อ <?php echo $i; ?> : 
                                 <input type="text" name="hospital_contact<?php echo $i; ?>" id="hospital_contact<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"hospital_contact$i");?>" >
@@ -52,9 +52,28 @@
                             </div>
                             <?php endfor; ?>
                     </div>
+                    <details>
+                        <summary style="background-color: #eaeaea; border-radius: 8px; text-align: center;">ดูเพิ่มเติม (ผู้ติดต่อ,เบอร์โทร,Email) ลำดับที่ 2-10</summary>
+                        <div class="row p-2">
+                        <?php for ($i = 2; $i <= 10; $i++): ?>
+                            <div class="col-4">
+                                ผู้ติดต่อ <?php echo $i; ?> : 
+                                <input type="text" name="hospital_contact<?php echo $i; ?>" id="hospital_contact<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"hospital_contact$i");?>" >
+                            </div>
+                            <div class="col-4">
+                                เบอร์โทร <?php echo $i; ?> : 
+                                <input type="text" name="hospital_mobile<?php echo $i; ?>" id="hospital_mobile<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"hospital_mobile$i");?>" >
+                            </div>
+                            <div class="col-4">
+                                email <?php echo $i; ?> : 
+                                <input type="text" name="email_contact<?php echo $i; ?>" id="email_contact<?php echo $i; ?>" value="<?php echo $show->showReportQuotation1($id_customer,"email_contact$i");?>" >
+                            </div>
+                            <?php endfor; ?>
+                    </div>
+                    </details>
                 </div>
 
-                <div class="row mt-3 p-3 rounded-3" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; line-height: 2.5;" >
+                <div class="mt-3 p-3 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;" >
                     <table class="table-thead-custom-awl table-bordered border-secondary">
                         <tr>
                             <th>ลำดับ</th>
@@ -106,47 +125,54 @@
                             <option value="5" <?php if($show1->showDetails($id_work,'type_cus') == '5'){ ?> selected <?php } ?>>ลูกค้าทั่วไป / เจ้าหน้าที่รพ.</option>
                         </select>
                     </div>
-                    <div>
                         <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show1->showDetails($id_work,'description_focastnew');?></textarea>
-                        <div>
-                            วันที่ Update : <input type="date" name="date_update" id="date_update" value="<?php echo $show1->showDetails($id_work,'date_update');?>">
-                            <input type="checkbox" name="summary_order" id="summary_order"> <label for="summary_order">สรุปขายสมบูรณ์</label>
-                            <br>
-                            <b>วันที่ติดตามครั้งล่าสุด</b><br>
-                            <?php 
-                            $strFollow = "SELECT * FROM tb_datefollow WHERE refid_work = '".$id_work."' ";
-                            $objFollow = mysqli_query($conn, $strFollow);
-                            $ResultFollow = mysqli_fetch_array($objFollow);
-                            for ($i = 1; $i <= 100; $i++) {
-                                $dateFollow = isset($ResultFollow["date_follow$i"]) ? $ResultFollow["date_follow$i"] : '';
-                                if ($dateFollow && $dateFollow !== '0000-00-00') {
-                            ?>
-                                ครั้งที่ <?php echo $i; ?> : 
-                                <input type="date" name="date_follow<?php echo $i; ?>" id="date_follow<?php echo $i; ?>" value="<?php echo $dateFollow; ?>">
-                                <br>
-                            <?php 
-                                }
-                            }
-                            ?>
-
-                            <span class="badge" style="cursor: pointer; background-color: #525252;" onclick="toggleAddDateFollow();"> <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มวันที่ติดตาม</span> 
-                            <div style="display:none;" id="add_date_follow"> 
-                                วันที่ติดตาม :&nbsp;<input type="date" name="" id="">
-                                <label for=""> แผนงาน : </label> &nbsp; <input style="width: 50%;" type="text" name="" id="" placeholder="รายละเอียดแผนงาน . . ."> 
-                            </div>
-                            <script>
-                            function toggleAddDateFollow() {
-                                var el = document.getElementById('add_date_follow');
-                                el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
-                            }
-                            </script>
-                        </div>
-                    </div>
                 </div>
-                            <p class="text-center my-3">
-                                <button type="submit" class="badge" style="background-color: #19D700; color:#FFFFFF; border: hidden;"><img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;" >บันทึก</button>
-                            </p>
+                <p class="text-center my-3">
+                    <button type="submit" class="badge bg-warning" style="color:#FFFFFF; border: hidden;"><img src="assets/images/icon_system/icon-park-solid--update-rotation.svg" style="width:15px; height:15px; color:rgb(255, 255, 255);">&nbsp;<b>UPDATE</b></button>
+                </p>
         </form>
+    </section>
+
+    <section class="font-custom-awl-14" style="line-height: 2.5;">
+            <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
+                <b style="font-size: 20px;">สร้าง Action Plan ( <kbd style="background-color: #DDA0DD; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่สร้างจากประมาณการขาย )</b>
+            </div>
+            <div class="mt-3 p-3 pt-2 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                วันที่ Update : <input type="date" name="date_update" id="date_update" value="<?php echo $show1->showDetails($id_work,'date_update');?>">
+                <input type="checkbox" name="summary_order" id="summary_order"> <label for="summary_order">สรุปขายสมบูรณ์</label>
+                <br>
+                <b>วันที่ติดตามครั้งล่าสุด</b><br>
+                <?php 
+                $strFollow = "SELECT * FROM tb_datefollow WHERE refid_work = '".$id_work."' ";
+                $objFollow = mysqli_query($conn, $strFollow);
+                $ResultFollow = mysqli_fetch_array($objFollow);
+                for ($i = 1; $i <= 100; $i++) {
+                    $dateFollow = isset($ResultFollow["date_follow$i"]) ? $ResultFollow["date_follow$i"] : '';
+                    if ($dateFollow && $dateFollow !== '0000-00-00') {
+                ?>
+                    ครั้งที่ <?php echo $i; ?> : 
+                    <input type="date"  value="<?php echo $dateFollow; ?>">
+                    <br>
+                <?php 
+                    }
+                }
+                ?>
+
+                <span class="badge" style="cursor: pointer; background-color: #525252;" onclick="toggleAddDateFollow();"> <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> <b>เพิ่มวันที่ติดตาม</b></span> 
+                <div style="display:none;" id="add_date_follow"> 
+                    วันที่ติดตาม :&nbsp;<input type="date" name="date_follow" id="date_follow">
+                    <label for=""> แผนงาน : </label> &nbsp; <input style="width: 50%;" type="text" name="plan_work_follow" id="plan_work_follow" placeholder="รายละเอียดแผนงาน . . ."> 
+                </div>
+                <script>
+                function toggleAddDateFollow() {
+                    var el = document.getElementById('add_date_follow');
+                    el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+                }
+                </script>
+            </div>
+            <p class="text-center my-3">
+                <button type="submit" class="badge" style="background-color: #19D700; color:#FFFFFF; border: hidden;"><img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;" ><b>SAVE CREATE</b></button>
+            </p>
     </section>
 <?php 
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php

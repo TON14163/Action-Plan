@@ -26,7 +26,11 @@ if(!empty($_REQUEST['id_work'])){
         <div class="accordion-body p-3">
             <!--  -->
             <form action="daily_report_plannew_save" method="post">
-                <span class="my-2">วันที่ :  <input type="date" name="date_plan" id="date_plan" required></span>
+                <span class="my-2">
+                    <input type="hidden" name="num_follow" id="num_follow" value="<?php echo $_GET['num_follow'];?>" required>
+                    วันที่ติดตาม :&nbsp;<input type="date" name="date_follow<?php echo $_GET['num_follow'];?>" id="date_follow<?php echo $_GET['num_follow'];?>" required>
+                    <label for=""> แผนงาน : </label> &nbsp; <input style="width: 50%;" type="text" name="plan_work_follow<?php echo $_GET['num_follow'];?>" id="plan_work_follow<?php echo $_GET['num_follow'];?>" placeholder="รายละเอียดแผนงาน . . ." required> 
+                </span>
                 <input type="hidden" name="id_work" id="id_work" value="<?php echo $id_work;?>">
                 <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showDetails($id_work,'id_customer');?>">
                 <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
