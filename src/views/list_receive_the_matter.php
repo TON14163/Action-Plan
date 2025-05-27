@@ -50,7 +50,57 @@
             <kbd style="background-color: #FFFF99; width: 20px; height: 20px; border-radius: 0px; border:1px solid #202020;"> </kbd> เพิ่มโดย Sup
             <kbd style="background-color: #FFCCFF; width: 20px; height: 20px; border-radius: 0px; border:1px solid #202020;"> </kbd> เพิ่มโดย Marketing
         </div>
-        <div><a href="#"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></a></div>
+        <div>
+            <img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <form action="#" enctype="multipart/form-data" method="post">
+            <!-- <form action="<?php // echo $url;?>" enctype="multipart/form-data" method="post"> -->
+                <!--  -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">ลงทะเบียนทั่วไป</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row" style="line-height: 2.5;">
+                                    <div class="col-6 p-5">
+                                        <b>วันที่</b> : <input style="width: 261px; margin-left:45px;" type="date" name="" id="">
+                                        <br>
+                                        <b>เขตการขาย</b> : 
+                                        <select style="width: 261px;" name="" id="">
+                                            <option value="">Please Select</option>"></option>
+                                        </select>
+                                        <br>
+                                                <label for="customer"><b>โรงพยาบาล :</b></label>
+                                                <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
+                                                <input type="search" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php  echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
+                                                <datalist id="customerSelect">
+                                                    <option value="">-- เลือกลูกค้า --</option>
+                                                </datalist>
+                                        <br>
+                                        <b>รายละเอียด</b> : <br> <textarea style="width: 100%;" name="" id="" rows="4"></textarea>
+                                    </div>
+                                    <div class="col-6 p-5">
+                                        <b>แนบไฟล์</b> 
+                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
+                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
+                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
+                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
+                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn-custom-awl btn bg-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn-custom-awl btn" style="background-color: #19D700;"> <img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;"> Save Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--  -->
+            </form>
+        </div>
     </div>
 </p>
 <div class="table-responsive mt-3 px-2">
@@ -122,9 +172,9 @@
                     "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                     "infoFiltered": ""
                 },
-                "initComplete": function() {
-                    this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
-                }
+                // "initComplete": function() {
+                //     this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
+                // }
             });
         });
     </script>
@@ -133,3 +183,21 @@
     $content = ob_get_clean();
     require_once __DIR__ . '/layouts/Main.php';
 ?>
+
+<script>
+    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
+    fetch(`<?php echo $cumapi;?>`)
+        // fetch(<?php // echo $customerapi;?>)
+        .then(response => response.json())
+        .then(data => {
+            var selectElement = document.getElementById('customerSelect');
+            
+            data.forEach(function(customer) {
+                var option = document.createElement('option');
+                option.value = customer.customer_name;
+                option.textContent = customer.customer_name;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>

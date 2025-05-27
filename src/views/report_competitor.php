@@ -16,9 +16,9 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
         </div>
         <div>
-            <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
-                <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a>
-            <?php } ?>
+            <?php // if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+                <!-- <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a> -->
+            <?php // } ?>
         </div>
     </div>
 
@@ -245,4 +245,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script> <!-- โรงพยาบาล -->
+<script>
+    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
+    fetch(`<?php echo $cumapi;?>`)
+        // fetch(<?php // echo $customerapi;?>)
+        .then(response => response.json())
+        .then(data => {
+            var selectElement = document.getElementById('customerSelect');
+            
+            data.forEach(function(customer) {
+                var option = document.createElement('option');
+                option.value = customer.customer_name;
+                option.textContent = customer.customer_name;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>

@@ -261,7 +261,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <th style="width: 9%;">วันที่</th>
                 <th style="width: 10%;">โรงพยาบาล</th>
                 <th style="width: 10%;">หน่วยงาน</th>
-                <th style="width: 14%;">รายการ</th>
+                <th style="width: 10%;">รายการ</th>
                 <th style="width: 5%;">จำนวน</th>
                 <th style="width: 7%;">มูลค่า</th>
                 <th style="width: 7%;">ประเภท</th>
@@ -270,7 +270,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <th style="width: 9%;">วันที่ได้ P/O</th>
                 <th style="width: 9%;">วันที่ส่งของ</th>
                 <th style="width: 4%;">เขต</th>
-                <!-- <th style="width: 4%;">Edit</th> -->
+                <th style="width: 4%;">Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -360,14 +360,14 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <td><?php echo DateThai($row['month_po']); ?></td>
                 <td><?php echo $row['date_request'] != '0000-00-00' ? DateThai($row['date_request']) : ''; ?></td>
                 <td><?php echo htmlspecialchars($row['sale_area']); ?></td>
-                <!-- <td style="text-align: center;">
-                    <form action="report_quotation_edit" method="post">
-                        <input type="hidden" name="id_work" value="<?php // echo htmlspecialchars($row['id_work']); ?>">
-                        <input type="hidden" name="id_customer" value="<?php // echo htmlspecialchars($row['id_customer']); ?>">
-                        <input type="hidden" name="warp" value="2">
-                        <button type="submit" style="border: hidden;"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit"></button>
+                <td style="text-align: center;">
+                    <form action="daily_report_edit" method="get">
+                        <input type="hidden" name="id_work" value="<?php echo htmlspecialchars($row['id_work']); ?>">
+                        <!-- <input type="hidden" name="id_customer" value="<?php // echo htmlspecialchars($row['id_customer']); ?>"> -->
+                        <!-- <input type="hidden" name="warp" value="2"> -->
+                        <button type="submit" style="border: hidden; background-color: #FFFFFF;"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit"></button>
                     </form>
-                </td> -->
+                </td>
             </tr>
         <?php } ?>
         </tbody>
@@ -488,5 +488,21 @@ $content = ob_get_clean(); // เก็บลงที่ตัวแปร cont
 require_once __DIR__ . '/layouts/Main.php';
 ?>
 
-<script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/fetchData.js"></script> <!-- โรงพยาบาล -->
+<script>
+    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
+    fetch(`<?php echo $cumapi;?>`)
+        // fetch(<?php // echo $customerapi;?>)
+        .then(response => response.json())
+        .then(data => {
+            var selectElement = document.getElementById('customerSelect');
+            
+            data.forEach(function(customer) {
+                var option = document.createElement('option');
+                option.value = customer.customer_name;
+                option.textContent = customer.customer_name;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
 <script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/addProductRow.js"></script> <!-- ชื่อสินค้า -->

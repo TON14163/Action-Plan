@@ -65,7 +65,7 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
     $imgFull5 = ($objResult["img_5"] != '') ? '<br><a href="assets/images/img_upload/'.$objResult["img_5"].'" target="_blank"><span class="badge text-bg-light">ดูรายละเอียด</span></a>' : '';
     $imgFull = $imgFull1 . $imgFull2 . $imgFull3 . $imgFull4 . $imgFull5;
 
-    $create_action = ($objResult["ckk_open"] == '0') ? '<a href="list_receive_the_matter?id=' . $objResult["id"] . '"><img src="assets/images/icon_system/doc01.png" style="width: 20px; height: 20px;"></a>' : 'สร้าง Action Plan แล้ว';
+    $create_action = ($objResult["ckk_open"] == '0') ? '<a href="actionplan?cus_keyword='.$objResult["customer_name"].'"><img src="assets/images/icon_system/doc01.png" style="width: 20px; height: 20px;"></a>' : 'สร้าง Action Plan แล้ว';
 
     $item[] = array(
         'date_salemk' => DateThai($objResult["date_salemk"]),
@@ -77,7 +77,7 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
         'type_save' => $objResult["type_save"],
         'ckk_open' => $objResult["ckk_open"],
         'create_action' => $create_action,
-        'edit' => '<a href="list_receive_the_matter?id=' . $objResult["id"] . '"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a>'
+        'edit' => '<a href="report_competitor?hospital_name='.$objResult["customer_name"].'&sale_code='.$objResult["sale_code"].'"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a>'
     );
 }
 
