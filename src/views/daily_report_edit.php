@@ -45,9 +45,48 @@ if(!empty($_REQUEST['id_work'])){
     exit;
 
 }
-?>
-<div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
+
+if (!empty($_GET['planLink'])) { ?>
+    <div style="position: fixed; top:30px; right: 20px; " class="alert alert-success alert-dismissible fade show" role="alert"><img src="assets/images/icon_system/swap-horizontal.png" style="width: 20px; height: 20px;"> สลับ Plan แล้ว<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+    <script>
+        setTimeout(function() {
+            let alertEl = document.querySelector('.alert');
+            if (alertEl) alertEl.style.display = 'none';
+        }, 2500);
+    </script>
+<?php } 
+if (!empty($_GET['addPlanPurple'])) { 
+    if($_GET['addPlanPurple'] == '1'){ ?>
+        <div style="position: fixed; top:30px; right: 20px; " class="alert alert-success alert-dismissible fade show" role="alert">
+            <img src="assets/images/icon_system/check.png" style="width: 20px; height: 20px;"> 
+            เพิ่มประมาณการขายใหม่ Status <kbd style="background-color: #DDA0DD; width: 10px; max-height: 10px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่สร้างจากประมาณการขาย เรียบร้อยแล้ว
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } else { ?>
+        <div style="position: fixed; top:30px; right: 20px; " class="alert alert-danger alert-dismissible fade show" role="alert">
+            <img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 20px; height: 20px;"> 
+            เพิ่มประมาณการขายใหม่ <ins>ไม่สำเร็จ</ins>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } ?>
+    <script>
+        setTimeout(function() {
+            let alertEl = document.querySelector('.alert');
+            if (alertEl) alertEl.style.display = 'none';
+        }, 2500);
+    </script>
+<?php } ?>
+
+<div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; justify-content: space-between; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">ลงทะเบียน Daily Report</b>
+    <span>
+        <?php
+        $dateUpdate = $show->showDetails($id_work, 'date_update');
+        if (!empty($dateUpdate)) {
+            echo 'วันที่แก้ไขล่าสุด : ' . DateThai($dateUpdate);
+        }
+        ?>
+    </span>
 </div>
 
 <form action="daily_report_save" method="post" enctype="multipart/form-data">
@@ -66,7 +105,6 @@ if(!empty($_REQUEST['id_work'])){
     <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; cursor: pointer;" onclick="deletePlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="ลบแผลนงาน"><img src="assets/images/icon_system/trash-alt-solid-24.png" style="width:15px; height:15px;"> &nbsp; Delete</span>
 </div>
 </form>
-
 <p style="font-size: 12px; color:#FF0004; margin-top: 5px;">
 *หมายเหตุ ห้ามใส่เครื่องหมาย , หรือ " หรือ ' เพราะจะทำให้บันทึกข้อมูลไม่ได้ค่ะ
 </p>

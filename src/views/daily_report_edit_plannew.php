@@ -15,16 +15,9 @@ if(!empty($_REQUEST['id_work'])){
 }
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">ลงทะเบียน Daily Report ( เพิ่มประมาณการขายใหม่ )</b>
+    <b style="font-size: 20px;">ลงทะเบียน Daily Report</b> <span>( เพิ่มประมาณการขายใหม่ Status <kbd style="background-color: #DDA0DD; width: 10px; max-height: 10px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่สร้างจากประมาณการขาย )</span> 
 </div>
-<div class="accordion-item rounded-0 border border-0">
-    <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;">
-        <span class="rounded-0 border border-0"><input type="checkbox" name="listmain1" id="listmain1" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapse1" value="1" checked> &nbsp; &nbsp; <label for="listmain1">ประมาณการขาย</label></span>
-        <span id="panelsStayOpen-collapse1" class="accordion-collapse collapse show"></span>
-    </p>
-    <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show">
-        <div class="accordion-body p-3">
-            <!--  -->
+ <!--  -->
             <form action="daily_report_plannew_save" method="post">
                 <span class="my-2">
                     <input type="hidden" name="num_follow" id="num_follow" value="<?php echo $_GET['num_follow'];?>" required>
@@ -87,10 +80,15 @@ if(!empty($_REQUEST['id_work'])){
                     <input type="submit" value="บันทึก" id="proceed1" name="proceed1" style="display: none;">
                 </span>
             </form>
-            <!--  -->
-        </div>
-    </div>
-</div>
+            <div>
+                <p style="font-size: 12px; color:#FF0004; margin-top: 5px;">
+                    <b>*หมายเหตุ</b>
+                    <br>
+                    # ข้อมูลพื้นฐาน<ins>ลูกค้า</ins>จะดึงมาจากใบปัจุบันที่ท่านได้เปิดก่อนหน้านี้ <br>
+                    หลังจากบันทึกข้อมูลไปแล้วจะเด้งไปยังหน้า ลงทะเบียน Daily Report ใบนี้ที่สร้างมาใหม่
+                </p>
+            </div>
+<!--  -->
 <?php 
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';

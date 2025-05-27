@@ -10,7 +10,9 @@
         <div class="accordion-body">
             <!--  -->
             <?php
-            $strSQLne = "SELECT * FROM tb_register_data WHERE id_customer = '".$show->showDetails($id_work,'id_customer')."' AND summary_order = '0' AND summary_product1 != '' ORDER BY percent_id ASC , date_request ASC ";
+            $strSQLne = "SELECT id_work,date_plan,summary_quote,summary_product1,remark_pro1,unit_product1,unit_name1,sum_price_product,percent_id,percent_name,month_po,date_request,type_cus,summary_order 
+            FROM tb_register_data 
+            WHERE id_customer = '".$show->showDetails($id_work,'id_customer')."' AND summary_order = '0'  AND  summary_product1 != '' ORDER BY percent_id ASC , date_request ASC ";
             $objQueryne  = mysqli_query($conn,$strSQLne);
             $numRowne = mysqli_num_rows($objQueryne);
             if($numRowne > 0){ ?>
@@ -25,8 +27,9 @@
                         <th>เปอร์เซ็น</th>
                         <th>วันที่จะได้รับ P/O</th>
                         <th>วันที่ต้องการสินค้า</th>
+                        <th>สรุปขายสมบูรณ์</th>
                         <th>ประเภท</th>
-                        <th>Edit</th>
+                        <th>Plan</th>
                     </tr>
                     <?php
                     while($objResultne = mysqli_fetch_array($objQueryne)) { ?>
@@ -49,6 +52,15 @@
                             <td><?php echo DateThai($objResultne["month_po"]);?></td>
                             <td><?php echo DateThai($objResultne["date_request"]);?></td>
                             <td>
+                                <?php if($show->showDetails($objResultne['id_work'], 'summary_order') == '1'){ ?>
+                                    <img src="assets/images/icon_system/check.png" style="width: 20px; height: 20px;">
+                                <?php } else if($show->showDetails($objResultne['id_work'], 'summary_order') == '2'){ ?>
+                                    <img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 20px; height: 20px;">
+                                <?php } else { ?>
+                                    ยังไม่ระบุ
+                                <?php } ?>
+                            </td>
+                            <td>
                                 <?php 
                                     $sqlType = "SELECT type_code FROM tb_typecus where id = '".$objResultne["type_cus"]."'";
                                     $qryType = mysqli_query($conn,$sqlType);
@@ -57,10 +69,15 @@
                                     if($numType != 0){
                                         echo $rsResultType["type_code"];
                                     }
-                                    echo $show->showDetails($id_work,'id_customer');
                                 ?>
                             </td>
-                            <td><a href="report_quotation_edit?id_work=<?php echo $objResultne['id_work'];?>&id_customer=<?php echo $objResultne['id_customer'];?>"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>
+                            <td>
+                                <?php if($objResultne['id_work'] != $id_work){ ?>
+                                    <a href="daily_report_edit?id_work=<?php echo $objResultne['id_work'];?>&planLink=1" data-bs-toggle="tooltip" data-bs-title="สลับการเข้าถึง Plan จากประมาณการขาย"><img src="assets/images/icon_system/swap-horizontal.png" style="width: 20px; height: 20px;"></a>
+                                <?php } else {
+                                    echo '<font style="font-size:10px;">ใบปัจจุบัน</font>';
+                                } ?>
+                            </td>
                         </tr>
                     <?php } ?>
                 </table>
@@ -124,39 +141,54 @@
                 </div>
                 <!--  -->
                 <section class="font-custom-awl-14" style="line-height: 2.5;">
-                        <div class="mt-3 p-3 pt-2 rounded-2" style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-                            วันที่ Update : <input type="date" name="date_update" id="date_update" value="<?php echo $show->showDetails($id_work,'date_update');?>">
-                            <input type="checkbox" name="summary_order" id="summary_order"> <label for="summary_order">สรุปขายสมบูรณ์</label>
+                            <input type="hidden" name="date_update" id="date_update" value="<?php echo date('Y-m-d');?>"><!-- วันที่ Update : -->
+
+                            <input type="radio" name="summary_order" id="summary_order1" value="1" <?php if($show->showDetails($id_work,'summary_order') == '1'){ ?> checked <?php } ?>> 
+                            <label for="summary_order1">สรุปขายสมบูรณ์</label>
+
+                            <input type="radio" name="summary_order" id="summary_order2" value="2" <?php if($show->showDetails($id_work,'summary_order') == '2'){ ?> checked <?php } ?>> 
+                            <label for="summary_order2">ไม่ซื้อ</label>
+
+                            <input type="radio" name="summary_order" id="summary_order3" value="0" <?php if($show->showDetails($id_work,'summary_order') == '0'){ ?> checked <?php } ?>> 
+                            <label for="summary_order3">ยังไม่ระบุ</label>
+
                             <br>
-                            <b>วันที่ติดตามครั้งล่าสุด</b><br>
+                            <b><ins>วันที่ติดตามครั้งล่าสุด</ins></b><br>
                             <?php 
                             $strFollow = "SELECT * FROM tb_datefollow WHERE refid_work = '".$id_work."' ";
                             $objFollow = mysqli_query($conn, $strFollow);
                             $ResultFollow = mysqli_fetch_array($objFollow);
                             $num_follow = 1;
+
+                            // ดึงรายละเอียด description_focastnew ของแต่ละการติดตาม
+                            $description_focastnewArray = array();
+                            $strreferent = "SELECT description_focastnew FROM tb_register_data WHERE id_referent = '".$id_work."' ORDER BY id_work ASC ";
+                            $objreferent = mysqli_query($conn, $strreferent);
+                            while($Resultreferent = mysqli_fetch_array($objreferent)){
+                                $description_focastnewArray[] = $Resultreferent['description_focastnew'];
+                            }
+
                             for ($i = 1; $i <= 100; $i++) {
                                 $dateFollow = isset($ResultFollow["date_follow$i"]) ? $ResultFollow["date_follow$i"] : '';
                                 if ($dateFollow && $dateFollow !== '0000-00-00') {
-                            ?>
+                                    // แสดงรายละเอียดของแต่ละการติดตาม ถ้ามี
+                                    $desc = isset($description_focastnewArray[$i-1]) ? htmlspecialchars($description_focastnewArray[$i-1]) : '';
+                        ?>
                                 ครั้งที่ <?php echo $i; ?> : 
-                                <input type="date"  value="<?php echo $dateFollow; ?>">
+                                <input type="date" value="<?php echo $dateFollow; ?>" readonly> <?php if($desc) { echo $desc; } ?>
                                 <br>
-                            <?php 
-                                $num_follow++;
+                        <?php 
+                                    $num_follow++;
                                 }
                             }
-                            
-    // $date_follow = $_POST['date_follow'];                                                               // วันที่ติดตาม
-    // $plan_work_follow = $_POST['plan_work_follow'];                                                     // แผนงาน
                             ?>
-                        </div>
                 </section>
                 <!--  -->
             </div>
 
             <div class="mt-3">
-                <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>&num_follow=<?php echo $num_follow;?>" target="_blank" rel="noopener noreferrer">
-                    <span class="badge rounded-pill" style="background-color:rgb(207, 114, 200); color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Status งานที่สร้างจากประมาณการขาย"> 
+                <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>&num_follow=<?php echo $num_follow;?>" rel="noopener noreferrer">
+                    <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Status งานที่สร้างจากประมาณการขาย"> 
                         <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
                     </span>
                 </a>
