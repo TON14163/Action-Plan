@@ -1,138 +1,40 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+
+
+if (!empty($_GET['noti'])) { ?>
+    <div style="position: fixed; top:30px; right: 20px; " class="alert alert-success alert-dismissible fade show" role="alert">
+        <img src="assets/images/icon_system/lets-icons--check-fill.svg" style="width: 20px; height: 20px;"> ลงทะเบียนข้อมูลลูกค้าสำเร็จแล้ว
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        setTimeout(function() {
+            let alertEl = document.querySelector('.alert');
+            if (alertEl) alertEl.style.display = 'none';
+        }, 4000);
+    </script>
+<?php } 
+?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">ข้อมูลลูกค้า</b>
 </div>
 <section style="padding: 0px 20px;" class="font-custom-awl-14">
-    
         <div style="display:flex; justify-content: space-between; ">
             <div>
                 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-                        <b>ค้นหา</b> 
-                        <input type="text" class="form-search-custom-awl" name="cuss_earch" id="cuss_earch" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cuss_earch']) ? htmlspecialchars($_GET['cuss_earch']) : ''; ?>">
-                        <button class="btn-custom-awl">Search</button>
-                    </form>
+                    <b>ค้นหา</b> 
+                    <input type="text" class="form-search-custom-awl" name="cuss_earch" id="cuss_earch" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cuss_earch']) ? htmlspecialchars($_GET['cuss_earch']) : ''; ?>">
+                    <button class="btn-custom-awl">Search</button>
+                </form>
             </div>
-
             <div>
+                <!-- ลงทะเบียนข้อมูลลูกค้า Modal start -->
                     <span data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;"></span>
-                    <!-- Modal start -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                            <div class="modal-header" style="background-color: #F1E1FF;">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">ลงทะเบียนข้อมูลลูกค้า</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body row">
-
-                            <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label">รหัสลูกค้า</label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="id_hospital" id="id_hospital">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="py-1 col-9"></div>
-
-                            <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label">คำนำหน้า</label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="title_name" id="title_name">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label">ชื่อลูกค้า</label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="customer_name" id="customer_name">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label"><small>เบอร์โทรศัพท์</small></label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="customer_tel" id="customer_tel">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label">FAX</label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="fax" id="fax">
-                                    </div>
-                                </div>
-                            </div>
-
-                                <div class="py-1 col-12">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-1 col-form-label">ที่อยู่</label>
-                                    <div class="col-11">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="address_name" id="address_name">
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label">จังหวัด</label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="province" id="province">
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="py-1 col-3">
-                                    <div class="row">
-                                        <label for="inputPassword" class="col-4 col-form-label"><small>รหัสไปรษณีย์</small></label>
-                                        <div class="col-8">
-                                            <input type="text" style="width: 100%;" class="form-search-custom-awl" name="zip_code" id="zip_code">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="py-1 col-6"></div>
-
-                                <div class="py-1 col-3">
-                                <div class="row">
-                                    <label for="inputPassword" class="col-4 col-form-label">Credit</label>
-                                    <div class="col-8">
-                                        <input type="text" style="width: 100%;" class="form-search-custom-awl" name="customer_credit" id="customer_credit">
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="py-1 col-3">
-                                    <div class="row">
-                                        <label for="inputPassword" class="col-4 col-form-label"><small>เขตการขาย</small></label>
-                                        <div class="col-8">
-                                            <input type="text" style="width: 100%;" class="form-search-custom-awl" name="sale_area" id="sale_area">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="py-1 col-6"></div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <span type="button" data-bs-dismiss="modal">Close</span>
-                                <span type="button" >บันทึก</span>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal end -->
+                    <?php include 'components/user_customer_from.php'; ?>
+                <!-- ลงทะเบียนข้อมูลลูกค้า Modal end -->
             </div>
         </div>
-    
 </section>
-
 <hr style="margin: 20px 0px;">
-
 <div class="table-responsive font-custom-awl-14 px-2">
     <table id="unitTable"  class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
@@ -149,6 +51,7 @@
             </tr>
         </thead>
     </table>
+    <?php include 'components/user_customer_edit.php'; ?>
 <div hidden>
     <script>
         $(document).ready(function() {
@@ -189,7 +92,6 @@
                 }
             });
         });
-
     </script>
 </div>
 </div>

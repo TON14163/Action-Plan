@@ -17,9 +17,9 @@
                             case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
                             default:
                                 $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                UNION sale_code,sale_name FROM tb_team_ss2
-                                UNION sale_code,sale_name FROM tb_team_ss3
-                                UNION sale_code,sale_name FROM tb_team_sm1 ";
+                                UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                                UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                                UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
                             break;
                         }
                         $objQuery5 = mysqli_query($conn, $strSQL5);

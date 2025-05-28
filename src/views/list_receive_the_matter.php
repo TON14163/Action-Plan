@@ -1,4 +1,89 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
+<?php 
+ob_start(); // เปิดใช้งานการเก็บข้อมูล content
+error_reporting(0);
+if($_POST['save'] == 1){
+
+    if($_SESSION['typelogin'] == 'Marketing' OR $_SESSION['name_show'] == 'ลักษณาวรรณ'){
+        $type_save = '2';	
+    } else {
+        $type_save = '1';		
+    }
+
+if ($_FILES['img_1']['size'] == 0) {
+$img_1 = "";
+}else if ($_FILES['img_1']['size'] > 1100000) {
+echo"<script>alert('กรุณแนบไฟล์ที่มีขนาด น้อยกว่าหรือเท่ากับ 1 MB');history.back();</script>";
+exit();
+}   else if ($_FILES['img_1']['size'] != 0) {
+$temp1 = explode(".", $_FILES["img_1"]["name"]);
+$img_1 = "img_1" . "_" . round(microtime(true)) . '.' . end($temp1);
+move_uploaded_file($_FILES["img_1"]["tmp_name"], "uploads/" . $img_1);
+}	
+
+	
+	
+if ($_FILES['img_2']['size'] == 0) {
+$img_2 = "";
+}else if ($_FILES['img_2']['size'] > 1100000) {
+echo"<script>alert('กรุณแนบไฟล์ที่มีขนาด น้อยกว่าหรือเท่ากับ 1 MB');history.back();</script>";
+exit();
+}   else if ($_FILES['img_2']['size'] != 0) {
+$temp2 = explode(".", $_FILES["img_2"]["name"]);
+$img_2 = "img_2" . "_" . round(microtime(true)) . '.' . end($temp2);
+move_uploaded_file($_FILES["img_2"]["tmp_name"], "uploads/" . $img_2);
+}	
+	
+	
+if ($_FILES['img_3']['size'] == 0) {
+$img_3 = "";
+}else if ($_FILES['img_3']['size'] > 1100000) {
+echo"<script>alert('กรุณแนบไฟล์ที่มีขนาด น้อยกว่าหรือเท่ากับ 1 MB');history.back();</script>";
+exit();
+}   else if ($_FILES['img_3']['size'] != 0) {
+$temp3 = explode(".", $_FILES["img_3"]["name"]);
+$img_3 = "img_3" . "_" . round(microtime(true)) . '.' . end($temp3);
+move_uploaded_file($_FILES["img_3"]["tmp_name"], "uploads/" . $img_3);
+}	
+	
+	
+if ($_FILES['img_4']['size'] == 0) {
+$img_4 = "";
+}else if ($_FILES['img_4']['size'] > 1100000) {
+echo"<script>alert('กรุณแนบไฟล์ที่มีขนาด น้อยกว่าหรือเท่ากับ 1 MB');history.back();</script>";
+exit();
+}   else if ($_FILES['img_4']['size'] != 0) {
+$temp4 = explode(".", $_FILES["img_4"]["name"]);
+$img_4 = "img_4" . "_" . round(microtime(true)) . '.' . end($temp4);
+move_uploaded_file($_FILES["img_4"]["tmp_name"], "uploads/" . $img_4);
+}	
+	
+	
+	
+if ($_FILES['img_5']['size'] == 0) {
+$img_5 = "";
+}else if ($_FILES['img_5']['size'] > 1100000) {
+echo"<script>alert('กรุณแนบไฟล์ที่มีขนาด น้อยกว่าหรือเท่ากับ 1 MB');history.back();</script>";
+exit();
+}   else if ($_FILES['img_5']['size'] != 0) {
+$temp5 = explode(".", $_FILES["img_5"]["name"]);
+$img_5 = "img_5" . "_" . round(microtime(true)) . '.' . end($temp5);
+move_uploaded_file($_FILES["img_5"]["tmp_name"], "uploads/" . $img_5);
+}	
+
+$cuss1 = "SELECT id_customer FROM tb_customer_contact WHERE customer_name = '".$_POST['cus_keyword']."' ";
+$qcus1 = mysqli_query($conn, $cuss1);
+$customers1 = mysqli_fetch_array($qcus1);
+
+
+$strSQL =  "INSERT INTO tb_register_salemk (date_salemk,description,add_by,add_date,sale_code,type_save,customer_name,img_1,img_2,img_3,img_4,img_5,customer_id) 
+VALUES ('".$_POST['date_salemk']."','".$_POST['description']."','".$_SESSION['name_show']."','".date('Y-m-d')."','".$_POST['sale_codemkadd']."','".$type_save."','".$_POST['cus_keyword']."','".$img_1."','".$img_2."','".$img_3."','".$img_4."','".$img_5."','".$customers1['id_customer']."')";
+$objQuery = mysqli_query($conn,$strSQL)  or die(mysqli_error($strSQL));	
+// echo $strSQL;
+$text = 'กำลังดำเนินการกรุณารอสักครู่...';
+require_once __DIR__ . '/../views/Loading_page.php';
+echo "<meta http-equiv=refresh content=2;URL=".$_SESSION['thisDomain']."list_receive_the_matter>"; 
+mysqli_close($conn);
+exit; } ?>
 <style>
 .table-thead-custom-awl td:nth-child(3) {
     padding: 0px 5px;
@@ -13,32 +98,21 @@
         <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
         <b>Sale</b> 
-                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                        <option value="">Please Select</option>
-                        <?php
-                        switch ($_SESSION["head_area"]) {
-                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                            default:
-                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                UNION sale_code,sale_name FROM tb_team_ss2
-                                UNION sale_code,sale_name FROM tb_team_ss3
-                                UNION sale_code,sale_name FROM tb_team_sm1 ";
-                            break;
-                        }
-                        $objQuery5 = mysqli_query($conn, $strSQL5);
-                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                        }
-                        ?>
-                    </select>
-                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-                <?php } ?>
+        <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+            <option value="">Please Select</option>
+            <?php
+            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+            UNION SELECT sale_code,sale_name FROM tb_team_ss2
+            UNION SELECT sale_code,sale_name FROM tb_team_ss3
+            UNION SELECT sale_code,sale_name FROM tb_team_sm1 
+            ORDER BY sale_code ASC;
+            ";
+            $objQuery5 = mysqli_query($conn, $strSQL5);
+            while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
+            }
+            ?>
+        </select>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -52,43 +126,51 @@
         </div>
         <div>
             <img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <form action="#" enctype="multipart/form-data" method="post">
+            <form action="<?php echo $url;?>" enctype="multipart/form-data" method="post">
             <!-- <form action="<?php // echo $url;?>" enctype="multipart/form-data" method="post"> -->
                 <!--  -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
+                    <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">ลงทะเบียนทั่วไป</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="row" style="line-height: 2.5;">
-                                    <div class="col-6 p-5">
-                                        <b>วันที่</b> : <input style="width: 261px; margin-left:45px;" type="date" name="" id="">
-                                        <br>
-                                        <b>เขตการขาย</b> : 
-                                        <select style="width: 261px;" name="" id="">
-                                            <option value="">Please Select</option>"></option>
+                                <div style="line-height: 2;">
+                                        <input type="hidden" name="save" id="save" value="1">
+                                        <b>วันที่ : </b><br>
+                                        <input style="width: 100%; " type="date" name="date_salemk" id="date_salemk"><br>
+                                        <b>เขตการขาย : </b><br>
+                                        <select class="form-select-custom-awl" style="width: 100%;" name="sale_codemkadd" id="sale_codemkadd">
+                                            <option value="">Please Select</option>
+                                            <?php
+                                            $strSQL6 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                                            UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                                            UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                                            UNION SELECT sale_code,sale_name FROM tb_team_sm1 
+                                            ORDER BY sale_code ASC;
+                                            ";
+                                            $objQuery6 = mysqli_query($conn, $strSQL6);
+                                            while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
+                                                echo '<option value="' . htmlspecialchars($objResuut6["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["sale_code"]) . ' - ' . htmlspecialchars($objResuut6["sale_name"]) . '</option>';
+                                            }
+                                            ?>
                                         </select>
                                         <br>
                                                 <label for="customer"><b>โรงพยาบาล :</b></label>
-                                                <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
                                                 <input type="search" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php  echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
                                                 <datalist id="customerSelect">
                                                     <option value="">-- เลือกลูกค้า --</option>
                                                 </datalist>
                                         <br>
-                                        <b>รายละเอียด</b> : <br> <textarea style="width: 100%;" name="" id="" rows="4"></textarea>
-                                    </div>
-                                    <div class="col-6 p-5">
+                                        <b>รายละเอียด</b> : <br> <textarea style="width: 100%;" name="description" id="description" rows="2"></textarea>
                                         <b>แนบไฟล์</b> 
-                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
-                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
-                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
-                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
-                                        <span><input type="file" name="" id="" style="width: 100%;"></span>
-                                    </div>
+                                        <span><input class="form-control" type="file" name="img_1" id="img_1" style="width: 100%;"></span>
+                                        <span><input class="form-control" type="file" name="img_2" id="img_2" style="width: 100%;"></span>
+                                        <span><input class="form-control" type="file" name="img_3" id="img_3" style="width: 100%;"></span>
+                                        <span><input class="form-control" type="file" name="img_4" id="img_4" style="width: 100%;"></span>
+                                        <span><input class="form-control" type="file" name="img_5" id="img_5" style="width: 100%;"></span>
                                 </div>
                             </div>
                             <div class="modal-footer">

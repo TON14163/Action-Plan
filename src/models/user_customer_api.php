@@ -15,13 +15,12 @@ $orderDir = isset($_POST['order'][0]['dir']) ? $_POST['order'][0]['dir'] : 'asc'
 $cuss_Earch = isset($_POST['cuss_earch']) ? $_POST['cuss_earch'] : (isset($_GET['cuss_earch']) ? $_GET['cuss_earch'] : '');
 
 // กำหนดคอลัมน์ที่สามารถเรียงลำดับได้
-$columns = array('id_hospital', 'customer_code' , 'zip_code', 'title_name', 'customer_name', 'sale_area', 'address_name', 'province', 'customer_tel', 'customer_credit');
-$orderColumn = $columns[$orderColumnIdx];
+    $columns = array('id_hospital', 'customer_code', 'zip_code', 'title_name', 'customer_name', 'sale_area', 'address_name', 'province', 'customer_tel', 'fax', 'customer_credit', 'cus_free');
+    $orderColumn = $columns[$orderColumnIdx];
 
-// คำสั่ง SQL พื้นฐาน
-$sql = "SELECT id_hospital,customer_code, zip_code ,title_name, customer_name, sale_area, address_name, province, customer_tel, customer_credit FROM tb_customer_hos ";
-$countSql = "SELECT COUNT(id_hospital) AS total FROM tb_customer_hos";
-
+    // คำสั่ง SQL พื้นฐาน
+    $sql = "SELECT id_hospital, customer_code, zip_code, title_name, customer_name, sale_area, address_name, province, customer_tel, fax, customer_credit, cus_free FROM tb_customer_hos ";
+    $countSql = "SELECT COUNT(id_hospital) AS total FROM tb_customer_hos";
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
 $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความชัดเจน
 
@@ -64,6 +63,12 @@ $sql .= " LIMIT $start, $length";
 $objQuery = mysqli_query($conn, $sql);
 $item = array();
 while ($objResult = mysqli_fetch_array($objQuery)) {
+    
+        // แปลงค่า cus_free ให้สอดคล้องกับ radio button
+        $cus_free_value = htmlspecialchars(mysqli_real_escape_string($conn,$objResult["cus_free"]), ENT_QUOTES);
+        $normal_checked = ($cus_free_value == '1') ? true : '';
+        $vip_checked = ($cus_free_value == '2') ? true : '';
+        $vvip_checked = ($cus_free_value == '3') ? true : '';
     $item[] = array(
         'id_hospital' => $objResult["id_hospital"],
         'customer_code' => $objResult["customer_code"],
@@ -74,7 +79,18 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
         'province' => $objResult["province"],
         'customer_tel' => $objResult["customer_tel"],
         'customer_credit' => $objResult["customer_credit"],
-        'edit' => '<a href="daily_report_edit?id_hospital=' . $objResult["id_hospital"] . '"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a>'
+        'edit' => '<img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" data-bs-toggle="modal" data-bs-target="#editCustomer" 
+        onclick="document.getElementById(\'title_name_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["title_name"]), ENT_QUOTES) . '\';
+        document.getElementById(\'customer_name_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["customer_name"]), ENT_QUOTES) . '\';
+        document.getElementById(\'fax_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn, $objResult['fax']),ENT_COMPAT) . '\';
+        document.getElementById(\'address_name_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn, $objResult['address_name']),ENT_COMPAT) . '\';
+        document.getElementById(\'sale_area_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["sale_area"]), ENT_QUOTES) . '\';
+        document.getElementById(\'province_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["province"]), ENT_QUOTES) . '\';
+        document.getElementById(\'zip_code_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["zip_code"]), ENT_QUOTES) . '\';
+        document.getElementById(\'customer_tel_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["customer_tel"]), ENT_QUOTES) . '\';
+        document.getElementById(\'customer_credit_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["customer_credit"]), ENT_QUOTES) . '\';
+        document.getElementById(\'Normalaa\').value = '.$objResult["cus_free"].';
+        ">'
     );
 }
 
