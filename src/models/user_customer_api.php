@@ -15,11 +15,11 @@ $orderDir = isset($_POST['order'][0]['dir']) ? $_POST['order'][0]['dir'] : 'asc'
 $cuss_Earch = isset($_POST['cuss_earch']) ? $_POST['cuss_earch'] : (isset($_GET['cuss_earch']) ? $_GET['cuss_earch'] : '');
 
 // กำหนดคอลัมน์ที่สามารถเรียงลำดับได้
-    $columns = array('id_hospital', 'customer_code', 'zip_code', 'title_name', 'customer_name', 'sale_area', 'address_name', 'province', 'customer_tel', 'fax', 'customer_credit', 'cus_free');
+    $columns = array('id_hospital', 'customer_code', 'zip_code', 'title_name', 'customer_name', 'sale_area', 'address_name', 'province', 'customer_tel', 'fax', 'customer_credit');
     $orderColumn = $columns[$orderColumnIdx];
 
     // คำสั่ง SQL พื้นฐาน
-    $sql = "SELECT id_hospital, customer_code, zip_code, title_name, customer_name, sale_area, address_name, province, customer_tel, fax, customer_credit, cus_free FROM tb_customer_hos ";
+    $sql = "SELECT id_hospital, customer_code, zip_code, title_name, customer_name, sale_area, address_name, province, customer_tel, fax, customer_credit FROM tb_customer_hos ";
     $countSql = "SELECT COUNT(id_hospital) AS total FROM tb_customer_hos";
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
 $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความชัดเจน

@@ -35,7 +35,7 @@
                 <label for="">รหัสไปรษณีย์</label>
                 <input type="number" name="zip_code" id="zip_code" style="width: 100%;" required>
                 <script>
-                    fetch('<?php echo $_SESSION['thisDomain'];?>/province.json')
+                    fetch('<?php echo $_SESSION['thisDomain'];?>province.json')
                         .then(response => response.json())
                         .then(datas => {
                             datas.forEach(data => {
