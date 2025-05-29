@@ -7,11 +7,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <section class="modal-body" style="line-height: 2;">
-                ประเภทลูกค้า <br>
+                <!-- ประเภทลูกค้า <br>
                     <input type="radio" name="cus_free" id="Normal" value="1" required> <label for="Normal">Normal</label>
                     <input type="radio" name="cus_free" id="VIP" value="2" required> <label for="VIP">VIP</label>
                     <input type="radio" name="cus_free" id="VVIP" value="3" required> <label for="VVIP">VVIP</label>
-                <br>
+                    <input type="radio" name="cus_free" id="Null1" value="0" required> <label for="Null1">ไม่ได้เลือก</label>
+                <br> -->
                 <label for="">คำนำหน้า</label>
                 <input type="text" style="width: 100%;" name="title_name" id="title_name" required>
                 <br>

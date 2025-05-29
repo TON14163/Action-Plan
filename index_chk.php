@@ -71,6 +71,7 @@ $routes = [
     'user_contact_save' => 'src/models/user_contact_save.php',
     'report_quotation_save' => 'src/models/report_quotation_save.php',
     'user_customer_from_save' => 'src/models/user_customer_from_save.php',
+    'user_customer_from_edit' => 'src/models/user_customer_from_edit.php',
 ];
 
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {

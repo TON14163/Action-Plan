@@ -63,12 +63,7 @@ $sql .= " LIMIT $start, $length";
 $objQuery = mysqli_query($conn, $sql);
 $item = array();
 while ($objResult = mysqli_fetch_array($objQuery)) {
-    
-        // แปลงค่า cus_free ให้สอดคล้องกับ radio button
-        $cus_free_value = htmlspecialchars(mysqli_real_escape_string($conn,$objResult["cus_free"]), ENT_QUOTES);
-        $normal_checked = ($cus_free_value == '1') ? true : '';
-        $vip_checked = ($cus_free_value == '2') ? true : '';
-        $vvip_checked = ($cus_free_value == '3') ? true : '';
+
     $item[] = array(
         'id_hospital' => $objResult["id_hospital"],
         'customer_code' => $objResult["customer_code"],
@@ -89,7 +84,7 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
         document.getElementById(\'zip_code_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["zip_code"]), ENT_QUOTES) . '\';
         document.getElementById(\'customer_tel_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["customer_tel"]), ENT_QUOTES) . '\';
         document.getElementById(\'customer_credit_edit\').value = \'' . htmlspecialchars(mysqli_real_escape_string($conn,$objResult["customer_credit"]), ENT_QUOTES) . '\';
-        document.getElementById(\'Normalaa\').value = '.$objResult["cus_free"].';
+        document.getElementById(\'id_edit\').value = '.$objResult["id_hospital"].';
         ">'
     );
 }

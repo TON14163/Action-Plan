@@ -4,7 +4,6 @@ $sqlhos = "SELECT * FROM tb_customer_hos ORDER BY customer_code DESC";
 $qsqlhos = mysqli_query($conn,$sqlhos);
 $viewsqlhos = mysqli_fetch_array($qsqlhos);
 $customer_code = $viewsqlhos['customer_code']+1;
-$cus_free = $_POST['cus_free'];
 $title_name = $_POST['title_name'];
 $customer_name = $_POST['customer_name'];
 $customer_tel = $_POST['customer_tel'];
@@ -15,7 +14,7 @@ $zip_code = $_POST['zip_code'];
 $customer_credit = $_POST['customer_credit'];
 $sale_area = $_POST['sale_area'];
 
-$sqlhosIn = "INSERT INTO tb_customer_hos (customer_code,sale_area,title_name,customer_name,address_name,province,zip_code,customer_tel,fax,customer_credit,cus_free)
+$sqlhosIn = "INSERT INTO tb_customer_hos (customer_code,sale_area,title_name,customer_name,address_name,province,zip_code,customer_tel,fax,customer_credit)
 VALUES(
 '".$customer_code."',
 '".$sale_area."',
@@ -26,8 +25,7 @@ VALUES(
 '".$zip_code."',
 '".$customer_tel."',
 '".$fax."',
-'".$customer_credit."',
-'".$cus_free."'
+'".$customer_credit."'
 )
 ";
 $qsqlhosIn = mysqli_query($conn,$sqlhosIn);

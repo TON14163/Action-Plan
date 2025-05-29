@@ -12,7 +12,15 @@
                     <div class="col-6 d-flex justify-content-between">
                         โรงพยาบาล : <input type="text" name="customer_name" id="customer_name" required>
                     </div>
-                    <div class="col-6"><font style="font-size: 10px; color:#ff8080;">**กรุณาพิมพ์ข้อมูลบางส่วนเพื่อเลือกชื่อโรงพยาบาล หากไม่มีชื่อโรงพยาบาลที่ต้องการรบกวนแจ้ง Admin เพื่อเพิ่มรายชื่อค่ะ</font></div>
+                    <div class="col-6 d-flex justify-content-between align-content-center">
+                        ประเภทลูกค้า :
+                        <div>
+                            <input type="radio" name="cus_free0" id="Normal1" value="1" > <label for="Normal1">Normal</label>
+                            <input type="radio" name="cus_free0" id="VIP2" value="2" > <label for="VIP2">VIP</label>
+                            <input type="radio" name="cus_free0" id="VVIP3" value="3" > <label for="VVIP3">VVIP</label>
+                            <input type="radio" name="cus_free0" id="Null0" value="0" > <label for="Null0">ไม่ได้เลือก</label>
+                        </div>
+                    </div>
                     <div class="col-6 d-flex justify-content-between">
                         <label for="hospital_buiding">ตึก : </label><input type="text" name="hospital_buiding" id="hospital_buiding" required>
                     </div>

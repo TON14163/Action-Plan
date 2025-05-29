@@ -9,12 +9,13 @@
       <div class="modal-body">
         <form action="user_customer_from_edit" method="post">
             <section class="modal-body" style="line-height: 2;">
-                <input type="hidden" name="Normalaa" id="Normalaa" >
-                ประเภทลูกค้า <br>
-                    <input type="checkbox" name="Normal" id="Normal" value="1"> <label for="Normal">Normal</label>
-                    <input type="checkbox" name="VIP" id="VIP" value="2"> <label for="VIP">VIP</label>
-                    <input type="checkbox" name="VVIP" id="VVIP" value="3"> <label for="VVIP">VVIP</label>
-                <br>
+                <input type="hidden" style="width: 100%;" name="id_edit" id="id_edit" required>
+                <!-- ประเภทลูกค้า <br>
+                <input type="radio" name="cus_free0" id="Normal1" value="1" > <label for="Normal1">Normal</label>
+                <input type="radio" name="cus_free0" id="VIP2" value="2" > <label for="VIP2">VIP</label>
+                <input type="radio" name="cus_free0" id="VVIP3" value="3" > <label for="VVIP3">VVIP</label>
+                <input type="radio" name="cus_free0" id="Null0" value="0" > <label for="Null0">ไม่ได้เลือก</label>
+                <br> -->
                 <label for="">คำนำหน้า</label>
                 <input type="text" style="width: 100%;" name="title_name_edit" id="title_name_edit" required>
                 <br>

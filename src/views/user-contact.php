@@ -132,10 +132,20 @@ error_reporting(0);
                         <td><?php echo htmlspecialchars($customers['hospital_ward']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_contact1']); ?></td>
                         <td>
+                            <?php 
+                                switch ($customers["type_cus"]) {
+                                    case '0': $cus_free_edit = 'Null0'; break;
+                                    case '1': $cus_free_edit = 'Normal1'; break;
+                                    case '2': $cus_free_edit = 'VIP2'; break;
+                                    case '3': $cus_free_edit = 'VVIP3'; break;
+                                    default: $cus_free_edit = 'Null0'; break;
+                                }
+                            ?>
                             <img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px; cursor:pointer;" data-bs-toggle="modal" data-bs-target="#edit"
                                 onclick="
+                                    document.getElementById('<?php echo $cus_free_edit;?>').checked = true;
                                     const fields = [
-                                        'customer_name', 'hospital_buiding', 'hospital_class', 'hospital_ward',
+                                        'customer_name', 'hospital_buiding', 'hospital_class', 'hospital_ward','hospital_ward_present',
                                         'hospital_contact1', 'hospital_contact2', 'hospital_contact3', 'hospital_contact4', 'hospital_contact5',
                                         'hospital_contact6', 'hospital_contact7', 'hospital_contact8', 'hospital_contact9', 'hospital_contact10',
                                         'hospital_mobile1', 'hospital_mobile2', 'hospital_mobile3', 'hospital_mobile4', 'hospital_mobile5',
@@ -149,6 +159,7 @@ error_reporting(0);
                                         hospital_buiding: '<?php echo htmlspecialchars($customers['hospital_buiding'], ENT_QUOTES);?>',
                                         hospital_class: '<?php echo htmlspecialchars($customers['hospital_class'], ENT_QUOTES);?>',
                                         hospital_ward: '<?php echo htmlspecialchars($customers['hospital_ward'], ENT_QUOTES);?>',
+                                        hospital_ward_present: '<?php echo htmlspecialchars($customers['hospital_ward_present'], ENT_QUOTES);?>',
                                         hospital_contact1: '<?php echo htmlspecialchars($customers['hospital_contact1'], ENT_QUOTES);?>',
                                         hospital_contact2: '<?php echo htmlspecialchars($customers['hospital_contact2'], ENT_QUOTES);?>',
                                         hospital_contact3: '<?php echo htmlspecialchars($customers['hospital_contact3'], ENT_QUOTES);?>',
@@ -184,6 +195,7 @@ error_reporting(0);
                                     fields.forEach(field => { 
                                         if(document.getElementById(field)) document.getElementById(field).value = values[field];
                                     });
+                                    
                                 "
                             >
                         </td>

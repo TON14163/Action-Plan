@@ -3,7 +3,7 @@
 
 if (!empty($_GET['noti'])) { ?>
     <div style="position: fixed; top:30px; right: 20px; " class="alert alert-success alert-dismissible fade show" role="alert">
-        <img src="assets/images/icon_system/lets-icons--check-fill.svg" style="width: 20px; height: 20px;"> ลงทะเบียนข้อมูลลูกค้าสำเร็จแล้ว
+        <img src="assets/images/icon_system/lets-icons--check-fill.svg" style="width: 20px; height: 20px;"> <?php if($_GET['noti'] == 1){ echo 'ลงทะเบียนข้อมูลลูกค้าสำเร็จแล้ว';} else { echo 'แก้ไขข้อมูลลูกค้าสำเร็จแล้ว';}?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <script>
