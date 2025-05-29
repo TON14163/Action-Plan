@@ -13,32 +13,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
                 <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
                 <b>Sale</b> 
-                    <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                        <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                            <option value="">Please Select</option>
-                            <?php
-                            switch ($_SESSION["head_area"]) {
-                                case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                                case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                                case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                                case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                                default:
-                                    $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                    UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                    UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                    UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
-                                break;
-                            }
-                            $objQuery5 = mysqli_query($conn, $strSQL5);
-                            while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                                $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                                echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                            }
-                            ?>
-                        </select>
-                    <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                        <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-                    <?php } ?>
+                    <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
                 <b>ประเภทสินค้า</b> <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="">
         <br>
                 <br>
@@ -114,13 +89,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         if (!empty($_GET['hospital_name'])) {
             $sql_total .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
         }
-        if ($_SESSION['typelogin'] == 'Supervisor') { 
-            $sale_code_safe = mysqli_real_escape_string($conn, $_GET['sale_code']);
-            $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
-            $sql_total .= "AND (sale_area = '$em_id_safe' OR sale_area = '$sale_code_safe') ";
+        if (!empty($sale_code)) {
+            $sql_total .= " AND sale_area = '".$sale_code."'";
         } else {
-            $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
-            $sql_total .= "AND sale_area = '$em_id_safe' ";
+            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."' ";
         }
         $result_total = mysqli_query($conn, $sql_total);
         $total_rows = mysqli_fetch_assoc($result_total)['total'];
@@ -141,14 +113,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         if (!empty($_GET['hospital_name'])) {
             $sqlPlan .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
         }
-        if($_SESSION['typelogin'] == 'Supervisor'){ 
-            if ($sale_code == '') {
-                $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
-            } else {
-                $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
-            }
+        if (!empty($sale_code)) {
+            $sqlPlan .= " AND sale_area = '".$sale_code."'";
         } else {
-            $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
+            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."' ";
         }
         $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
@@ -165,7 +133,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 case '5': $colorTable = 'background-color:#FFCC99'; break;
                 default:  $colorTable = 'background-color:#FFFFFF'; break;
             } 
-        ?>
+            ?>
             <tr style="background-color: #FFFFFF; font-size: 14px;">
                 <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
@@ -184,7 +152,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
             </tr>
-        <?php } } ?>
+        <?php } } else { echo '<td colspan="8" style="text-align: center;"">ไม่พบข้อมูล</td>'; } ?>
         </tbody>
     </table>
     <br>

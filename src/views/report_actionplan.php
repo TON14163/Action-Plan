@@ -70,35 +70,10 @@ if(!empty(($_REQUEST['dc']))){
 
 <p>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>" required>
-        <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>" required>
+        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>" >
+        <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>" >
         <b>Sale</b> 
-                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                        <option value="">Please Select</option>
-                        <?php
-                        switch ($_SESSION["head_area"]) {
-                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                            default:
-                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
-                            break;
-                        }
-                        $objQuery5 = mysqli_query($conn, $strSQL5);
-                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                        }
-                        ?>
-                    </select>
-                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-                <?php } ?>
+        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -131,7 +106,9 @@ if(!empty(($_REQUEST['dc']))){
                 <th style="width: 17%;">ประเภทสินค้า</th>
                 <th style="width: 10%;">Activity</th>
                 <th style="width: 7%;">เขตการขาย</th>
-                <th style="width: 5%;">Delete</th>
+                <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
+                    <th style="width: 5%;">Delete</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -148,13 +125,10 @@ if(!empty(($_REQUEST['dc']))){
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sql_total .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
         }
-        if ($_SESSION['typelogin'] == 'Supervisor') { 
-            $sale_code_safe = mysqli_real_escape_string($conn, $_GET['sale_code']);
-            $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
-            $sql_total .= "AND (sale_area = '$em_id_safe' OR sale_area = '$sale_code_safe') ";
+        if (!empty($sale_code)) {
+            $sql_total .= " AND sale_area = '".$sale_code."'";
         } else {
-            $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
-            $sql_total .= "AND sale_area = '$em_id_safe' ";
+            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."' ";
         }
         $result_total = mysqli_query($conn, $sql_total);
         $total_rows = mysqli_fetch_assoc($result_total)['total'];
@@ -166,14 +140,10 @@ if(!empty(($_REQUEST['dc']))){
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sqlPlan .= "AND date_plan BETWEEN '".$_GET['date_start']."' AND '".$_GET['date_end']."' ";
         }
-        if($_SESSION['typelogin'] == 'Supervisor'){ 
-            if ($sale_code == '') {
-                $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
-            } else {
-                $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
-            }
+        if (!empty($sale_code)) {
+            $sqlPlan .= " AND sale_area = '".$sale_code."'";
         } else {
-            $sqlPlan .= "AND sale_area = '".$_SESSION['em_id']."' ";
+            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."' ";
         }
         $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
@@ -206,7 +176,9 @@ if(!empty(($_REQUEST['dc']))){
                 </td>
                 <td style="<?php echo $colorTable; ?>"></td>
                 <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
+                <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
+                    <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
+                <?php } ?>
             </tr>
         <?php } } ?>
         </tbody>

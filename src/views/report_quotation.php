@@ -164,32 +164,7 @@ function getPercentSummaries($conn) {
 
             <div>
                 <b>Sale</b> 
-                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                        <option>Please Select</option>
-                        <?php
-                        switch ($_SESSION["head_area"]) {
-                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                            default:
-                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                            UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                            UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                            UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
-                                break;
-                        }
-                        $objQuery5 = mysqli_query($conn, $strSQL5);
-                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                        }
-                        ?>
-                    </select>
-                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id']; ?>" readonly> 
-                <?php } ?>
+                <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
             </div>
 
             <b>ชื่อสินค้า</b>&nbsp;&nbsp;
@@ -286,13 +261,10 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         $sql_count = "SELECT COUNT(*) as total 
                         FROM tb_register_data 
                         WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
-        if ($_SESSION['typelogin'] == 'Supervisor') {
-            $sale_code_safe = mysqli_real_escape_string($conn, $_GET['sale_code']);
-            $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
-            $sql_count .= "AND (sale_area = '$em_id_safe' OR sale_area = '$sale_code_safe') ";
+        if (!empty($sale_code)) {
+            $sql_count .= " AND sale_area = '".$sale_code."'";
         } else {
-            $em_id_safe = mysqli_real_escape_string($conn, $_SESSION['em_id']);
-            $sql_count .= "AND sale_area = '$em_id_safe' ";
+            $sql_count .= " AND sale_area = '".$_SESSION['em_id']."' ";
         }
         if ($_GET['hospital_name'] != '') { $sql_count .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' "; }
         if ($_GET['percent_name'] != '') { $sql_count .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
@@ -308,10 +280,10 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         $sql = "SELECT id_work,id_customer, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
                 FROM tb_register_data 
                 WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
-        if ($_SESSION['typelogin'] == 'Supervisor') {
-            $sql .= "AND (sale_area = '$em_id_safe' OR sale_area = '$sale_code_safe') ";
+        if (!empty($sale_code)) {
+            $sql .= " AND sale_area = '".$sale_code."'";
         } else {
-            $sql .= "AND sale_area = '$em_id_safe' ";
+            $sql .= " AND sale_area = '".$_SESSION['em_id']."' ";
         }
         if ($_GET['hospital_name'] != '') { $sql .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' "; }
         if ($_GET['percent_name'] != '') { $sql .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
@@ -329,7 +301,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         $sumArray80_89 = array();
         $sumArray50_80 = array();
         $sumArray0_50 = array();
-
+        $numPlan = mysqli_num_rows($query);
         while ($row = mysqli_fetch_assoc($query)) {
             $type_sql = "SELECT type_code FROM tb_typecus WHERE id = '" . mysqli_real_escape_string($conn, $row['type_cus']) . "'";
             $type_query = mysqli_query($conn, $type_sql);
@@ -369,7 +341,11 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                     </form>
                 </td>
             </tr>
-        <?php } ?>
+        <?php }
+        if($numPlan < 1){
+            echo '<td colspan="13" style="text-align: center;"">ไม่พบข้อมูล</td>';
+        }
+        ?>
         </tbody>
     </table>
 

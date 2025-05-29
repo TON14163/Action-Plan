@@ -102,7 +102,9 @@ if (!empty($_GET['addPlanPurple'])) {
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;" class="mt-4">
     <label for="proceed1" class="badge rounded-pill" style="background-color: #19D700; color:#FFFFFF; padding-left: 15px; padding-right: 15px; margin-right: 10px; display: flex; align-items: center; cursor: pointer;"  ><img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;" > &nbsp; บันทึก</label>
     <input type="submit" value="บันทึก" id="proceed1" name="proceed1" style="display: none;">
+    <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
     <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; cursor: pointer;" onclick="deletePlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="ลบแผลนงาน"><img src="assets/images/icon_system/trash-alt-solid-24.png" style="width:15px; height:15px;"> &nbsp; Delete</span>
+    <?php } ?>
 </div>
 </form>
 <p style="font-size: 12px; color:#FF0004; margin-top: 5px;">

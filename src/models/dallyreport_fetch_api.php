@@ -16,11 +16,11 @@ $datePlan = isset($_POST['date_plan']) ? $_POST['date_plan'] : (isset($_GET['dat
 $saleCode = isset($_POST['sale_code']) ? $_POST['sale_code'] : (isset($_GET['sale_code']) ? $_GET['sale_code'] : '');
 
 // กำหนดคอลัมน์ที่สามารถเรียงลำดับได้
-$columns = array('id_work', 'date_plan' ,'hospital_name','hospital_buiding','hospital_class','hospital_ward','hospital_contact');
+$columns = array('id_work', 'date_plan' ,'hospital_name','hospital_buiding','hospital_class','hospital_ward','hospital_contact','sale_area');
 $orderColumn = $columns[$orderColumnIdx];
 
 // คำสั่ง SQL พื้นฐาน
-$sql = "SELECT id_work, date_plan ,hospital_name ,hospital_buiding ,hospital_class ,hospital_ward ,hospital_contact ,daily FROM tb_register_data";
+$sql = "SELECT id_work, date_plan ,hospital_name ,hospital_buiding ,hospital_class ,hospital_ward ,hospital_contact ,daily,sale_area FROM tb_register_data";
 $countSql = "SELECT COUNT(id_work) AS total FROM tb_register_data";
 
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
@@ -29,9 +29,9 @@ $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความ�
 if (!empty($saleCode)) {
     $where .= " AND sale_area = '".$saleCode."'";
 } else {
-    $where .= " AND head_area = 'SS3'";
-    $saleCode = 'SS3';
+    $where .= " AND sale_area = '".$_SESSION['em_id']."' ";
 }
+
 if (!empty($datePlan)) {
     $where .= " AND date_plan = '" . mysqli_real_escape_string($conn, $datePlan) . "'";
 }
@@ -66,7 +66,7 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
         'hospital_class' => $objResult["hospital_class"],
         'hospital_ward' => $objResult["hospital_ward"],
         'hospital_contact' => $objResult["hospital_contact"],
-        'sales_area' => $saleCode,
+        'sales_area' => $objResult["sale_area"],
         'daily' => $objResult["daily"], // ส่ง daily แยก
         'edit' => '<a href="daily_report_edit?id_work=' . $objResult["id_work"] . '"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a>'
     );

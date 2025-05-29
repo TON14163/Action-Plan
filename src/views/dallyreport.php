@@ -1,4 +1,6 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content ?>
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+(!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'];
+?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">สร้าง Dally Report</b>
 </div>
@@ -6,32 +8,7 @@
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
         <b>Sale</b> 
-                <?php if($_SESSION['typelogin'] == 'Supervisor'){ $saleSet = ''; ?>
-                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                        <option value="">Please Select</option>
-                        <?php
-                        switch ($_SESSION["head_area"]) {
-                            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                            default:
-                                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
-                            break;
-                        }
-                        $objQuery5 = mysqli_query($conn, $strSQL5);
-                        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                            $selected = (!empty($_GET['sale_code']) && $_GET['sale_code'] == $objResuut5["sale_code"]) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-                        }
-                        ?>
-                    </select>
-                <?php } else { $saleSet = $_SESSION['em_id']; ?> 
-                    <input type="text" style="text-align: center;" name="sale_code" id="sale_code" value="<?php echo $_SESSION['em_id'];?>" readonly> 
-                <?php } ?>
+        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>

@@ -24,7 +24,6 @@ if ($_SESSION['em_id'] == '' ) { ?>
                 no-repeat
             `
             });
-         
     </script>
 <?php 
     print "<meta http-equiv=refresh content=1;URL=index.php>"; 
@@ -33,7 +32,6 @@ if ($_SESSION['em_id'] == '' ) { ?>
     exit; 
     } 
 ?>
-
 
 <link rel="stylesheet" href="assets/css/NavBar.css">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -50,6 +48,7 @@ if ($_SESSION['em_id'] == '' ) { ?>
         </div> -->
     
     <ul class="menu-nav2">
+        <?php if($_SESSION['em_id'] != 'MK'){ ?>
         <li><a class="hover-nav-item" href="<?php echo $nameHost;?>actionplan">Action Plan</a></li>
         <li><a class="hover-nav-item" href="<?php echo $nameHost;?>dallyreport">Dally Report</a></li>
         <li>
@@ -61,19 +60,21 @@ if ($_SESSION['em_id'] == '' ) { ?>
                     <a href="<?php echo $nameHost;?>report_quotation">รายงานสรุปเสนอราคา</a>
                     <a href="<?php echo $nameHost;?>report_sales_closure">รายงานปิดการขาย</a>
                     <a href="<?php echo $nameHost;?>report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a>
-                    <!-- <a href="<?php // echo $nameHost;?>report_forecast_product">รายงานสรุปประมานการขายตามสินค้า</a> --> <!-- ไม่ใช้แล้วนำไปรวมกับ รายงานสรุปเสนอราคา -->
                     <a href="<?php echo $nameHost;?>report_competitor">รายงานคู่แข่ง</a>
                 </span>
             </span>
         </li>
+        <?php } ?>
         <li><a class="hover-nav-item" href="<?php echo $nameHost;?>list_receive_the_matter">รายการรับเรื่อง</a></li>
         <li>
             <span class="hover-nav-item arrow-top-down">
             <img src="assets/images/icon_system/lets-icons--user-cicrle-light.svg" style="width: 18px; height: auto;">&nbsp;<?php echo $_SESSION['name_show'].' '.$_SESSION['surname_show'];?> &nbsp;
                 <span class="arrow-drop-down-right">
-                    <a href="<?php echo $nameHost;?>user-contact">ข้อมูลผู้ติดต่อ</a>
+                    <?php if($_SESSION['em_id'] == 'IT2' OR $_SESSION['em_id'] == 'PRM'){ ?>
+                    <a href="<?php echo $nameHost;?>user-contact">ข้อมูลผู้ติดต่อ </a>
                     <a href="<?php echo $nameHost;?>user-customer">ข้อมูลลูกค้า</a>
                     <a href="<?php echo $nameHost;?>register_user">ข้อมูลผู้ใช้งาน</a>
+                    <?php } ?>
                     <a href="<?php echo $nameHost;?>user-change">เปลี่ยนรหัสผ่าน</a>
                     <a href="<?php echo $nameHost;?>user-logout">ออกจากระบบ</a>
                 </span>

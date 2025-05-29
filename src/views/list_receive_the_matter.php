@@ -1,6 +1,7 @@
 <?php 
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content
 error_reporting(0);
+$sale_code = isset($_GET['sale_code']) ? $_GET['sale_code'] : ($_SESSION['em_id'] ?? '');
 if($_POST['save'] == 1){
 
     if($_SESSION['typelogin'] == 'Marketing' OR $_SESSION['name_show'] == 'ลักษณาวรรณ'){
@@ -98,21 +99,27 @@ exit; } ?>
         <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
         <b>Sale</b> 
-        <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-            <option value="">Please Select</option>
-            <?php
-            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-            UNION SELECT sale_code,sale_name FROM tb_team_ss2
-            UNION SELECT sale_code,sale_name FROM tb_team_ss3
-            UNION SELECT sale_code,sale_name FROM tb_team_sm1 
-            ORDER BY sale_code ASC;
-            ";
-            $objQuery5 = mysqli_query($conn, $strSQL5);
-            while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                echo '<option value="' . htmlspecialchars($objResuut5["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut5["sale_code"]) . ' - ' . htmlspecialchars($objResuut5["sale_name"]) . '</option>';
-            }
-            ?>
-        </select>
+        <?php 
+        if($_SESSION['typelogin'] == 'Marketing' ){ ?>
+            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                <option value="">Please Select</option>
+                <?php
+                $strSQL6 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                UNION SELECT sale_code,sale_name FROM tb_team_sm1 
+                ORDER BY sale_code ASC;
+                ";
+                $objQuery6 = mysqli_query($conn, $strSQL6);
+                while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
+                    echo '<option value="' . htmlspecialchars($objResuut6["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["sale_code"]) . ' - ' . htmlspecialchars($objResuut6["sale_name"]) . '</option>';
+                }
+                ?>
+            </select>
+        <?php } else {
+            include 'set_area_select.php'; // แสดงในส่วนของ Select sale  
+        }
+        ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>

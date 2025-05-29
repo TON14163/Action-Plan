@@ -78,7 +78,9 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
         $_SESSION["pass"] = $data["pass"];
         $_SESSION["type_sale"] = $data["type_sale"];
         $_SESSION["mail_intra"] = $data["mail_intra"];
+        $_SESSION["group"] = $data["group"];
         $_SESSION["head_area"] = $data["head_area"];
+        $_SESSION["ext"] = $data["ext"];
         $_SESSION['thisDomain'] =  $thisDomain;
 
         header("location:home");
