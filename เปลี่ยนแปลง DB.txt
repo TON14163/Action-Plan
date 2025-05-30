@@ -1,0 +1,16 @@
+allwell_sale
+
+1.tb_register_data
+    objective text  เพิ่ม
+    product_present varchar(300) == เปลี่ยน type เป็น TEXT
+2.tb_regist_realtime
+    product_present varchar(300) == เปลี่ยน type เป็น TEXT
+3.tb_product
+    unit_name varchar(50) เพิ่ม == เพิ่มข้อมูลใน DB row แล้ว
+4.tb_product_delivery
+    product_1 varchar(300) == เปลี่ยนเป็น product_1 text 
+5.tb_user
+    head_area varchar(45) เพิ่ม == เพิ่มข้อมูลใน DB row แล้ว
+
+
+allwell_sol

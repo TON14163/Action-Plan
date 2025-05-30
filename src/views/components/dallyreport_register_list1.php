@@ -151,7 +151,8 @@
 
                             <input type="radio" name="summary_order" id="summary_order3" value="0" <?php if($show->showDetails($id_work,'summary_order') == '0'){ ?> checked <?php } ?>> 
                             <label for="summary_order3">ยังไม่ระบุ</label>
-
+                            <br>
+                            วันที่ออกบิล : <input type="date" name="date_order" id="date_order" value="<?php echo $show->showDetails($id_work,'date_order');?>">
                             <br>
                             <b><ins>วันที่ติดตามครั้งล่าสุด</ins></b><br>
                             <?php 

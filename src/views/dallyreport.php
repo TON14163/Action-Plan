@@ -1,12 +1,13 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 (!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'];
+    $dayDF = date('Y-m-d');
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">สร้าง Dally Report</b>
 </div>
 <p>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
+        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : $dayDF; ?>">
         <b>Sale</b> 
         <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
@@ -26,9 +27,9 @@
             <kbd style="background-color: #FFCC99; width: 20px; max-height: 20px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ Copy งานเดิม
         </div>
         <div>
-            <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+            <?php // if($_SESSION['typelogin'] != 'Supervisor'){ ?>
                 <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a>
-            <?php } ?>
+            <?php // } ?>
         </div>
     </div>
 </section>
@@ -47,9 +48,10 @@
             </tr>
         </thead>
     </table>
+    
     <script>
         $(document).ready(function() {
-            var datePlan = "<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>";
+            var datePlan = "<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : $dayDF; ?>";
             var saleCode = "<?php echo !empty($saleSet) ? htmlspecialchars($saleSet) : ''; ?>";
             
             $('#unitTable').DataTable({

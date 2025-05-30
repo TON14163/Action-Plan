@@ -7,7 +7,32 @@ if($_SESSION['em_id'] != ''){
     
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *"); // ถ้าต้องการอนุญาต CORS
-    $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' AND sale_code = '".$_SESSION['em_id']."' ORDER BY customer_name ASC ";
+
+    if($_SESSION['typelogin'] == 'Supervisor'){
+        switch ($_SESSION["head_area"]) {
+            case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+            case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+            case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+            case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+            default:
+                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
+            break;
+        }
+        $objQuery5 = mysqli_query($conn, $strSQL5);
+        $allSale = array();
+        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+            $allSale[] = htmlspecialchars($objResuut5["sale_code"]);
+        }
+        $em_idFull = implode("','", $allSale);
+        $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' AND sale_code IN ('".$em_idFull."') ORDER BY customer_name ASC ";
+    } else {
+        $em_idFull = $_SESSION['em_id'];
+        $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' AND sale_code = '".$em_idFull."' ORDER BY customer_name ASC ";
+    }
+        // echo $cuss;
     $qcus = mysqli_query($conn, $cuss);
     $customers = mysqli_fetch_all($qcus, MYSQLI_ASSOC);
     echo json_encode($customers);

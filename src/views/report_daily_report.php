@@ -2,6 +2,13 @@
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
 (!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'] ;
+
+function product_view($percent_id){
+    $sqlproductView = "SELECT product_name FROM tb_product WHERE product_ID = '".$percent_id."' LIMIT 1";
+    $qsqlproductView = mysqli_query($GLOBALS['conn'], $sqlproductView);
+    $viewsqlproduct = mysqli_fetch_array($qsqlproductView);
+    return $viewsqlproduct['product_name'];
+}
 ?>
 
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
@@ -57,11 +64,9 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         <thead>
             <tr style="font-size: 14px;">
                 <th style="width: 10%;">วันที่</th>
-                <th style="width: 12%;">โรงพยาบาล</th>
+                <th style="width: 17%;">โรงพยาบาล</th>
                 <th style="width: 12%;">หน่วยงาน</th>
-                <th style="width: 15%;">ประเภทสินค้า</th>
-                <th style="width: 15%;">Activity</th>
-                <th style="width: 19%;">รายละเอียด</th>
+                <th style="width: 44%;">รายละเอียด</th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <th style="width: 7%;">เขตการขาย</th>
             </tr>
@@ -138,17 +143,46 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
-                <td style="<?php echo $colorTable;?>">
+                <!-- <td style="<?php // echo $colorTable;?>"> -->
                     <?php
-                    $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
-                    $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
-                    while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
-                        echo $rowtypeproduct['product_rival'].'<br>';
-                    }
+                    // $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
+                    // $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
+                    // while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
+                    //     echo $rowtypeproduct['product_rival'].'<br>';
+                    // }
                     ?>
+                <!-- </td> -->
+                <td style="<?php echo $colorTable;?>" class="text-start px-2">
+                    <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
+                    <?php if($rowPlan['description_focastnew'] != ''){ ?><br><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew']; } ?>
+                    <?php if($rowPlan['percent_id'] != ''){ ?><br><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['percent_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?><?php } ?>
+                    <?php if($rowPlan['summary_order'] == '1'){ ?> <br><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; <?php } ?>
+                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> <?php } ?>
+                    <?php 
+                        $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' "; 
+                        $qsql1 = mysqli_query($conn,$sql1); 
+                        $nqsql1 = mysqli_num_rows($qsql1); 
+                    ?>
+                    <?php if($nqsql1 > 0){ ?>
+                        <br><b style="color:#0080c0;">ข้อมูลคู่แข่ง :</b>
+                        <?php
+                        while($vsql1 = mysqli_fetch_array($qsql1)){
+                            echo '<br>'.$vsql1['product_rival'].' '.$vsql1['company_rival'].' '.$vsql1['rival_brand'].' '.$vsql1['rival_model'];
+                        }
+                        ?>
+                    <?php }  
+                        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' "; 
+                        $qsql2 = mysqli_query($conn,$sql2); 
+                        $nqsql2 = mysqli_num_rows($qsql2);
+                    if($nqsql2 > 0){ ?>
+                        <br><b style="color:#0080c0;">ออกบูธ (Group Presentation) :</b>
+                        <?php
+                        while($vsql2 = mysqli_fetch_array($qsql2)){
+                            echo '<br>'.$vsql2['work_name'].' '.DateThai($vsql2['work_date']).' '.DateThai($vsql2['end_date']).' '.$vsql2['sum_wordpre'];
+                        }
+                        ?>
+                    <?php } ?>
                 </td>
-                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['description_focastnew'];?></td>
-                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['plan_work'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
             </tr>

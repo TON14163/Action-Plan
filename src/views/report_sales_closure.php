@@ -57,8 +57,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
     <form action="<?php echo $url; ?>" method="get">
         <div style="display:flex; justify-content: space-between; margin-bottom: 10px;">
             <div>
-                <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" >
+                <b>วันที่สรุป</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" >
                 <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : '' ?>" >
+                <b>วันที่ออกบิล</b> <input type="date" name="date_order" id="date_order" value="<?php echo !empty($_GET['date_order']) ? htmlspecialchars($_GET['date_order']) : '' ?>" >
+                <br><br>
                 <label for="customer"><b>โรงพยาบาล</b></label>
                 <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
                 <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ค้นหา รพ . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" />
@@ -114,10 +116,13 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             $sum = array();
             $strSQL = "SELECT * FROM tb_register_data WHERE sale_area = '" . $sale_code . "' AND summary_order IN ('1','2') ";
             if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
-                $strSQL .= "AND date_plan BETWEEN '" . $_GET['date_start'] . "' AND '" . $_GET['date_end'] . "' ";
+                $strSQL .= "AND date_update BETWEEN '" . $_GET['date_start'] . "' AND '" . $_GET['date_end'] . "' ";
             } 
             if (isset($_GET['grade_a'])) {
                 $strSQL .= "AND grade_a = '" . $_GET['grade_a'] . "' ";
+            }
+            if (isset($_GET['date_order'])) {
+                $strSQL .= "AND date_order = '" . $_GET['date_order'] . "' ";
             }
             if ($_GET['hospital_name'] != "") {
                 $strSQL .= " AND hospital_name LIKE '%" . $_GET['hospital_name'] . "%' ";
@@ -226,6 +231,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             $queryString = http_build_query([
                 'date_start' => isset($_GET['date_start']) ? $_GET['date_start'] : '',
                 'date_end' => isset($_GET['date_end']) ? $_GET['date_end'] : '',
+                'date_order' => isset($_GET['date_order']) ? $_GET['date_order'] : '',
                 'hospital_name' => isset($_GET['hospital_name']) ? $_GET['hospital_name'] : '',
                 'sale_code' => $sale_code,
                 'grade_a' => isset($_GET['grade_a']) ? $_GET['grade_a'] : '',
