@@ -90,8 +90,31 @@ error_reporting(0);
         </thead>
         <tbody>
             <?php
+                if($_SESSION['typelogin'] == 'Supervisor'){
+                    switch ($_SESSION["head_area"]) {
+                        case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                        case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                        case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                        case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                        default:
+                            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                            UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                            UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                            UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
+                        break;
+                    }
+                    $objQuery5 = mysqli_query($conn, $strSQL5);
+                    $allSale = array();
+                    while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                        $allSale[] = htmlspecialchars($objResuut5["sale_code"]);
+                    }
+                    $em_idFull = implode("','", $allSale);
+                    $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code IN ('".$em_idFull."') ";
+                } else {
+                    $em_idFull = $_SESSION['em_id'];
+                    $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code = '" . htmlspecialchars($em_idFull) . "'";
+                }
                 // Base SQL query
-                $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code = '" . htmlspecialchars($sale_code) . "'";
                 // Add customer keyword filter if provided
                 if (!empty($_GET['cus_keyword'])) {
                     $cuss .= " AND customer_name LIKE '%" . htmlspecialchars($_GET['cus_keyword']) . "%'";

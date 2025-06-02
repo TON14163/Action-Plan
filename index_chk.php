@@ -59,6 +59,7 @@ $routes = [
     'user-change-edit' => 'src/models/user-change-edit.php',
     'Loading-page' => 'src/models/Loading-page.php',
     'customers_json' => 'src/models/customers_json.php',
+    'customers_hos_json' => 'src/models/customers_hos_json.php',
     'customer_buiding_json' => 'src/models/customer_buiding_json.php',
     'customer_ward_json' => 'src/models/customer_ward_json.php',
     'product_json' => 'src/models/product_json.php',

@@ -54,8 +54,16 @@ function product_view($percent_id){
         <div>
             <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
                 <a href="actionplan?dallyadd=1"><img src="assets/images/add-plus.png" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="งานที่ไม่ได้ plan ไว้"></a>
+            <?php } 
+            
+            if($_GET['date_start'] != ''){
+            ?>
+                <a href="report_daily_report_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&hospital_buiding=<?php if(!empty($_GET['hospital_buiding'])){ echo htmlspecialchars($_GET['hospital_buiding']);}?>&hospital_ward=<?php if(!empty($_GET['hospital_ward'])){ echo htmlspecialchars($_GET['hospital_ward']);}?>&hospital_name=<?php if(!empty($_GET['hospital_name'])){ echo htmlspecialchars($_GET['hospital_name']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>">
+                    <img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv">
+                </a>
+            <?php } else { ?>
+                    <img src="assets/images/icon_system/vscode-icons--file-type-excel2.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="ไม่สามารถ Export ได้กรุณาเลือกวันที่...">
             <?php } ?>
-                <a href="report_daily_report_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&hospital_buiding=<?php if(!empty($_GET['hospital_buiding'])){ echo htmlspecialchars($_GET['hospital_buiding']);}?>&hospital_ward=<?php if(!empty($_GET['hospital_ward'])){ echo htmlspecialchars($_GET['hospital_ward']);}?>&hospital_name=<?php if(!empty($_GET['hospital_name'])){ echo htmlspecialchars($_GET['hospital_name']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
         </div>
     </div>
 </p>

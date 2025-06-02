@@ -63,7 +63,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <br><br>
                 <label for="customer"><b>โรงพยาบาล</b></label>
                 <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-                <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ค้นหา รพ . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" />
+                <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ค้นหา รพ . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>"  required/>
                 <datalist id="customerSelect">
                     <option value="">-- เลือกลูกค้า --</option>
                 </datalist>
@@ -126,6 +126,8 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             }
             if ($_GET['hospital_name'] != "") {
                 $strSQL .= " AND hospital_name LIKE '%" . $_GET['hospital_name'] . "%' ";
+            } else {
+                $strSQL .= " AND hospital_name = 'null' "; // เข้ามาแล้วให้ใช้ค่านี้ผลคือจะไม่พบข้อมูล
             }
             if ($_GET['buy1'] == '1' && $_GET['buy2'] == '') {
                 $strSQL .= "AND summary_order = '1' ";
@@ -136,6 +138,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             // Execute initial query to get total rows
             $objQuery = mysqli_query($conn, $strSQL) or die("Error Query [" . $strSQL . "]");
             $Num_Rows = mysqli_num_rows($objQuery);
+            
 
             // Pagination Logic
             $Per_Page = 10; // Records per page
@@ -159,7 +162,6 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             // Append LIMIT to the query
             $strSQL .= " ORDER BY date_plan DESC LIMIT $Page_Start, $Per_Page";
             $objQuery = mysqli_query($conn, $strSQL) or die("Error Query [" . $strSQL . "]");
-
             while ($objResult = mysqli_fetch_array($objQuery)) { ?>
                 <tr>
                     <td><?php echo DateThai($objResult["date_plan"]); ?></td>
