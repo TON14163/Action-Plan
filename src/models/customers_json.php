@@ -7,8 +7,9 @@ if($_SESSION['em_id'] != ''){
     
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *"); // ถ้าต้องการอนุญาต CORS
-
-    if($_SESSION['typelogin'] == 'Supervisor'){
+    if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') {
+        $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' ORDER BY customer_name ASC ";
+    } else if($_SESSION['typelogin'] == 'Supervisor'){
         switch ($_SESSION["head_area"]) {
             case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
             case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;

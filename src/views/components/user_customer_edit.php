@@ -17,7 +17,15 @@
                 <input type="radio" name="cus_free0" id="Null0" value="0" > <label for="Null0">ไม่ได้เลือก</label>
                 <br> -->
                 <label for="">คำนำหน้า</label>
-                <input type="text" style="width: 100%;" name="title_name_edit" id="title_name_edit" required>
+                <select style="width: 100%;" name="title_name_edit" id="title_name_edit" required>
+                    <option value="">**Please Select**</option>
+                    <?php 
+                    $sqlTitle = "SELECT * FROM tb_title ";
+                    $qsqlTitle = mysqli_query($conn,$sqlTitle);
+                    while($VsqlTitle = mysqli_fetch_array($qsqlTitle)){ ?>
+                        <option value="<?php echo $VsqlTitle['title_name'];?>"><?php echo $VsqlTitle['title_name'];?></option>
+                    <?php } ?>
+                </select>
                 <br>
                 <label for="">ชื่อลูกค้า</label>
                 <input type="text" style="width: 100%;" name="customer_name_edit" id="customer_name_edit" required>

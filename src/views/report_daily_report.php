@@ -25,18 +25,18 @@ function product_view($percent_id){
         <br>
                 <br>
 
-    <label for="customer"><b>โรงพยาบาล</b></label>
-    <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-    <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php  echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>"  />
-    <datalist id="customerSelect">
-        <option value="">-- เลือกลูกค้า --</option>
-    </datalist>
-
-                
-                <b>ตึก</b> &nbsp; <input type="text" class="form-search-custom-awl" name="hospital_buiding" id="hospital_buiding" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_buiding'])){} echo htmlspecialchars($_GET['hospital_buiding']); ?>">
-                <b>หน่วยงาน</b>&nbsp;&nbsp;&nbsp; <input type="text" class="form-search-custom-awl" name="hospital_ward" id="hospital_ward" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_ward'])){} echo htmlspecialchars($_GET['hospital_ward']); ?>">
-                <button class="btn-custom-awl">Search</button>
-
+        <div style="display: flex;">
+            <label for="customer"><b>โรงพยาบาล&nbsp;</b></label>
+            <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
+            <input style="width: 310px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
+            &nbsp;&nbsp;<b>ตึก</b> &nbsp; <input type="text" class="form-search-custom-awl" name="hospital_buiding" id="hospital_buiding" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_buiding'])){} echo htmlspecialchars($_GET['hospital_buiding']); ?>">
+            &nbsp;&nbsp;<b>หน่วยงาน</b>&nbsp;&nbsp;&nbsp; <input type="text" class="form-search-custom-awl" name="hospital_ward" id="hospital_ward" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_ward'])){} echo htmlspecialchars($_GET['hospital_ward']); ?>">
+        </div>
+        <div id="customerDropdown" class="customerDropdown">
+            <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
+        </div>
+        <br>
+        <center><button class="btn-custom-awl">Search</button></center>
 </form>
 </p>
 
@@ -178,7 +178,7 @@ function product_view($percent_id){
                         }
                         ?>
                     <?php }  
-                        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' "; 
+                        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' AND work_name != '' "; 
                         $qsql2 = mysqli_query($conn,$sql2); 
                         $nqsql2 = mysqli_num_rows($qsql2);
                     if($nqsql2 > 0){ ?>
@@ -293,20 +293,49 @@ $content = ob_get_clean(); // เก็บลงที่ตัวแปร cont
 require_once __DIR__ . '/layouts/Main.php';
 ?>
 
-<script>
-    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch(`<?php echo $cumapi;?>`)
-        // fetch(<?php // echo $customerapi;?>)
-        .then(response => response.json())
-        .then(data => {
-            var selectElement = document.getElementById('customerSelect');
-            
-            data.forEach(function(customer) {
-                var option = document.createElement('option');
-                option.value = customer.customer_name;
-                option.textContent = customer.customer_name;
-                selectElement.appendChild(option);
+    <script>
+        let customersData = [];
+        fetch(`<?php echo $cumapi;?>`)
+            .then(response => response.json())
+            .then(data => {
+                customersData = data;
+            })
+            .catch(error => console.error('Error:', error));
+
+        const input = document.getElementById('hospital_name');
+        const dropdown = document.getElementById('customerDropdown');
+        const view = dropdown.querySelector('.customerSelectNewView');
+
+        input.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            if (value.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            const filtered = customersData.filter(c => c.customer_name.toLowerCase().includes(value));
+            if (filtered.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            view.innerHTML = '';
+            filtered.forEach(dataValue => {
+                let div = document.createElement('div');
+                div.textContent = dataValue.customer_name;
+                div.onclick = function() {
+                    input.value = dataValue.customer_name;
+                    dropdown.style.display = 'none';
+                };
+                view.appendChild(div);
             });
-        })
-        .catch(error => console.error('Error:', error));
-</script>
+            dropdown.style.display = 'block';
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>

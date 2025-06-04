@@ -8,12 +8,13 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
     <b style="font-size: 20px;">รายงานคู่แข่ง</b>
 </div>
 
-<p style="padding: 10px 20px;" class="font-custom-awl-14">
+<p style="padding: 0px 20px;" class="font-custom-awl-14">
 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
     <div style="display:flex; justify-content: space-between; margin-bottom: 15px;">
         <div>
             <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
             <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
+            <input type="checkbox" name="open_ckk" id="open_ckk" value="1" <?php if(!empty($_GET['open_ckk'])){ ?> checked <?php } ?>> <label for="open_ckk"> ผลการเปิดซอง</label>
         </div>
         <div>
             <?php // if($_SESSION['typelogin'] != 'Supervisor'){ ?>
@@ -22,39 +23,37 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         </div>
     </div>
 
-    <label for="customer"><b>โรงพยาบาล</b></label>
-    <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-    <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi;?>')" value="<?php  echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>"  />
-    <datalist id="customerSelect">
-        <option value="">-- เลือกลูกค้า --</option>
-    </datalist>
-
-    <b>ประเภทสินค้า</b> <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="<?php echo !empty($_GET['product_rival']) ? htmlspecialchars($_GET['product_rival']) : ''; ?>">
-    <b>Sale</b> 
-    <?php 
-        if($_SESSION['typelogin'] == 'Marketing' ){ ?>
-            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                <option value="">Please Select</option>
-                <?php
-                $strSQL6 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                UNION SELECT sale_code,sale_name FROM tb_team_sm1 
-                ORDER BY sale_code ASC;
-                ";
-                $objQuery6 = mysqli_query($conn, $strSQL6);
-                while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
-                    echo '<option value="' . htmlspecialchars($objResuut6["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["sale_code"]) . ' - ' . htmlspecialchars($objResuut6["sale_name"]) . '</option>';
-                }
-                ?>
-            </select>
-<?php   } else {
-            include 'set_area_select.php'; // แสดงในส่วนของ Select sale  
-        }
-?>
-    <button class="btn-custom-awl">Search</button>
-    <br><br>
-    <input type="checkbox" name="open_ckk" id="open_ckk" value="1" <?php if(!empty($_GET['open_ckk'])){ ?> checked <?php } ?>> <label for="open_ckk"> ผลการเปิดซอง</label>
+    <div>
+        <div style="display: flex;">
+            <label for="customer"><b>โรงพยาบาล</b></label> &nbsp;
+            <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
+            <input style="width: 250px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
+            <b>ประเภทสินค้า</b> &nbsp;<input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="<?php echo !empty($_GET['product_rival']) ? htmlspecialchars($_GET['product_rival']) : ''; ?>">
+            <b>Sale</b> &nbsp; 
+            <?php 
+                if($_SESSION['typelogin'] == 'Marketing' ){ ?>
+                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                        <option value="">Please Select</option>
+                        <?php
+                        $strSQL6 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                        UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                        UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                        UNION SELECT sale_code,sale_name FROM tb_team_sm1 
+                        ORDER BY sale_code ASC;
+                        ";
+                        $objQuery6 = mysqli_query($conn, $strSQL6);
+                        while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
+                            echo '<option value="' . htmlspecialchars($objResuut6["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["sale_code"]) . ' - ' . htmlspecialchars($objResuut6["sale_name"]) . '</option>';
+                        }
+                        ?>
+                    </select>
+                <?php } else { include 'set_area_select.php'; } // แสดงในส่วนของ Select sale ?>
+            <button class="btn-custom-awl">Search</button>
+        </div>
+        <div id="customerDropdown" class="customerDropdown">
+            <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
+        </div>
+    </div>
 </form>
 </p>
 
@@ -240,19 +239,48 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch(`<?php echo $cumapi;?>`)
-        // fetch(<?php // echo $customerapi;?>)
-        .then(response => response.json())
-        .then(data => {
-            var selectElement = document.getElementById('customerSelect');
-            
-            data.forEach(function(customer) {
-                var option = document.createElement('option');
-                option.value = customer.customer_name;
-                option.textContent = customer.customer_name;
-                selectElement.appendChild(option);
+        let customersData = [];
+        fetch(`<?php echo $cumapi;?>`)
+            .then(response => response.json())
+            .then(data => {
+                customersData = data;
+            })
+            .catch(error => console.error('Error:', error));
+
+        const input = document.getElementById('hospital_name');
+        const dropdown = document.getElementById('customerDropdown');
+        const view = dropdown.querySelector('.customerSelectNewView');
+
+        input.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            if (value.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            const filtered = customersData.filter(c => c.customer_name.toLowerCase().includes(value));
+            if (filtered.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            view.innerHTML = '';
+            filtered.forEach(dataValue => {
+                let div = document.createElement('div');
+                div.textContent = dataValue.customer_name;
+                div.onclick = function() {
+                    input.value = dataValue.customer_name;
+                    dropdown.style.display = 'none';
+                };
+                view.appendChild(div);
             });
-        })
-        .catch(error => console.error('Error:', error));
-</script>
+            dropdown.style.display = 'block';
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>

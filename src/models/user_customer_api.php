@@ -23,7 +23,9 @@ if ($_SESSION['em_id'] != '') {
     $where = " WHERE 1=1 ";
 
     // ตรวจสอบประเภทผู้ใช้และกำหนดเงื่อนไข sale_area
-    if ($_SESSION['typelogin'] == 'Supervisor') {
+    if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') {
+        
+    } else if ($_SESSION['typelogin'] == 'Supervisor') {
         switch ($_SESSION["head_area"]) {
             case 'SM1': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_sm1 "; break;
             case 'SS1': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss1 "; break;

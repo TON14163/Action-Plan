@@ -110,13 +110,36 @@ function getPercentSummaries($conn) {
             &nbsp;<b>ถึง</b>&nbsp;&nbsp;<input type="date" name="date2_buy" id="date2_buy" value="<?php echo !empty($_GET['date2_buy']) ? htmlspecialchars($_GET['date2_buy']) : ''; ?>">
         </p>
         <p class="my-3">
-            <label for="customer"><b>โรงพยาบาล</b></label>
-            <?php if(isset($_GET["dallyadd"])){ ?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-            <input type="search" style="width: 310px;" class="form-search-custom-awl" list="customerSelect" id="hospital_name" name="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " onkeyup="fetchData('customerSelect','<?php echo $cumapi; ?>')" value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" />
-            <datalist id="customerSelect">
-                <option value="">-- เลือกลูกค้า --</option>
-            </datalist>
-            <b>ประเภท</b> 
+                
+                <div style="display: flex;">
+                    <label for="customer"><b>โรงพยาบาล </b></label> &nbsp;
+                    <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
+                    <input style="width: 310px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
+
+                    <div>
+                        <b>เปอร์เซ็นต์</b> 
+                        <select name="percent_name" id="percent_name" class="form-select-custom-awl">
+                            <option value="">Please Select</option>
+                            <option <?php if($_GET['percent_name'] == '100 %'){ ?> selected <?php } ?> value="100 %">100 %</option>
+                            <option <?php if($_GET['percent_name'] == '90-99 %'){ ?> selected <?php } ?> value="90-99 %">90-99 %</option>
+                            <option <?php if($_GET['percent_name'] == '80-89 %'){ ?> selected <?php } ?> value="80-89 %">80-89 %</option>
+                            <option <?php if($_GET['percent_name'] == '50-80 %'){ ?> selected <?php } ?> value="50-80 %">50-80 %</option>
+                            <option <?php if($_GET['percent_name'] == '0-50 %'){ ?> selected <?php } ?> value="0-50 %">0-50 %</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <b>Sale</b> 
+                        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
+                    </div>
+                </div>
+                <div id="customerDropdown" class="customerDropdown">
+                    <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
+                </div>
+        </p>
+        <div style="margin: 5px 0; display: flex; align-items: center;">
+            
+            <b>ประเภท</b>&nbsp;&nbsp;
             <select name="type_cus" id="type_cus" class="form-select-custom-awl">
                 <option value="">**Please Select**</option>
                     <?php
@@ -132,7 +155,7 @@ function getPercentSummaries($conn) {
                 <option value="<?php echo $objResuut5["id"];?>"<?php echo $sel;?>><?php echo $objResuut5["type_code"];?> - <?php echo $objResuut5["type_name"];?></option>
                 <?php } ?>
             </select>
-            <b>หมวดสินค้า</b>
+            <b>หมวดสินค้า</b>&nbsp;&nbsp;
             <select name="prorival_name" id="prorival_name" class="form-select-custom-awl">
                 <option value="">**Please Select**</option>
                     <?php
@@ -148,24 +171,6 @@ function getPercentSummaries($conn) {
                 <option value="<?php echo $objResuut5["prorival_name"];?>"<?php echo $sel;?>><?php echo $objResuut5["prorival_name"];?></option>
                 <?php } ?>
             </select>
-        </p>
-        <div style="margin: 5px 0; display: flex; align-items: center;">
-            <div>
-                <b>เปอร์เซ็นต์</b> 
-                <select name="percent_name" id="percent_name" class="form-select-custom-awl">
-                    <option value="">Please Select</option>
-                    <option <?php if($_GET['percent_name'] == '100 %'){ ?> selected <?php } ?> value="100 %">100 %</option>
-                    <option <?php if($_GET['percent_name'] == '90-99 %'){ ?> selected <?php } ?> value="90-99 %">90-99 %</option>
-                    <option <?php if($_GET['percent_name'] == '80-89 %'){ ?> selected <?php } ?> value="80-89 %">80-89 %</option>
-                    <option <?php if($_GET['percent_name'] == '50-80 %'){ ?> selected <?php } ?> value="50-80 %">50-80 %</option>
-                    <option <?php if($_GET['percent_name'] == '0-50 %'){ ?> selected <?php } ?> value="0-50 %">0-50 %</option>
-                </select>
-            </div>
-
-            <div>
-                <b>Sale</b> 
-                <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
-            </div>
 
             <b>ชื่อสินค้า</b>&nbsp;&nbsp;
             <div class="product-data-container search-wrapper" id="searchWrapper">
@@ -181,13 +186,13 @@ function getPercentSummaries($conn) {
 
 
 <script>
-    const input = document.getElementById('product_onelist1');
+    const input1 = document.getElementById('product_onelist1');
     const product_outlistone1 = document.getElementById('product_outlistone1');
     const clearBtn = document.getElementById('clearButton');
     const wrapper = document.getElementById('searchWrapper');
 
-    input.addEventListener('input', () => {
-        if (input.value.length > 0) {
+    input1.addEventListener('input1', () => {
+        if (input1.value.length > 0) {
         wrapper.classList.add('show-clear');
         } else {
         wrapper.classList.remove('show-clear');
@@ -195,10 +200,10 @@ function getPercentSummaries($conn) {
     });
 
     clearBtn.addEventListener('click', () => {
-        input.value = '';
+        input1.value = '';
         product_outlistone1.value = '';
         wrapper.classList.remove('show-clear');
-        input.focus();
+        input1.focus();
     });
 </script>
 
@@ -471,20 +476,49 @@ require_once __DIR__ . '/layouts/Main.php';
 ?>
 
 <script>
-    // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch(`<?php echo $cumapi;?>`)
-        // fetch(<?php // echo $customerapi;?>)
-        .then(response => response.json())
-        .then(data => {
-            var selectElement = document.getElementById('customerSelect');
-            
-            data.forEach(function(customer) {
-                var option = document.createElement('option');
-                option.value = customer.customer_name;
-                option.textContent = customer.customer_name;
-                selectElement.appendChild(option);
+        let customersData = [];
+        fetch(`<?php echo $cumapi;?>`)
+            .then(response => response.json())
+            .then(data => {
+                customersData = data;
+            })
+            .catch(error => console.error('Error:', error));
+
+        const input = document.getElementById('hospital_name');
+        const dropdown = document.getElementById('customerDropdown');
+        const view = dropdown.querySelector('.customerSelectNewView');
+
+        input.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            if (value.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            const filtered = customersData.filter(c => c.customer_name.toLowerCase().includes(value));
+            if (filtered.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            view.innerHTML = '';
+            filtered.forEach(dataValue => {
+                let div = document.createElement('div');
+                div.textContent = dataValue.customer_name;
+                div.onclick = function() {
+                    input.value = dataValue.customer_name;
+                    dropdown.style.display = 'none';
+                };
+                view.appendChild(div);
             });
-        })
-        .catch(error => console.error('Error:', error));
+            dropdown.style.display = 'block';
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
 </script>
 <script src="<?php echo $_SESSION['thisDomain'];?>/assets/js/addProductRow.js"></script> <!-- ชื่อสินค้า -->

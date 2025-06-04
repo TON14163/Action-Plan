@@ -58,17 +58,20 @@ error_reporting(0);
 <section class="font-custom-awl-14">
 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
 <div style="padding: 0px 15px;" class="d-flex justify-content-between align-items-center">
-    <div >
-        <label for="customer"><b>ค้นหา</b></label>
-        <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-        <input type="search" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
-        <datalist id="customerSelect">
-            <option value="">-- เลือกลูกค้า --</option>
-        </datalist>
-        <button class="btn-custom-awl">Search</button>
-    </div>
+        <div>
+            <div style="display: flex;">
+                <label for="customer"><b>ค้นหาลูกค้า : </b></label> &nbsp;
+                <input style="width: 250px;" type="text" name="cus_keyword" id="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >
+                <button class="btn-custom-awl">Search</button>
+            </div>
+            <div id="customerDropdown" class="customerDropdown">
+                <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
+            </div>
+        </div>
     <div data-bs-toggle="tooltip" data-bs-title="เพิ่มข้อมูลผู้ติดต่อ. . .">
-        <img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#add_plus"  >
+        <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
+            <img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#add_plus"  >
+        <?php } ?>
     </div>
 </div>
 </form> 
@@ -85,12 +88,16 @@ error_reporting(0);
                 <th style="width: 10%;">ชั้น</th>
                 <th style="width: 20%;">หน่วยงาน</th>
                 <th style="width: 20%;">ผู้ติดต่อ</th>
+                <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
                 <th style="width: 10%;">Edit</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
             <?php
-                if($_SESSION['typelogin'] == 'Supervisor'){
+                if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { // it เห็นหมด
+                    $cuss = "SELECT * FROM tb_customer_contact WHERE 1=1 ";
+                } else if($_SESSION['typelogin'] == 'Supervisor'){
                     switch ($_SESSION["head_area"]) {
                         case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
                         case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
@@ -154,6 +161,7 @@ error_reporting(0);
                         <td><?php echo htmlspecialchars($customers['hospital_class']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_ward']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_contact1']); ?></td>
+                        <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
                         <td>
                             <?php 
                                 switch ($customers["type_cus"]) {
@@ -222,6 +230,7 @@ error_reporting(0);
                                 "
                             >
                         </td>
+                        <?php } ?>
                     </tr>
                 <?php } ?>
         </tbody>
@@ -307,18 +316,66 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ใช้ fetch API เพื่อดึงข้อมูลจาก API
-fetch(`<?php echo $cumapi;?>`)
-    .then(response => response.json())
-    .then(data => {
-        var selectElement = document.getElementById('customerSelect');
+// // ใช้ fetch API เพื่อดึงข้อมูลจาก API
+// fetch(`<?php // echo $cumapi;?>`)
+//     .then(response => response.json())
+//     .then(data => {
+//         var selectElement = document.getElementById('customerSelect');
         
-        data.forEach(function(customer) {
-            var option = document.createElement('option');
-            option.value = customer.customer_name;
-            option.textContent = customer.customer_name;
-            selectElement.appendChild(option);
+//         data.forEach(function(customer) {
+//             var option = document.createElement('option');
+//             option.value = customer.customer_name;
+//             option.textContent = customer.customer_name;
+//             selectElement.appendChild(option);
+//         });
+//     })
+//     .catch(error => console.error('Error:', error));
+</script>
+
+
+<script>
+        let customersData = [];
+        fetch(`<?php echo $cumapi;?>`)
+            .then(response => response.json())
+            .then(data => {
+                customersData = data;
+            })
+            .catch(error => console.error('Error:', error));
+
+        const input = document.getElementById('cus_keyword');
+        const dropdown = document.getElementById('customerDropdown');
+        const view = dropdown.querySelector('.customerSelectNewView');
+
+        input.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            if (value.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            const filtered = customersData.filter(c => c.customer_name.toLowerCase().includes(value));
+            if (filtered.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            view.innerHTML = '';
+            filtered.forEach(dataValue => {
+                let div = document.createElement('div');
+                div.textContent = dataValue.customer_name;
+                div.onclick = function() {
+                    input.value = dataValue.customer_name;
+                    dropdown.style.display = 'none';
+                };
+                view.appendChild(div);
+            });
+            dropdown.style.display = 'block';
         });
-    })
-    .catch(error => console.error('Error:', error));
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
 </script>
