@@ -3,7 +3,9 @@ report_hossummonth.php
 ?start_date=2025-03-01&sale_code=S14
 -->
 
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+<?php 
+ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+error_reporting(0); 
 $start_date = substr($_GET["start_date"],0,7);
 $date_plan = substr($start_date, 0, -3);
 $percent = isset($_GET["percent"]) ? $_GET["percent"] : '';

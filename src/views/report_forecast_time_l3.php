@@ -3,7 +3,9 @@ report_start4
 ?start_date&end_date&sale_code&percent_id
 -->
 
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+<?php 
+ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+error_reporting(0); 
 ?>
 
 <?php

@@ -89,7 +89,7 @@ if(!empty(($_REQUEST['dc']))){
         <?php if(!empty($_GET['date_start']) && !empty($_GET['date_end']) && !empty($_GET['sale_code'])){?>
             <a href="report_actionplan_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>" data-bs-toggle="tooltip" data-bs-title="Export File.csv"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;"></a>
         <?php } else {?>
-            <img src="assets/images/icon_system/vscode-icons--file-type-excel2.svg" style="width: 30px; height: 30px;"  data-bs-toggle="tooltip" data-bs-title="ไม่สามารถ Export File.csv โปรดกรองข้อมูล !!">
+            <img src="assets/images/icon_system/vscode-icons--file-type-excel2.svg" style="width: 30px; height: 30px;"  data-bs-toggle="tooltip" data-bs-title="ไม่สามารถ Export ได้ กรุณาระบุวันที่ และ เขต...">
         <?php } ?>
         </div>
     </div>

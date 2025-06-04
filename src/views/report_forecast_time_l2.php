@@ -4,6 +4,7 @@ report_start3
 -->
 <?php 
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+error_reporting(0); 
 $start_date = $_GET["start_date"];
 $end_date = $_GET["end_date"];
 $sale_code = $_GET["sale_code"];

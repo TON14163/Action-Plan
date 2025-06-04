@@ -88,7 +88,11 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
 <hr style="margin: 25px 0px;">
 
 <div style="text-align: right; margin-bottom: 20px; position: relative;">
-    <a href="#" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
+    <?php if($_GET['date_start'] != '' AND $_GET['sale_code'] != ''){?>
+        <a href="#" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
+    <?php } else { ?>
+        <img style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;" src="assets/images/icon_system/vscode-icons--file-type-excel2.svg" data-bs-toggle="tooltip" data-bs-title="ไม่สามารถ Export ได้ กรุณาระบุวันที่ และ เขต...">
+    <?php } ?>
 </div>
 
 <div class="table-responsive mt-3 px-2">

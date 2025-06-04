@@ -59,7 +59,12 @@ if ($_SESSION['em_id'] == '' ) { ?>
                     <a href="<?php echo $nameHost;?>report_daily_report">รายงาน Daily Report</a>
                     <a href="<?php echo $nameHost;?>report_quotation">รายงานสรุปเสนอราคา</a>
                     <a href="<?php echo $nameHost;?>report_sales_closure">รายงานปิดการขาย</a>
-                    <a href="<?php echo $nameHost;?>report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a>
+                    <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
+                    <a href="<?php echo $nameHost;?>report_summary_newjane2">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a> <!-- ใช้ของเดิมต้นฉบับ sup -->
+                    <?php } else { ?>
+                    <a href="<?php echo $nameHost;?>report_summary_newsale">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a> <!-- ใช้ของเดิมต้นฉบับ sale -->
+                    <?php } ?>
+                    <!-- <a href="<?php // echo $nameHost;?>report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a> --> <!-- ใช้ของใหม่ -->
                     <a href="<?php echo $nameHost;?>report_competitor">รายงานคู่แข่ง</a>
                 </span>
             </span>

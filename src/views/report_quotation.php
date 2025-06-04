@@ -218,7 +218,13 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
 ?>
 
 <div style="font-size: 14px; font-weight: bold; position: relative;" class="my-4">
-    <a href="report_quotation_excel?date_start=<?php echo $_GET['date_start'];?>&date_end=<?php echo $_GET['date_end'];?>&date1_buy=<?php echo $_GET['date1_buy'];?>&date2_buy=<?php echo $_GET['date2_buy'];?>&hospital_name=<?php echo $_GET['hospital_name'];?>&type_cus=<?php echo $_GET['type_cus'];?>&prorival_name=<?php echo $_GET['prorival_name'];?>&percent_name=<?php echo $_GET['percent_name'];?>&sale_code=<?php echo $_GET['sale_code'];?>&product_outlistone1=<?php echo $_GET['product_outlistone1'];?>" target="_blank" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;"><img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv"></a>
+    <?php if($_GET['date_start'] != '' AND $_GET['sale_code'] != ''){?>
+    <a href="report_quotation_excel?date_start=<?php echo $_GET['date_start'];?>&date_end=<?php echo $_GET['date_end'];?>&date1_buy=<?php echo $_GET['date1_buy'];?>&date2_buy=<?php echo $_GET['date2_buy'];?>&hospital_name=<?php echo $_GET['hospital_name'];?>&type_cus=<?php echo $_GET['type_cus'];?>&prorival_name=<?php echo $_GET['prorival_name'];?>&percent_name=<?php echo $_GET['percent_name'];?>&sale_code=<?php echo $_GET['sale_code'];?>&product_outlistone1=<?php echo $_GET['product_outlistone1'];?>" target="_blank" style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;">
+        <img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv">
+    </a>
+    <?php } else { ?>
+        <img style="position: absolute; top: -15px; right: 10px; width: 30px; height: 30px;" src="assets/images/icon_system/vscode-icons--file-type-excel2.svg" data-bs-toggle="tooltip" data-bs-title="ไม่สามารถ Export ได้ กรุณาระบุวันที่ และ เขต...">
+    <?php } ?>
     <?php foreach ($ordered_ranges as $range): ?>
         <div style="text-align: center; background: <?php echo $colors[$range]; ?>; border: 0.1px solid #000; border-bottom: none;">
             <?php echo htmlspecialchars($range); ?> =  <font id="<?php echo htmlspecialchars($range);?>"></font> บาท
