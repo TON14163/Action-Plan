@@ -22,11 +22,13 @@
             </div>
         </div>
         <div class="col-2 d-flex align-items-center">
-            <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
-                <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
-            </span>
+            <a style="text-decoration: none;" href="user-customer" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-title="ไปยังหน้าข้อมูลลูกค้า !!">
+                <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
+                    <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
+                </span>
+            </a>
         </div>
-        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="Copy แผลนงานเดิม"></div>
+        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="Copy แผลนงานเดิม !!"></div>
 
         <div class="col-3">
             <div class="row d-flex align-items-center">
