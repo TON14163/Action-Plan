@@ -147,7 +147,7 @@ exit; } ?>
                                 <div style="line-height: 2;">
                                         <input type="hidden" name="save" id="save" value="1">
                                         <b>วันที่ : </b><br>
-                                        <input style="width: 100%; " type="date" name="date_salemk" id="date_salemk"><br>
+                                        <input class="form-control" style="width: 100%;" type="date" name="date_salemk" id="date_salemk">
                                         <b>เขตการขาย : </b><br>
                                         <select class="form-select-custom-awl" style="width: 100%;" name="sale_codemkadd" id="sale_codemkadd">
                                             <option value="">Please Select</option>
@@ -164,12 +164,13 @@ exit; } ?>
                                             }
                                             ?>
                                         </select>
-                                        <br>
-                                                <label for="customer"><b>โรงพยาบาล :</b></label>
-                                                <input type="search" class="form-search-custom-awl" list="customerSelect" id="cus_keyword" name="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php  echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>"  />
-                                                <datalist id="customerSelect">
-                                                    <option value="">-- เลือกลูกค้า --</option>
-                                                </datalist>
+
+                                            <label for="customer"><b>ค้นหาลูกค้า : </b></label> <br>
+                                            <input style="width: 100%;" type="text" name="cus_keyword" id="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >
+                                            <div id="customerDropdown" class="customerDropdown" style="left:0px;">
+                                                <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
+                                            </div>
+
                                         <br>
                                         <b>รายละเอียด</b> : <br> <textarea style="width: 100%;" name="description" id="description" rows="2"></textarea>
                                         <b>แนบไฟล์</b> 
@@ -290,3 +291,52 @@ exit; } ?>
         })
         .catch(error => console.error('Error:', error));
 </script>
+
+
+
+    <script>
+        let customersData = [];
+        fetch(`<?php echo $cumapi;?>`)
+            .then(response => response.json())
+            .then(data => {
+                customersData = data;
+            })
+            .catch(error => console.error('Error:', error));
+
+        const input = document.getElementById('cus_keyword');
+        const dropdown = document.getElementById('customerDropdown');
+        const view = dropdown.querySelector('.customerSelectNewView');
+
+        input.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            if (value.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            const filtered = customersData.filter(c => c.customer_name.toLowerCase().includes(value));
+            if (filtered.length === 0) {
+                dropdown.style.display = 'none';
+                view.innerHTML = '';
+                return;
+            }
+            view.innerHTML = '';
+            filtered.forEach(dataValue => {
+                let div = document.createElement('div');
+                div.textContent = dataValue.customer_name;
+                div.onclick = function() {
+                    input.value = dataValue.customer_name;
+                    dropdown.style.display = 'none';
+                };
+                view.appendChild(div);
+            });
+            dropdown.style.display = 'block';
+        });
+
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    </script>

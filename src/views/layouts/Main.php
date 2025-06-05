@@ -41,7 +41,7 @@
 
     <!-- เนื้อหาจะถูกแทรกที่นี่ -->
     <?php 
-    echo '<div style="background-color: #FFFFFF; margin:20px 0px; min-height: 50vw; padding:40px;">';
+    echo '<div style="background-color: #FFFFFF; margin:20px 0px; min-height: 50vw; padding:40px; min-height: 1400px;">';
     echo $content; 
     echo '</div>';
     ?>

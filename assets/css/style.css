@@ -57,6 +57,12 @@ select ,
     margin-right: 10px;
 }
 
+.form-input-custom-awl {
+    border-radius:15px;
+    border: 1px solid #202020;
+    padding:8px;
+}
+
 textarea {
     border-radius:15px;
     border: 1px solid #202020;
@@ -193,7 +199,8 @@ datalist option:hover, datalist option:focus {
 
 
 .customerDropdown{
-    width: 250px; left:170px;
+    width: 250px; 
+    left:170px;
     position: absolute;
     display: none;
     text-align: left;
@@ -207,15 +214,23 @@ datalist option:hover, datalist option:focus {
     font-size: 0.8em;
     padding: 0.3em 1em;
     cursor: pointer;
+    font-weight: bold;
+}
+.customerDropdown div{
+    margin-top:5px;
+}
+.customerDropdown div:hover{ 
+    background-color: #F1E1FF;
+    padding:2px;
 }
 
-
-
+per6803012
 
 
 
 .solnamehover:hover { /* ส่วนของหน้า product_list_controllers */
     background-color: #F1E1FF;
+    padding:2px
 }
 
 
