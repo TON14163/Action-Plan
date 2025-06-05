@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="col-2 d-flex align-items-center">
-            <a style="text-decoration: none;" href="user-customer" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-title="ไปยังหน้าข้อมูลลูกค้า !!">
+            <a style="text-decoration: none;" href="customer_salesave?id_work=<?=$id_work;?>" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-title="ไปยังหน้าข้อมูลลูกค้า !!">
                 <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
                     <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
                 </span>

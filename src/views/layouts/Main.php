@@ -31,6 +31,7 @@
     <?php 
     require_once __DIR__ . '/../partials/NavBar.php';
     require_once __DIR__ . '/../../controllers/DateThai.php';
+    date_default_timezone_set("Asia/Bangkok");
     if ($_SESSION['em_id'] == '') {
         print "<meta http-equiv=refresh content=1;URL=index.php>"; 
         session_destroy();

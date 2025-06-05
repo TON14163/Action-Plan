@@ -48,6 +48,8 @@ $routes = [
     'report_forecast_time_l3' => 'src/views/report_forecast_time_l3.php',
     'report_forecast_time_l4' => 'src/views/report_forecast_time_l4.php',
     'report_quotation_edit' => 'src/views/report_quotation_edit.php',
+    'customer_salesave' => 'src/views/customer_salesave.php',
+    'newbuiding_edit' => 'src/views/newbuiding_edit.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',
@@ -75,6 +77,7 @@ $routes = [
     'report_quotation_save' => 'src/models/report_quotation_save.php',
     'user_customer_from_save' => 'src/models/user_customer_from_save.php',
     'user_customer_from_edit' => 'src/models/user_customer_from_edit.php',
+    'customer_salesave1' => 'src/models/customer_salesave1.php',
 ];
 
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {
