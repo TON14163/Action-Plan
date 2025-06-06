@@ -2,10 +2,8 @@
 ob_start();
 error_reporting(0);
 ?>
-<center>
-    <h5>รายงานการจัด Present / การออก Booth</h5>
-</center>
-<form name="frmSearch" method="GET" action="<?php echo $url; ?>">
+<center><h5>รายงานการจัด Present / การออก Booth</h5></center>
+<form name="frmSearch" method="GET" action="<?php echo $url;?>">
                 <center>
                     <div style="display: flex;">
                         วันที่ : <input name="start_date" type="date" id="start_date" value="<?php echo $_GET["start_date"]; ?>"> ถึง : <input name="end_date" type="date" id="end_date" value="<?php echo $_GET["end_date"]; ?>">
@@ -22,7 +20,6 @@ error_reporting(0);
                             <select name="sale_code" id="sale_code">
                                 <option value="">**Please Select**</option>
                                 <?php
-
                                 $strSQL5 = "SELECT * FROM tb_team_ss1 ORDER BY sale_code ASC";
                                 $objQuery5 = mysqli_query($conn, $strSQL5);
                                 while ($objResuut5 = mysqli_fetch_array($objQuery5)) {
@@ -37,9 +34,7 @@ error_reporting(0);
                                 }
                                 ?>
                             </select>
-                        <?php
-                        } else 	if ($_SESSION['em_id'] == 'SS2') {
-                        ?>
+                        <?php } else 	if ($_SESSION['em_id'] == 'SS2') { ?>
                             <select name="sale_code" id="sale_code">
                                 <option value="">**Please Select**</option>
                                 <?php
@@ -58,9 +53,7 @@ error_reporting(0);
                                 }
                                 ?>
                             </select>
-                        <?php
-                        } else 	if ($_SESSION['em_id'] == 'MK2') {
-                        ?>
+                        <?php } else 	if ($_SESSION['em_id'] == 'MK2') { ?>
                             <select name="sale_code" id="sale_code">
                                 <option value="">**Please Select**</option>
                                 <?php
@@ -189,7 +182,9 @@ error_reporting(0);
                             echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                     </td>
                     <td><?php echo $objResult["sale_area"]; ?></td>
-                    <td width="30" align="center"><a href="edit_booth.php?present_id=<?php echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a></td>
+                    <td width="30" align="center">
+                        <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
+                    </td>
                 </tr>
             <?php
             }
@@ -209,7 +204,9 @@ error_reporting(0);
                             echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                     </td>
                     <td><?php echo $objResult["sale_area"]; ?></td>
-                    <td width="30" align="center"><a href="edit_booth.php?present_id=<?php echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a></td>
+                    <td width="30" align="center">
+                        <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
+                    </td>
                 </tr>
             <?php
             }
@@ -229,7 +226,9 @@ error_reporting(0);
                             echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                     </td>
                     <td><?php echo $objResult["sale_area"]; ?></td>
-                    <td width="30" align="center"><a href="edit_booth.php?present_id=<?php echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a></td>
+                    <td width="30" align="center">
+                        <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
+                    </td>
                 </tr>
             <?php
             }
@@ -248,7 +247,9 @@ error_reporting(0);
                         echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                 </td>
                 <td><?php echo $objResult["sale_area"]; ?></td>
-                <td width="30" align="center"><a href="edit_booth.php?present_id=<?php echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a></td>
+                <td width="30" align="center">
+                    <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
+                </td>
             </tr>
     <?php
         }
