@@ -31,50 +31,50 @@
     </div>
 
 <script>
-    // สร้าง container สำหรับ alerts
-    document.write('<div id="alertContainer"></div>');
+    // // สร้าง container สำหรับ alerts
+    // document.write('<div id="alertContainer"></div>');
     
-    // ฟังก์ชันสร้าง alerts
-    function createAlerts() {
-        const container = document.getElementById('alertContainer');
-        container.innerHTML = ''; // ล้างเนื้อหาเก่า
+    // // ฟังก์ชันสร้าง alerts
+    // function createAlerts() {
+    //     const container = document.getElementById('alertContainer');
+    //     container.innerHTML = ''; // ล้างเนื้อหาเก่า
         
-        for (let currentRow = 1; currentRow <= 2; currentRow++) {
-            const alertDiv = document.createElement('div');
-            alertDiv.style.position = 'fixed';
-            alertDiv.style.bottom = `${0 + (currentRow * 70)}px`;
-            alertDiv.style.right = '20px';
-            alertDiv.style.transition = 'bottom 0.3s ease'; // เพิ่ม animation
+    //     for (let currentRow = 1; currentRow <= 2; currentRow++) {
+    //         const alertDiv = document.createElement('div');
+    //         alertDiv.style.position = 'fixed';
+    //         alertDiv.style.bottom = `${0 + (currentRow * 70)}px`;
+    //         alertDiv.style.right = '20px';
+    //         alertDiv.style.transition = 'bottom 0.3s ease'; // เพิ่ม animation
             
-            alertDiv.innerHTML = `
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" data-aos="fade-left" data-aos-delay="200">
-                    <strong>#${currentRow} แจ้งเตือน</strong> เรื่องไรไม่รู้
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            `;
+    //         alertDiv.innerHTML = `
+    //             <div class="alert alert-warning alert-dismissible fade show" role="alert" data-aos="fade-left" data-aos-delay="200">
+    //                 <strong>#${currentRow} แจ้งเตือน</strong> เรื่องไรไม่รู้
+    //                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    //             </div>
+    //         `;
             
-            container.appendChild(alertDiv);
-        }
+    //         container.appendChild(alertDiv);
+    //     }
         
-        // เพิ่ม event listener ให้ทุกปุ่ม close
-        document.querySelectorAll('.btn-close').forEach(button => {
-            button.addEventListener('click', function() {
-                const alertDiv = this.closest('div[style*="position: fixed"]');
-                alertDiv.remove(); // ลบ alert ที่ถูกปิด
-                updatePositions(); // อัพเดตตำแหน่งใหม่
-            });
-        });
-    }
+    //     // เพิ่ม event listener ให้ทุกปุ่ม close
+    //     document.querySelectorAll('.btn-close').forEach(button => {
+    //         button.addEventListener('click', function() {
+    //             const alertDiv = this.closest('div[style*="position: fixed"]');
+    //             alertDiv.remove(); // ลบ alert ที่ถูกปิด
+    //             updatePositions(); // อัพเดตตำแหน่งใหม่
+    //         });
+    //     });
+    // }
     
-    // ฟังก์ชันอัพเดตตำแหน่ง alerts ที่เหลือ
-    function updatePositions() {
-        const remainingAlerts = document.querySelectorAll('#alertContainer > div');
-        remainingAlerts.forEach((alert, index) => {
-            alert.style.bottom = `${70 + ((index + 1) * 80)}px`;
-        });
-    }
+    // // ฟังก์ชันอัพเดตตำแหน่ง alerts ที่เหลือ
+    // function updatePositions() {
+    //     const remainingAlerts = document.querySelectorAll('#alertContainer > div');
+    //     remainingAlerts.forEach((alert, index) => {
+    //         alert.style.bottom = `${70 + ((index + 1) * 80)}px`;
+    //     });
+    // }
     
-    // เรียกใช้ครั้งแรก
+    // // เรียกใช้ครั้งแรก
     // createAlerts();
 </script>
 
