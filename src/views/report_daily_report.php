@@ -102,9 +102,9 @@ function product_view($percent_id){
             $sql_total .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
         }
         if (!empty($sale_code)) {
-            $sql_total .= " AND sale_area = '".$sale_code."'";
+            $sql_total .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
         } else {
-            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."' ";
+            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
         }
         $result_total = mysqli_query($conn, $sql_total);
         $total_rows = mysqli_fetch_assoc($result_total)['total'];
@@ -126,14 +126,14 @@ function product_view($percent_id){
             $sqlPlan .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
         }
         if (!empty($sale_code)) {
-            $sqlPlan .= " AND sale_area = '".$sale_code."'";
+            $sqlPlan .= " AND sale_area = '".$sale_code."' AND head_area = '".$_SESSION['head_area']."' ";
         } else {
-            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."' ";
+            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."' AND head_area = '".$_SESSION['head_area']."' ";
         }
         $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
         $numPlan = mysqli_num_rows($queryPlan);
-
+echo $sqlPlan;
         if ($numPlan > 0) {
             while ($rowPlan = mysqli_fetch_array($queryPlan)) { 
             switch ($rowPlan['daily']) {

@@ -126,9 +126,9 @@ if(!empty(($_REQUEST['dc']))){
             $sql_total .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
         }
         if (!empty($sale_code)) {
-            $sql_total .= " AND sale_area = '".$sale_code."'";
+            $sql_total .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
         } else {
-            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."' ";
+            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
         }
         $result_total = mysqli_query($conn, $sql_total);
         $total_rows = mysqli_fetch_assoc($result_total)['total'];
@@ -141,9 +141,9 @@ if(!empty(($_REQUEST['dc']))){
             $sqlPlan .= "AND date_plan BETWEEN '".$_GET['date_start']."' AND '".$_GET['date_end']."' ";
         }
         if (!empty($sale_code)) {
-            $sqlPlan .= " AND sale_area = '".$sale_code."'";
+            $sqlPlan .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
         } else {
-            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."' ";
+            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
         }
         $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);

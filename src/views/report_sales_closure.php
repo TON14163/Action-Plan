@@ -122,7 +122,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         <tbody>
             <?php
             $sum = array();
-            $strSQL = "SELECT * FROM tb_register_data WHERE sale_area = '" . $sale_code . "' AND summary_order IN ('1','2') ";
+            $strSQL = "SELECT * FROM tb_register_data WHERE sale_area = '" . $sale_code . "'  AND head_area = '".$_SESSION['head_area']."' AND summary_order IN ('1','2') ";
             if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
                 $strSQL .= "AND date_update BETWEEN '" . $_GET['date_start'] . "' AND '" . $_GET['date_end'] . "' ";
             } 

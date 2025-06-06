@@ -57,9 +57,9 @@ function getPercentSummaries($conn) {
             FROM tb_register_data 
             WHERE summary_order = '0' AND summary_product1 != '' ";
     if ($_GET['sale_code'] != '') {
-            $sqlHead .= " AND sale_area = '".$_GET['sale_code']."' ";
+            $sqlHead .= " AND sale_area = '".$_GET['sale_code']."'  AND head_area = '".$_SESSION['head_area']."'  ";
     } else {
-        $sqlHead .= " AND sale_area = '".$_SESSION['em_id']."' ";
+        $sqlHead .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."'  ";
     }
     if ($_GET['hospital_name'] != '') { $sqlHead .= "AND hospital_name = '" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "' "; }
     if ($_GET['percent_name'] != '') { $sqlHead .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
@@ -251,9 +251,9 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 FROM tb_register_data 
                 WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
         if (!empty($sale_code)) {
-            $sql .= " AND sale_area = '".$sale_code."'";
+            $sql .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
         } else {
-            $sql .= " AND sale_area = '".$_SESSION['em_id']."' ";
+            $sql .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
         }
         if ($_GET['hospital_name'] != '') { $sql .= "AND hospital_name = '" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "' "; }
         if ($_GET['percent_name'] != '') { $sql .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
