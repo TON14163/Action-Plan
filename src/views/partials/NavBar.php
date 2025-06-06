@@ -66,10 +66,10 @@ if ($_SESSION['em_id'] == '' ) { ?>
                     <?php } ?>
                     <!-- <a href="<?php // echo $nameHost;?>report_forecast_time">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a> --> <!-- ใช้ของใหม่ -->
                     <a href="<?php echo $nameHost;?>report_competitor">รายงานคู่แข่ง</a>
-                    <?php // if($_SESSION['em_id'] == 'VMD' || $_SESSION['em_id'] == 'MD1' || $_SESSION['em_id'] == 'PRM' || $_SESSION['em_id'] == 'IT2'){ ?>
+                    <?php if($_SESSION['em_id'] == 'VMD' || $_SESSION['em_id'] == 'MD1' || $_SESSION['em_id'] == 'PRM' || $_SESSION['em_id'] == 'IT2'){ ?>
                     <a href="<?php echo $nameHost;?>report_summary_supsum5">รายงานสรุปผลการขายตามช่วงเวลา</a>
                     <a href="<?php echo $nameHost;?>report_presentsup">รายงานการจัด Present / การออก Booth</a>
-                    <?php // } ?>
+                    <?php } ?>
                 </span>
             </span>
         </li>
