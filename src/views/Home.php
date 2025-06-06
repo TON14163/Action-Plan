@@ -75,7 +75,7 @@
     }
     
     // เรียกใช้ครั้งแรก
-    createAlerts();
+    // createAlerts();
 </script>
 
     

@@ -28,22 +28,31 @@ if($_SESSION['typelogin'] == 'Supervisor' AND $_SESSION['group'] != 'ALL'){ $sal
         }
         ?>
     </select>
-<?php } else if($_SESSION['typelogin'] == 'Supervisor' AND $_SESSION['group'] == 'ALL'){ $saleSet = $sale_code; ?>
+<?php  } else if($_SESSION['typelogin'] == 'Supervisor' AND $_SESSION['group'] == 'ALL'){ $saleSet = $sale_code; ?>
     <select class="form-select-custom-awl" name="sale_code" id="sale_code">
         <option value="">Please Select</option>
         <?php
-        switch ($_SESSION["ext"]) {
-            case 'PM': 
-                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                UNION SELECT sale_code,sale_name FROM tb_team_sm1 ORDER BY sale_code ASC";
-            break;
-            default:
-                $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                UNION SELECT sale_code,sale_name FROM tb_team_sm1 ORDER BY sale_code ASC";
-            break;
+        if($_SESSION["ext"] == 'PM'){
+            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+            UNION SELECT sale_code,sale_name FROM tb_team_ss2
+            UNION SELECT sale_code,sale_name FROM tb_team_sm1 ORDER BY sale_code ASC";
+        } else {
+                // $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                // UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                // UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                // UNION SELECT sale_code,sale_name FROM tb_team_sm1 ORDER BY sale_code ASC";
+            switch ($_SESSION["head_area"]) {
+                // case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
+                case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
+                case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
+                case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
+                default:
+                    $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
+                    UNION SELECT sale_code,sale_name FROM tb_team_ss2
+                    UNION SELECT sale_code,sale_name FROM tb_team_ss3
+                    UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
+                break;
+            }
         }
         $objQuery5 = mysqli_query($conn, $strSQL5);
         while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  

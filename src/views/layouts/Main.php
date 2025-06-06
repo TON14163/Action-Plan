@@ -26,6 +26,25 @@
 * {
     font-family: 'Prompt-awl';
 }
+
+@media only screen and (max-width: 1080px) { /* 810 แนวตั้ง gen 9 -> For landscape orientation, use: 1080px */
+    .portrait_use{
+        min-height: 1400px;
+        background-color: #FFFFFF; 
+        margin:20px 0px; 
+        padding:40px;
+    }
+}
+@media only screen and (min-width: 1081px) { /* คอมให้ใช้ตัวนี้เสมอ > 1081px */
+    .portrait_use{
+        min-height: 50vw;
+        background-color: #FFFFFF; 
+        margin:20px 0px; 
+        padding:40px;
+    }
+}
+
+
 </style>
 <body>
     <?php 
@@ -42,7 +61,7 @@
 
     <!-- เนื้อหาจะถูกแทรกที่นี่ -->
     <?php 
-    echo '<div style="background-color: #FFFFFF; margin:20px 0px; min-height: 50vw; padding:40px; min-height: 1400px;">';
+    echo '<div class="portrait_use">';
     echo $content; 
     echo '</div>';
     ?>

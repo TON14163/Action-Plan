@@ -50,6 +50,8 @@ $routes = [
     'report_quotation_edit' => 'src/views/report_quotation_edit.php',
     'customer_salesave' => 'src/views/customer_salesave.php',
     'newbuiding_edit' => 'src/views/newbuiding_edit.php',
+    'report_summary_supsum5' => 'src/views/report_summary_supsum5.php', // รายงานสรุปผลการขายตามช่วงเวลา (Sup)
+    'report_presentsup' => 'src/views/report_presentsup.php', // รายงานการจัด Present / การออก Booth
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',

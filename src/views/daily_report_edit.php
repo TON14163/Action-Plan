@@ -107,6 +107,8 @@ if (!empty($_GET['addPlanPurple'])) {
     </span>
     <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
     <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; cursor: pointer;" onclick="deletePlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="ลบแผลนงาน"><img src="assets/images/icon_system/trash-alt-solid-24.png" style="width:15px; height:15px;"> &nbsp; Delete</span>
+    <?php } else { ?>
+    <span></span>
     <?php } ?>
 </div>
 </form>
