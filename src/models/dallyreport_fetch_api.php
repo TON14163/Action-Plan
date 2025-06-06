@@ -27,9 +27,9 @@ $countSql = "SELECT COUNT(id_work) AS total FROM tb_register_data";
 $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความชัดเจน
 
 if (!empty($saleCode)) {
-    $where .= " AND sale_area = '".$saleCode."'";
+    $where .= " AND sale_area = '".$saleCode."' AND head_area = '".$_SESSION['head_area']."'  ";
 } else {
-    $where .= " AND sale_area = '".$_SESSION['em_id']."' ";
+    $where .= " AND sale_area = '".$_SESSION['em_id']."' AND head_area = '".$_SESSION['head_area']."'  ";
 }
 
 if (!empty($datePlan)) {
