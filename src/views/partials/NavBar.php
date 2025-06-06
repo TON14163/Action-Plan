@@ -5,7 +5,7 @@
 
 <?php 
 $HTTP_HOSTS = $_SERVER['HTTP_HOST'];
-if($HTTP_HOSTS == 'testpr-wr.allwellcenter.com'){
+if($HTTP_HOSTS == 'action-plans.allwellcenter.com'){
     $nameHost = "";
 } else {
     $nameHost = "/Action-Plan/";
