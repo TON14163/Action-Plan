@@ -80,7 +80,7 @@
 <?php } ?>
 
 	
-<?php }else if($_SESSION['em_id']=='SS2'){ ?>	
+<?php }else if($_SESSION['em_id']=='SS2' || $_SESSION['em_id'] == 'VMD' || $_SESSION['em_id'] == 'MD1' || $_SESSION['em_id'] == 'IT2' || $_SESSION['em_id'] == 'PRM'){ ?>	
 	
 <?php if($_POST["sasll"]=='1'){ ?>
 <input name="sasll" type="checkbox" id="sall" checked='checked' value="1" >	Total Hos
