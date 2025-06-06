@@ -1,16 +1,7 @@
-<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+<?php 
+ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
-function DateThai($strDate) {
-		$strYear = date("y",strtotime($strDate))+43;
-		$strMonth= date("n",strtotime($strDate));
-		$strDay= date("j",strtotime($strDate));
-		$strHour= date("H",strtotime($strDate));
-		$strMinute= date("i",strtotime($strDate));
-		$strSeconds= date("s",strtotime($strDate));
-		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-		$strMonthThai=$strMonthCut[$strMonth];
-		return "$strMonthThai $strYear";
-	}
+
 ?>
 
 <center><h5>รายงานสรุปผลการขายตามช่วงเวลา (Sup)</h5></center>
@@ -98,11 +89,7 @@ $sumall = " and type_arae='1'";
 
 
 }	
-	
-	
 ?>
-	
-	
 	<br>
 <?php	
 //date 1	
@@ -270,7 +257,7 @@ $date_sum3 = substr($start_date3,0,7);
 $date_sum4 = substr($start_date4,0,7);	
 $date_sum5 = substr($start_date5,0,7);	
 	
-	
+
 ?>
 	
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ตั้งเรื่อง</span></h2>	
@@ -300,7 +287,6 @@ $date_sum5 = substr($start_date5,0,7);
 
 	
 $strSQL7 = "SELECT SUM(sum_price_product) AS sum_price_product2  FROM tb_register_data where percent_id = '1' and  date_request NOT LIKE '%$date_sum%' and summary_product1 !='' $ddd";
-echo $strSQL7;
 if($start_date !=""){ 
 $strSQL7 .= ' AND date_plan  >= "'.$start_date.'"'; 
 }
@@ -410,7 +396,7 @@ $objResult6= mysqli_fetch_array($objQuery6);
 
 <tr>
 <td align="center"> 
-	<?php $start_st = substr($start_date, 0, -3); echo Datethai($start_st); ?>
+	<?php $start_st = substr($start_date, 0, -3); echo $start_st; ?>
 	<input type='hidden' name = "start_date"  id = "start_date" class="button4"  value="<?php echo $start_date; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
@@ -550,7 +536,7 @@ $objResult6= mysqli_fetch_array($objQuery6);
 
 <tr>
 <td align="center"> 
-	<?php $start_st1 = substr($start_date1, 0, -3); echo Datethai($start_st1); ?>
+	<?php $start_st1 = substr($start_date1, 0, -3); echo $start_st1; ?>
 	<input type='hidden' name = "start_date1"  id = "start_date1" class="button4"  value="<?php echo $start_date1; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
@@ -691,7 +677,7 @@ $objResult6= mysqli_fetch_array($objQuery6);
 
 <tr>
 <td align="center"> 
-	<?php $start_st2 = substr($start_date2, 0, -3); echo Datethai($start_st2); ?>
+	<?php $start_st2 = substr($start_date2, 0, -3); echo $start_st2; ?>
 	<input type='hidden' name = "start_date2"  id = "start_date2" class="button4"  value="<?php echo $start_date2; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
@@ -832,7 +818,7 @@ $objResult6= mysqli_fetch_array($objQuery6);
 
 <tr>
 <td align="center"> 
-	<?php $start_st3 = substr($start_date3, 0, -3); echo Datethai($start_st3); ?>
+	<?php $start_st3 = substr($start_date3, 0, -3); echo $start_st3; ?>
 	<input type='hidden' name = "start_date3"  id = "start_date3" class="button4"  value="<?php echo $start_date3; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
@@ -973,7 +959,7 @@ $objResult6= mysqli_fetch_array($objQuery6);
 
 <tr>
 <td align="center"> 
-	<?php $start_st4 = substr($start_date4, 0, -3); echo Datethai($start_st4); ?>
+	<?php $start_st4 = substr($start_date4, 0, -3); echo $start_st4; ?>
 	<input type='hidden' name = "start_date4"  id = "start_date4" class="button4"  value="<?php echo $start_date4; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
@@ -1114,7 +1100,7 @@ $objResult6= mysqli_fetch_array($objQuery6);
 
 <tr>
 <td align="center"> 
-	<?php $start_st5 = substr($start_date5, 0, -3); echo Datethai($start_st5); ?>
+	<?php $start_st5 = substr($start_date5, 0, -3); echo $start_st5; ?>
 	<input type='hidden' name = "start_date5"  id = "start_date5" class="button4"  value="<?php echo $start_date5; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
@@ -1422,7 +1408,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst = substr($start_send, 0, -3); echo Datethai($start_sendst); ?>
+	<?php $start_sendst = substr($start_send, 0, -3); echo $start_sendst; ?>
 		<input type='hidden' name = "start_send"  id = "start_send" class="button4"  value="<?php echo $start_send; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -1548,7 +1534,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst1 = substr($start_send1, 0, -3); echo Datethai($start_sendst1); ?>
+	<?php $start_sendst1 = substr($start_send1, 0, -3); echo $start_sendst1; ?>
 		<input type='hidden' name = "start_send1"  id = "start_send1" class="button4"  value="<?php echo $start_send1; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -1674,7 +1660,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst2 = substr($start_send2, 0, -3); echo Datethai($start_sendst2); ?>
+	<?php $start_sendst2 = substr($start_send2, 0, -3); echo $start_sendst2; ?>
 		<input type='hidden' name = "start_send2"  id = "start_send2" class="button4"  value="<?php echo $start_send2; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -1799,7 +1785,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst3 = substr($start_send3, 0, -3); echo Datethai($start_sendst3); ?>
+	<?php $start_sendst3 = substr($start_send3, 0, -3); echo $start_sendst3; ?>
 		<input type='hidden' name = "start_send3"  id = "start_send3" class="button4"  value="<?php echo $start_send3; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -1922,7 +1908,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst4 = substr($start_send4, 0, -3); echo Datethai($start_sendst4); ?>
+	<?php $start_sendst4 = substr($start_send4, 0, -3); echo $start_sendst4; ?>
 		<input type='hidden' name = "start_send4"  id = "start_send4" class="button4"  value="<?php echo $start_send4; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2048,7 +2034,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst5 = substr($start_send5, 0, -3); echo Datethai($start_sendst5); ?>
+	<?php $start_sendst5 = substr($start_send5, 0, -3); echo $start_sendst5; ?>
 		<input type='hidden' name = "start_send5"  id = "start_send5" class="button4"  value="<?php echo $start_send5; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2173,7 +2159,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst6 = substr($start_send6, 0, -3); echo Datethai($start_sendst6); ?>
+	<?php $start_sendst6 = substr($start_send6, 0, -3); echo $start_sendst6; ?>
 		<input type='hidden' name = "start_send6"  id = "start_send6" class="button4"  value="<?php echo $start_send6; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2298,7 +2284,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst7 = substr($start_send7, 0, -3); echo Datethai($start_sendst7); ?>
+	<?php $start_sendst7 = substr($start_send7, 0, -3); echo $start_sendst7; ?>
 		<input type='hidden' name = "start_send7"  id = "start_send7" class="button4"  value="<?php echo $start_send7; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2424,7 +2410,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst8 = substr($start_send8, 0, -3); echo Datethai($start_sendst8); ?>
+	<?php $start_sendst8 = substr($start_send8, 0, -3); echo $start_sendst8; ?>
 		<input type='hidden' name = "start_send8"  id = "start_send8" class="button4"  value="<?php echo $start_send8; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2550,7 +2536,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst9 = substr($start_send9, 0, -3); echo Datethai($start_sendst9); ?>
+	<?php $start_sendst9 = substr($start_send9, 0, -3); echo $start_sendst9; ?>
 		<input type='hidden' name = "start_send9"  id = "start_send9" class="button4"  value="<?php echo $start_send9; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2676,7 +2662,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst10 = substr($start_send10, 0, -3); echo Datethai($start_sendst10); ?>
+	<?php $start_sendst10 = substr($start_send10, 0, -3); echo $start_sendst10; ?>
 		<input type='hidden' name = "start_send10"  id = "start_send10" class="button4"  value="<?php echo $start_send10; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -2802,7 +2788,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 
 <tr>
 <td align="center">
-	<?php $start_sendst11 = substr($start_send11, 0, -3); echo Datethai($start_sendst11); ?>
+	<?php $start_sendst11 = substr($start_send11, 0, -3); echo $start_sendst11; ?>
 		<input type='hidden' name = "start_send11"  id = "start_send11" class="button4"  value="<?php echo $start_send11; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
@@ -3042,7 +3028,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst = substr($start_send, 0, -3); echo Datethai($start_sendst); ?>
+	<?php $start_sendst = substr($start_send, 0, -3); echo $start_sendst; ?>
 	<input type='hidden' name = "start_send"  id = "start_send" class="button4"  value="<?php echo $start_send; ?>"  /> </td>
 
 	
@@ -3169,7 +3155,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst1 = substr($start_send1, 0, -3); echo Datethai($start_sendst1); ?>
+	<?php $start_sendst1 = substr($start_send1, 0, -3); echo $start_sendst1; ?>
 	<input type='hidden' name = "start_send1"  id = "start_send1" class="button4"  value="<?php echo $start_send1; ?>"  /> </td>
 
 	
@@ -3296,7 +3282,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst2 = substr($start_send2, 0, -3); echo Datethai($start_sendst2); ?>
+	<?php $start_sendst2 = substr($start_send2, 0, -3); echo $start_sendst2; ?>
 	<input type='hidden' name = "start_send2"  id = "start_send2" class="button4"  value="<?php echo $start_send2; ?>"  /> </td>
 
 	
@@ -3423,7 +3409,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst3 = substr($start_send3, 0, -3); echo Datethai($start_sendst3); ?>
+	<?php $start_sendst3 = substr($start_send3, 0, -3); echo $start_sendst3; ?>
 	<input type='hidden' name = "start_send3"  id = "start_send3" class="button4"  value="<?php echo $start_send3; ?>"  /> </td>
 
 	
@@ -3550,7 +3536,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst4 = substr($start_send4, 0, -3); echo Datethai($start_sendst4); ?>
+	<?php $start_sendst4 = substr($start_send4, 0, -3); echo $start_sendst4; ?>
 	<input type='hidden' name = "start_send4"  id = "start_send4" class="button4"  value="<?php echo $start_send4; ?>"  /> </td>
 
 	
@@ -3676,7 +3662,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst5 = substr($start_send5, 0, -3); echo Datethai($start_sendst5); ?>
+	<?php $start_sendst5 = substr($start_send5, 0, -3); echo $start_sendst5; ?>
 	<input type='hidden' name = "start_send5"  id = "start_send5" class="button4"  value="<?php echo $start_send5; ?>"  /> </td>
 
 	
@@ -3803,7 +3789,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst6 = substr($start_send6, 0, -3); echo Datethai($start_sendst6); ?>
+	<?php $start_sendst6 = substr($start_send6, 0, -3); echo $start_sendst6; ?>
 	<input type='hidden' name = "start_send6"  id = "start_send6" class="button4"  value="<?php echo $start_send6; ?>"  /> </td>
 
 	
@@ -3929,7 +3915,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst7 = substr($start_send7, 0, -3); echo Datethai($start_sendst7); ?>
+	<?php $start_sendst7 = substr($start_send7, 0, -3); echo $start_sendst7; ?>
 	<input type='hidden' name = "start_send7"  id = "start_send7" class="button4"  value="<?php echo $start_send7; ?>"  /> </td>
 
 	
@@ -4056,7 +4042,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst8 = substr($start_send8, 0, -3); echo Datethai($start_sendst8); ?>
+	<?php $start_sendst8 = substr($start_send8, 0, -3); echo $start_sendst8; ?>
 	<input type='hidden' name = "start_send8"  id = "start_send8" class="button4"  value="<?php echo $start_send8; ?>"  /> </td>
 
 	
@@ -4182,7 +4168,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst9 = substr($start_send9, 0, -3); echo Datethai($start_sendst9); ?>
+	<?php $start_sendst9 = substr($start_send9, 0, -3); echo $start_sendst9; ?>
 	<input type='hidden' name = "start_send9"  id = "start_send9" class="button4"  value="<?php echo $start_send9; ?>"  /> </td>
 
 	
@@ -4308,7 +4294,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst10 = substr($start_send10, 0, -3); echo Datethai($start_sendst10); ?>
+	<?php $start_sendst10 = substr($start_send10, 0, -3); echo $start_sendst10; ?>
 	<input type='hidden' name = "start_send10"  id = "start_send10" class="button4"  value="<?php echo $start_send10; ?>"  /> </td>
 
 	
@@ -4433,7 +4419,7 @@ $sum_all = $sum_awl+$sum_nbm;
 
 <tr>
 <td align="center">
-	<?php $start_sendst11 = substr($start_send11, 0, -3); echo Datethai($start_sendst11); ?>
+	<?php $start_sendst11 = substr($start_send11, 0, -3); echo $start_sendst11; ?>
 	<input type='hidden' name = "start_send11"  id = "start_send11" class="button4"  value="<?php echo $start_send11; ?>"  /> </td>
 
 	
@@ -4831,7 +4817,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst = substr($start_nd, 0, -3); echo Datethai($start_ndst); ?>
+	<?php $start_ndst = substr($start_nd, 0, -3); echo $start_ndst; ?>
 	<input type='hidden' name = "start_nd"  id = "start_nd" class="button4"  value="<?php echo $start_nd; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -4947,7 +4933,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst1 = substr($start_nd1, 0, -3); echo Datethai($start_ndst1); ?>
+	<?php $start_ndst1 = substr($start_nd1, 0, -3); echo $start_ndst1; ?>
 	<input type='hidden' name = "start_nd1"  id = "start_nd1" class="button4"  value="<?php echo $start_nd1; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5061,7 +5047,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst2 = substr($start_nd2, 0, -3); echo Datethai($start_ndst2); ?>
+	<?php $start_ndst2 = substr($start_nd2, 0, -3); echo $start_ndst2; ?>
 	<input type='hidden' name = "start_nd2"  id = "start_nd2" class="button4"  value="<?php echo $start_nd2; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5175,7 +5161,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst3 = substr($start_nd3, 0, -3); echo Datethai($start_ndst3); ?>
+	<?php $start_ndst3 = substr($start_nd3, 0, -3); echo $start_ndst3; ?>
 	<input type='hidden' name = "start_nd3"  id = "start_nd3" class="button4"  value="<?php echo $start_nd3; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5289,7 +5275,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst4 = substr($start_nd4, 0, -3); echo Datethai($start_ndst4); ?>
+	<?php $start_ndst4 = substr($start_nd4, 0, -3); echo $start_ndst4; ?>
 	<input type='hidden' name = "start_nd4"  id = "start_nd4" class="button4"  value="<?php echo $start_nd4; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5403,7 +5389,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst5 = substr($start_nd5, 0, -3); echo Datethai($start_ndst5); ?>
+	<?php $start_ndst5 = substr($start_nd5, 0, -3); echo $start_ndst5; ?>
 	<input type='hidden' name = "start_nd5"  id = "start_nd5" class="button4"  value="<?php echo $start_nd5; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5516,7 +5502,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst6 = substr($start_nd6, 0, -3); echo Datethai($start_ndst6); ?>
+	<?php $start_ndst6 = substr($start_nd6, 0, -3); echo $start_ndst6; ?>
 	<input type='hidden' name = "start_nd6"  id = "start_nd6" class="button4"  value="<?php echo $start_nd6; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5630,7 +5616,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst7 = substr($start_nd7, 0, -3); echo Datethai($start_ndst7); ?>
+	<?php $start_ndst7 = substr($start_nd7, 0, -3); echo $start_ndst7; ?>
 	<input type='hidden' name = "start_nd7"  id = "start_nd7" class="button4"  value="<?php echo $start_nd7; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5744,7 +5730,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst8 = substr($start_nd8, 0, -3); echo Datethai($start_ndst8); ?>
+	<?php $start_ndst8 = substr($start_nd8, 0, -3); echo $start_ndst8; ?>
 	<input type='hidden' name = "start_nd8"  id = "start_nd8" class="button4"  value="<?php echo $start_nd8; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5857,7 +5843,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst9 = substr($start_nd9, 0, -3); echo Datethai($start_ndst9); ?>
+	<?php $start_ndst9 = substr($start_nd9, 0, -3); echo $start_ndst9; ?>
 	<input type='hidden' name = "start_nd9"  id = "start_nd9" class="button4"  value="<?php echo $start_nd9; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -5970,7 +5956,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst10 = substr($start_nd10, 0, -3); echo Datethai($start_ndst10); ?>
+	<?php $start_ndst10 = substr($start_nd10, 0, -3); echo $start_ndst10; ?>
 	<input type='hidden' name = "start_nd10"  id = "start_nd10" class="button4"  value="<?php echo $start_nd10; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
@@ -6083,7 +6069,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 
 <tr>
 <td align="center">
-	<?php $start_ndst11 = substr($start_nd11, 0, -3); echo Datethai($start_ndst11); ?>
+	<?php $start_ndst11 = substr($start_nd11, 0, -3); echo $start_ndst11; ?>
 	<input type='hidden' name = "start_nd11"  id = "start_nd11" class="button4"  value="<?php echo $start_nd11; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">

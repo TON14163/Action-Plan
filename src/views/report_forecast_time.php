@@ -177,7 +177,6 @@ $show = new ReportForecastTime();
 </div>
 
 <?php 
-
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
 ?>
