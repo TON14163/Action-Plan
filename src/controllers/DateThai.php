@@ -12,6 +12,7 @@ function DateThai($strDate) {
             case '0000-00-00': return ''; break;
             case '1 ม.ค. 2513': return ''; break;
             case '': return ''; break;
+            case ' ': return ''; break;
             default: return "$strDay $strMonthThai $strYear"; break;
         }
 }

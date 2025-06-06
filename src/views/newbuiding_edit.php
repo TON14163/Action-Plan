@@ -24,7 +24,7 @@ error_reporting(0);
     }
 </script>
 
-<form name="frmSearch" method="POST" action="newbuiding_edit1.php">
+<form name="frmSearch" method="POST" action="newbuiding_edit1">
     <?php
     $strSQL = "SELECT * FROM tb_customer_hos WHERE customer_code = '" . $_GET["customer_code"] . "' ";
     $objQuery = mysqli_query($conn, $strSQL) or die(mysqli_error());
