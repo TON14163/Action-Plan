@@ -51,7 +51,7 @@ if ($auto_export) {
     if (!empty($hospital_name)) {
         $sqlPlan .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $hospital_name) . "%' ";
     }
-    $sqlPlan .= "AND sale_area = '$sale_code' ";
+    $sqlPlan .= "AND sale_area = '$sale_code' AND head_area = '".$_SESSION['head_area']."'  ";
     $sqlPlan .= "ORDER BY id_work DESC";
 
     $queryPlan = mysqli_query($conn, $sqlPlan) or die("Query failed: " . mysqli_error($conn));

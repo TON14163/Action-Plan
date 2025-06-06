@@ -35,7 +35,7 @@ function exportToExcel($conn) {
     $sql = "SELECT mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1, product_id1
             FROM tb_register_data 
             WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
-            if($_GET['sale_code'] !="" ){ $sql .= ' AND sale_area = "'.$_GET['sale_code'].'"'; }
+            if($_GET['sale_code'] !="" ){ $sql .= " AND sale_area = '".$_GET['sale_code']."' AND head_area = '".$_SESSION['head_area']."' "; }
             if($_GET['hospital_name'] != '') { $sql .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' "; }
             if($_GET['percent_name'] != '') { $sql .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
             if(!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sql .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }

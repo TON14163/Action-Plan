@@ -133,7 +133,7 @@ function product_view($percent_id){
         $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
         $numPlan = mysqli_num_rows($queryPlan);
-echo $sqlPlan;
+// echo $sqlPlan;
         if ($numPlan > 0) {
             while ($rowPlan = mysqli_fetch_array($queryPlan)) { 
             switch ($rowPlan['daily']) {

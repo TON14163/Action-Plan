@@ -39,7 +39,7 @@ if ($auto_export) {
     if (!empty($date_start) && !empty($date_end)) {
         $sqlPlan .= "AND date_plan BETWEEN '$date_start' AND '$date_end' ";
     }
-    $sqlPlan .= "AND sale_area = '$sale_code' ";
+    $sqlPlan .= "AND sale_area = '$sale_code' AND head_area = '".$_SESSION['head_area']."'  ";
     $sqlPlan .= "ORDER BY id_work DESC";
 
     $queryPlan = mysqli_query($conn, $sqlPlan) or die("Query failed: " . mysqli_error($conn));
