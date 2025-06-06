@@ -1,16 +1,11 @@
 <?php 
-
+error_reporting(0);
 require_once __DIR__ . '/config/database.php';
 date_default_timezone_set("Asia/Bangkok"); 
 $sql = "select * from tb_user where user_id='".$_POST["user_id_login"]."' and pass='".$_POST["pass_login"]."' "; 
 $dbquery = mysqli_query($conn,$sql)or die(mysqli_error());
 $data = mysqli_fetch_array($dbquery);
 $rows = mysqli_num_rows($dbquery);
-
-$strSQL1 = "SELECT line_add FROM tb_user WHERE user_id = '".$_POST["user_id_login"]."' ";
-$objQuery1 = mysqli_query($conn,$strSQL1);
-$objResult1 = mysqli_fetch_array($objQuery1);
-$line_add = $objResult1["line_add"];
 
 $browser="";       
 function chkBrowser($nameBroser){ 

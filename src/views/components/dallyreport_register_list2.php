@@ -27,9 +27,10 @@
     </p>
     <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse" >
         <div class="accordion-body">
-            <!-- มีเลขที่อ้างอิง ถึงแสดงส่วนนี้ -->
-            <table class="table-thead-custom-awl table-bordered border-secondary mb-4 mt-1">
-                <tr>
+            <!-- มีเลขที่อ้างอิง ถึงแสดงส่วนนี้เช่น BR680400070	-->
+            <!-- <table class="table-thead-custom-awl table-bordered border-secondary mb-4 mt-1">
+                <thead>
+                    <tr>
                     <th style="width: 12.5%;">เลขที่อ้างอิง</th>
                     <th style="width: 12.5%;">วันที่ออกเอกสาร</th>
                     <th style="width: 12.5%;">เลขที่ใบยืม</th>
@@ -38,7 +39,9 @@
                     <th style="width: 10%;">จำนวน</th>
                     <th style="width: 10%;">หน่วย</th>
                 </tr>
-                <tr>
+                </thead>
+                <tbody>
+                    <tr>
                     <td style="padding: 4px; ">BR680400070</td>
                     <td style="padding: 4px; ">date_br</td>
                     <td style="padding: 4px; ">BRNP.1594</td>
@@ -47,7 +50,8 @@
                     <td style="padding: 4px; ">จำนวน</td>
                     <td style="padding: 4px; ">หน่วย</td>
                 </tr>
-            </table>
+                </tbody>
+            </table> -->
 
             <table id="demo_product" class="table-thead-custom-awl table-bordered border-secondary">
                 <tr>
