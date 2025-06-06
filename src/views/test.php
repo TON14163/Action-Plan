@@ -122,7 +122,7 @@ datalist option:hover, datalist option:focus {
 
 <script>
     // ใช้ fetch API เพื่อดึงข้อมูลจาก API
-    fetch('https://testpr-wr.allwellcenter.com/customers_json')
+    fetch('https://action-plans.allwellcenter.com/customers_json')
         .then(response => response.json())
         .then(data => {
             var selectElement = document.getElementById('browserdata');
