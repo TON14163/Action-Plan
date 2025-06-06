@@ -1,20 +1,27 @@
-<?php 
-ob_start(); // เปิดใช้งานการเก็บข้อมูล 
+<?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
-session_start();
+function DateThai($strDate) {
+		$strYear = date("y",strtotime($strDate))+43;
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		$strHour= date("H",strtotime($strDate));
+		$strMinute= date("i",strtotime($strDate));
+		$strSeconds= date("s",strtotime($strDate));
+		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strMonthThai $strYear";
+	}
 ?>
-<h5>รายงานสรุปผลการขายตามช่วงเวลา (Sup)</h5>
-<form name="frmSearch" action="<?php echo $url;?>" enctype="multipart/form-data" method="post">
+
+<center><h5>รายงานสรุปผลการขายตามช่วงเวลา (Sup)</h5></center>
+<form name="frmSearch" method="POST" action="<?php echo $url;?>">
 <center>
 เขตการขาย :&nbsp;&nbsp;&nbsp;
-	
 <?php if($_SESSION['em_id']=='SS2'){ ?>	
-<select name="sale_code" id="sale_code" style="width:150px" class="styled-select yellow rounded" >
+<select name="sale_code" id="sale_code" style="width:150px"  >
 <option value="">**Please Select**</option>
 <?php
-
 $strSQL5 = "SELECT * FROM tb_supname where ckk_c ='1' ORDER BY sale_code ASC";
-
 $objQuery5 = mysqli_query($conn,$strSQL5);
 while($objResuut5 = mysqli_fetch_array($objQuery5)){
 if($_POST["sale_code"] == $objResuut5["sale_code"])
@@ -33,9 +40,8 @@ $sel = "";
 }
 ?>
 </select>	
-
 <?php }else{ ?> 
-<select name="sale_code" id="sale_code" style="width:150px" class="styled-select yellow rounded" >
+<select name="sale_code" id="sale_code" style="width:150px"  >
 <option value="">**Please Select**</option>
 <?php
 
@@ -60,50 +66,31 @@ $sel = "";
 ?>
 </select>
 <?php } ?>	
-
-	
 <input type="submit" value="Search"  >	
-
-</p>
-
-
 </center>
 
-
-
-
-
-
 <?php	
-	
 $sale_code=$_POST["sale_code"];
 if($sale_code!=''){	
-	
-	
 if($_POST['sale_code']=='SS1'){
 
 $ddd = " and sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sale_area !='S17'  and sale_area !='S23'  and sale_area !='S24'  and sale_area !='S31' and sale_area !='S32' and sale_area !='SM1' and sale_area !='MM1' ";
 $target ="  and ckk_type='0' and  zone_code !='S11'  and zone_code !='S12' and zone_code !='S13'  and zone_code !='S17'  and zone_code !='S23'  and zone_code !='S24'";
 $sumall = " and type_arae='1' and  sale_cose !='S11'  and sale_cose !='S12' and sale_cose !='S13'  and sale_cose !='S17'  and sale_cose !='S23'  and sale_cose !='S24'";
 
-
-
-}else if($_POST['sale_code']=='SS2'){
+} else if($_POST['sale_code']=='SS2'){
 
 $ddd = " and sale_area !='S14'  and sale_area !='S15' and sale_area !='S16'  and sale_area !='S21'  and sale_area !='S22'  and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'  and sale_area !='S32'";
 $target = " and ckk_type='0' and zone_code !='S14'  and zone_code !='S15' and zone_code !='S16'  and zone_code !='S21'  and zone_code !='S22'";
 $sumall = " and type_arae='1' and  sale_cose !='S14'  and sale_cose !='S15' and sale_cose !='S16'  and sale_cose !='S21'  and sale_cose !='S22'";
 
-
-}else if($_POST['sale_code']=='SS3'){
+} else if($_POST['sale_code']=='SS3'){
 
 $ddd = " and sale_area !='S14'  and sale_area !='S15' and sale_area !='S16'  and sale_area !='S21'  and sale_area !='S22'  and sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sale_area !='S17'  and sale_area !='S23'  and sale_area !='S24' ";
 $target = " and ckk_type !='0' and ckk_type !='1'  and ckk_type !='2' and ckk_type !='6'";
 $sumall = " and type_arae='2' and sale_cose NOT LIKE '%SOL%'";
 
-
-
-}else if($_POST['sale_code']=='All'){
+} else if($_POST['sale_code']=='All'){
 
 $ddd = " and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'  and sale_area !='S32'";
 $target = " and ckk_type ='0' ";
@@ -286,7 +273,7 @@ $date_sum5 = substr($start_date5,0,7);
 	
 ?>
 	
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span >รายงานเปรียบเทียบตามวันที่ตั้งเรื่อง</span></h2>	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ตั้งเรื่อง</span></h2>	
 <table border="1" width="100%">
 <tr>
 <td width="5%" align="center" bgcolor="#ebe4ed">วันที่ตั้งเรื่อง</td>
@@ -313,7 +300,7 @@ $date_sum5 = substr($start_date5,0,7);
 
 	
 $strSQL7 = "SELECT SUM(sum_price_product) AS sum_price_product2  FROM tb_register_data where percent_id = '1' and  date_request NOT LIKE '%$date_sum%' and summary_product1 !='' $ddd";
-
+echo $strSQL7;
 if($start_date !=""){ 
 $strSQL7 .= ' AND date_plan  >= "'.$start_date.'"'; 
 }
@@ -1324,7 +1311,7 @@ $date_summ11 = substr($start_send11,0,7);
 	
 ?>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span >รายงานเปรียบเทียบตามวันที่ปิดการขาย (รับใบสั่งซื้อ)</span></h2>	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ปิดการขาย (รับใบสั่งซื้อ)</span></h2>	
 <table border="1" width="100%">
 <tr>
 <td width="5%" align="center" bgcolor="#ebe4ed">วันที่รับใบสั่งซื้อ</td>
@@ -2937,7 +2924,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 </table>	
 <br>	
 	
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span >รายงานเปรียบเทียบตามวันที่ส่งสินค้า (Forcast) ปี 2568</span></h2>	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ส่งสินค้า (Forcast) ปี 2568</span></h2>	
 <table border="1" width="100%">
 <tr>
 <td width="10%" align="center" bgcolor="#ebe4ed">วันที่ส่งสินค้า</td>
@@ -4737,7 +4724,7 @@ $end_nd11 = "2026-12-31";
 
 ?>	
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span >รายงานเปรียบเทียบตามวันที่ส่งสินค้า (Forcast) ปี 2569</span></h2>	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ส่งสินค้า (Forcast) ปี 2569</span></h2>	
 <table border="1" width="100%">
 <tr>
 <td width="10%" align="center" bgcolor="#ebe4ed">วันที่ส่งสินค้า</td>
@@ -6204,9 +6191,15 @@ $start_st5 = substr($start_nd5, 0, -3);
 
 	
 $strSQL8 = "SELECT  SUM(target) As target FROM tb_target WHERE month_no >= '".$start_st."' and  month_no <= '".$start_st5."'  $target";
+
 $objQuery8 = mysqli_query($sol,$strSQL8) or die ("Error Query [".$strSQL8."]");
 $objResult8 = mysqli_fetch_array($objQuery8);
+
+	
+	
 ?>	
+	
+
 <tr>
 <td align="center">ยอดรวม</td>
 <td align="center" bgcolor="#00FF00"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></td>
@@ -6222,6 +6215,7 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	
 </table>	
 <?php } ?>
+
 </form>
 
 <?php 
