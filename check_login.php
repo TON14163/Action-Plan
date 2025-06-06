@@ -52,7 +52,7 @@ $domain_only = explode(':', $domain)[0]; // ตัดพอร์ตออก
 
 if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
     $thisDomain = "/Action-Plan/";
-} elseif ($domain_only === 'action-plan.allwellcenter.com') {
+} elseif ($domain_only === 'action-plans.allwellcenter.com') {
     $thisDomain =  "/";
 } else {
     echo "ไม่รู้จักโดเมนนี้";
