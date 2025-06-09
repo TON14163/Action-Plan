@@ -69,9 +69,14 @@ function product_view($percent_id){
                 <th style="width: 10%;">วันที่</th>
                 <th style="width: 17%;">โรงพยาบาล</th>
                 <th style="width: 12%;">หน่วยงาน</th>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <th style="width: 44%;">รายละเอียด</th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <th style="width: 7%;">เขตการขาย</th>
+                <?php } else { ?>
+                <th style="width: 51%;">รายละเอียด</th>
+                <th style="width: 10%;">ผู้ติดต่อ</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -156,11 +161,11 @@ function product_view($percent_id){
                     ?>
                 <!-- </td> -->
                 <td style="<?php echo $colorTable;?>" class="text-start px-2">
-                    <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
-                    <?php if($rowPlan['description_focastnew'] != ''){ ?><br><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew']; } ?>
-                    <?php if($rowPlan['percent_id'] != ''){ ?><br><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['percent_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?><?php } ?>
-                    <?php if($rowPlan['summary_order'] == '1'){ ?> <br><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; <?php } ?>
-                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> <?php } ?>
+                    <!-- <b style="color:#0080c0;">แผนงาน : </b> <?php // echo $rowPlan['plan_work'];?> -->
+                    <?php if($rowPlan['description_focastnew'] != ''){ ?><div><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew'];?></div><?php } ?>
+                    <?php if($rowPlan['percent_id'] != ''){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['percent_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
+                    <?php if($rowPlan['summary_order'] == '1'){ ?><div><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; </div><?php } ?>
+                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> </div><?php } ?>
                     <?php 
                         $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' "; 
                         $qsql1 = mysqli_query($conn,$sql1); 
@@ -187,7 +192,9 @@ function product_view($percent_id){
                     <?php } ?>
                 </td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
+                <?php } ?>
             </tr>
         <?php } } else { echo '<td colspan="8" style="text-align: center;"">ไม่พบข้อมูล</td>'; } ?>
         </tbody>
