@@ -50,7 +50,7 @@ if ($_SESSION['em_id'] == '' ) { ?>
     <ul class="menu-nav2">
         <?php if($_SESSION['em_id'] != 'MK'){ ?>
         <li><a class="hover-nav-item" href="<?php echo $nameHost;?>actionplan">Action Plan</a></li>
-        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>dallyreport">Dally Report</a></li>
+        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>dallyreport">Daily Report</a></li>
         <li>
             <span class="hover-nav-item arrow-top-down">
             Report &nbsp;

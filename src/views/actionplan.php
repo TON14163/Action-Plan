@@ -35,12 +35,11 @@
         <thead>
             <tr>
                 <th data-orderable="false" style="width: 5%;">Visit</th>
-                <th data-orderable="false" style="width: 20%;">โรงพยาบาล</th>
+                <th data-orderable="false" style="width: 30%;">โรงพยาบาล</th>
                 <th data-orderable="false" style="width: 20%;">ตึก</th>
                 <th data-orderable="false" style="width: 5%;">ชั้น</th>
                 <th data-orderable="false" style="width: 20%;">หน่วยงาน</th>
-                <th data-orderable="false" style="width: 15%;">ผู้ติดต่อ</th>
-                <th data-orderable="false" style="width: 15%;">วัตถุประสงค์</th>
+                <th data-orderable="false" style="width: 20%;">ผู้ติดต่อ</th>
             </tr>
         </thead>
     </table>
@@ -69,8 +68,7 @@
                 { "data": "col2" },
                 { "data": "col3" },
                 { "data": "col4" },
-                { "data": "col5" },
-                { "data": "col6" }
+                { "data": "col5" }
             ],
             "language": {
                 "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",

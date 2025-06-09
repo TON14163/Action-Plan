@@ -63,17 +63,6 @@ $item = array();
 $row = 1;
 while ($objResult = mysqli_fetch_array($objQuery)) {
 
-    $col6 = '
-    <select class="form-select-custom-awl" name="objective['.$row.']" id="objective['.$row.']">
-        <option value="">Please Select</option>
-        <option value="Awareness">Awareness</option>
-        <option value="Consideration">Consideration</option>
-        <option value="Decision">Decision</option>
-        <option value="Use">Use</option>
-        <option value="Loyalty">Loyalty</option>
-    </select>
-    ';
-
     $item[] = array(
         'col0' => '
         <input type="hidden" name="item['.$row.']" id="item['.$row.']" value="'.$row.'" >
@@ -91,7 +80,6 @@ while ($objResult = mysqli_fetch_array($objQuery)) {
         'col3' => mysqli_real_escape_string($conn,$objResult['hospital_class']),
         'col4' => mysqli_real_escape_string($conn,$objResult['hospital_ward']),
         'col5' => mysqli_real_escape_string($conn,$objResult['hospital_contact1']),
-        'col6' => $col6,
     );
     $row++;
 }

@@ -3,11 +3,11 @@
     $dayDF = date('Y-m-d');
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">สร้าง Dally Report</b>
+    <b style="font-size: 20px;">สร้าง Daily Report</b>
 </div>
 <p>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
-        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : $dayDF; ?>">
+        <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
         <b>Sale</b> 
         <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
@@ -51,7 +51,7 @@
 
     <script>
         $(document).ready(function() {
-            var datePlan = "<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : $dayDF; ?>";
+            var datePlan = "<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : '' ?>";
             var saleCode = "<?php echo !empty($sale_code) ? htmlspecialchars($sale_code, ENT_QUOTES, 'UTF-8') : ''; ?>";
             $('#unitTable').DataTable({
                 "lengthChange": false,
@@ -94,10 +94,12 @@
                 "language": {
                     "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                     "infoFiltered": "" // ลบส่วน filtered from ออก
-                },
-                // "initComplete": function() {
-                //     this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
-                // }
+                }
+                <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+                ,"initComplete": function() {
+                    this.api().column(6).visible(false); // ซ่อนคอลัมน์ที่ 6
+                }
+                <?php } ?>
             });
         });
         
