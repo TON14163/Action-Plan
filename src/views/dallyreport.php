@@ -1,5 +1,5 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
-(!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'];
+
     $dayDF = date('Y-m-d');
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
@@ -48,12 +48,11 @@
             </tr>
         </thead>
     </table>
-    
+
     <script>
         $(document).ready(function() {
             var datePlan = "<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : $dayDF; ?>";
-            var saleCode = "<?php echo !empty($saleSet) ? htmlspecialchars($saleSet) : ''; ?>";
-            
+            var saleCode = "<?php echo !empty($sale_code) ? htmlspecialchars($sale_code, ENT_QUOTES, 'UTF-8') : ''; ?>";
             $('#unitTable').DataTable({
                 "lengthChange": false,
                 "searching": false, 

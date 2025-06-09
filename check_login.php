@@ -61,6 +61,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
 
     if($rows == 1){
         @session_start();
+        $_SESSION['id'] = $data["id"];
         $_SESSION['user_id_login'] = $data["user_id"];
         $_SESSION['name_show'] = $data["name"];
         $_SESSION['em_code'] = $data["em_code"];

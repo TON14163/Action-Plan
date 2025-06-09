@@ -1,8 +1,6 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
-(!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'] ;
-
 function product_view($percent_id){
     $sqlproductView = "SELECT product_name FROM tb_product WHERE product_ID = '".$percent_id."' LIMIT 1";
     $qsqlproductView = mysqli_query($GLOBALS['conn'], $sqlproductView);
@@ -22,9 +20,7 @@ function product_view($percent_id){
                 <b>Sale</b> 
                     <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
                 <b>ประเภทสินค้า</b> <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="">
-        <br>
-                <br>
-
+                <br><br>
         <div style="display: flex;">
             <label for="customer"><b>โรงพยาบาล&nbsp;</b></label>
             <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>

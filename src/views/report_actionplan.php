@@ -1,7 +1,6 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
-(!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code'] ;
 
 if(!empty(($_REQUEST['dc']))){
     $dc = $_REQUEST['dc'];
@@ -158,29 +157,36 @@ if(!empty(($_REQUEST['dc']))){
                 } else {
                     $colorTable = '';
                 }
-        ?>
-            <tr>
-                <td style="<?php echo $colorTable; ?>"><?php echo DateThai($rowPlan['date_plan']); ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_name']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_ward']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['hospital_contact']; ?></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['objective']; ?></td>
-                <td style="<?php echo $colorTable; ?>">
+                ?>
+                <tr>
+                    <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
+                    <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
+                    <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
+                    <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
+                    <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['objective'];?></td>
+                    <td style="<?php echo $colorTable;?>">
                     <?php
-                    $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
-                    $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
-                    while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
-                        echo $rowtypeproduct['product_rival'].'<br>';
-                    }
+                        $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
+                        $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
+                        while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
+                            echo $rowtypeproduct['product_rival'].'<br>';
+                        }
                     ?>
-                </td>
-                <td style="<?php echo $colorTable; ?>"></td>
-                <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
-                <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
-                    <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
-                <?php } ?>
-            </tr>
-        <?php } } ?>
+                    </td>
+                    <td style="<?php echo $colorTable; ?>"></td>
+                    <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
+                    <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
+                        <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
+                    <?php } ?>
+                </tr>
+<?php 
+            }
+        } else { ?>
+            <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
+                <td colspan="9" style="text-align: center">ไม่พบข้อมูล</td>
+            <?php } else { ?>
+                <td colspan="8" style="text-align: center">ไม่พบข้อมูล</td>
+<?php   }         } ?>
         </tbody>
     </table>
     <br>

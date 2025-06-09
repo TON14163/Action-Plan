@@ -64,9 +64,8 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
         <thead>
             <tr>
                 <th style="width:8.14%;">วันที่</th>
-                <th style="width:7.14%;">โรงพยาบาล</th>
-                <th style="width:7.14%;">หน่วยงาน</th>
-                <th style="width:7.14%;">ประเภทสินค้า</th>
+                <th style="width:10.71%;">โรงพยาบาล</th>
+                <th style="width:10.71%;">ประเภทสินค้า</th>
                 <th style="width:9.28%;">บริษัทคู่เเข่ง</th>
                 <th style="width:7.14%;">ยี่ห้อ</th>
                 <th style="width:7.14%;">รุ่น</th>
@@ -122,7 +121,6 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             <tr>
                 <td><?php echo Datethai($objResult["create_date"]);?></td>
                 <td><?php echo $objResult["customer_name"];?></td>
-                <td><?php echo $objResult5["hospital_ward"];?></td>
                 <td><?php echo $objResult["product_rival"];?><?php if($objResult["product_rival"]=='อื่นๆ'){ ?><br> <?php echo $objResult["product_des"]; } ?> </td>
                 <td><?php echo $objResult["company_rival"];?></td>
                 <td><?php echo $objResult["rival_brand"];?></td>
