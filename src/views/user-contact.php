@@ -69,9 +69,7 @@ error_reporting(0);
             </div>
         </div>
     <div data-bs-toggle="tooltip" data-bs-title="เพิ่มข้อมูลผู้ติดต่อ. . .">
-        <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
             <img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#add_plus"  >
-        <?php } ?>
     </div>
 </div>
 </form> 
@@ -88,9 +86,7 @@ error_reporting(0);
                 <th style="width: 10%;">ชั้น</th>
                 <th style="width: 20%;">หน่วยงาน</th>
                 <th style="width: 20%;">ผู้ติดต่อ</th>
-                <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
                 <th style="width: 10%;">Edit</th>
-                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -124,7 +120,7 @@ error_reporting(0);
                 // Base SQL query
                 // Add customer keyword filter if provided
                 if (!empty($_GET['cus_keyword'])) {
-                    $cuss .= " AND customer_name LIKE '%" . htmlspecialchars($_GET['cus_keyword']) . "%'";
+                    $cuss .= " AND customer_name = '" . htmlspecialchars($_GET['cus_keyword']) . "'";
                 }
 
                 // Execute initial query to get total rows
@@ -132,7 +128,7 @@ error_reporting(0);
                 $Num_Rows = mysqli_num_rows($qcus);
 
                 // Pagination Logic
-                $Per_Page = 10; // Records per page
+                $Per_Page = 100; // Records per page
                 $Page = isset($_GET["Page"]) ? (int)$_GET["Page"] : 1;
                 if (!$Page) {
                     $Page = 1;
@@ -161,7 +157,6 @@ error_reporting(0);
                         <td><?php echo htmlspecialchars($customers['hospital_class']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_ward']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_contact1']); ?></td>
-                        <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
                         <td>
                             <?php 
                                 switch ($customers["type_cus"]) {
@@ -230,7 +225,6 @@ error_reporting(0);
                                 "
                             >
                         </td>
-                        <?php } ?>
                     </tr>
                 <?php } ?>
         </tbody>
