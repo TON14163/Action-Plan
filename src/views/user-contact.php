@@ -1,7 +1,28 @@
 <?php 
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
-(!isset($_GET['sale_code'])) ? $sale_code = $_SESSION['em_id'] : $sale_code = $_GET['sale_code']; // กำหนด sale_code ตามที่ส่งมาใน URL หรือจาก session
+    $sale_code = '';
+    if (isset($_GET['sale_code'])) {
+        $sale_code = $_GET['sale_code'];
+    } else if (isset($_POST['sale_code'])) {
+        $sale_code = $_POST['sale_code'];
+    } else if (isset($_SESSION['em_id'])) { 
+        $sale_code = $_SESSION['em_id'];  
+    }
+
+    $allSaleAll = array();
+    $strSQL5 = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$_SESSION['id']."' ORDER BY m_id ASC ";
+    $objQuery5 = mysqli_query($conn, $strSQL5);
+    while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+        $strSQL5_1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuut5['m_id']."' ";
+        $objQuery5_1 = mysqli_query($conn, $strSQL5_1);
+        $objResuut5_1 = mysqli_fetch_array($objQuery5_1);
+
+        $selected = ($objResuut5_1['em_id'] == $sale_code) ? 'selected' : '';
+        $em_id = htmlspecialchars($objResuut5_1["em_id"]);
+        $allSaleAll[] = $em_id;
+    }
+    $allSaleMain = implode("','", $allSaleAll);
 ?>
 
 <style>
@@ -91,32 +112,7 @@ error_reporting(0);
         </thead>
         <tbody>
             <?php
-                if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { // it เห็นหมด
-                    $cuss = "SELECT * FROM tb_customer_contact WHERE 1=1 ";
-                } else if($_SESSION['typelogin'] == 'Supervisor'){
-                    switch ($_SESSION["head_area"]) {
-                        case 'SM1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_sm1 "; break;
-                        case 'SS1': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 "; break;
-                        case 'SS2': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss2 "; break;
-                        case 'SS3': $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss3 "; break;
-                        default:
-                            $strSQL5 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                            UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                            UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                            UNION SELECT sale_code,sale_name FROM tb_team_sm1 ";
-                        break;
-                    }
-                    $objQuery5 = mysqli_query($conn, $strSQL5);
-                    $allSale = array();
-                    while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-                        $allSale[] = htmlspecialchars($objResuut5["sale_code"]);
-                    }
-                    $em_idFull = implode("','", $allSale);
-                    $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code IN ('".$em_idFull."') ";
-                } else {
-                    $em_idFull = $_SESSION['em_id'];
-                    $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code = '" . htmlspecialchars($em_idFull) . "'";
-                }
+                $cuss = "SELECT * FROM tb_customer_contact WHERE sale_code IN ('".$allSaleMain."') ";
                 // Base SQL query
                 // Add customer keyword filter if provided
                 if (!empty($_GET['cus_keyword'])) {
@@ -126,7 +122,6 @@ error_reporting(0);
                 // Execute initial query to get total rows
                 $qcus = mysqli_query($conn, $cuss) or die("Error Query [" . $cuss . "]");
                 $Num_Rows = mysqli_num_rows($qcus);
-
                 // Pagination Logic
                 $Per_Page = 100; // Records per page
                 $Page = isset($_GET["Page"]) ? (int)$_GET["Page"] : 1;
@@ -156,7 +151,7 @@ error_reporting(0);
                         <td><?php echo htmlspecialchars($customers['hospital_buiding']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_class']); ?></td>
                         <td><?php echo htmlspecialchars($customers['hospital_ward']); ?></td>
-                        <td><?php echo htmlspecialchars($customers['hospital_contact1']); ?></td>
+                        <td><?php echo htmlspecialchars($customers['hospital_contact1']);?></td>
                         <td>
                             <?php 
                                 switch ($customers["type_cus"]) {

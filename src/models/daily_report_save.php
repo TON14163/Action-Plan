@@ -278,6 +278,7 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
     $company_rival = $_POST['company_rival'] ?? []; // บริษัท
     $rival_brand = $_POST['rival_brand'] ?? []; // ยี่ห้อ
     $rival_model = $_POST['rival_model'] ?? []; // รุ่น
+    $rival_country = $_POST['rival_country'] ?? []; // รุ่น
     $price_to_unit = $_POST['price_to_unit'] ?? []; // ราคา/หน่วย
     $unit = $_POST['unit'] ?? []; // จำนวนซื้อ
     $promotion = $_POST['promotion'] ?? []; // เงื่อนไขพิเศษ
@@ -293,6 +294,7 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
         $company_rivalNew = htmlspecialchars(mysqli_real_escape_string($conn, $company_rival[$key] ?? ''), ENT_COMPAT);
         $rival_brandNew = htmlspecialchars(mysqli_real_escape_string($conn, $rival_brand[$key] ?? ''), ENT_COMPAT);
         $rival_modelNew = htmlspecialchars(mysqli_real_escape_string($conn, $rival_model[$key] ?? ''), ENT_COMPAT);
+        $rival_countryNew = htmlspecialchars(mysqli_real_escape_string($conn, $rival_country[$key] ?? ''), ENT_COMPAT);
         $price_to_unitNew = htmlspecialchars(mysqli_real_escape_string($conn, $price_to_unit[$key] ?? ''), ENT_COMPAT);
         $unitNew = htmlspecialchars(mysqli_real_escape_string($conn, $unit[$key] ?? ''), ENT_COMPAT);
         $promotionNew = htmlspecialchars(mysqli_real_escape_string($conn, $promotion[$key] ?? ''), ENT_COMPAT);
@@ -348,6 +350,7 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
                     company_rival = '".$company_rivalNew."',
                     rival_brand = '".$rival_brandNew."',
                     rival_model = '".$rival_modelNew."',
+                    rival_country = '".$rival_countryNew."',
                     price_to_unit = '".$price_to_unitNew."',
                     unit = '".$unitNew."',
                     promotion = '".$promotionNew."',
@@ -368,8 +371,8 @@ $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital
                 if($chkNumNoAuto == 0 ){
                 $rowNoAuto = mysqli_fetch_array($chkQueryNoAuto);
 
-                    $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model, price_to_unit, unit, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
-                    VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', 
+                    $strSQLrival = "INSERT INTO tb_storyrival (no_auto, refid_work, id_customer, customer_name, create_date, product_rival, company_rival, rival_brand, rival_model,rival_country,price_to_unit, unit, promotion, description, file_nap1, sale_area, add_date, add_by, h_product_rival) 
+                    VALUES ('$current_no_auto', '$id_work', '$id_customer', '$hospital_name', '$addDate', '" . $show->showProrivalValue($h_product_rivalNew) . "', '$company_rivalNew', '$rival_brandNew', '$rival_modelNew', '$rival_countryNew', 
                     '$price_to_unitNew', '$unitNew', '$promotionNew', '$descriptionNew', '$file_nap1', '" . $_SESSION['em_id'] . "', '$addDate', '" . $_SESSION['username'] . "', '$h_product_rivalNew')";
                     $objQueryrival = mysqli_query($conn, $strSQLrival) or die(mysqli_error($conn));
                     // echo $strSQLrival . '<hr>';

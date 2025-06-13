@@ -172,8 +172,9 @@ class DailyReportEdit {
             <div class='table-responsive p-2'>
             <table class='table-thead-custom-awl table-bordered border-secondary' style='width: 100%;'>
                 <tr>
-                        <th style='width: 25%;'>ประเภทสินค้า</th>
+                        <th style='width: 18%;'>ประเภทสินค้า</th>
                         <th style='width: 15%;'>บริษัท</th>
+                        <th style='width: 12%;'>ประเทศ</th>
                         <th style='width: 15%;'>ยี่ห้อ</th>
                         <th style='width: 15%;'>รุ่น</th>
                         <th style='width: 10%;'>ราคา/หน่วย</th>
@@ -194,6 +195,12 @@ class DailyReportEdit {
                         </select>
                     </td>
                     <td style='padding: 8px;'><input style='width: 100%;' type='text' name='company_rival[]' id='company_rival1' placeholder='Please fill out' value=".$vsql['company_rival']."></td>
+                    <td style='padding: 8px;'>
+                        <select class='form-search-custom-awl' style='width: 100%;' name='rival_country[]' id='rival_country1' onclick='Country()'>
+                                <option value=".$vsql['rival_country'].">".$vsql['rival_country']."</option>
+                                <option value=''>Search</option>
+                        </select>
+                    </td>
                     <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_brand[]' id='rival_brand1' placeholder='Please fill out' value=".$vsql['rival_brand']."></td>
                     <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_model[]' id='rival_model1' placeholder='Please fill out' value=".$vsql['rival_model']."></td>
                     <td style='padding: 8px;'><input style='width: 100%;' type='number' name='price_to_unit[]' id='price_to_unit1' value=".$vsql['price_to_unit']."></td>

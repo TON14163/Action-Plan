@@ -165,7 +165,7 @@ if(!empty(($_REQUEST['dc']))){
                     <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
 
                 <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
-                    <td style="<?php echo $colorTable;?> text-align: left;">
+                    <td style="<?php echo $colorTable;?> text-align: left; padding:0px 5px;">
                         <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
                         <?php echo $rowPlan['objective'];?>
                         <?php
@@ -179,7 +179,7 @@ if(!empty(($_REQUEST['dc']))){
                     <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
                     <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
                 <?php } else { ?>
-                    <td style="<?php echo $colorTable; ?> text-align: left;">
+                    <td style="<?php echo $colorTable; ?> text-align: left; padding:0px 5px;">
                         <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
                         <?php echo $rowPlan['objective'];?>
                     </td>

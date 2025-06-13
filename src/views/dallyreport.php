@@ -1,5 +1,4 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
-
     $dayDF = date('Y-m-d');
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">

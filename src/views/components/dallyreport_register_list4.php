@@ -10,8 +10,9 @@
             <div class="table-responsive p-2">
                 <table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
                     <tr>
-                        <th style="width: 25%;">ประเภทสินค้า</th>
+                        <th style="width: 18%;">ประเภทสินค้า</th>
                         <th style="width: 15%;">บริษัท</th>
+                        <th style="width: 12%;">ประเทศ</th>
                         <th style="width: 15%;">ยี่ห้อ</th>
                         <th style="width: 15%;">รุ่น</th>
                         <th style="width: 10%;">ราคา/หน่วย</th>
@@ -26,6 +27,11 @@
                             </select>
                         </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="company_rival[]" id="company_rival1" placeholder="Please fill out"></td>
+                        <td style="padding: 8px;">
+                            <select class="form-search-custom-awl" style="width: 100%;" name="rival_country[]" id="rival_country1" onclick="Country()">
+                                <option value="">Search</option>
+                            </select>
+                        </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_brand[]" id="rival_brand1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_model[]" id="rival_model1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="number" name="price_to_unit[]" id="price_to_unit1"></td>
@@ -34,11 +40,55 @@
                     </tr>
                 </table>
             </div>
+            <script>
+                // โหลดรายชื่อประเทศครั้งเดียวและเก็บไว้
+                let countryOptions = '';
+
+                function loadCountryOptions() {
+                    fetch(`<?php echo $COUNTRY_API;?>`)
+                        .then(response => response.json())
+                        .then(dataCountry => {
+                            countryOptions = '<option value="">Search</option>';
+                            dataCountry.forEach(itemCountry => {
+                                const value = itemCountry.id || itemCountry.value || itemCountry.name || '';
+                                const label = itemCountry.name || itemCountry.label || itemCountry.value || '';
+                                countryOptions += `<option value="${value}">${label}</option>`;
+                            });
+                            // ใส่ options ให้กับทุก select.rival-country
+                            updateAllCountrySelects();
+                        })
+                        .catch(error => {
+                            console.error('Error fetching country data:', error);
+                        });
+                }
+
+                function updateAllCountrySelects() {
+                    document.querySelectorAll('select[name="rival_country[]"]').forEach(select => {
+                        const currentValue = select.value;
+                        select.innerHTML = countryOptions;
+                        select.value = currentValue; // restore value if possible
+                    });
+                }
+
+                // เรียกใช้เมื่อโหลดหน้า
+                document.addEventListener('DOMContentLoaded', loadCountryOptions);
+
+                // เรียกใช้หลังจากเพิ่มแถวใหม่
+                function refreshCountrySelects() {
+                    updateAllCountrySelects();
+                }
+            </script>
 
             <p class="p-2">
                 หมายเหตุ
                 <textarea class="textarea-form-control" style="width:100%;" name="description[]" id="description1" rows="3"></textarea>
             </p>
+                <span>
+                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addMultiList()" data-bs-toggle="tooltip" data-bs-title="สามารถเพิ่มพร้อมกันได้หลายรายการ">
+                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มข้อมูลคู่แข่ง
+                    </span>
+                </span>
+                <br>
 
             <div style="display: flex; justify-content: space-between; margin-top: -10px;">
                 <div>
@@ -51,11 +101,7 @@
                     </div>
                     <div id="file4RowsContainer1"></div>
                 </div>
-                <span>
-                    <span class="badge rounded-pill" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addMultiList()">
-                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มข้อมูลคู่แข่ง
-                    </span>
-                </span>
+                
             </div>
             <?php if($show->showStoryrival($id_work,'id_story') == ''){?>
                 <input type="hidden" name="no_auto[]" id="no_auto1" value="1">
