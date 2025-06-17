@@ -55,8 +55,22 @@
             </div>
         </div>
         <div class="col-2 d-flex align-items-center"> 
-            <?php echo $show->showCustomerLevel($id_work);?> 
-            <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
+            <?php
+            if($show->showCustomerLevelNumber($id_work) != '0'){
+                    echo $show->showCustomerLevel($id_work);
+                    ?>
+                    <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
+                    <?php
+            } else { ?>
+                <small>
+                    <input type="radio" name="cus_free" id="cus_free1" value="1"> <label for="cus_free1">Normal</label>&nbsp;
+                    <input type="radio" name="cus_free" id="cus_free2" value="2"> <label for="cus_free2">VIP</label>&nbsp;
+                    <br>
+                    <input type="radio" name="cus_free" id="cus_free3" value="3"> <label for="cus_free3">VVIP</label>&nbsp;
+                    <input type="radio" name="cus_free" id="cus_free4" value="0" checked> <label for="cus_free4">ไม่ได้ระบุ</label>&nbsp;
+                </small>
+            <?php } ?> 
+
         </div>
         <!--  -->
         <div class="col-3">
