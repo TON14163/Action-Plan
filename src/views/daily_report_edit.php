@@ -88,6 +88,11 @@ if (!empty($_GET['addPlanPurple'])) {
         ?>
     </span>
 </div>
+<style>
+    label{
+        cursor: pointer;
+    }
+</style>
 
 <form action="daily_report_save" method="post" enctype="multipart/form-data">
     <?php require_once __DIR__ . '/../views/components/dallyreport_register_details1.php';?>
