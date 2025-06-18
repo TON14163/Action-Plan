@@ -30,8 +30,6 @@ if ($auto_export) {
         'วันที่',
         'โรงพยาบาล',
         'หน่วยงาน',
-        'ประเภทสินค้า',
-        'Activity',
         'รายละเอียด',
         'ผู้ติดต่อ',
         'เขตการขาย'
@@ -66,13 +64,42 @@ if ($auto_export) {
             $product_rivals .= $rowtypeproduct['product_rival'] . "\n";
         }
 
+    // รายละเอียด START
+        $description = '';
+        if($rowPlan['description_focastnew'] != ''){ $description .= "UPDATE ประมาณการขาย :".$rowPlan['description_focastnew']; } 
+        if($rowPlan['product_id'] != ''){ $description .= 'สรุปใบเสนอราคา :'.product_view($rowPlan['product_id']).$rowPlan['unit_product1'].$rowPlan['unit_name1']; }
+        if($rowPlan['summary_order'] == '1'){ $description .= 'สรุปการขาย :&#10003;'; }
+
+        $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; 
+        $qsql = mysqli_query($conn,$sql); 
+        $vsql = mysqli_fetch_array($qsql); 
+        if($vsql['cuspre_descript'] != ''){ $description .= 'Demo ทดลองสินค้า :'.$vsql['cuspre_descript']; }
+
+        $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' "; 
+        $qsql1 = mysqli_query($conn,$sql1); 
+        $nqsql1 = mysqli_num_rows($qsql1); 
+        if($nqsql1 > 0){ $description .= 'ข้อมูลคู่แข่ง :';
+            while($vsql1 = mysqli_fetch_array($qsql1)){
+                $description .= $vsql1['product_rival'].' '.$vsql1['company_rival'].' '.$vsql1['rival_brand'].' '.$vsql1['rival_model'];
+            }
+        }
+
+        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' AND work_name != '' "; 
+        $qsql2 = mysqli_query($conn,$sql2); 
+        $nqsql2 = mysqli_num_rows($qsql2);
+        if($nqsql2 > 0){  
+            $description .= 'ออกบูธ (Group Presentation) :';
+            while($vsql2 = mysqli_fetch_array($qsql2)){
+                $description .= $vsql2['work_name'].' '.DateThai($vsql2['work_date']).' '.DateThai($vsql2['end_date']).' '.$vsql2['sum_wordpre'];
+            }
+        } 
+    // รายละเอียด END
+
         fputcsv($output, [
             DateThai($rowPlan['date_plan']),
             $rowPlan['hospital_name'],
             $rowPlan['hospital_ward'],
-            $product_rivals,
-            $rowPlan['description_focastnew'],
-            $rowPlan['plan_work'],
+            $description,
             $rowPlan['hospital_contact'],
             $rowPlan['sale_area']
         ], ',', '"');
@@ -95,9 +122,7 @@ exit;
                 <th style="width: 10%;">วันที่</th>
                 <th style="width: 15%;">โรงพยาบาล</th>
                 <th style="width: 15%;">หน่วยงาน</th>
-                <th style="width: 17%;">ประเภทสินค้า</th>
-                <th style="width: 10%;">Activity</th>
-                <th style="width: 10%;">รายละเอียด</th>
+                <th style="width: 37%;">รายละเอียด</th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <th style="width: 7%;">เขตการขาย</th>
             </tr>
@@ -159,17 +184,38 @@ exit;
                 <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
-                <td style="<?php echo $colorTable;?>">
-                    <?php
-                    $sqltypeproduct = "SELECT product_rival FROM tb_storyrival WHERE refid_work = '" . mysqli_real_escape_string($conn, $rowPlan['id_work']) . "' ORDER BY id_story DESC LIMIT 20";
-                    $querytypeproduct = mysqli_query($conn, $sqltypeproduct) or die("Query failed: " . mysqli_error($conn));
-                    while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
-                        echo $rowtypeproduct['product_rival'] . '<br>';
-                    }
+                <td style="<?php echo $colorTable;?>" class="text-start px-2">
+                    <?php if($rowPlan['description_focastnew'] != ''){ ?><div><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew'];?></div><?php } ?>
+                    <?php if($rowPlan['product_id'] != ''){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['product_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
+                    <?php if($rowPlan['summary_order'] == '1'){ ?><div><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; </div><?php } ?>
+                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> </div><?php } ?>
+                    <?php 
+                        $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' "; 
+                        $qsql1 = mysqli_query($conn,$sql1); 
+                        $nqsql1 = mysqli_num_rows($qsql1); 
                     ?>
+                    <?php if($nqsql1 > 0){ ?>
+                        <div>
+                            <b style="color:#0080c0;">ข้อมูลคู่แข่ง :</b>
+                            <?php
+                            while($vsql1 = mysqli_fetch_array($qsql1)){
+                                echo '<br>'.$vsql1['product_rival'].' '.$vsql1['company_rival'].' '.$vsql1['rival_brand'].' '.$vsql1['rival_model'];
+                            }
+                            ?>
+                        </div>
+                    <?php }  
+                        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' AND work_name != '' "; 
+                        $qsql2 = mysqli_query($conn,$sql2); 
+                        $nqsql2 = mysqli_num_rows($qsql2);
+                    if($nqsql2 > 0){ ?>
+                        <br><b style="color:#0080c0;">ออกบูธ (Group Presentation) :</b>
+                        <?php
+                        while($vsql2 = mysqli_fetch_array($qsql2)){
+                            echo '<br>'.$vsql2['work_name'].' '.DateThai($vsql2['work_date']).' '.DateThai($vsql2['end_date']).' '.$vsql2['sum_wordpre'];
+                        }
+                        ?>
+                    <?php } ?>
                 </td>
-                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['description_focastnew'];?></td>
-                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['plan_work'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
             </tr>

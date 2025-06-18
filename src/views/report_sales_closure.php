@@ -125,8 +125,12 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
                 <th style="width: 10%;">หน่วยงาน</th>
                 <th style="width: 21%;">รายการ</th>
                 <th style="width: 8%;">มูลค่า</th>
+                <?php if ($_SESSION["typelogin"] == 'Supervisor') { ?>
                 <th style="width: 8%;">เปอร์เซ็น</th>
                 <th style="width: 5%;">เขต</th>
+                <?php } else { ?>
+                <th style="width: 13%;">เปอร์เซ็น</th>
+                <?php } ?>
                 <th style="width: 8%;">ซื้อ/ไม่ซื้อ</th>
                 <th style="width: 14%;">เหตุผล</th>
                 <th style="width: 8%;">วันที่ออกบิล</th>
@@ -195,7 +199,9 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
                     $bg_color = isset($percent_colors[$objResult["percent_id"]]) ? $percent_colors[$objResult["percent_id"]] : '';
                     ?>
                     <td <?php echo $bg_color ? "bgcolor='$bg_color'" : ''; ?>><?php echo htmlspecialchars($objResult["percent_name"]); ?></td>
+                    <?php if ($_SESSION["typelogin"] == 'Supervisor') { ?>
                     <td><?php echo htmlspecialchars($objResult["sale_area"]); ?></td>
+                    <?php } ?>
                     <td><?php 
                         switch ($objResult["summary_order"]) {
                             case '1': echo 'ซื้อ'; break;

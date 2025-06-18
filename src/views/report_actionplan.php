@@ -224,7 +224,7 @@ if(!empty(($_REQUEST['dc']))){
             if ($start_page > 1) {
             ?>
                 <li class="page-item">
-                    <a class="page-link" href="?sale_code=&page=1">1</a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&page=1">1</a>
                 </li>
                 <?php if ($start_page > 2) { ?>
                     <li class="page-item disabled">

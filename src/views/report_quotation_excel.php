@@ -64,7 +64,7 @@ function exportToExcel($conn) {
             $type_code,
             $row['pre_name'],
             $row['percent_name'],
-            $row['month_po'],
+            DateThai($row['month_po']) != '0000-00-00' ? DateThai($row['month_po']) : '',
             DateThai($row['date_request']) != '0000-00-00' ? DateThai($row['date_request']) : '',
             $row['sale_area']
         ];

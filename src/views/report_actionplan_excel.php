@@ -28,9 +28,7 @@ if ($auto_export) {
         'โรงพยาบาล',
         'หน่วยงาน',
         'ผู้ติดต่อ',
-        'วัตถุประสงค์',
-        'ประเภทสินค้า',
-        'Activity',
+        'รายละเอียด',
         'เขตการขาย'
     ], ',', '"');
 
@@ -46,12 +44,17 @@ if ($auto_export) {
 
     // Write data rows
     while ($rowPlan = mysqli_fetch_array($queryPlan)) {
-        // Fetch product types
-        $product_rivals = '';
-        $sqltypeproduct = "SELECT product_rival FROM tb_storyrival WHERE refid_work = '" . mysqli_real_escape_string($conn, $rowPlan['id_work']) . "' ORDER BY id_story DESC LIMIT 20";
-        $querytypeproduct = mysqli_query($conn, $sqltypeproduct) or die("Query failed: " . mysqli_error($conn));
-        while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
-            $product_rivals .= $rowtypeproduct['product_rival'] . "\n";
+        $dispositionC5 = '';
+        if ($_SESSION['typelogin'] == 'Supervisor') {
+            $dispositionC5 .='แผนงาน : '.$rowPlan['plan_work'].' '.$rowPlan['objective'];
+
+            $sqltypeproduct = "SELECT product_rival FROM tb_storyrival WHERE refid_work = '" . mysqli_real_escape_string($conn, $rowPlan['id_work']) . "' ORDER BY id_story DESC LIMIT 20";
+            $querytypeproduct = mysqli_query($conn, $sqltypeproduct) or die("Query failed: " . mysqli_error($conn));
+            while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
+                $dispositionC5 .= $rowtypeproduct['product_rival'] . "\n";
+            }
+        } else {
+            $dispositionC5 .='แผนงาน : '.$rowPlan['plan_work'].' '.$rowPlan['objective'];
         }
 
         fputcsv($output, [
@@ -59,9 +62,7 @@ if ($auto_export) {
             $rowPlan['hospital_name'],
             $rowPlan['hospital_ward'],
             $rowPlan['hospital_contact'],
-            $rowPlan['objective'],
-            $product_rivals,
-            $rowPlan['plan_work'],
+            $dispositionC5,
             $rowPlan['sale_area']
         ], ',', '"');
     }
@@ -84,9 +85,7 @@ exit;
                 <th style="width: 15%;">โรงพยาบาล</th>
                 <th style="width: 15%;">หน่วยงาน</th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
-                <th style="width: 10%;">วัตถุประสงค์</th>
-                <th style="width: 17%;">ประเภทสินค้า</th>
-                <th style="width: 10%;">Activity</th>
+                <th style="width: 37%;">รายละเอียด</th>
                 <th style="width: 7%;">เขตการขาย</th>
             </tr>
         </thead>
