@@ -32,7 +32,7 @@ function exportToExcel($conn) {
     fputcsv($output, $headers);
     
     // Query to fetch data (same as in the table, without LIMIT/OFFSET for full data)
-    $sql = "SELECT mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1, product_id1
+    $sql = "SELECT mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1, product_id1,hospital_contact
             FROM tb_register_data 
             WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
             if($_GET['sale_code'] !="" ){ $sql .= " AND sale_area = '".$_GET['sale_code']."' AND head_area = '".$_SESSION['head_area']."' "; }
@@ -62,7 +62,7 @@ function exportToExcel($conn) {
             $row['unit_product1'] != '0' ? $row['unit_product1'] . ' ' . $row['unit_name1'] : '',
             number_format($row['sum_price_product'], 0),
             $type_code,
-            $row['pre_name'],
+            $row['hospital_contact'],
             $row['percent_name'],
             DateThai($row['month_po']) != '0000-00-00' ? DateThai($row['month_po']) : '',
             DateThai($row['date_request']) != '0000-00-00' ? DateThai($row['date_request']) : '',

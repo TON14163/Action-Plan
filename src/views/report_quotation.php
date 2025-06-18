@@ -245,7 +245,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         <tbody>
         <?php
         // Query สำหรับดึงข้อมูลทั้งหมดโดยไม่มี LIMIT
-        $sql = "SELECT id_work, id_customer, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1
+        $sql = "SELECT id_work, id_customer, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1,hospital_contact
                 FROM tb_register_data 
                 WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
         if (!empty($sale_code)) {
@@ -295,7 +295,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <td><?php echo $row['unit_product1'] != '0' ? $row['unit_product1'] . ' ' . $row['unit_name1'] : ''; ?></td>
                 <td><?php echo number_format($row['sum_price_product'], 0); ?></td>
                 <td><?php echo htmlspecialchars($type_code); ?></td>
-                <td><?php echo htmlspecialchars($row['pre_name']); ?></td>
+                <td><?php echo htmlspecialchars($row['hospital_contact']); ?></td>
                 <?php echo percentItem($row['percent_id'], $row['percent_name']); ?>
                 <td><?php echo DateThai($row['month_po']); ?></td>
                 <td><?php echo $row['date_request'] != '0000-00-00' ? DateThai($row['date_request']) : ''; ?></td>
