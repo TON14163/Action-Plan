@@ -9,7 +9,7 @@
 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
 <p style="padding: 0px 20px;">
     <div>
-        <div style="display: flex;">
+        <div style="display: flex;" id="feature1">
             <label for="customer"><b>ค้นหาลูกค้า : </b></label> &nbsp;
             <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
             <input style="width: 250px;" type="text" name="cus_keyword" id="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >
@@ -78,6 +78,7 @@
     });
     </script>
 </form> 
+<span id="cta" class="cta-button" onclick="da1()">เริ่มต้นใช้งาน</span>
 <?php 
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
@@ -128,3 +129,5 @@
             }
         });
     </script>
+    
+<script src="src/views/details_pages/actionplan_demo.js"></script>

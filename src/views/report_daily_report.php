@@ -17,8 +17,7 @@ function product_view($percent_id){
 <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
                 <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
                 <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
-                <b>Sale</b> 
-                    <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
+                <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
                 <b>ประเภทสินค้า</b>
                 <select class='form-search-custom-awl'name='product_rival' id='product_rival'>
                     <?php if($_GET['product_rival'] != ''){ ?>
@@ -41,12 +40,12 @@ function product_view($percent_id){
             <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
             <input style="width: 310px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
             &nbsp;&nbsp;<b>หน่วยงาน</b>&nbsp;&nbsp;&nbsp; <input type="text" class="form-search-custom-awl" name="hospital_ward" id="hospital_ward" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_ward'])){} echo htmlspecialchars($_GET['hospital_ward']); ?>">
+            <button class="btn-custom-awl">Search</button>
         </div>
         <div id="customerDropdown" class="customerDropdown">
             <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
         </div>
-        <br>
-        <center><button class="btn-custom-awl">Search</button></center>
+        
 </form>
 </p>
 

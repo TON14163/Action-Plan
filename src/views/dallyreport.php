@@ -7,7 +7,6 @@
 <p>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_plan" id="date_plan" value="<?php echo !empty($_GET['date_plan']) ? htmlspecialchars($_GET['date_plan']) : ''; ?>">
-        <b>Sale</b> 
         <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
     </form>

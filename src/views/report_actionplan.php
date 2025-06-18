@@ -71,7 +71,6 @@ if(!empty(($_REQUEST['dc']))){
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>&nbsp;&nbsp; วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>" >
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>" >
-        <b>Sale</b> 
         <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
     </form>

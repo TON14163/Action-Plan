@@ -123,7 +123,6 @@ function getPercentSummaries($conn) {
                     </select>
                 </div>
                 <div>
-                    <b>Sale</b> 
                     <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
                 </div>
             </div>

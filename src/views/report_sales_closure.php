@@ -68,7 +68,6 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
                         <label for="customer"><b>โรงพยาบาล</b></label> &nbsp;
                         <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
                         <input style="width: 250px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
-                        <b>Sale</b> &nbsp;
                         <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale ?>
                         <button class="btn-custom-awl">Search</button>
                     </div>

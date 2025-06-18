@@ -14,7 +14,8 @@
         $sale_code = $_SESSION['em_id'];  
     }
 ?>
-    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+    <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?> <b>Sale</b> <?php } ?>
+    <select class="form-select-custom-awl" name="sale_code" id="sale_code" <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?> style="display: none;" <?php } ?>>
         <option value="">Please Select</option>
         <?php  
                 $strSQL5 = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$_SESSION['id']."' ORDER BY m_id ASC ";
