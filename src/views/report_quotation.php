@@ -301,7 +301,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <td><?php echo DateThai($row['month_po']); ?></td>
                 <td><?php echo $row['date_request'] != '0000-00-00' ? DateThai($row['date_request']) : ''; ?></td>
                 <td style="text-align: center;">
-                    <form action="daily_report_edit#listmain1" method="get">
+                    <form action="daily_report_edit#listWarp1" method="get">
                         <input type="hidden" name="id_work" value="<?php echo htmlspecialchars($row['id_work']); ?>">
                         <button type="submit" style="border: hidden; background-color: #FFFFFF;"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit"></button>
                     </form>
