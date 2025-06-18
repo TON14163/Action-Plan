@@ -82,6 +82,7 @@ $routes = [
     'user_customer_from_edit' => 'src/models/user_customer_from_edit.php',
     'customer_salesave1' => 'src/models/customer_salesave1.php',
     'newbuiding_edit1' => 'src/models/newbuiding_edit1.php',
+    'country_list_th' => 'src/models/country_list_th.json',
 ];
 
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {

@@ -229,8 +229,8 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
     <table class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
-                <th style="width: 9%;">วันที่</th>
-                <th style="width: 10%;">โรงพยาบาล</th>
+                <th style="width: 10%;">วันที่</th>
+                <th style="width: 12%;">โรงพยาบาล</th>
                 <th style="width: 10%;">หน่วยงาน</th>
                 <th style="width: 10%;">รายการ</th>
                 <th style="width: 5%;">จำนวน</th>
@@ -239,8 +239,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <th style="width: 6%;">เปอร์เซ็น</th>
                 <th style="width: 9%;">วันที่ได้ P/O</th>
-                <th style="width: 9%;">วันที่ส่งของ</th>
-                <th style="width: 4%;">เขต</th>
+                <th style="width: 10%;">วันที่ส่งของ</th>
                 <th style="width: 4%;">Edit</th>
             </tr>
         </thead>
@@ -301,9 +300,8 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <?php echo percentItem($row['percent_id'], $row['percent_name']); ?>
                 <td><?php echo DateThai($row['month_po']); ?></td>
                 <td><?php echo $row['date_request'] != '0000-00-00' ? DateThai($row['date_request']) : ''; ?></td>
-                <td><?php echo htmlspecialchars($row['sale_area']); ?></td>
                 <td style="text-align: center;">
-                    <form action="daily_report_edit" method="get">
+                    <form action="daily_report_edit#listWarp1" method="get">
                         <input type="hidden" name="id_work" value="<?php echo htmlspecialchars($row['id_work']); ?>">
                         <button type="submit" style="border: hidden; background-color: #FFFFFF;"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;" alt="Edit"></button>
                     </form>

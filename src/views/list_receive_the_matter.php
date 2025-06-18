@@ -99,27 +99,7 @@ exit; } ?>
         <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
         <b>Sale</b> 
-        <?php 
-        if($_SESSION['typelogin'] == 'Marketing' ){ ?>
-            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                <option value="">Please Select</option>
-                <?php
-                $strSQL6 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                UNION SELECT sale_code,sale_name FROM tb_team_sm1 
-                ORDER BY sale_code ASC;
-                ";
-                $objQuery6 = mysqli_query($conn, $strSQL6);
-                while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
-                    echo '<option value="' . htmlspecialchars($objResuut6["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["sale_code"]) . ' - ' . htmlspecialchars($objResuut6["sale_name"]) . '</option>';
-                }
-                ?>
-            </select>
-        <?php } else {
-            include 'set_area_select.php'; // แสดงในส่วนของ Select sale  
-        }
-        ?>
+        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -212,7 +192,8 @@ exit; } ?>
         $(document).ready(function() {
             var dateStart = "<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>";
             var dateEnd = "<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>";
-            var saleCode = "<?php echo !empty($_GET['sale_code']) ? htmlspecialchars($_GET['sale_code']) : ''; ?>";
+            // var saleCode = "<?php // echo !empty($_GET['sale_code']) ? htmlspecialchars($_GET['sale_code']) : ''; ?>";
+            var saleCode = "<?php echo !empty($sale_code) ? htmlspecialchars($sale_code, ENT_QUOTES, 'UTF-8') : ''; ?>";
             
             $('#the_matter').DataTable({
                 "lengthChange": false,
@@ -261,10 +242,12 @@ exit; } ?>
                 "language": {
                     "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                     "infoFiltered": ""
-                },
-                // "initComplete": function() {
-                //     this.api().column(1).visible(false); // ซ่อนคอลัมน์ที่ 1
-                // }
+                }
+                <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
+                ,"initComplete": function() {
+                    this.api().column(5).visible(false); // ซ่อนคอลัมน์ที่ 1
+                }
+                <?php } ?>
             });
         });
     </script>

@@ -128,7 +128,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 <td><?php echo $objResult["rival_country"];?></td>
                 <td><?php echo number_format($objResult["price_to_unit"],0)."";?></td>
                 <td><?php echo number_format($objResult["unit"],0)."";?></td>
-                <td><?php echo $objResult["waranty"];?></td>
+                <td><?php echo $objResult["promotion"];?></td>
                 <td><?php echo $objResult["sale_area"];?></td>
                 <td><?php if($objResult["date_open"]!='0000-00-00'){ echo Datethai($objResult["date_open"]); } ?></td>		
                 <td><a href="report_competitor_edit?id_story=<?php echo $objResult["id_story"];?>"><img src="assets/images/icon_system/edit.png" style="width: 20px; height: 20px;"></a></td>

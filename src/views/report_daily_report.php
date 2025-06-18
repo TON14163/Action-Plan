@@ -19,13 +19,27 @@ function product_view($percent_id){
                 <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
                 <b>Sale</b> 
                     <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
-                <b>ประเภทสินค้า</b> <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="">
+                <b>ประเภทสินค้า</b>
+                <select class='form-search-custom-awl'name='product_rival' id='product_rival'>
+                    <?php if($_GET['product_rival'] != ''){ ?>
+                        <option value='<?php echo $_GET['product_rival'];?>'><?php echo $_GET['product_rival'];?></option> 
+                    <?php } ?>
+                    <option value=''>Search</option> 
+                    <?php
+                    $sql2 = "SELECT id,prorival_name FROM tb_prorival";
+                    $qsql2 = mysqli_query($conn,$sql2);
+                    while($vsql2 = mysqli_fetch_array($qsql2)){ ?>
+                    <option value="<?php echo $vsql2['prorival_name'];?>"><?php echo $vsql2['prorival_name'];?></option>
+                    <?php } ?>
+                </select>
+
+
+
                 <br><br>
         <div style="display: flex;">
             <label for="customer"><b>โรงพยาบาล&nbsp;</b></label>
             <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
             <input style="width: 310px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
-            &nbsp;&nbsp;<b>ตึก</b> &nbsp; <input type="text" class="form-search-custom-awl" name="hospital_buiding" id="hospital_buiding" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_buiding'])){} echo htmlspecialchars($_GET['hospital_buiding']); ?>">
             &nbsp;&nbsp;<b>หน่วยงาน</b>&nbsp;&nbsp;&nbsp; <input type="text" class="form-search-custom-awl" name="hospital_ward" id="hospital_ward" placeholder="ระบุข้อมูล . . . " value="<?php if(!empty($_GET['hospital_ward'])){} echo htmlspecialchars($_GET['hospital_ward']); ?>">
         </div>
         <div id="customerDropdown" class="customerDropdown">
@@ -53,7 +67,7 @@ function product_view($percent_id){
             <?php } 
             
             if($_GET['date_start'] != '' AND $_GET['sale_code'] != ''){ ?>
-                <a href="report_daily_report_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&hospital_buiding=<?php if(!empty($_GET['hospital_buiding'])){ echo htmlspecialchars($_GET['hospital_buiding']);}?>&hospital_ward=<?php if(!empty($_GET['hospital_ward'])){ echo htmlspecialchars($_GET['hospital_ward']);}?>&hospital_name=<?php if(!empty($_GET['hospital_name'])){ echo htmlspecialchars($_GET['hospital_name']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>">
+                <a href="report_daily_report_excel?date_start=<?php if(!empty($_GET['date_start'])){ echo htmlspecialchars($_GET['date_start']);}?>&date_end=<?php if(!empty($_GET['date_end'])){ echo htmlspecialchars($_GET['date_end']);}?>&hospital_ward=<?php if(!empty($_GET['hospital_ward'])){ echo htmlspecialchars($_GET['hospital_ward']);}?>&hospital_name=<?php if(!empty($_GET['hospital_name'])){ echo htmlspecialchars($_GET['hospital_name']);}?>&sale_code=<?php if(!empty($_GET['sale_code'])){ echo htmlspecialchars($_GET['sale_code']);}?>">
                     <img src="assets/images/icon_system/vscode-icons--file-type-excel.svg" style="width: 30px; height: 30px;" data-bs-toggle="tooltip" data-bs-title="Export File.csv">
                 </a>
             <?php } else { ?>
@@ -69,9 +83,14 @@ function product_view($percent_id){
                 <th style="width: 10%;">วันที่</th>
                 <th style="width: 17%;">โรงพยาบาล</th>
                 <th style="width: 12%;">หน่วยงาน</th>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <th style="width: 44%;">รายละเอียด</th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <th style="width: 7%;">เขตการขาย</th>
+                <?php } else { ?>
+                <th style="width: 51%;">รายละเอียด</th>
+                <th style="width: 10%;">ผู้ติดต่อ</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -88,14 +107,14 @@ function product_view($percent_id){
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sql_total .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
         }
-        if (!empty($_GET['hospital_buiding'])) {
-            $sql_total .= "AND hospital_buiding LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_buiding']) . "%' ";
-        }
         if (!empty($_GET['hospital_ward'])) {
             $sql_total .= "AND hospital_ward LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_ward']) . "%' ";
         }
         if (!empty($_GET['hospital_name'])) {
             $sql_total .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
+        }
+        if (!empty($_GET['product_rival'])) {
+            $sql_total .= "AND product_present LIKE '%" . mysqli_real_escape_string($conn, $_GET['product_rival']) . "%' ";
         }
         if (!empty($sale_code)) {
             $sql_total .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
@@ -112,14 +131,14 @@ function product_view($percent_id){
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sqlPlan .= "AND date_plan BETWEEN '".$_GET['date_start']."' AND '".$_GET['date_end']."' ";
         }
-        if (!empty($_GET['hospital_buiding'])) {
-            $sqlPlan .= "AND hospital_buiding LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_buiding']) . "%' ";
-        }
         if (!empty($_GET['hospital_ward'])) {
             $sqlPlan .= "AND hospital_ward LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_ward']) . "%' ";
         }
         if (!empty($_GET['hospital_name'])) {
             $sqlPlan .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
+        }
+        if (!empty($_GET['product_rival'])) {
+            $sqlPlan .= "AND product_present LIKE '%" . mysqli_real_escape_string($conn, $_GET['product_rival']) . "%' ";
         }
         if (!empty($sale_code)) {
             $sqlPlan .= " AND sale_area = '".$sale_code."' AND head_area = '".$_SESSION['head_area']."' ";
@@ -146,33 +165,25 @@ function product_view($percent_id){
                 <td style="<?php echo $colorTable;?>"><?php echo DateThai($rowPlan['date_plan']);?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
-                <!-- <td style="<?php // echo $colorTable;?>"> -->
-                    <?php
-                    // $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
-                    // $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
-                    // while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
-                    //     echo $rowtypeproduct['product_rival'].'<br>';
-                    // }
-                    ?>
-                <!-- </td> -->
                 <td style="<?php echo $colorTable;?>" class="text-start px-2">
-                    <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
-                    <?php if($rowPlan['description_focastnew'] != ''){ ?><br><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew']; } ?>
-                    <?php if($rowPlan['percent_id'] != ''){ ?><br><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['percent_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?><?php } ?>
-                    <?php if($rowPlan['summary_order'] == '1'){ ?> <br><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; <?php } ?>
-                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> <?php } ?>
+                    <?php if($rowPlan['description_focastnew'] != ''){ ?><div><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew'];?></div><?php } ?>
+                    <?php if($rowPlan['product_id'] != ''){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['product_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
+                    <?php if($rowPlan['summary_order'] == '1'){ ?><div><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; </div><?php } ?>
+                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> </div><?php } ?>
                     <?php 
                         $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' "; 
                         $qsql1 = mysqli_query($conn,$sql1); 
                         $nqsql1 = mysqli_num_rows($qsql1); 
                     ?>
                     <?php if($nqsql1 > 0){ ?>
-                        <br><b style="color:#0080c0;">ข้อมูลคู่แข่ง :</b>
-                        <?php
-                        while($vsql1 = mysqli_fetch_array($qsql1)){
-                            echo '<br>'.$vsql1['product_rival'].' '.$vsql1['company_rival'].' '.$vsql1['rival_brand'].' '.$vsql1['rival_model'];
-                        }
-                        ?>
+                        <div>
+                            <b style="color:#0080c0;">ข้อมูลคู่แข่ง :</b>
+                            <?php
+                            while($vsql1 = mysqli_fetch_array($qsql1)){
+                                echo '<br>'.$vsql1['product_rival'].' '.$vsql1['company_rival'].' '.$vsql1['rival_brand'].' '.$vsql1['rival_model'];
+                            }
+                            ?>
+                        </div>
                     <?php }  
                         $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' AND work_name != '' "; 
                         $qsql2 = mysqli_query($conn,$sql2); 
@@ -187,7 +198,9 @@ function product_view($percent_id){
                     <?php } ?>
                 </td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
+                <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
+                <?php } ?>
             </tr>
         <?php } } else { echo '<td colspan="8" style="text-align: center;"">ไม่พบข้อมูล</td>'; } ?>
         </tbody>
@@ -234,7 +247,7 @@ function product_view($percent_id){
             <!-- แสดงหน้าตามช่วง -->
             <?php for ($i = $start_page; $i <= $end_page; $i++) { ?>
                 <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $_GET['hospital_name'];?>&hospital_buiding=<?php echo $_GET['hospital_buiding'];?>&hospital_ward=<?php echo $_GET['hospital_ward'];?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $_GET['hospital_name'];?>&hospital_ward=<?php echo $_GET['hospital_ward'];?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
                 </li>
             <?php } ?>
 
@@ -246,13 +259,13 @@ function product_view($percent_id){
                     </li>
                 <?php } ?>
                 <li class="page-item">
-                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_buiding=<?php echo $hospital_buiding;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $total_pages; ?>"><?php echo $total_pages; ?></a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $total_pages; ?>"><?php echo $total_pages; ?></a>
                 </li>
             <?php } ?>
 
             <!-- ปุ่ม Next -->
             <li class="page-item <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_buiding=<?php echo $hospital_buiding;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $current_page + 1; ?>">Next</a>
+                <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $current_page + 1; ?>">Next</a>
             </li>
         </ul>
     </nav>

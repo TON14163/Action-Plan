@@ -88,6 +88,11 @@ if (!empty($_GET['addPlanPurple'])) {
         ?>
     </span>
 </div>
+<style>
+    label{
+        cursor: pointer;
+    }
+</style>
 
 <form action="daily_report_save" method="post" enctype="multipart/form-data">
     <?php require_once __DIR__ . '/../views/components/dallyreport_register_details1.php';?>
@@ -98,7 +103,6 @@ if (!empty($_GET['addPlanPurple'])) {
     <?php include 'components/dallyreport_register_list3.php'; // ออกบูธ (Group Presentation) ?>
     <?php include 'components/dallyreport_register_list4.php'; // ข้อมูลคู่เเข่ง ?>
 </section>
-<a href="https://allwellcenter.com/voc/" target="_blank" data-bs-toggle="tooltip" data-bs-title="ไปยังเว็บไซต์ allwellcenter.com"><span class="badge rounded-pill" style="background-color: #F1E1FF; color:#525252; padding-left: 10px; padding-right: 15px;"><img src="assets/images/icon_system/link-alt-regular-24.png" style="width:15px; height:15px; color:#FFFFFF;"> แบบฟอร์มข้อร้องเรียน</span></a>
 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;" class="mt-4">
     <span></span>
     <span>

@@ -28,8 +28,11 @@ $countSql = "SELECT COUNT(id) AS total FROM tb_register_salemk";
 $where = " WHERE 1=1";
 
 if (!empty($saleCode)) {
-    $where .= " AND sale_code = '" . mysqli_real_escape_string($conn, $saleCode) . "' ";
-} 
+    $where .= " AND sale_code = '".$saleCode."' ";
+} else {
+    $where .= " AND sale_code = '".$_SESSION['em_id']."' ";
+}
+
 if (!empty($dateStart)) {
     $where .= " AND date_salemk BETWEEN '" . mysqli_real_escape_string($conn, $dateStart) . "' AND '" . mysqli_real_escape_string($conn, $dateEnd) . "' ";
 }

@@ -101,12 +101,12 @@ if(!empty(($_REQUEST['dc']))){
                 <th style="width: 15%;">โรงพยาบาล</th>
                 <th style="width: 15%;">หน่วยงาน</th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
-                <th style="width: 10%;">วัตถุประสงค์</th>
-                <th style="width: 17%;">ประเภทสินค้า</th>
-                <th style="width: 10%;">Activity</th>
-                <th style="width: 7%;">เขตการขาย</th>
                 <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
+                    <th style="width: 37%;">รายละเอียด</th>
+                    <th style="width: 7%;">เขตการขาย</th>
                     <th style="width: 5%;">Delete</th>
+                <?php } else { ?>
+                    <th style="width: 49%;">รายละเอียด</th>
                 <?php } ?>
             </tr>
         </thead>
@@ -163,29 +163,36 @@ if(!empty(($_REQUEST['dc']))){
                     <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
                     <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
                     <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
-                    <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['objective'];?></td>
-                    <td style="<?php echo $colorTable;?>">
-                    <?php
+
+                <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
+                    <td style="<?php echo $colorTable;?> text-align: left; padding:0px 5px;">
+                        <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
+                        <?php echo $rowPlan['objective'];?>
+                        <?php
                         $sqltypeproduct = "SELECT * FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ORDER BY id_story DESC LIMIT 20";
                         $querytypeproduct = mysqli_query($conn, $sqltypeproduct);
                         while ($rowtypeproduct = mysqli_fetch_array($querytypeproduct)) {
                             echo $rowtypeproduct['product_rival'].'<br>';
                         }
-                    ?>
+                        ?>
                     </td>
-                    <td style="<?php echo $colorTable; ?>"></td>
                     <td style="<?php echo $colorTable; ?>"><?php echo $rowPlan['sale_area']; ?></td>
-                    <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
-                        <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
-                    <?php } ?>
+                    <td style="<?php echo $colorTable; ?>"><img src="assets/images/icon_system/x-regular-24 (1).png" style="width: 25px; height: 25px;" onclick="deletePlan(<?php echo $rowPlan['id_work']; ?>);" data-bs-toggle="tooltip""></td>
+                <?php } else { ?>
+                    <td style="<?php echo $colorTable; ?> text-align: left; padding:0px 5px;">
+                        <b style="color:#0080c0;">แผนงาน : </b> <?php echo $rowPlan['plan_work'];?>
+                        <?php echo $rowPlan['objective'];?>
+                    </td>
+                <?php } ?>
+
                 </tr>
 <?php 
             }
         } else { ?>
             <?php if ($_SESSION['typelogin'] == 'Supervisor') { ?>
-                <td colspan="9" style="text-align: center">ไม่พบข้อมูล</td>
+                <td colspan="6" style="text-align: center">ไม่พบข้อมูล</td>
             <?php } else { ?>
-                <td colspan="8" style="text-align: center">ไม่พบข้อมูล</td>
+                <td colspan="5" style="text-align: center">ไม่พบข้อมูล</td>
 <?php   }         } ?>
         </tbody>
     </table>

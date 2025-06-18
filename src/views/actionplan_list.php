@@ -4,7 +4,6 @@ $in_save = $_POST['in_save'];
 $type_sale = "$_SESSION[type_sale]";
 // echo $type_sale;
 if($in_save != 'save'){
-    $objective = $_POST['objective'];
     $date_keyword = $_POST['date_keyword'];
     $item = $_POST['item'];
     $list_chk = $_POST['list_chk'];
@@ -62,7 +61,6 @@ if($in_save != 'save'){
         <?php
             if (isset($item) && is_array($item)) {
                 foreach ($item as $key => $value) {
-                    $objectiveNew = isset($objective[$key]) ? $objective[$key] : '';
                     $itemNew = isset($item[$key]) ? $item[$key] : '';
                     $list_chkNew = isset($list_chk[$key]) ? $list_chk[$key] : '';
                     $id_customerNew = isset($id_customer[$key]) ? $id_customer[$key] : '';
@@ -75,21 +73,12 @@ if($in_save != 'save'){
 
                     // ตรวจสอบว่า $list_chkNew มีค่าหรือไม่ และไม่ใช่ Undefined
                     if ($list_chkNew === 'on') {
-                        if($objectiveNew == ''){ ?> <style> table{ display: none; } </style>
-                            <?php
-                            $text = '<font style="color:#FF8080;"> ⚠️ ไม่พบข้อมูลวัตถุประสงค์ทั้งหมดหรือบางรายการ ❌ 🙅‍♂️🙅 ❗❗</font>';
-                            require_once __DIR__ . '/../views/Loading_page.php';
-                            echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."actionplan>"; 
-                            mysqli_close($conn);
-                            exit;
-                        }
                     ?>
                     <tbody>
                         <tr>
                             <td style="text-align: center; padding-left: 10px;">
                                 <input type="date" name="in_date[<?php echo htmlspecialchars($itemNew);?>]" id="in_date[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $date_keyword;?>" required>
                                 <input type="hidden" id="id_customer[<?php echo htmlspecialchars($itemNew);?>]" name="id_customer[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $id_customerNew;?>">
-                                <input type="hidden" id="objective[<?php echo htmlspecialchars($itemNew);?>]" name="objective[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $objectiveNew;?>">
 
                                 <input type="hidden" id="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $hospital_classNew;?>">
                                 <input type="hidden" id="hospital_contact1[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_contact1[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $hospital_contact1New;?>">
@@ -167,7 +156,6 @@ if($in_save != 'save'){
         foreach ($id_customerSave as $key => $value) {
             $in_dateSaveNew = isset($in_dateSave[$key]) ? $in_dateSave[$key] : '';
             $id_customerSaveNew = isset($id_customerSave[$key]) ? $id_customerSave[$key] : '';
-            $objectiveSaveNew = isset($objectiveSave[$key]) ? $objectiveSave[$key] : '';
             $plan_workSaveNew = isset($plan_workSave[$key]) ? $plan_workSave[$key] : '';
 
             if(isset($dallyaddSave)){
@@ -223,7 +211,7 @@ if($in_save != 'save'){
                 $head_team='SM1';	
             }
 
-            $strSQL1 = "INSERT INTO tb_register_data (date_plan,hospital_name,hospital_buiding,hospital_class,hospital_ward,hospital_contact,add_date,plan_work,sale_area,sale_name,daily,hospital_ward_search,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,id_customer,ckk_acc,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,id_ref,head_area,objective) 
+            $strSQL1 = "INSERT INTO tb_register_data (date_plan,hospital_name,hospital_buiding,hospital_class,hospital_ward,hospital_contact,add_date,plan_work,sale_area,sale_name,daily,hospital_ward_search,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,id_customer,ckk_acc,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,id_ref,head_area) 
             values(
             '".$in_dateSaveNew."',
             '".$objResult['customer_name']."',
@@ -269,8 +257,7 @@ if($in_save != 'save'){
             '".$objResult['email_contact9']."',
             '".$objResult['email_contact10']."',
             '".$id_refSave."',
-            '".$head_team."',
-            '".$objectiveSaveNew."'
+            '".$head_team."'
             )";
 
             $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());

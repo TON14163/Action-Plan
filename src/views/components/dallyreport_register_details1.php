@@ -55,8 +55,22 @@
             </div>
         </div>
         <div class="col-2 d-flex align-items-center"> 
-            <?php echo $show->showCustomerLevel($id_work);?> 
-            <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
+            <?php
+            if($show->showCustomerLevelNumber($id_work) != '0'){
+                    echo $show->showCustomerLevel($id_work);
+                    ?>
+                    <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
+                    <?php
+            } else { ?>
+                <small>
+                    <input type="radio" name="cus_free" id="cus_free1" value="1"> <label for="cus_free1">Normal</label>&nbsp;
+                    <input type="radio" name="cus_free" id="cus_free2" value="2"> <label for="cus_free2">VIP</label>&nbsp;
+                    <br>
+                    <input type="radio" name="cus_free" id="cus_free3" value="3"> <label for="cus_free3">VVIP</label>&nbsp;
+                    <input type="radio" name="cus_free" id="cus_free4" value="0" checked> <label for="cus_free4">ไม่ได้ระบุ</label>&nbsp;
+                </small>
+            <?php } ?> 
+
         </div>
         <!--  -->
         <div class="col-3">
@@ -67,6 +81,7 @@
                 </div>
             </div>
             <?php 
+            $numC = 1;
             for ($i = 1; $i <= 9; $i++) { 
             $hospital_contact = 'hospital_contact' . $i;
                 if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
@@ -77,6 +92,7 @@
                         </div>
                     </div>
                 <?php 
+                $numC++;
                 }
             } 
             ?>
@@ -101,7 +117,7 @@
                     </div>
                 <?php 
                 }
-            } 
+            }
             ?>
         </div>
         <div class="col-3">
@@ -116,14 +132,14 @@
             for ($i = 1; $i <= 9; $i++) { 
             $hospital_contact = 'hospital_contact'.$i;
             $email_contact = 'email_contact'.$i+1;
-            if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
-                    <div class="row d-flex align-items-center">
-                        <label for="" class="col-4 col-form-label">E-mail</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control text-center" id="<?php echo $email_contact;?>" name="<?php echo $email_contact;?>" value="<?php echo $show->showDetails($id_work, $email_contact);?>" placeholder="E-mail <?php echo $i+1;?>">
+                if($show->showDetails($id_work, $hospital_contact) != ''){ ?>
+                        <div class="row d-flex align-items-center">
+                            <label for="" class="col-4 col-form-label">E-mail</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control text-center" id="<?php echo $email_contact;?>" name="<?php echo $email_contact;?>" value="<?php echo $show->showDetails($id_work, $email_contact);?>" placeholder="E-mail <?php echo $i+1;?>">
+                            </div>
                         </div>
-                    </div>
-                <?php 
+                    <?php 
                 }
             } 
             ?>
@@ -133,4 +149,56 @@
         <div class="col-2 d-flex align-items-center"><font style="font-size: 10px; color:red;">*หมายเหตุ : หากแก้ไขข้อมูลลูกค้า ข้อมูลจะถูก Save ทับข้อมูลเดิมในฐานอัตโนมัติ</font></div>
 
     </div>
+
+        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="viewcontxt" id="viewcontxt"> <label for="viewcontxt" data-bs-toggle="tooltip" data-bs-title="เพิ่ม ผู้ติดต่อ,เบอร์โทร,E-mail"><b style="font-size: 14px;">เพิ่มเติม</b></label>
+        <div style="font-size: 14px; font-weight: bold; display: none;" id="view_contxt" class="row px-3">
+
+            <script>
+            let viewcontxt = document.getElementById('viewcontxt');
+            let viewContxtDiv = document.getElementById('view_contxt');
+
+            viewcontxt.addEventListener('change', function() {
+                if (this.checked) {
+                viewContxtDiv.style.display = 'flex'; // Show the div
+                } else {
+                viewContxtDiv.style.display = 'none'; // Hide the div
+                }
+            });
+            </script>
+
+            <?php 
+            $iNum = $numC+1; 
+                $hospital_contact = 'hospital_contact' . $iNum-1;
+                $hospital_mobile = 'hospital_mobile' . $iNum;
+                $email_contact = 'email_contact' . $iNum;
+                ?>
+                <div class="col-3">
+                    <div class="row d-flex align-items-center">
+                        <label for="" class="col-3 col-form-label">ผู้ติดต่อ</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control text-center" id="<?php echo $hospital_contact;?>" name="<?php echo $hospital_contact;?>" value="" placeholder="ผู้ติดต่อ <?php echo $iNum;?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row d-flex align-items-center">
+                        <label for="" class="col-4 col-form-label">เบอร์โทร</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control text-center" id="<?php echo $hospital_mobile;?>" name="<?php echo $hospital_mobile;?>" value="" placeholder="เบอร์โทร <?php echo $iNum;?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="row d-flex align-items-center">
+                        <label for="" class="col-4 col-form-label">E-mail</label>
+                        <div class="col-8">
+                        <input type="text" class="form-control text-center" id="<?php echo $email_contact;?>" name="<?php echo $email_contact;?>" value="" placeholder="E-mail <?php echo $iNum;?>" >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 d-flex justify-content-between"></div>
+        </div>
+
 </section>

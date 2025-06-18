@@ -62,9 +62,7 @@ if (!empty($_GET['noti'])) { ?>
                 <th data-orderable="false" style="width: 11%;">จังหวัด</th>
                 <th data-orderable="false" style="width: 11%;">เบอร์โทรศัพท์</th>
                 <th data-orderable="false" style="width: 11%;">เครดิต</th>
-                <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
                 <th data-orderable="false" style="width: 5%;">Edit</th>
-                <?php } ?>
             </tr>
         </thead>
     </table>
@@ -98,14 +96,18 @@ if (!empty($_GET['noti'])) { ?>
                         { "data": "province" },
                         { "data": "customer_tel" },
                         { "data": "customer_credit" },
-                        <?php if($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') { ?>
                         { "data": "edit" }
-                        <?php } ?>
                     ],
                     "language": {
                         "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                         "infoFiltered": ""
                     }
+                    <?php if($_SESSION["ext"] != 'IT2' OR  $_SESSION["ext"] != 'PRM') { ?>
+                        ,"initComplete": function() {
+                            this.api().column(3).visible(false);
+                            this.api().column(8).visible(false);
+                        }
+                    <?php } ?>
                 });
             });
         </script>

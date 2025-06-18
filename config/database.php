@@ -22,6 +22,7 @@ $dotenv->load();
     $cumapi_hos = $_ENV['CUMAPI_HOS'] ?? 'N/A';
     $BUIDING_API = $_ENV['BUIDING_API'] ?? 'N/A';
     $WARD_API = $_ENV['WARD_API'] ?? 'N/A';
+    $COUNTRY_API = $_ENV['COUNTRY_API'] ?? 'N/A';
 // ส่วนของ API END
 
 // ส่วนของ ngrok-free.app START
