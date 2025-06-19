@@ -32,8 +32,6 @@ function product_view($percent_id){
                     <?php } ?>
                 </select>
 
-
-
                 <br><br>
         <div style="display: flex;">
             <label for="customer"><b>โรงพยาบาล&nbsp;</b></label>
@@ -45,7 +43,6 @@ function product_view($percent_id){
         <div id="customerDropdown" class="customerDropdown">
             <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
         </div>
-        
 </form>
 </p>
 
@@ -83,11 +80,11 @@ function product_view($percent_id){
                 <th style="width: 17%;">โรงพยาบาล</th>
                 <th style="width: 12%;">หน่วยงาน</th>
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
-                <th style="width: 44%;">รายละเอียด</th>
+                <th style="width: 44%;">รายละเอียด <img src="assets/images/icon_system/material-symbols--help.svg" style="width: 14px; height: 14px;" alt="" data-bs-toggle="tooltip" data-bs-title="UPDATE ประมาณการขาย ,สรุปใบเสนอราคา,สรุปการขาย,Demo ทดลองสินค้า,ข้อมูลคู่แข่ง,ออกบูธ (Group Presentation)"></th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <th style="width: 7%;">เขตการขาย</th>
                 <?php } else { ?>
-                <th style="width: 51%;">รายละเอียด</th>
+                <th style="width: 51%;">รายละเอียด <img src="assets/images/icon_system/material-symbols--help.svg" style="width: 14px; height: 14px;" alt="" data-bs-toggle="tooltip" data-bs-title="UPDATE ประมาณการขาย ,สรุปใบเสนอราคา,สรุปการขาย,Demo ทดลองสินค้า,ข้อมูลคู่แข่ง,ออกบูธ (Group Presentation)"></th>
                 <th style="width: 10%;">ผู้ติดต่อ</th>
                 <?php } ?>
             </tr>
@@ -166,12 +163,12 @@ function product_view($percent_id){
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
                 <td style="<?php echo $colorTable;?>" class="text-start px-2">
                     <?php if($rowPlan['description_focastnew'] != ''){ ?><div><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focastnew'];?></div><?php } ?>
-                    <?php if($rowPlan['product_id'] != ''){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['product_id']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
+                    <?php if($rowPlan['product_id1'] != '' AND $rowPlan['product_id1'] != '0'){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['product_id1']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
                     <?php if($rowPlan['summary_order'] == '1'){ ?><div><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; </div><?php } ?>
-                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><br><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> </div><?php } ?>
-                    <?php 
-                        $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' "; 
-                        $qsql1 = mysqli_query($conn,$sql1); 
+                    <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><div><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> </div><?php } ?>
+                    <?php
+                        $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ";
+                        $qsql1 = mysqli_query($conn,$sql1);
                         $nqsql1 = mysqli_num_rows($qsql1); 
                     ?>
                     <?php if($nqsql1 > 0){ ?>
@@ -184,14 +181,14 @@ function product_view($percent_id){
                             ?>
                         </div>
                     <?php }  
-                        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' AND work_name != '' "; 
+                        $sql2 = "SELECT work_name,work_date,end_date,sum_wordpre FROM tb_present_booth WHERE ref_idwork = '".$rowPlan['id_work']."' AND work_name != '' ";
                         $qsql2 = mysqli_query($conn,$sql2); 
                         $nqsql2 = mysqli_num_rows($qsql2);
                     if($nqsql2 > 0){ ?>
-                        <br><b style="color:#0080c0;">ออกบูธ (Group Presentation) :</b>
+                        <b style="color:#0080c0;">ออกบูธ (Group Presentation) :</b>
                         <?php
                         while($vsql2 = mysqli_fetch_array($qsql2)){
-                            echo '<br>'.$vsql2['work_name'].' '.DateThai($vsql2['work_date']).' '.DateThai($vsql2['end_date']).' '.$vsql2['sum_wordpre'];
+                            echo '<div>'.$vsql2['work_name'].' '.DateThai($vsql2['work_date']).' '.DateThai($vsql2['end_date']).' '.$vsql2['sum_wordpre'].'</div>';
                         }
                         ?>
                     <?php } ?>

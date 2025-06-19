@@ -18,17 +18,21 @@
     <select class="form-select-custom-awl" name="sale_code" id="sale_code" <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?> style="display: none;" <?php } ?>>
         <option value="">Please Select</option>
         <?php  
+                $selectedFullSup = array();
                 $strSQL5 = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$_SESSION['id']."' ORDER BY m_id ASC ";
                 $objQuery5 = mysqli_query($conn, $strSQL5);
                 while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
                     $strSQL5_1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuut5['m_id']."' ";
                     $objQuery5_1 = mysqli_query($conn, $strSQL5_1);
                     $objResuut5_1 = mysqli_fetch_array($objQuery5_1);
+                    $selectedFullSup[] = $objResuut5_1["em_id"];
 
                     $selected = ($objResuut5_1['em_id'] == $sale_code) ? 'selected' : '';
                     echo '<option value="' . htmlspecialchars($objResuut5_1["em_id"]) . '" ' . $selected . '>' . 
                         htmlspecialchars($objResuut5_1["em_id"]) . ' - ' . htmlspecialchars($objResuut5_1["name"]) . 
                         '</option>';
                 }
+                $selectedFullSup_string = "IN ('".implode("','",$selectedFullSup)."')";
+                
         ?>
     </select>

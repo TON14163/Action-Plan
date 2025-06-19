@@ -92,13 +92,14 @@
                     <tr>
                         <th>ลำดับ</th>
                         <th>รายการสินค้า</th>
+                        <th>หมายเหตุ</th>
                         <th>จำนวน</th>
                         <th>ราคา / หน่วย</th>
                         <th>มูลค่า</th>
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>
+                        <td style="vertical-align: middle; text-align: center; padding:5px;">
                             <div class="product-data-container">
                                 <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" 
                                 <?php if($show->showDetails($id_work,'product_id1') == '' || $show->showDetails($id_work,'product_id1') == '0' ){ ?>
@@ -111,9 +112,12 @@
                                 <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'product_name');?></div>
                             </div>
                         </td>
-                        <td><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="<?php echo $show->showDetails($id_work,'unit_product1');?>"></td>
-                        <td><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="<?php echo $show->showDetails($id_work,'price_unit1');?>"></td>
-                        <td><input class="text-center" style="background-color: #e0e0e0; cursor:no-drop;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="<?php echo $show->showDetails($id_work,'price_product1');?>" readonly></td>
+                        <td style="vertical-align: middle; text-align: center; padding:12px 5px 5px 5px;">
+                            <textarea style="width:100%; height: 24px; padding:0px;" name="remark_pro1" id="remark_pro1" ><?php echo $show->showDetails($id_work,'remark_pro1');?></textarea>
+                        </td>
+                        <td style="vertical-align: middle; text-align: center; padding:5px;"><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="<?php echo $show->showDetails($id_work,'unit_product1');?>"></td>
+                        <td style="vertical-align: middle; text-align: center; padding:5px;"><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="<?php echo $show->showDetails($id_work,'price_unit1');?>"></td>
+                        <td style="vertical-align: middle; text-align: center; padding:5px;"><input class="text-center" style="background-color: #e0e0e0; cursor:no-drop;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="<?php echo $show->showDetails($id_work,'price_product1');?>" readonly></td>
                     </tr>
                 </table>
                 <div class="d-flex align-items-center justify-content-between my-4">

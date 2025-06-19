@@ -1,4 +1,5 @@
-<?php ob_start();
+<?php
+ob_start();
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
 $sale_code = isset($_GET['sale_code']) ? $_GET['sale_code'] : ($_SESSION['em_id'] ?? '');
@@ -56,11 +57,17 @@ function getPercentSummaries($conn) {
                 SUM(unit_product1) AS unit_product1
             FROM tb_register_data 
             WHERE summary_order = '0' AND summary_product1 != '' ";
+
     if ($_GET['sale_code'] != '') {
-            $sqlHead .= " AND sale_area = '".$_GET['sale_code']."'  AND head_area = '".$_SESSION['head_area']."'  ";
+            $sqlHead .= " AND sale_area = '".$_GET['sale_code']."'  ";
     } else {
-        $sqlHead .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."'  ";
+        $sqlHead .= " AND sale_area = '".$_SESSION['em_id']."'  ";
     }
+
+    if($_SESSION["em_id"] != 'VMD' AND $_SESSION["em_id"] != 'MD1' AND $_SESSION["em_id"] != 'IT2' AND $_SESSION["em_id"] != 'PRM'){
+        $sqlHead .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
+    }
+
     if ($_GET['hospital_name'] != '') { $sqlHead .= "AND hospital_name = '" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "' "; }
     if ($_GET['percent_name'] != '') { $sqlHead .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
     if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sqlHead .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }
@@ -123,7 +130,9 @@ function getPercentSummaries($conn) {
                     </select>
                 </div>
                 <div>
-                    <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
+                    <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  
+                    echo $selectedFullSup_string;
+                    ?>
                 </div>
             </div>
             <div id="customerDropdown" class="customerDropdown">
@@ -248,11 +257,22 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
         $sql = "SELECT id_work, id_customer, mode_pro1, date_plan, hospital_name, hospital_ward, summary_quote, summary_product1, remark_pro1, unit_product1, type_cus, pre_name, percent_id, percent_name, month_po, date_request, sale_area, sum_price_product, unit_name1,hospital_contact
                 FROM tb_register_data 
                 WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
-        if (!empty($sale_code)) {
-            $sql .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
+
+        // ส่วนที่แก้ไขตามคำถามแรก
+        if ($_SESSION["typelogin"] == 'Supervisor') {
+            if (empty($_GET['sale_code'])) {
+                $sql .= "AND sale_area " . $selectedFullSup_string;
+            } else {
+                $sql .= "AND sale_area = '" . mysqli_real_escape_string($conn, $_GET['sale_code']) . "' ";
+            }
         } else {
-            $sql .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
+            $sql .= "AND sale_area = '" . mysqli_real_escape_string($conn, $sale_code) . "' ";
         }
+
+        if (!in_array($_SESSION["em_id"], ['VMD', 'MD1', 'IT2', 'PRM'])) {
+            $sql .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
+        }
+
         if ($_GET['hospital_name'] != '') { $sql .= "AND hospital_name = '" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "' "; }
         if ($_GET['percent_name'] != '') { $sql .= "AND percent_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['percent_name']) . "%' "; }
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) { $sql .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' "; }

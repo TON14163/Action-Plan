@@ -59,8 +59,8 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
     <form action="<?php echo htmlspecialchars($url); ?>" method="get">
         <div style="display:flex; justify-content: space-between; margin-bottom: 10px;">
             <div>
-                <b>วันที่สรุป</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" required>
-                <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : '' ?>" required>
+                <b>วันที่สรุป</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" >
+                <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : '' ?>" >
                 <b>วันที่ออกบิล</b> <input type="date" name="date_order" id="date_order" value="<?php echo !empty($_GET['date_order']) ? htmlspecialchars($_GET['date_order']) : '' ?>" >
                 <br><br>
                 <div>
@@ -68,7 +68,9 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
                         <label for="customer"><b>โรงพยาบาล</b></label> &nbsp;
                         <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
                         <input style="width: 250px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
-                        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale ?>
+                        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale 
+                        // echo $selectedFullSup_string;
+                        ?>
                         <button class="btn-custom-awl">Search</button>
                     </div>
                     <div id="customerDropdown" class="customerDropdown">
@@ -138,7 +140,22 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
         <tbody>
             <?php
             $sum = [];
-            $strSQL = "SELECT * FROM tb_register_data WHERE sale_area = '" . mysqli_real_escape_string($conn, $sale_code) . "' AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' AND summary_order IN ('1','2') ";
+            $strSQL = "SELECT * FROM tb_register_data WHERE summary_order IN ('1','2') ";
+
+            if($_SESSION["em_id"] != 'VMD' AND $_SESSION["em_id"] != 'MD1' AND $_SESSION["em_id"] != 'IT2' AND $_SESSION["em_id"] != 'PRM'){
+                $strSQL .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
+            }
+
+            if ($_SESSION["typelogin"] == 'Supervisor') {
+                if($_GET['sale_code'] == ''){
+                    $strSQL .= "AND sale_area " . $selectedFullSup_string;
+                } else if($_GET['sale_code'] != ''){
+                    $strSQL .= "AND sale_area = '".$_GET['sale_code']."' ";
+                }
+            } else {
+                $strSQL .= "AND sale_area = '" . mysqli_real_escape_string($conn, $sale_code) . "' ";
+            }
+            // echo $selectedFullSup_string;
             if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
                 $strSQL .= "AND date_update BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
             } 
@@ -177,6 +194,7 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
             // Append LIMIT to the query
             $strSQL .= " ORDER BY date_plan DESC LIMIT $Page_Start, $Per_Page";
             $objQuery = mysqli_query($conn, $strSQL) or die("Error Query [" . $strSQL . "]");
+            // echo $strSQL;
             while ($objResult = mysqli_fetch_array($objQuery)) { ?>
                 <tr>
                     <td><?php echo DateThai($objResult["date_plan"]); ?></td>

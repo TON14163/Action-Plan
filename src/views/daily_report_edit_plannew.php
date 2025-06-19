@@ -31,22 +31,26 @@ if(!empty($_REQUEST['id_work'])){
                     <tr>
                         <th>ลำดับ</th>
                         <th>รายการสินค้า</th>
+                        <th>หมายเหตุ</th>
                         <th>จำนวน</th>
                         <th>ราคา / หน่วย</th>
                         <th>มูลค่า</th>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td>
+                        <td style="padding: 5px;">1</td>
+                        <td style="padding: 5px;">
                             <div class="product-data-container">
                                 <input class="form-search-custom-awl" type="text" list="product_onedata1" name="product_onelist" id="product_onelist1" onkeyup="addProductRow('1','product_outlistone1',this.value,'txtHintone1','product_onelist1')" placeholder="Product Search" autocomplete="off" value="" required/>
                                 <input type="hidden" name="product_outlistone1" id="product_outlistone1" value="<?php echo $show->showDetails($id_work,'product_id1');?>" />
                                 <div id="txtHintone1" name="txtHintMain" style="display: none; position: absolute; text-align: left; max-height: 20em; border: 0 none; overflow-x: hidden; overflow-y: auto; z-index: 999; background-color: #FFFFFF; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border-radius:8px; font-size: 0.8em; padding: 0.3em 1em; cursor: pointer;"><?php echo $show->showProduct($show->showDetails($id_work,'product_id1'),'product_name');?></div>
                             </div>
                         </td>
-                        <td><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="" required></td>
-                        <td><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="" required></td>
-                        <td><input class="text-center" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="" readonly></td>
+                        <td style="vertical-align: middle; text-align: center; padding:12px 5px 5px 5px;">
+                            <textarea style="width:100%; height: 24px; padding:0px;" name="remark_pro1" id="remark_pro1"></textarea>
+                        </td>
+                        <td style="padding: 5px;"><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="" required></td>
+                        <td style="padding: 5px;"><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="" required></td>
+                        <td style="padding: 5px;"><input class="text-center" style="background-color: #e0e0e0;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="" readonly></td>
                     </tr>
                 </table>
                 <div class="d-flex align-items-center justify-content-between my-4">
@@ -60,7 +64,7 @@ if(!empty($_REQUEST['id_work'])){
                         <option value="0-50 %|5">0-50 %</option>
                     </select>
                     <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="">
-                    <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
+                    <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px; background-color: #e0e0e0;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
                     <label for="inputPassword" class="">วันที่ต้องการสินค้า&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="date_request" id="date_request" value="">
                     <label for="inputPassword" class="">ประเภท&nbsp;</label>
                     <select name="type_cus" id="type_cus" style="width: 151px;">

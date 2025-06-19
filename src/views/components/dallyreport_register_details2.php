@@ -167,7 +167,7 @@
         <div class="col-11" >
             <div id="demo_planitem"> </div>
         </div>
-        <div class="col-12 mt-3"><textarea class="textarea-form-control" style="width:100%;" rows="3" readonly><?php echo $show->showDetails($id_work,'plan_work');?></textarea></div>
+        <div class="col-12 mt-3"><textarea class="textarea-form-control" style="width:100%;" rows="3" name="plan_work" id="plan_work"><?php echo $show->showDetails($id_work,'plan_work');?></textarea></div>
     </div>
 </section>
 <hr class="my-4">
