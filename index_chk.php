@@ -55,6 +55,8 @@ $routes = [
     'report_summary_salesum' => 'src/views/report_summary_salesum.php', // รายงานสรุปผลการขายตามช่วงเวลา (Sale)
     'report_presentsup' => 'src/views/report_presentsup.php', // รายงานการจัด Present / การออก Booth
     'report_sales_closure_excel' => 'src/views/report_sales_closure_excel.php',
+    'status_approve' => 'src/views/status_approve.php',
+    'status_approvedate' => 'src/views/status_approvedate.php',
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',
@@ -85,6 +87,7 @@ $routes = [
     'customer_salesave1' => 'src/models/customer_salesave1.php',
     'newbuiding_edit1' => 'src/models/newbuiding_edit1.php',
     'country_list_th' => 'src/models/country_list_th.json',
+    'daily_send_md_percent' => 'src/models/daily_send_md_percent.php',
 ];
 
 if (array_key_exists($url, $routes) && file_exists($routes[$url])) {

@@ -69,6 +69,8 @@ if ($_SESSION['em_id'] == '' ) { ?>
                     <?php if($_SESSION['em_id'] == 'VMD' || $_SESSION['em_id'] == 'MD1' || $_SESSION['em_id'] == 'PRM' || $_SESSION['em_id'] == 'IT2'){ ?>
                         <a href="<?php echo $nameHost;?>report_summary_supsum5">รายงานสรุปผลการขายตามช่วงเวลา</a>
                         <a href="<?php echo $nameHost;?>report_presentsup">รายงานการจัด Present / การออก Booth</a>
+                        <a href="<?php echo $nameHost;?>status_approve">อนุมัติเปอร์เซ็นต์ประมาณการ</a>
+                        <a href="<?php echo $nameHost;?>status_approvedate">อนุมัติวันที่ต้องการสินค้า</a>
                     <?php } else if($_SESSION['typelogin'] == 'Supervisor' AND $_SESSION['em_id'] != 'VMD' AND $_SESSION['em_id'] != 'MD1' AND $_SESSION['em_id'] != 'PRM' AND $_SESSION['em_id'] != 'IT2'){ ?>
                         <a href="<?php echo $nameHost;?>report_summary_supsum">รายงานสรุปผลการขายตามช่วงเวลา</a>
                     <?php } else { ?>

@@ -120,15 +120,19 @@
                         <td style="vertical-align: middle; text-align: center; padding:5px;"><input class="text-center" style="background-color: #e0e0e0; cursor:no-drop;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="<?php echo $show->showDetails($id_work,'price_product1');?>" readonly></td>
                     </tr>
                 </table>
-                <div class="d-flex align-items-center justify-content-between my-4">
+                <div class="d-flex align-items-center justify-content-between mt-4">
                     <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
                     <select name="percent_code" id="percent_code" style="width: 100px;">
                         <option value="">Please Select</option>
                         <option value="100 %|1" <?php if($show->showDetails($id_work,'percent_name') == '100 %'){ ?> selected <?php } ?>>100 %</option>
                         <option value="90-99 %|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99 %'){ ?> selected <?php } ?>>90-99 %</option>
+
+                    <?php if($show->showDetails($id_work,'percent_name') != '100 %' AND $show->showDetails($id_work,'percent_name') != '90-99 %'){ ?>
                         <option value="80-89 %|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89 %'){ ?> selected <?php } ?>>80-89 %</option>
                         <option value="50-80 %|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80 %'){ ?> selected <?php } ?>>50-80 %</option>
                         <option value="0-50 %|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50 %'){ ?> selected <?php } ?>>0-50 %</option>
+                    <?php } ?>
+
                     </select>
                     <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="<?php echo $show->showDetails($id_work,'month_po');?>">
                     <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px; background-color: #e0e0e0; cursor:no-drop;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
@@ -143,6 +147,12 @@
                         <option value="5" <?php if($show->showDetails($id_work,'type_cus') == '5'){ ?> selected <?php } ?>>ลูกค้าทั่วไป / เจ้าหน้าที่รพ.</option>
                     </select>
                 </div>
+                <p class="mt-2">
+                    <?php if($show->showDetails($id_work,'percent_name') == '100 %' || $show->showDetails($id_work,'percent_name') == '90-99 %'){ ?>
+                    <span class="badge rounded-pill text-bg-info" onclick="sendMd('<?php echo $id_work;?>',1,'แก้ไขเปอร์เซ็นต์ประมาณการขาย','เปอร์เซ็นต์ใหม่สาเหตุการแก้ไข','<?php echo $show->showDetails($id_work,'type_cus');?>')" data-bs-toggle="tooltip" data-bs-title="(ปรับเปอร์เซ็นต์) กรณีที่ 90-100% หากปรับลดจำเป็นต้องระบุหมายเหตุเพื่อขออนุมัติจากผู้บริหารถึงจะปรับลดได้">ปรับ<ins>เปอร์เซ็นต์</ins>ประมาณการขาย</span>
+                    <span class="badge rounded-pill text-bg-warning" onclick="sendMd('<?php echo $id_work;?>',2,'แก้ไขวันที่ต้องการสินค้า','วันที่ต้องการสินค้าสาเหตุการแก้ไข','<?php echo $show->showDetails($id_work,'date_request');?>')" data-bs-toggle="tooltip" data-bs-title="(วันที่ต้องการสินค้า) กรณีที่ 90-100% หากปรับลดจำเป็นต้องระบุหมายเหตุเพื่อขออนุมัติจากผู้บริหารถึงจะปรับวันที่ได้"><ins>ปรับวันที่</ins>ต้องการสินค้า(เปลี่ยนเดือน)</span>
+                    <?php } ?>
+                </p>
                 <div>
                     <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
                 </div>
@@ -221,4 +231,78 @@
             document.getElementById('sum_price_product').value = "0.00";
         }
     }
+
+
+
+function sendMd(id_workMd,statusChk, Message1, Message2,docOld) {
+    if (statusChk === 2) {
+        (async () => {
+            const { value: formValues } = await Swal.fire({
+                title: Message1,
+                html:
+                    `
+                    <div style="width:100%; padding:10px; text-align:left;">
+                    <b>วันที่ต้องการสินค้า :</b>
+                    <input type="date" id="swal-input-date" style="width:100%;" placeholder="${Message2}" style="margin-bottom:10px;">
+                    <br>
+                    <b>${Message2} :</b>
+                    <textarea id="swal-input-textarea"  placeholder="${Message2}" style="width:100%;"></textarea>
+                    </div>
+                    `,
+                focusConfirm: false,
+                showCancelButton: true,
+                preConfirm: () => {
+                    return {
+                        date: document.getElementById('swal-input-date').value,
+                        note: document.getElementById('swal-input-textarea').value
+                    }
+                },
+                didOpen: () => {
+                    const today = (new Date()).toISOString().split("T")[0];
+                    document.getElementById('swal-input-date').min = today;
+                }
+            });
+            if (formValues && formValues.date) {
+                Swal.fire("บันทึกสำเร็จ", `วันที่: ${formValues.date}<br>หมายเหตุ: ${formValues.note}`, "success");
+            }
+            window.location.href = `daily_send_md_percent?id_work=${id_workMd}&statuschk=${statusChk}&date=${formValues.date}&note=${formValues.note}&docOld=${docOld}`;
+        })();
+    } else {
+        (async () => {
+            const { value: formValues } = await Swal.fire({
+                title: Message1,
+                html:
+                    `
+                    <div style="width:100%; padding:10px; text-align:left;">
+                    <b>วันที่ต้องการสินค้า :</b>
+                    <select id="swal-input-select" style="margin-bottom:10px; width:100%;">
+                        <option value="">เลือกตัวเลือก</option>
+                        <option value="100 %">100 %</option>
+                        <option value="90-99 %">90-99 %</option>
+                        <option value="80-89 %">80-89 %</option>
+                        <option value="50-80 %">50-80 %</option>
+                        <option value="0-50 %">0-50 %</option>
+                    </select>
+                    <br>
+                    <b>${Message2} :</b>
+                    <textarea id="swal-input-textarea"  placeholder="${Message2}" style="width:100%;"></textarea>
+                    </div>
+                    `,
+                focusConfirm: false,
+                showCancelButton: true,
+                preConfirm: () => {
+                    return {
+                        percent: document.getElementById('swal-input-select').value,
+                        note: document.getElementById('swal-input-textarea').value
+                    }
+                }
+            });
+            if (formValues && formValues.percent) {
+                Swal.fire("บันทึกสำเร็จ", `เปอร์เซ็นต์: ${formValues.percent}<br>หมายเหตุ: ${formValues.note}`, "success");
+            }
+            window.location.href = `daily_send_md_percent?id_work=${id_workMd}&statuschk=${statusChk}&percent=${formValues.percent}&note=${formValues.note}&docOld=${docOld}`;
+        })();
+    }
+}
+
 </script>
