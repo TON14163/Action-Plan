@@ -1,7 +1,6 @@
 <?php 
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content
 error_reporting(0);
-$sale_code = isset($_GET['sale_code']) ? $_GET['sale_code'] : ($_SESSION['em_id'] ?? '');
 if($_POST['save'] == 1){
 
     if($_SESSION['typelogin'] == 'Marketing' OR $_SESSION['name_show'] == 'ลักษณาวรรณ'){
@@ -191,8 +190,7 @@ exit; } ?>
         $(document).ready(function() {
             var dateStart = "<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>";
             var dateEnd = "<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>";
-            // var saleCode = "<?php // echo !empty($_GET['sale_code']) ? htmlspecialchars($_GET['sale_code']) : ''; ?>";
-            var saleCode = "<?php echo !empty($sale_code) ? htmlspecialchars($sale_code, ENT_QUOTES, 'UTF-8') : ''; ?>";
+            var saleCode = "<?php if($_GET['sale_code'] != '') { echo $_GET['sale_code']; }?>";
             
             $('#the_matter').DataTable({
                 "lengthChange": false,

@@ -51,6 +51,7 @@ $routes = [
     'customer_salesave' => 'src/views/customer_salesave.php',
     'newbuiding_edit' => 'src/views/newbuiding_edit.php',
     'report_summary_supsum5' => 'src/views/report_summary_supsum5.php', // รายงานสรุปผลการขายตามช่วงเวลา (Sup)
+    'report_summary_salesum' => 'src/views/report_summary_salesum.php', // รายงานสรุปผลการขายตามช่วงเวลา (Sale)
     'report_presentsup' => 'src/views/report_presentsup.php', // รายงานการจัด Present / การออก Booth
     'report_sales_closure_excel' => 'src/views/report_sales_closure_excel.php',
 

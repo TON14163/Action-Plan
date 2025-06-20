@@ -22,48 +22,22 @@ if ($_SESSION['em_id'] != '') {
     // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
     $where = " WHERE 1=1 ";
 
-    // ตรวจสอบประเภทผู้ใช้และกำหนดเงื่อนไข sale_area
-    if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') {
-        
-    } else if ($_SESSION['typelogin'] == 'Supervisor') {
-        switch ($_SESSION["head_area"]) {
-            case 'SM1': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_sm1 "; break;
-            case 'SS1': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss1 "; break;
-            case 'SS2': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss2 "; break;
-            case 'SS3': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss3 "; break;
-            default:
-                $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss1 
-                            UNION SELECT sale_code, sale_name FROM tb_team_ss2 
-                            UNION SELECT sale_code, sale_name FROM tb_team_ss3 
-                            UNION SELECT sale_code, sale_name FROM tb_team_sm1 ";
-                break;
-        }
-        $objQuery5 = mysqli_query($conn, $strSQL5);
-        $allSale = array();
-        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
-            $allSale[] = htmlspecialchars($objResuut5["sale_code"]);
-        }
-
-        $em_idFull = implode("','", $allSale);
-        $where .= " AND sale_area IN ('" . $em_idFull . "') ";
+    if ($_SESSION['typelogin'] == 'Supervisor') {
     } else {
-        $em_idFull = $_SESSION['em_id'];
-        if (!empty($em_idFull)) {
-            $where .= " AND sale_area = '" . mysqli_real_escape_string($conn, $em_idFull) . "' ";
-        }
+        $where .= " AND sale_area = '" . mysqli_real_escape_string($conn, $_SESSION['em_id']) . "' ";
     }
-
+    
     // เพิ่มเงื่อนไขการค้นหา
     if (!empty($cus_keyword)) {
         $where .= " AND ( 
-            id_hospital LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            title_name LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            customer_name LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            sale_area LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            address_name LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            province LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            customer_tel LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%' OR
-            customer_credit LIKE '%" . mysqli_real_escape_string($conn, $cus_keyword) . "%'
+            id_hospital = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            title_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            customer_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            sale_area = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            address_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            province = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            customer_tel = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
+            customer_credit = '" . mysqli_real_escape_string($conn, $cus_keyword) . "'
         )";
     }
 

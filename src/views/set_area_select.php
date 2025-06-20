@@ -14,8 +14,8 @@
         $sale_code = $_SESSION['em_id'];  
     }
 ?>
-    <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?> <b>Sale</b> <?php } ?>
-    <select class="form-select-custom-awl" name="sale_code" id="sale_code" <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?> style="display: none;" <?php } ?>>
+    <?php if($_SESSION['typelogin'] == 'Supervisor' || $_SESSION["typelogin"] == 'Marketing' ){ ?> <b>Sale</b> <?php } ?>
+    <select class="form-select-custom-awl" name="sale_code" id="sale_code" <?php if($_SESSION['typelogin'] != 'Supervisor' && $_SESSION["typelogin"] != 'Marketing'){ ?> style="display: none;" <?php } ?>>
         <option value="">Please Select</option>
         <?php  
                 $selectedFullSup = array();
@@ -33,6 +33,5 @@
                         '</option>';
                 }
                 $selectedFullSup_string = "IN ('".implode("','",$selectedFullSup)."')";
-                
         ?>
     </select>

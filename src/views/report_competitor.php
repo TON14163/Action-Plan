@@ -26,8 +26,10 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
             <input style="width: 250px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
             <b>ประเภทสินค้า</b>  <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="<?php echo !empty($_GET['product_rival']) ? htmlspecialchars($_GET['product_rival']) : ''; ?>">
+
+
             <?php 
-            if($_SESSION['typelogin'] == 'Supervisor' ){ 
+            if($_SESSION['typelogin'] == 'Supervisor' || $_SESSION["typelogin"] == 'Marketing' ){ 
             $selectedSale_code = array();
             ?>
                     <select class="form-select-custom-awl" name="sale_code" id="sale_code">
@@ -53,6 +55,8 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 $selectedSale_code_string = "sale_area = '" . mysqli_real_escape_string($conn, $_SESSION['em_id']) . "'";
             }
             ?>
+
+            
             <button class="btn-custom-awl">Search</button>
         </div>
         <div id="customerDropdown" class="customerDropdown">

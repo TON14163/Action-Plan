@@ -60,7 +60,20 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
 // เช็ค domain เพื่อใช้รัน ระบบในเครื่องหรือบน domain   END
 
     if($rows == 1){
+
+        $selectedFullSupMain = array();
+        $strSQLFull = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$data['id']."' ORDER BY m_id ASC ";
+        $objQueryFull = mysqli_query($conn, $strSQLFull);
+        while ($objResuutFull = mysqli_fetch_array($objQueryFull)) {  
+            $strSQLFull1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuutFull['m_id']."' ";
+            $objQueryFull1 = mysqli_query($conn, $strSQLFull1);
+            $objResuutFull1 = mysqli_fetch_array($objQueryFull1);
+            $selectedFullSupMain[] = $objResuutFull1["em_id"];
+        }
+        $selectedFullSupMain_string = "IN ('".implode("','",$selectedFullSupMain)."')";
+
         @session_start();
+        $_SESSION['selectedFull'] = $selectedFullSupMain_string;
         $_SESSION['id'] = $data["id"];
         $_SESSION['user_id_login'] = $data["user_id"];
         $_SESSION['name_show'] = $data["name"];

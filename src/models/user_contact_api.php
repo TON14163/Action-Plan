@@ -26,12 +26,39 @@ $countSql = "SELECT COUNT(id_work) AS total FROM tb_register_data";
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
 $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความชัดเจน
 
-if (!empty($saleCode)) {
-    $where .= " AND sale_area = '".$saleCode."'";
-} else {
-    $where .= " AND head_area = 'SS3'";
-    $saleCode = 'SS3';
-}
+ // ตรวจสอบประเภทผู้ใช้และกำหนดเงื่อนไข sale_area
+    if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM' OR  $_SESSION["ext"] == 'VMD' OR $_SESSION["ext"] == 'MD1' ) {
+        
+    } else if ($_SESSION['typelogin'] == 'Supervisor') {
+        switch ($_SESSION["head_area"]) {
+            case 'SM1': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_sm1 "; break;
+            case 'SS1': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss1 "; break;
+            case 'SS2': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss2 "; break;
+            case 'SS3': $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss3 "; break;
+            default:
+                $strSQL5 = "SELECT sale_code, sale_name FROM tb_team_ss1 
+                            UNION SELECT sale_code, sale_name FROM tb_team_ss2 
+                            UNION SELECT sale_code, sale_name FROM tb_team_ss3 
+                            UNION SELECT sale_code, sale_name FROM tb_team_sm1 ";
+                break;
+        }
+        $objQuery5 = mysqli_query($conn, $strSQL5);
+        $allSale = array();
+        while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+            $allSale[] = htmlspecialchars($objResuut5["sale_code"]);
+        }
+
+        $em_idFull = implode("','", $allSale);
+        $where .= " AND sale_area IN ('" . $em_idFull . "') ";
+    } else {
+        $em_idFull = $_SESSION['em_id'];
+        if (!empty($em_idFull)) {
+            $where .= " AND sale_area = '" . mysqli_real_escape_string($conn, $em_idFull) . "' ";
+        }
+    }
+
+
+
 if (!empty($datePlan)) {
     $where .= " AND date_plan = '" . mysqli_real_escape_string($conn, $datePlan) . "'";
 }

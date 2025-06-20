@@ -14,7 +14,7 @@ $orderColumnIdx = isset($_POST['order'][0]['column']) ? intval($_POST['order'][0
 $orderDir = isset($_POST['order'][0]['dir']) ? $_POST['order'][0]['dir'] : 'asc';
 $dateStart = isset($_POST['date_start']) ? $_POST['date_start'] : (isset($_GET['date_start']) ? $_GET['date_start'] : '');
 $dateEnd = isset($_POST['date_end']) ? $_POST['date_end'] : (isset($_GET['date_end']) ? $_GET['date_end'] : '');
-$saleCode = isset($_POST['sale_code']) ? $_POST['sale_code'] : (isset($_GET['sale_code']) ? $_GET['sale_code'] : '');
+$saleCode =  $_POST['sale_code'];
 
 // กำหนดคอลัมน์ที่สามารถเรียงลำดับได้
 $columns = array('id', 'date_salemk' ,'customer_name','description','img_1','img_2','img_3','img_4','img_5','add_by','sale_code','type_save','ckk_open');
@@ -27,10 +27,19 @@ $countSql = "SELECT COUNT(id) AS total FROM tb_register_salemk";
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
 $where = " WHERE 1=1";
 
-if (!empty($saleCode)) {
-    $where .= " AND sale_code = '".$saleCode."' ";
-} else {
-    $where .= " AND sale_code = '".$_SESSION['em_id']."' ";
+if ($_SESSION["typelogin"] == 'Supervisor' || $_SESSION["typelogin"] == 'Marketing' ) {
+    if (!empty($saleCode)) { // อ้างอิงตาม การเลือกเขตค้นหา
+        $where .= " AND sale_code = '".$saleCode."' ";
+    } else { // อ้างอิงตาม Full Supervisor
+        if (!empty($_SESSION['selectedFull']) && is_array($_SESSION['selectedFull'])) {
+            $selectedCodes = array_map(function($code) use ($conn) {
+                return "'" . mysqli_real_escape_string($conn, $code) . "'";
+            }, $_SESSION['selectedFull']);
+            $where .= " AND sale_code IN (" . implode(',', $selectedCodes) . ") ";
+        }
+    }
+} else { // อ้างอิงตาม User ที่ Login
+    $where .= " AND sale_code = '" . mysqli_real_escape_string($conn, $_SESSION['em_id']) . "' ";
 }
 
 if (!empty($dateStart)) {

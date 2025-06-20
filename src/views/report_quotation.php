@@ -56,15 +56,22 @@ function getPercentSummaries($conn) {
                 SUM(sum_price_product) AS sum_price_product,
                 SUM(unit_product1) AS unit_product1
             FROM tb_register_data 
-            WHERE summary_order = '0' AND summary_product1 != '' ";
+            WHERE summary_order = '0' AND summary_product1 != '' AND date_request != '0000-00-00' ";
 
-    if ($_GET['sale_code'] != '') {
-            $sqlHead .= " AND sale_area = '".$_GET['sale_code']."'  ";
+    // ส่วนที่แก้ไขตามคำถามแรก
+    if ($_SESSION["typelogin"] == 'Supervisor') {
+        if (empty($_GET['sale_code'])) {
+            $sqlHead .= "AND sale_area " . $_SESSION['selectedFull'];
+        } else {
+            $sqlHead .= "AND sale_area = '" . mysqli_real_escape_string($conn, $_GET['sale_code']) . "' ";
+        }
     } else {
-        $sqlHead .= " AND sale_area = '".$_SESSION['em_id']."'  ";
+        $sqlHead .= "AND sale_area = '" .$_SESSION['em_id']. "' ";
     }
 
-    if($_SESSION["em_id"] != 'VMD' AND $_SESSION["em_id"] != 'MD1' AND $_SESSION["em_id"] != 'IT2' AND $_SESSION["em_id"] != 'PRM'){
+
+
+    if (!in_array($_SESSION["em_id"], ['VMD', 'MD1', 'IT2', 'PRM'])) {
         $sqlHead .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
     }
 
@@ -74,6 +81,7 @@ function getPercentSummaries($conn) {
     if (!empty($_GET['date1_buy']) && !empty($_GET['date2_buy'])) { $sqlHead .= "AND date_request BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date1_buy']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date2_buy']) . "' "; }
     if($_GET['prorival_name'] !=""){ $sqlHead .= ' AND mode_pro1 = "'.$_GET['prorival_name'].'"'; }
     if($_GET['type_cus'] !=""){ $sqlHead .= ' AND type_cus = "'.$_GET['type_cus'].'"'; }
+    if($_GET['product_outlistone1'] !=""){ $sqlHead .= ' AND product_id1 = "'.$_GET['product_outlistone1'].'"'; }
     $sqlHead .= "GROUP BY percent_name WITH ROLLUP ";
     
     $query = mysqli_query($conn, $sqlHead) or die("Query Error: " . mysqli_error($conn));
@@ -131,7 +139,7 @@ function getPercentSummaries($conn) {
                 </div>
                 <div>
                     <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  
-                    echo $selectedFullSup_string;
+                    // echo $selectedFullSup_string;
                     ?>
                 </div>
             </div>
@@ -158,6 +166,7 @@ function getPercentSummaries($conn) {
             </select>
             <b>หมวดสินค้า</b>  
             <select name="prorival_name" id="prorival_name" class="form-select-custom-awl">
+                <?php if($_GET['prorival_name'] != ''){ ?><option value="<?php echo $_GET['prorival_name'];?>"><?php echo $_GET['prorival_name'];?></option><?php } ?>
                 <option value="">**Please Select**</option>
                 <?php
                 $strSQL5 = "SELECT id,prorival_name FROM tb_prorival ";
@@ -266,7 +275,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 $sql .= "AND sale_area = '" . mysqli_real_escape_string($conn, $_GET['sale_code']) . "' ";
             }
         } else {
-            $sql .= "AND sale_area = '" . mysqli_real_escape_string($conn, $sale_code) . "' ";
+            $sql .= "AND sale_area = '" . $_SESSION['em_id']. "' ";
         }
 
         if (!in_array($_SESSION["em_id"], ['VMD', 'MD1', 'IT2', 'PRM'])) {
@@ -311,7 +320,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <td><?php echo DateThai($row['date_plan']); ?></td>
                 <td><?php echo htmlspecialchars($row['hospital_name']); ?></td>
                 <td><?php echo htmlspecialchars($row['hospital_ward']); ?></td>
-                <td><?php echo htmlspecialchars($row['summary_quote'] . $row['summary_product1'] . ' ' . $row['remark_pro1']); ?></td>
+                <td style="text-align: left;"><?php echo htmlspecialchars($row['summary_quote'] . $row['summary_product1'] . ' ' . $row['remark_pro1']); ?></td>
                 <td><?php echo $row['unit_product1'] != '0' ? $row['unit_product1'] . ' ' . $row['unit_name1'] : ''; ?></td>
                 <td><?php echo number_format($row['sum_price_product'], 0); ?></td>
                 <td><?php echo htmlspecialchars($type_code); ?></td>
