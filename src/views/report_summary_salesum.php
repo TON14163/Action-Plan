@@ -22,7 +22,7 @@ function DateThaiM($strDate)
     </h3>
 </center>
 
-<form name="frmSearch" method="POST" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+<form name="frmSearch" method="POST" action="<?php echo $url; ?>">
 <?php 
 $sale_code = $_SESSION['em_id']; 	
 

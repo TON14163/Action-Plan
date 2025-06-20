@@ -1,6 +1,6 @@
 <?php
 ob_start();
-error_reporting(0);
+// error_reporting(0);
 function DateThai($strDate)
 	{
 		$strYear = date("y",strtotime($strDate))+43;
@@ -16,9 +16,7 @@ function DateThai($strDate)
 ?>
 
 <center><h2><span >รายงานสรุปผลการขายตามช่วงเวลา</span></h2></center>  
-<form name="frmSearch" method="POST" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-
-
+<form name="frmSearch" method="POST" action="<?php echo $url; ?>">
 
 <center>
 
@@ -199,10 +197,8 @@ $sel = "";
 
 
 <?php	
-	
+
 $sale_code=$_POST["sale_code"];
-
-
 if($_SESSION['em_id']=='SS1'){
 
 $ddd = " and sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sale_area !='S17'  and sale_area !='S23'  and sale_area !='S24'  and sale_area !='S31' and sale_area !='S32' and sale_area !='SM1' and sale_area !='MM1' and sale_area !='MM2' and sale_area !='SS2' and head_area ='SS1' ";
@@ -224,15 +220,9 @@ $ddd = " sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sal
 $target = " and ckk_type !='0' and ckk_type !='1'  and ckk_type !='2' and ckk_type !='6'";
 $sumall = " and type_arae='2' and sale_cose NOT LIKE '%SOL%'";
 
-
-
 }
-
-	
 ?>
-	
-	
-	<br>
+<br>
 <?php	
 //date 1	
 	
