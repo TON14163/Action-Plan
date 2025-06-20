@@ -1,6 +1,6 @@
 <?php
 ob_start();
-// error_reporting(0);
+error_reporting(0);
 function DateThaiM($strDate)
 	{
 		$strYear = date("y",strtotime($strDate))+43;
@@ -227,10 +227,10 @@ $sumall = " and type_arae='2' and sale_cose NOT LIKE '%SOL%'";
 //date 1	
 	
 if($_POST["start_date"]!=''){	
-$start_date=$_POST["start_date"];
+    $start_date=$_POST["start_date"];
 }else{
-$start = date('Y-m');
-$start_date = "$start-01";
+    $start = date('Y-m');
+    $start_date = "$start-01";
 }
 
 	
