@@ -149,8 +149,9 @@
         <div class="col-2 d-flex align-items-center"><font style="font-size: 10px; color:red;">*หมายเหตุ : หากแก้ไขข้อมูลลูกค้า ข้อมูลจะถูก Save ทับข้อมูลเดิมในฐานอัตโนมัติ</font></div>
 
     </div>
-
+    <?php if($numC != '10'){?>
         &nbsp;&nbsp;&nbsp;<input type="checkbox" name="viewcontxt" id="viewcontxt"> <label for="viewcontxt" data-bs-toggle="tooltip" data-bs-title="เพิ่ม ผู้ติดต่อ,เบอร์โทร,E-mail"><b style="font-size: 14px;">เพิ่มเติม</b></label>
+    <?php } ?>
         <div style="font-size: 14px; font-weight: bold; display: none;" id="view_contxt" class="row px-3">
 
             <script>
@@ -167,16 +168,16 @@
             </script>
 
             <?php 
-            $iNum = $numC+1; 
-                $hospital_contact = 'hospital_contact' . $iNum-1;
-                $hospital_mobile = 'hospital_mobile' . $iNum;
-                $email_contact = 'email_contact' . $iNum;
+            for ($i = 2; $i <= 10; $i++) {
+                $hospital_contact = 'hospital_contact' . $i-1;
+                $hospital_mobile = 'hospital_mobile' . $i;
+                $email_contact = 'email_contact' . $i;
                 ?>
                 <div class="col-3">
                     <div class="row d-flex align-items-center">
                         <label for="" class="col-3 col-form-label">ผู้ติดต่อ</label>
                         <div class="col-9">
-                            <input type="text" class="form-control text-center" id="<?php echo $hospital_contact;?>" name="<?php echo $hospital_contact;?>" value="" placeholder="ผู้ติดต่อ <?php echo $iNum;?>">
+                            <input type="text" class="form-control text-center" id="<?php echo $hospital_contact;?>" name="<?php echo $hospital_contact;?>" value="<?php echo $show->showDetails($id_work, $hospital_contact);?>" placeholder="ผู้ติดต่อ <?php echo $i;?>">
                         </div>
                     </div>
                 </div>
@@ -185,7 +186,7 @@
                     <div class="row d-flex align-items-center">
                         <label for="" class="col-4 col-form-label">เบอร์โทร</label>
                         <div class="col-8">
-                            <input type="text" class="form-control text-center" id="<?php echo $hospital_mobile;?>" name="<?php echo $hospital_mobile;?>" value="" placeholder="เบอร์โทร <?php echo $iNum;?>">
+                            <input type="text" class="form-control text-center" id="<?php echo $hospital_mobile;?>" name="<?php echo $hospital_mobile;?>" value="<?php echo $show->showDetails($id_work, $hospital_mobile);?>" placeholder="เบอร์โทร <?php echo $i;?>">
                         </div>
                     </div>
                 </div>
@@ -194,11 +195,14 @@
                     <div class="row d-flex align-items-center">
                         <label for="" class="col-4 col-form-label">E-mail</label>
                         <div class="col-8">
-                        <input type="text" class="form-control text-center" id="<?php echo $email_contact;?>" name="<?php echo $email_contact;?>" value="" placeholder="E-mail <?php echo $iNum;?>" >
+                            <input type="text" class="form-control text-center" id="<?php echo $email_contact;?>" name="<?php echo $email_contact;?>" value="<?php echo $show->showDetails($id_work, $email_contact);?>" placeholder="E-mail <?php echo $i;?>" >
                         </div>
                     </div>
                 </div>
                 <div class="col-2 d-flex justify-content-between"></div>
+            <?php 
+            }
+            ?>
         </div>
 
 </section>

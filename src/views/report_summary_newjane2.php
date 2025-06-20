@@ -281,16 +281,12 @@ error_reporting(0);
     if ($_SESSION['em_id'] == 'SS1') {
         $sddd = "   and sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sale_area !='S17'  and sale_area !='S23'  and sale_area !='S24'  and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'";
         $sfff = "   and sale_code !='S11'  and sale_code !='S12' and sale_code !='S13'  and sale_code !='S17'  and sale_code !='S23'  and sale_code !='S24'  and sale_code !='S31' and sale_code !='SM1' and sale_code !='MM1' and sale_code NOT LIKE '%EN%' and sale_code !='MM2' and sale_code !='S32'";
-        echo '1';
     } else if ($_SESSION['em_id'] == 'SS2') {
         $sddd = "  and sale_area !='S14'  and sale_area !='S15' and sale_area !='S16'  and sale_area !='S21'  and sale_area !='S22'  and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'";
         $sfff = "  and sale_code !='S14'  and sale_code !='S15' and sale_code !='S16'  and sale_code !='S21'  and sale_code !='S22'  and sale_code !='S31' and sale_code !='SM1' and sale_code !='MM1' and sale_code !='MM2' and sale_code !='S32' and sale_code NOT LIKE '%EN%'";
-        echo '2';
     } else if ($_SESSION['em_id'] == 'SS3') {
         $sddd = "  and sale_area ='S31'";
         $sfff = "  and sale_code ='S31'";
-
-        echo '3';
     } else if($_SESSION['em_id']=='SS2' || $_SESSION['em_id'] == 'VMD' || $_SESSION['em_id'] == 'MD1' || $_SESSION['em_id'] == 'IT2' || $_SESSION['em_id'] == 'PRM'){
 
     } else {
