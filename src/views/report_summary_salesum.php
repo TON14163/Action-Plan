@@ -16,7 +16,11 @@ function DateThaiM($strDate)
 	}
 ?>	
 
-รายงานสรุปผลการขายตามช่วงเวลาเขตการขาย <?php echo $_SESSION['em_id'];?>
+<center>
+    <h3>
+        รายงานสรุปผลการขายตามช่วงเวลาเขตการขาย <?php echo $_SESSION['em_id'];?>
+    </h3>
+</center>
 
 <form name="frmSearch" method="POST" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
 <?php 
