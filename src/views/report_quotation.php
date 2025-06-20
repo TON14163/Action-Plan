@@ -69,8 +69,6 @@ function getPercentSummaries($conn) {
         $sqlHead .= "AND sale_area = '" .$_SESSION['em_id']. "' ";
     }
 
-
-
     if (!in_array($_SESSION["em_id"], ['VMD', 'MD1', 'IT2', 'PRM'])) {
         $sqlHead .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
     }

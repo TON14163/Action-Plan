@@ -123,11 +123,27 @@ if(!empty(($_REQUEST['dc']))){
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sql_total .= "AND date_plan BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_start']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_end']) . "' ";
         }
-        if (!empty($sale_code)) {
-            $sql_total .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
+
+        // if (!empty($sale_code)) {
+        //     $sql_total .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
+        // } else {
+        //     $sql_total .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
+        // }
+
+        if ($_SESSION["typelogin"] == 'Supervisor') {
+            if (empty($sale_code)) {
+                $sql_total .= "AND sale_area " . $_SESSION['selectedFull'];
+            } else {
+                $sql_total .= "AND sale_area = '" . mysqli_real_escape_string($conn, $sale_code) . "' ";
+            }
         } else {
-            $sql_total .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
+            $sql_total .= "AND sale_area = '" .$_SESSION['em_id']. "' ";
         }
+
+        if (!in_array($_SESSION["em_id"], ['VMD', 'MD1', 'IT2', 'PRM'])) {
+            $sql_total .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
+        }
+
         $result_total = mysqli_query($conn, $sql_total);
         $total_rows = mysqli_fetch_assoc($result_total)['total'];
         // คำนวณจำนวนหน้าทั้งหมด
@@ -138,11 +154,28 @@ if(!empty(($_REQUEST['dc']))){
         if (!empty($_GET['date_start']) && !empty($_GET['date_end'])) {
             $sqlPlan .= "AND date_plan BETWEEN '".$_GET['date_start']."' AND '".$_GET['date_end']."' ";
         }
-        if (!empty($sale_code)) {
-            $sqlPlan .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
+
+        // if (!empty($sale_code)) {
+        //     $sqlPlan .= " AND sale_area = '".$sale_code."'  AND head_area = '".$_SESSION['head_area']."' ";
+        // } else {
+        //     $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
+        // }
+
+        if ($_SESSION["typelogin"] == 'Supervisor') {
+            if (empty($sale_code)) {
+                $sqlPlan .= "AND sale_area " . $_SESSION['selectedFull'];
+            } else {
+                $sqlPlan .= "AND sale_area = '" . mysqli_real_escape_string($conn, $sale_code) . "' ";
+            }
         } else {
-            $sqlPlan .= " AND sale_area = '".$_SESSION['em_id']."'  AND head_area = '".$_SESSION['head_area']."' ";
+            $sqlPlan .= "AND sale_area = '" .$_SESSION['em_id']. "' ";
         }
+
+        if (!in_array($_SESSION["em_id"], ['VMD', 'MD1', 'IT2', 'PRM'])) {
+            $sqlPlan .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
+        }
+
+
         $sqlPlan .= "ORDER BY date_plan DESC LIMIT $items_per_page OFFSET $offset";
         $queryPlan = mysqli_query($conn, $sqlPlan);
         $numPlan = mysqli_num_rows($queryPlan);
