@@ -32,6 +32,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             if($_SESSION['typelogin'] == 'Supervisor' || $_SESSION["typelogin"] == 'Marketing' ){ 
             $selectedSale_code = array();
             ?>
+                    <b>Sale : &nbsp;</b>
                     <select class="form-select-custom-awl" name="sale_code" id="sale_code">
                         <option value="">Please Select</option>
                         <?php

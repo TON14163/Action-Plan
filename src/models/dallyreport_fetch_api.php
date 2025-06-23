@@ -27,9 +27,17 @@ $countSql = "SELECT COUNT(id_work) AS total FROM tb_register_data";
 $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความชัดเจน
 
 if (!empty($saleCode)) {
-    $where .= " AND sale_area = '".$saleCode."' AND head_area = '".$_SESSION['head_area']."'  ";
+    $where .= " AND sale_area = '".$saleCode."'  ";
 } else {
-    $where .= " AND sale_area = '".$_SESSION['em_id']."' AND head_area = '".$_SESSION['head_area']."'  ";
+    if($_SESSION["typelogin"] == 'Supervisor'){
+        $where .= " AND sale_area != ''  ";
+    } else {
+        $where .= " AND sale_area = '" . mysqli_real_escape_string($conn, $_SESSION['em_id']) . "' ";
+    }
+}
+
+if($_SESSION["em_id"] != 'VMD' AND $_SESSION["em_id"] != 'MD1' AND $_SESSION["em_id"] != 'IT2' AND $_SESSION["em_id"] != 'PRM'){
+    $where .= "AND head_area = '" . mysqli_real_escape_string($conn, $_SESSION['head_area']) . "' ";
 }
 
 if (!empty($datePlan)) {

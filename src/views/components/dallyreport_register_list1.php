@@ -274,7 +274,7 @@ function sendMd(id_workMd,statusChk, Message1, Message2,docOld) {
                 html:
                     `
                     <div style="width:100%; padding:10px; text-align:left;">
-                    <b>วันที่ต้องการสินค้า :</b>
+                    <b>เลือกเปอร์เซ็นต์ใหม่ :</b>
                     <select id="swal-input-select" style="margin-bottom:10px; width:100%;">
                         <option value="">เลือกตัวเลือก</option>
                         <option value="100 %">100 %</option>

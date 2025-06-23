@@ -30,14 +30,7 @@ if ($_SESSION['em_id'] != '') {
     // เพิ่มเงื่อนไขการค้นหา
     if (!empty($cus_keyword)) {
         $where .= " AND ( 
-            id_hospital = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            title_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            customer_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            sale_area = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            address_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            province = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            customer_tel = '" . mysqli_real_escape_string($conn, $cus_keyword) . "' OR
-            customer_credit = '" . mysqli_real_escape_string($conn, $cus_keyword) . "'
+            customer_name = '" . mysqli_real_escape_string($conn, $cus_keyword) . "'
         )";
     }
 

@@ -50,14 +50,14 @@ if ($_SESSION['em_id'] == '' ) { ?>
     <ul class="menu-nav2">
         <?php if($_SESSION['em_id'] != 'MK'){ ?>
         <li><a class="hover-nav-item" href="<?php echo $nameHost;?>actionplan">Action Plan</a></li>
-        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>dallyreport">Daily Report</a></li>
+        <li><a class="hover-nav-item" href="<?php echo $nameHost;?>dallyreport?sale_code=">Daily Report</a></li>
         <li>
             <span class="hover-nav-item arrow-top-down">
             Report &nbsp;
                 <span class="arrow-drop-down">
-                    <a href="<?php echo $nameHost;?>report_actionplan?&sale_code=">รายงาน Action Plan</a>
+                    <a href="<?php echo $nameHost;?>report_actionplan?sale_code=">รายงาน Action Plan</a>
                     <a href="<?php echo $nameHost;?>report_daily_report?&sale_code=">รายงาน Daily Report</a>
-                    <a href="<?php echo $nameHost;?>report_quotation?&sale_code=">รายงานสรุปเสนอราคา</a>
+                    <a href="<?php echo $nameHost;?>report_quotation?sale_code=">รายงานสรุปเสนอราคา</a>
                     <a href="<?php echo $nameHost;?>report_sales_closure">รายงานปิดการขาย</a>
                     <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                     <a href="<?php echo $nameHost;?>report_summary_newjane2">รายงานสรุปการปรับปรุงการประมานการขายตามช่วงเวลา</a> <!-- ใช้ของเดิมต้นฉบับ sup -->
