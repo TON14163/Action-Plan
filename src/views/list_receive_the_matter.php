@@ -1,6 +1,9 @@
 <?php 
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content
 error_reporting(0);
+// @session_start();
+// echo $_SESSION['selectedFull'];
+
 if($_POST['save'] == 1){
 
     if($_SESSION['typelogin'] == 'Marketing' OR $_SESSION['name_show'] == 'ลักษณาวรรณ'){
