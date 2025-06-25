@@ -80,7 +80,7 @@
             <div id="fileAttachmentsContainer">
                 <div class="file-section" data-row="1" style="padding-top:10px;">
                     <span class="badge rounded-pill mb-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(1)"> 
-                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ 1 
+                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์สินค้า 1 
                     </span> 
                     <div> <p><font id="list2file1_allfile1"></font></p> </div>
                     <div id="fileRowsContainer1" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">
@@ -154,7 +154,7 @@ function myCreateFunction2() {
     newFileSection.setAttribute('data-row', rowCount);
     newFileSection.innerHTML = `
         <span class="badge rounded-pill my-2" style="background-color: #525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" onclick="addFileRow(${rowCount})"> 
-            <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์ลำดับ ${rowCount} 
+            <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มแนบไฟล์สินค้า ${rowCount} 
         </span>
         <div> <p><font id="list2file1_allfile${rowCount}"></font></p> </div>
         <div id="fileRowsContainer${rowCount}" style="max-width: 100%; display: flex; flex-wrap:wrap; align-items: center;">

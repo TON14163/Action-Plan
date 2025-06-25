@@ -85,6 +85,9 @@
                     <?php } ?>
                 </table>
             </div>
+            <div class="mt-4">
+                <textarea class="textarea-form-control" style="width:100%;" name="description_focast" id="description_focast"  rows="3" placeholder="รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show->showDetails($id_work,'description_focast');?></textarea>
+            </div>
             <?php } ?>
             <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;" class="mt-3 p-3 pt-2 rounded-3">
                 <b style="font-size: 10px; color:#ff8080;">ประมาณการขายใหม่</b>
@@ -149,12 +152,12 @@
                 </div>
                 <p class="mt-2">
                     <?php if($show->showDetails($id_work,'percent_name') == '100 %' || $show->showDetails($id_work,'percent_name') == '90-99 %'){ ?>
-                    <span class="badge rounded-pill text-bg-info" onclick="sendMd('<?php echo $id_work;?>',1,'แก้ไขเปอร์เซ็นต์ประมาณการขาย','เปอร์เซ็นต์ใหม่สาเหตุการแก้ไข','<?php echo $show->showDetails($id_work,'type_cus');?>')" data-bs-toggle="tooltip" data-bs-title="(ปรับเปอร์เซ็นต์) กรณีที่ 90-100% หากปรับลดจำเป็นต้องระบุหมายเหตุเพื่อขออนุมัติจากผู้บริหารถึงจะปรับลดได้">ปรับ<ins>เปอร์เซ็นต์</ins>ประมาณการขาย</span>
-                    <span class="badge rounded-pill text-bg-warning" onclick="sendMd('<?php echo $id_work;?>',2,'แก้ไขวันที่ต้องการสินค้า','วันที่ต้องการสินค้าสาเหตุการแก้ไข','<?php echo $show->showDetails($id_work,'date_request');?>')" data-bs-toggle="tooltip" data-bs-title="(วันที่ต้องการสินค้า) กรณีที่ 90-100% หากปรับลดจำเป็นต้องระบุหมายเหตุเพื่อขออนุมัติจากผู้บริหารถึงจะปรับวันที่ได้"><ins>ปรับวันที่</ins>ต้องการสินค้า(เปลี่ยนเดือน)</span>
+                    <span class="badge rounded-pill text-bg-info" style="cursor: pointer;" onclick="sendMd('<?php echo $id_work;?>',1,'แก้ไขเปอร์เซ็นต์ประมาณการขาย','เปอร์เซ็นต์ใหม่สาเหตุการแก้ไข','<?php echo $show->showDetails($id_work,'type_cus');?>')" data-bs-toggle="tooltip" data-bs-title="(ปรับเปอร์เซ็นต์) กรณีที่ 90-100% หากปรับลดจำเป็นต้องระบุหมายเหตุเพื่อขออนุมัติจากผู้บริหารถึงจะปรับลดได้">ปรับ<ins>เปอร์เซ็นต์</ins>ประมาณการขาย</span>
+                    <span class="badge rounded-pill text-bg-warning" style="cursor: pointer;" onclick="sendMd('<?php echo $id_work;?>',2,'แก้ไขวันที่ต้องการสินค้า','วันที่ต้องการสินค้าสาเหตุการแก้ไข','<?php echo $show->showDetails($id_work,'date_request');?>')" data-bs-toggle="tooltip" data-bs-title="(วันที่ต้องการสินค้า) กรณีที่ 90-100% หากปรับลดจำเป็นต้องระบุหมายเหตุเพื่อขออนุมัติจากผู้บริหารถึงจะปรับวันที่ได้"><ins>ปรับวันที่</ins>ต้องการสินค้า(เปลี่ยนเดือน)</span>
                     <?php } ?>
                 </p>
                 <div>
-                    <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder=" รายละเอียดงาน : Update ประมาณการขาย"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
+                    <textarea class="textarea-form-control" style="width:100%;" name="description_focastnew" id="description_focastnew"  rows="3" placeholder="รายละเอียดงาน : ประมาณการขายใหม่"><?php echo $show->showDetails($id_work,'description_focastnew');?></textarea>
                 </div>
                 <!--  -->
                 <section class="font-custom-awl-14" style="line-height: 2.5;">
@@ -171,38 +174,69 @@
                             <br>
                             วันที่ออกบิล : <input type="date" name="date_order" id="date_order" value="<?php echo $show->showDetails($id_work,'date_order');?>">
                             <br>
-                            <b><ins>วันที่ติดตามครั้งล่าสุด</ins></b><br>
-                            <?php 
-                            $strFollow = "SELECT * FROM tb_datefollow WHERE refid_work = '".$id_work."' ";
-                            $objFollow = mysqli_query($conn, $strFollow);
-                            $ResultFollow = mysqli_fetch_array($objFollow);
-                            $num_follow = 1;
+                            <b><ins>วันที่ติดตามครั้งล่าสุด</ins></b>
+                            <br>
+                            <?php
+                            $numDateFollow = 0;
+                            for ($i = 1; $i <= 15; $i++) {
+                                $date_follow = $show->showDetails($id_work, "date_follow{$i}");
+                                if ( (!empty($date_follow) AND $date_follow != '0000-00-00') || !empty($plan_follow) ) {
+                                    echo "ครั้งที่ {$i} : <i style='color:#808080; font-weight:100;'>" . DateThai(htmlspecialchars($date_follow))."</i> ";
 
-                            // ดึงรายละเอียด description_focastnew ของแต่ละการติดตาม
-                            $description_focastnewArray = array();
-                            $strreferent = "SELECT description_focastnew FROM tb_register_data WHERE id_referent = '".$id_work."' ORDER BY id_work ASC ";
-                            $objreferent = mysqli_query($conn, $strreferent);
-                            while($Resultreferent = mysqli_fetch_array($objreferent)){
-                                $description_focastnewArray[] = $Resultreferent['description_focastnew'];
-                            }
-
-                            for ($i = 1; $i <= 100; $i++) {
-                                $dateFollow = isset($ResultFollow["date_follow$i"]) ? $ResultFollow["date_follow$i"] : '';
-                                if ($dateFollow && $dateFollow !== '0000-00-00') {
-                                    // แสดงรายละเอียดของแต่ละการติดตาม ถ้ามี
-                                    $desc = isset($description_focastnewArray[$i-1]) ? htmlspecialchars($description_focastnewArray[$i-1]) : '';
-                        ?>
-                                ครั้งที่ <?php echo $i; ?> : 
-                                <input type="date" value="<?php echo $dateFollow; ?>" readonly> <?php if($desc) { echo $desc; } ?>
-                                <br>
-                        <?php 
-                                    $num_follow++;
+                                    $planWorks = json_decode($show->showDetails($id_work,'plan_work_add'), true);
+                                    if (is_array($planWorks) && !empty($planWorks[$i-1])) {
+                                        echo " แผนงาน : <i style='color:#808080; font-weight:100;'>" . htmlspecialchars($planWorks[$i-1]).'<input type="hidden" name="plan_follow'.$i.'" id="plan_follow'.$i.'" value="'.htmlspecialchars($planWorks[$i-1]).'"></i>';
+                                    }
+                                    $numDateFollow++;
+                                    echo "<br>";
                                 }
                             }
+                            // echo $show->showDetails($id_work,'plan_work_add');
                             ?>
                 </section>
                 <!--  -->
             </div>
+            
+            <div id="follow-up-list" >
+                <div class="follow-up-item" style="display: flex; align-items: center; width: 100%; margin-bottom: 10px;">
+                    <?php if($show->showDetails($id_work,'date_follow1') == ''){ ?>
+                        <div style="margin-right: 10px; background-color:#FFFFFF; border-radius: 8px; width: 20%; padding:14px 10px; text-align: center; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                            วันที่ติดตามครั้งที่ 1 : <br>
+                            <input type="date" name="date_follow1" class="date_follow">
+                        </div>
+                        <div style="background-color:#FFFFFF; border-radius: 8px; width: 80%; padding: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                            แผนงาน : <br>
+                            <textarea name="plan_follow1" style="height: 25px; min-width: 100%;"></textarea>
+                        </div>
+                        <?php } ?>
+                </div>
+            </div>
+
+            <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="เพิ่มวันที่ติดตามนี้จะอยู่ใน Plan ของงานนี้สูงสุด 15 วันที่ติดตามเท่านั้น" onclick="addFollowUp()"> 
+                <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มวันติดตตาม
+            </span>
+
+            <script>
+            let followUpCount = <?php echo $numDateFollow;?>;
+            function addFollowUp() {
+                followUpCount++;
+                const followUpList = document.getElementById('follow-up-list');
+                const div = document.createElement('div');
+                div.className = 'follow-up-item';
+                div.style = "display: flex; align-items: center; width: 100%; margin-bottom: 10px;";
+                div.innerHTML = `
+                    <div style="margin-right: 10px; background-color:#FFFFFF; border-radius: 8px; width: 20%; padding:14px 10px; text-align: center; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                        วันที่ติดตามครั้งที่ ${followUpCount} : <br>
+                        <input type="date" name="date_follow${followUpCount}" class="date_follow">
+                    </div>
+                    <div style="background-color:#FFFFFF; border-radius: 8px; width: 80%; padding: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                        แผนงาน : <br>
+                        <textarea name="plan_follow${followUpCount}" style="height: 25px; min-width: 100%;" ระบุข้อมูล...></textarea>
+                    </div>
+                `;
+                followUpList.appendChild(div);
+            }
+            </script>
 
             <div class="mt-3">
                 <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>&num_follow=<?php echo $num_follow;?>" rel="noopener noreferrer">
@@ -212,6 +246,7 @@
                 </a>
             </div>
             <!--  -->
+
         </div>
     </div>
 </div>
