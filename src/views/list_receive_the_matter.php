@@ -2,7 +2,17 @@
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content
 error_reporting(0);
 // @session_start();
-// echo $_SESSION['selectedFull'];
+// echo is_array($_SESSION['selectedFull']);
+
+if (is_array($_SESSION['selectedFull'])) {
+    $selectedCodes = array_map(function($code) use ($conn) {
+        return "'" . mysqli_real_escape_string($conn, $code) . "'";
+    }, $_SESSION['selectedFull']);
+    $where .= " AND sale_code IN (" . implode(',', $selectedCodes) . ") ";
+}
+
+
+echo $where;
 
 if($_POST['save'] == 1){
 

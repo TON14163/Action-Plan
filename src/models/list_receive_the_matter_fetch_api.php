@@ -27,16 +27,20 @@ $countSql = "SELECT COUNT(id) AS total FROM tb_register_salemk";
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
 $where = " WHERE 1=1";
 
+
+if (is_array($_SESSION['selectedFull'])) { // อ้างอิงตาม Full Supervisor 
+    $selectedCodes = array_map(function($code) use ($conn) {
+        return "'" . mysqli_real_escape_string($conn, $code) . "'";
+    }, $_SESSION['selectedFull']);
+    $selectSup .= " AND sale_code IN (" . implode(',', $selectedCodes) . ") ";
+}
+
+
 if ($_SESSION["typelogin"] == 'Supervisor' || $_SESSION["typelogin"] == 'Marketing' ) {
-    if (!empty($saleCode)) { // อ้างอิงตาม การเลือกเขตค้นหา
+    if ($saleCode != '') { // อ้างอิงตาม การเลือกเขตค้นหา
         $where .= " AND sale_code = '".$saleCode."' ";
-    } else { // อ้างอิงตาม Full Supervisor
-        if (!empty($_SESSION['selectedFull']) && is_array($_SESSION['selectedFull'])) {
-            $selectedCodes = array_map(function($code) use ($conn) {
-                return "'" . mysqli_real_escape_string($conn, $code) . "'";
-            }, $_SESSION['selectedFull']);
-            $where .= " AND sale_code IN (" . implode(',', $selectedCodes) . ") ";
-        }
+    } else { // อ้างอิงตาม Full Supervisor 
+            $where .= $selectSup;
     }
 } else { // อ้างอิงตาม User ที่ Login
     $where .= " AND sale_code = '" . mysqli_real_escape_string($conn, $_SESSION['em_id']) . "' ";
