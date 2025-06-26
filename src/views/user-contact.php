@@ -82,7 +82,7 @@ error_reporting(0);
         <div>
             <div style="display: flex;">
                 <label for="customer"><b>ค้นหาลูกค้า : </b></label> &nbsp;
-                <input style="width: 250px;" type="text" name="cus_keyword" id="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >
+                <input style="width: 250px;" type="text" name="cus_keyword" id="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" oninput="customersDataAll('cus_keyword','customerDropdown','customerSelectNewView')" >
                 <button class="btn-custom-awl">Search</button>
             </div>
             <div id="customerDropdown" class="customerDropdown">
@@ -323,6 +323,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script>
+
+
+function customersDataAll(nameKey,nameKey2,nameKey3) {
+
         let customersData = [];
         fetch(`<?php echo $cumapi;?>`)
             .then(response => response.json())
@@ -331,9 +335,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error:', error));
 
-        const input = document.getElementById('cus_keyword');
-        const dropdown = document.getElementById('customerDropdown');
-        const view = dropdown.querySelector('.customerSelectNewView');
+        const input = document.getElementById(`${nameKey}`);
+        const dropdown = document.getElementById(`${nameKey2}`);
+        const view = dropdown.querySelector(`.${nameKey3}`);
 
         input.addEventListener('input', function() {
             const value = this.value.trim().toLowerCase();
@@ -367,4 +371,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 dropdown.style.display = 'none';
             }
         });
+}
 </script>

@@ -8,10 +8,18 @@
         </div>
         <div class="modal-body">
             <div class="row" style="line-height: 2;">
-                <div class="col-6 d-flex justify-content-between">
-                    โรงพยาบาล : 
-                <input style="width: 250px;" type="text" name="customer_name" id="customer_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['customer_name']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >
-                
+                <div class="col-6 d-flex justify-content-between" >
+                    <div>
+                        <div style="display: flex;">
+                            <label for="customer"><b>โรงพยาบาล : </b></label> &nbsp;
+                        </div>
+                    </div>
+                    <div>
+                        <input style="width: 240px;" type="text" name="cus_keyword2" id="cus_keyword2" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword2']) ? htmlspecialchars($_GET['cus_keyword2']) : ''; ?>" oninput="customersDataAll('cus_keyword2','customerDropdown2','customerSelectNewView2')" >
+                            <div id="customerDropdown2" class="customerDropdown2 shadow-sm" style="overflow-x: hidden; max-height: 150px; max-width: 250px; overflow-y: scroll; position: absolute; z-index: 999; cursor: pointer; padding:5px 10px; border-radius:8px; font-size:14px;">
+                                <div class="customerSelectNewView2" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px; "></div>
+                            </div>
+                    </div>
                 </div>
                 <div class="col-6 d-flex justify-content-between align-content-center">
                         ประเภทลูกค้า :
