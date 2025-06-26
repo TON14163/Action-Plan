@@ -261,7 +261,7 @@ $date_sum5 = substr($start_date5,0,7);
 ?>
 	
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ตั้งเรื่อง</span></h2>	
-<table border="1" width="100%">
+<table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%; font-size:14px;">
 <tr>
 <td width="5%" align="center" bgcolor="#ebe4ed">วันที่ตั้งเรื่อง</td>
 <!--td width="10%" align="center" bgcolor="#ebe4ed">วันที่ตั้งเรื่อง(สิ้นสุด)</td--> 
@@ -400,22 +400,22 @@ $objResult6= mysqli_fetch_array($objQuery6);
 	<input type='hidden' name = "start_date"  id = "start_date" class="button4"  value="<?php echo $start_date; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
+<a href="report_startsup_contact1?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
 	</td>		
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF3333">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult6['sum_price_product2'],0).""; ?></td>
@@ -540,22 +540,22 @@ $objResult6= mysqli_fetch_array($objQuery6);
 	<input type='hidden' name = "start_date1"  id = "start_date1" class="button4"  value="<?php echo $start_date1; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum1;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
+<a href="report_startsup_contact1?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum1;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
 	</td>		
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF3333">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date1;?>&end_date=<?php echo $end_date1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult6['sum_price_product2'],0).""; ?></td>
@@ -681,22 +681,22 @@ $objResult6= mysqli_fetch_array($objQuery6);
 	<input type='hidden' name = "start_date2"  id = "start_date2" class="button4"  value="<?php echo $start_date2; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum2;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
+<a href="report_startsup_contact1?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum2;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
 	</td>		
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF3333">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date2;?>&end_date=<?php echo $end_date2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult6['sum_price_product2'],0).""; ?></td>
@@ -822,22 +822,22 @@ $objResult6= mysqli_fetch_array($objQuery6);
 	<input type='hidden' name = "start_date3"  id = "start_date3" class="button4"  value="<?php echo $start_date3; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum3;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
+<a href="report_startsup_contact1?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum3;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
 	</td>		
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF3333">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date3;?>&end_date=<?php echo $end_date3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult6['sum_price_product2'],0).""; ?></td>
@@ -963,22 +963,22 @@ $objResult6= mysqli_fetch_array($objQuery6);
 	<input type='hidden' name = "start_date4"  id = "start_date4" class="button4"  value="<?php echo $start_date4; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum4;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
+<a href="report_startsup_contact1?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum4;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
 	</td>		
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF3333">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date4;?>&end_date=<?php echo $end_date4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult6['sum_price_product2'],0).""; ?></td>
@@ -1104,22 +1104,22 @@ $objResult6= mysqli_fetch_array($objQuery6);
 	<input type='hidden' name = "start_date5"  id = "start_date5" class="button4"  value="<?php echo $start_date5; ?>"  /> </td>
 
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum5;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
+<a href="report_startsup_contact1?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_sum=<?php echo $date_sum5;?>" target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>
 	</td>		
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>		
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" bgcolor="#FF3333">
-	<a href="report_startsup_contact1.php?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_date=<?php echo $start_date5;?>&end_date=<?php echo $end_date5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 	</td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult6['sum_price_product2'],0).""; ?></td>
@@ -1298,7 +1298,7 @@ $date_summ11 = substr($start_send11,0,7);
 ?>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ปิดการขาย (รับใบสั่งซื้อ)</span></h2>	
-<table border="1" width="100%">
+<table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%; font-size:14px;">
 <tr>
 <td width="5%" align="center" bgcolor="#ebe4ed">วันที่รับใบสั่งซื้อ</td>
 <td width="10%" align="center" bgcolor="#ebe4ed">รอส่งสินค้า</td>
@@ -1412,23 +1412,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send"  id = "start_send" class="button4"  value="<?php echo $start_send; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ;?>"  target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ;?>"  target="_blank"><font color="black"><?php  echo number_format($objResult7['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send;?>&end_order=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>	
@@ -1538,23 +1538,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send1"  id = "start_send1" class="button4"  value="<?php echo $start_send1; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ1;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult71['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ1;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult71['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send1;?>&end_order=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>	
@@ -1664,23 +1664,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send2"  id = "start_send2" class="button4"  value="<?php echo $start_send2; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ2;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult72['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ2;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult72['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send2;?>&end_order=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>
@@ -1789,23 +1789,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send3"  id = "start_send3" class="button4"  value="<?php echo $start_send3; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ3;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult73['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ3;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult73['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send3;?>&end_order=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>	
@@ -1912,23 +1912,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send4"  id = "start_send4" class="button4"  value="<?php echo $start_send4; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ4;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult74['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ4;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult74['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send4;?>&end_order=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>
@@ -2038,23 +2038,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send5"  id = "start_send5" class="button4"  value="<?php echo $start_send5; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ5;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult75['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ5;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult75['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send5;?>&end_order=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>
@@ -2163,23 +2163,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send6"  id = "start_send6" class="button4"  value="<?php echo $start_send6; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ6;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult76['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ6;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult76['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send6;?>&end_order=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>
@@ -2288,23 +2288,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send7"  id = "start_send7" class="button4"  value="<?php echo $start_send7; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ7;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult77['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ7;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult77['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send7;?>&end_order=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>
@@ -2414,23 +2414,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send8"  id = "start_send8" class="button4"  value="<?php echo $start_send8; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ8;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult78['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ8;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult78['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send8;?>&end_order=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>	
@@ -2540,23 +2540,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send9"  id = "start_send9" class="button4"  value="<?php echo $start_send9; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ9;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult79['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ9;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult79['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send9;?>&end_order=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>	
@@ -2666,23 +2666,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send10"  id = "start_send10" class="button4"  value="<?php echo $start_send10; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ10;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult710['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ10;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult710['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send10;?>&end_order=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>	
@@ -2792,23 +2792,23 @@ $objResult4= mysqli_fetch_array($objQuery4);
 		<input type='hidden' name = "start_send11"  id = "start_send11" class="button4"  value="<?php echo $start_send11; ?>"  /> </td>
 	
 <td align="center" bgcolor="#CC99FF">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ11;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult711['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&date_summ=<?php echo $date_summ11;?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult711['sum_price_product2'],0).""; ?></font></a>	
 </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
+<a href="report_startsup_contact1?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>	
 </td>
 <td align="center" bgcolor="#CCFF99">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>	
 	</td>	
 <td align="center" bgcolor="#FFFF00">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF6600">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#FF0000">
-	<a href="report_startsup_contact1.php?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
+	<a href="report_startsup_contact1?start_order=<?php echo $start_send11;?>&end_order=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>&summ=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>		
 </td>
 
 </tr>
@@ -2911,7 +2911,7 @@ $objResult4= mysqli_fetch_array($objQuery4);
 <br>	
 	
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ส่งสินค้า (Forcast) ปี 2568</span></h2>	
-<table border="1" width="100%">
+<table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%; font-size:14px;">
 <tr>
 <td width="10%" align="center" bgcolor="#ebe4ed">วันที่ส่งสินค้า</td>
 <!--td width="10%" align="center" bgcolor="#ebe4ed">รอส่งสินค้า</td-->
@@ -3033,19 +3033,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send;?>&end_send=<?php echo $end_send;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3160,19 +3160,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send1;?>&end_send=<?php echo $end_send1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3287,19 +3287,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send2;?>&end_send=<?php echo $end_send2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3414,19 +3414,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send3;?>&end_send=<?php echo $end_send3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3541,19 +3541,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send4;?>&end_send=<?php echo $end_send4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3667,19 +3667,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send5;?>&end_send=<?php echo $end_send5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3794,19 +3794,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send6;?>&end_send=<?php echo $end_send6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -3920,19 +3920,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send7;?>&end_send=<?php echo $end_send7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -4047,19 +4047,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send8;?>&end_send=<?php echo $end_send8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -4173,19 +4173,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send9;?>&end_send=<?php echo $end_send9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -4299,19 +4299,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send10;?>&end_send=<?php echo $end_send10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -4424,19 +4424,19 @@ $sum_all = $sum_awl+$sum_nbm;
 
 	
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_send=<?php echo $start_send11;?>&end_send=<?php echo $end_send11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -4711,7 +4711,7 @@ $end_nd11 = "2026-12-31";
 ?>	
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h2><span class="style15">รายงานเปรียบเทียบตามวันที่ส่งสินค้า (Forcast) ปี 2569</span></h2>	
-<table border="1" width="100%">
+<table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%; font-size:14px;">
 <tr>
 <td width="10%" align="center" bgcolor="#ebe4ed">วันที่ส่งสินค้า</td>
 <!--td width="10%" align="center" bgcolor="#ebe4ed">รอส่งสินค้า</td-->
@@ -4821,19 +4821,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd"  id = "start_nd" class="button4"  value="<?php echo $start_nd; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd;?>&end_nd=<?php echo $end_nd;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -4937,19 +4937,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd1"  id = "start_nd1" class="button4"  value="<?php echo $start_nd1; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd1;?>&end_nd=<?php echo $end_nd1;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5051,19 +5051,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd2"  id = "start_nd2" class="button4"  value="<?php echo $start_nd2; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd2;?>&end_nd=<?php echo $end_nd2;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5165,19 +5165,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd3"  id = "start_nd3" class="button4"  value="<?php echo $start_nd3; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd3;?>&end_nd=<?php echo $end_nd3;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5279,19 +5279,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd4"  id = "start_nd4" class="button4"  value="<?php echo $start_nd4; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd4;?>&end_nd=<?php echo $end_nd4;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5393,19 +5393,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd5"  id = "start_nd5" class="button4"  value="<?php echo $start_nd5; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd5;?>&end_nd=<?php echo $end_nd5;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5506,19 +5506,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd6"  id = "start_nd6" class="button4"  value="<?php echo $start_nd6; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd6;?>&end_nd=<?php echo $end_nd6;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5620,19 +5620,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd7"  id = "start_nd7" class="button4"  value="<?php echo $start_nd7; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd7;?>&end_nd=<?php echo $end_nd7;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5734,19 +5734,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd8"  id = "start_nd8" class="button4"  value="<?php echo $start_nd8; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd8;?>&end_nd=<?php echo $end_nd8;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5847,19 +5847,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd9"  id = "start_nd9" class="button4"  value="<?php echo $start_nd9; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd9;?>&end_nd=<?php echo $end_nd9;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -5960,19 +5960,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd10"  id = "start_nd10" class="button4"  value="<?php echo $start_nd10; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd10;?>&end_nd=<?php echo $end_nd10;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
@@ -6073,19 +6073,19 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 	<input type='hidden' name = "start_nd11"  id = "start_nd11" class="button4"  value="<?php echo $start_nd11; ?>"  /> </td>
 
 <td align="center" bgcolor="#00FF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "1";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult['sum_price_product2'],0).""; ?></font></a>		
 </td>
 <td align="center" bgcolor="#CCFF99">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "2";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult1['sum_price_product2'],0).""; ?></font></a>			
 </td>	
 <td align="center" bgcolor="#FFFF00">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "3";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF6600">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "4";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" bgcolor="#FF3333">
-<a href="report_startsup_contact1.php?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
+<a href="report_startsup_contact1?start_nd=<?php echo $start_nd11;?>&end_nd=<?php echo $end_nd11;?>&sale_code=<?php echo $sale_code;?>&percent_id=<?php echo "5";?>"  target="_blank"><font color="black"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></font></a>			
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>

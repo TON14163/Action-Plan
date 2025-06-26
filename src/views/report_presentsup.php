@@ -13,114 +13,15 @@ error_reporting(0);
                         <div id="customerDropdown" class="customerDropdown" style="left: 42vw;margin-top: 40px;">
                             <div class="customerSelectNewView" style="background-color:#FCFCFC; position: relative; padding:2px; border-radius: 8px;"></div>
                         </div>
-                        sale :
                         <?php
-                        if ($_SESSION['em_id'] == 'SS1') {
-                        ?>
-                            <select name="sale_code" id="sale_code">
-                                <option value="">**Please Select**</option>
-                                <?php
-                                $strSQL5 = "SELECT * FROM tb_team_ss1 ORDER BY sale_code ASC";
-                                $objQuery5 = mysqli_query($conn, $strSQL5);
-                                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {
-                                    if ($_GET['sale_code'] == $objResuut5['sale_code']) {
-                                        $sel = "selected";
-                                    } else {
-                                        $sel = "";
-                                    }
-                                ?>
-                                    <option value="<?php echo $objResuut5["sale_code"]; ?>" <?php echo $sel; ?>><?php echo $objResuut5["sale_code"]; ?> - <?php echo $objResuut5["sale_name"]; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <?php } else 	if ($_SESSION['em_id'] == 'SS2') { ?>
-                            <select name="sale_code" id="sale_code">
-                                <option value="">**Please Select**</option>
-                                <?php
-
-                                $strSQL5 = "SELECT * FROM tb_team_ss2 ORDER BY sale_code ASC";
-                                $objQuery5 = mysqli_query($conn, $strSQL5);
-                                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {
-                                    if ($_GET['sale_code'] == $objResuut5['sale_code']) {
-                                        $sel = "selected";
-                                    } else {
-                                        $sel = "";
-                                    }
-                                ?>
-                                    <option value="<?php echo $objResuut5["sale_code"]; ?>" <?php echo $sel; ?>><?php echo $objResuut5["sale_code"]; ?> - <?php echo $objResuut5["sale_name"]; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <?php } else 	if ($_SESSION['em_id'] == 'MK2') { ?>
-                            <select name="sale_code" id="sale_code">
-                                <option value="">**Please Select**</option>
-                                <?php
-
-                                $strSQL5 = "SELECT * FROM tb_team_sm1 ORDER BY sale_code ASC";
-                                $objQuery5 = mysqli_query($conn, $strSQL5);
-                                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {
-                                    if ($_GET['sale_code'] == $objResuut5['sale_code']) {
-                                        $sel = "selected";
-                                    } else {
-                                        $sel = "";
-                                    }
-                                ?>
-                                    <option value="<?php echo $objResuut5["sale_code"]; ?>" <?php echo $sel; ?>><?php echo $objResuut5["sale_code"]; ?> - <?php echo $objResuut5["sale_name"]; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-
-                        <?php
-                        } else 	if ($_SESSION['em_id'] == 'SS3') {
-                        ?>
-                            <select name="sale_code" id="sale_code">
-                                <option value="">**Please Select**</option>
-                                <?php
-
-                                $strSQL5 = "SELECT * FROM tb_team_ss3 ORDER BY sale_code ASC";
-                                $objQuery5 = mysqli_query($conn, $strSQL5);
-                                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {
-                                    if ($_GET['sale_code'] == $objResuut5['sale_code']) {
-                                        $sel = "selected";
-                                    } else {
-                                        $sel = "";
-                                    }
-                                ?>
-                                    <option value="<?php echo $objResuut5["sale_code"]; ?>" <?php echo $sel; ?>><?php echo $objResuut5["sale_code"]; ?> - <?php echo $objResuut5["sale_name"]; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <?php
-                        } else {
-                        ?>
-                            <select name="sale_code" id="sale_code">
-                                <option value="">**Please Select**</option>
-                                <?php
-                                $strSQL5 = "SELECT * FROM tb_team_all ORDER BY sale_code ASC";
-                                $objQuery5 = mysqli_query($conn, $strSQL5);
-                                while ($objResuut5 = mysqli_fetch_array($objQuery5)) {
-                                    if ($_GET['sale_code'] == $objResuut5['sale_code']) {
-                                        $sel = "selected";
-                                    } else {
-                                        $sel = "";
-                                    }
-                                ?>
-                                    <option value="<?php echo $objResuut5["sale_code"]; ?>" <?php echo $sel; ?>><?php echo $objResuut5["sale_code"]; ?> - <?php echo $objResuut5["sale_name"]; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        <?php
+                        if($_SESSION['typelogin'] == 'Supervisor'){
+                        include 'set_area_select.php'; // แสดงในส่วนของ Select sale
                         }
                         ?>
                     </div>
                     
                     <br>
-                    <p><input type="submit" value="Search"></p>
+                    <p><input type="submit" value="Search" class="btn-custom-awl"></p>
                 </center>
 
                 <?php
@@ -137,7 +38,7 @@ error_reporting(0);
         <td width="15%" align="center" bgcolor="#ebe4ed">งาน</td>
         <td width="20%" align="center" bgcolor="#ebe4ed">มุมมอง "ลูกค้า" ต่อ "สินค้า & การแนะนำ & การซื้อ"</td>
         <td width="8%" align="center" bgcolor="#ebe4ed">เขตการขาย</td>
-        <td width="5%" align="center" bgcolor="#ebe4ed">Edit</td>
+        <!-- <td width="5%" align="center" bgcolor="#ebe4ed">Edit</td> -->
     </tr>
     <?php
     $start_date = $_GET["start_date"];
@@ -155,11 +56,17 @@ error_reporting(0);
     if ($customer_code != "") { //แสดงว่ามีค่า end_date ส่งมา หรือมีการค้นหา ก็ใหเต่อ String query
         $strSQL .= ' AND hospital_name  = "' . $customer_code . '"';
     }
-    if ($sale_code != "") { //แสดงว่ามีค่า end_date ส่งมา หรือมีการค้นหา ก็ใหเต่อ String query
-        $strSQL .= ' AND sale_area = "' . $sale_code . '"';
+
+    if($_SESSION['typelogin'] == 'Supervisor'){
+        if ($sale_code != "") { //แสดงว่ามีค่า end_date ส่งมา หรือมีการค้นหา ก็ใหเต่อ String query
+            $strSQL .= ' AND sale_area = "' . $sale_code . '"';
+        } else {
+            $strSQL .= ' AND sale_area = "null"';
+        }
     } else {
-        $strSQL .= ' AND sale_area = "null"';
+        $strSQL .= ' AND sale_area =  "' . $_SESSION['em_id'] . '"';
     }
+    
     $objQuery = mysqli_query($conn, $strSQL) or die("Error Query [" . $strSQL . "]");
     $Num_Rows = mysqli_num_rows($objQuery);
     $strSQL .= " order  by create_date  ASC ";
@@ -182,9 +89,9 @@ error_reporting(0);
                             echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                     </td>
                     <td><?php echo $objResult["sale_area"]; ?></td>
-                    <td width="30" align="center">
+                    <!-- <td width="30" align="center"> -->
                         <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
-                    </td>
+                    <!-- </td> -->
                 </tr>
             <?php
             }
@@ -204,9 +111,9 @@ error_reporting(0);
                             echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                     </td>
                     <td><?php echo $objResult["sale_area"]; ?></td>
-                    <td width="30" align="center">
+                    <!-- <td width="30" align="center"> -->
                         <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
-                    </td>
+                    <!-- </td> -->
                 </tr>
             <?php
             }
@@ -226,9 +133,9 @@ error_reporting(0);
                             echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                     </td>
                     <td><?php echo $objResult["sale_area"]; ?></td>
-                    <td width="30" align="center">
+                    <!-- <td width="30" align="center"> -->
                         <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
-                    </td>
+                    <!-- </td> -->
                 </tr>
             <?php
             }
@@ -247,9 +154,9 @@ error_reporting(0);
                         echo $objResult["sum_wordpre"]; ?><br><?php } ?>
                 </td>
                 <td><?php echo $objResult["sale_area"]; ?></td>
-                <td width="30" align="center">
+                <!-- <td width="30" align="center"> -->
                     <!-- <a href="edit_booth.php?present_id=<?php // echo $objResult["present_id"]; ?>"><img src="images/Copy of active.png" width="30" height="30" border="0" /></a> -->
-                </td>
+                <!-- </td> -->
             </tr>
     <?php
         }

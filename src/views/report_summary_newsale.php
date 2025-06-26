@@ -44,7 +44,7 @@
                     <input name="start_date" type="date" id="start_date" value="<?php echo isset($_POST["start_date"]) ? $_POST["start_date"] : ''; ?>" required>
                     <label for="end_date">ถึง :</label>
                     <input name="end_date" type="date" id="end_date" value="<?php echo isset($_POST["end_date"]) ? $_POST["end_date"] : ''; ?>" required>
-                    <input type="submit" value="Search">
+                    <input type="submit" value="Search" class="btn-custom-awl">
                 </center>
 
                 <?php if ($start_date != '' and $end_date != '') { ?>

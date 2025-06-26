@@ -57,6 +57,8 @@ $routes = [
     'report_sales_closure_excel' => 'src/views/report_sales_closure_excel.php',
     'status_approve' => 'src/views/status_approve.php',
     'status_approvedate' => 'src/views/status_approvedate.php',
+    'report_startsup_contact' => 'src/views/report_startsup_contact.php', // รายงานสรุปผลการขายตามช่วงเวลา = เป็นส่วนของลิ้งค์ ส่วนที่ 1
+    'report_startsup_contact1' => 'src/views/report_startsup_contact1.php', // รายงานสรุปผลการขายตามช่วงเวลา = เป็นส่วนของลิ้งค์ ส่วนที่ 2
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',
