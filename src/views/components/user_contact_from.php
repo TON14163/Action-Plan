@@ -9,7 +9,9 @@
         <div class="modal-body">
             <div class="row" style="line-height: 2;">
                 <div class="col-6 d-flex justify-content-between">
-                    โรงพยาบาล : <input type="text" name="customer_name" id="customer_name" required>
+                    โรงพยาบาล : 
+                <input style="width: 250px;" type="text" name="customer_name" id="customer_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['customer_name']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >
+                
                 </div>
                 <div class="col-6 d-flex justify-content-between align-content-center">
                         ประเภทลูกค้า :

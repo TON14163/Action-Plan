@@ -62,6 +62,7 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
                 <b>วันที่สรุป</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : '' ?>" >
                 <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : '' ?>" >
                 <b>วันที่ออกบิล</b> <input type="date" name="date_order" id="date_order" value="<?php echo !empty($_GET['date_order']) ? htmlspecialchars($_GET['date_order']) : '' ?>" >
+                <b>ถึงออกบิล</b> <input type="date" name="date_order2" id="date_order2" value="<?php echo !empty($_GET['date_order2']) ? htmlspecialchars($_GET['date_order2']) : '' ?>" >
                 <br><br>
                 <div>
                     <div style="display: flex;">
@@ -102,6 +103,7 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
         'date_start' => isset($_GET['date_start']) ? $_GET['date_start'] : '',
         'date_end' => isset($_GET['date_end']) ? $_GET['date_end'] : '',
         'date_order' => isset($_GET['date_order']) ? $_GET['date_order'] : '',
+        'date_order2' => isset($_GET['date_order2']) ? $_GET['date_order2'] : '',
         'hospital_name' => isset($_GET['hospital_name']) ? $_GET['hospital_name'] : '',
         'grade_a' => isset($_GET['grade_a']) ? $_GET['grade_a'] : '',
         'buy1' => isset($_GET['buy1']) ? $_GET['buy1'] : '',
@@ -162,8 +164,12 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
             if (!empty($_GET['grade_a'])) {
                 $strSQL .= "AND grade_a = '" . mysqli_real_escape_string($conn, $_GET['grade_a']) . "' ";
             }
-            if (!empty($_GET['date_order'])) {
-                $strSQL .= "AND date_order = '" . mysqli_real_escape_string($conn, $_GET['date_order']) . "' ";
+            if (!empty($_GET['date_order']) || !empty($_GET['date_order2'])) {
+                if (!empty($_GET['date_order2'])) {
+                    $strSQL .= "AND date_order BETWEEN '" . mysqli_real_escape_string($conn, $_GET['date_order']) . "' AND '" . mysqli_real_escape_string($conn, $_GET['date_order2']) . "' ";
+                } else {
+                    $strSQL .= "AND date_order = '" . mysqli_real_escape_string($conn, $_GET['date_order']) . "' ";
+                }
             }
             if (!empty($_GET['hospital_name'])) {
                 $strSQL .= "AND hospital_name LIKE '%" . mysqli_real_escape_string($conn, $_GET['hospital_name']) . "%' ";
