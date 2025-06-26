@@ -38,8 +38,6 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                         }
                         ?>
             </select>
-            <!-- <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="<?php // echo !empty($_GET['product_rival']) ? htmlspecialchars($_GET['product_rival']) : ''; ?>"> -->
-
 
             <?php 
             if($_SESSION['typelogin'] == 'Supervisor' || $_SESSION["typelogin"] == 'Marketing' ){ 
