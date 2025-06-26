@@ -4,15 +4,15 @@ error_reporting(0);
 // @session_start();
 // echo is_array($_SESSION['selectedFull']);
 
-if (is_array($_SESSION['selectedFull'])) {
-    $selectedCodes = array_map(function($code) use ($conn) {
-        return "'" . mysqli_real_escape_string($conn, $code) . "'";
-    }, $_SESSION['selectedFull']);
-    $where .= " AND sale_code IN (" . implode(',', $selectedCodes) . ") ";
-}
+// if (is_array($_SESSION['selectedFull'])) {
+//     $selectedCodes = array_map(function($code) use ($conn) {
+//         return "'" . mysqli_real_escape_string($conn, $code) . "'";
+//     }, $_SESSION['selectedFull']);
+//     $where .= " AND sale_code IN (" . implode(',', $selectedCodes) . ") ";
+// }
 
 
-echo $where;
+// echo $where;
 
 if($_POST['save'] == 1){
 
@@ -255,7 +255,8 @@ exit; } ?>
                 }
                 <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>
                 ,"initComplete": function() {
-                    this.api().column(5).visible(false); // ซ่อนคอลัมน์ที่ 1
+                    this.api().column(5).visible(false); // ซ่อนคอลัมน์ที่ เขตการขาย
+                    this.api().column(7).visible(false); // ซ่อนคอลัมน์ที่ edit
                 }
                 <?php } ?>
             });
