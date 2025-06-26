@@ -25,7 +25,20 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             <label for="customer"><b>โรงพยาบาล</b></label>  
             <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
             <input style="width: 250px;" type="text" name="hospital_name" id="hospital_name" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['hospital_name']) ? htmlspecialchars($_GET['hospital_name']) : ''; ?>" >
-            <b>ประเภทสินค้า</b>  <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="<?php echo !empty($_GET['product_rival']) ? htmlspecialchars($_GET['product_rival']) : ''; ?>">
+            <b>ประเภทสินค้า</b>  
+            <select class="form-select-custom-awl" name="product_rival" id="product_rival" style="width: 250px;">
+                        <option value="">Please Select</option>
+                        <?php
+                        $strSQLitem = "SELECT distinct product_rival FROM tb_storyrival WHERE product_rival NOT IN ('1','',' ')  ORDER BY product_rival DESC ";
+                        $objQueryitem = mysqli_query($conn, $strSQLitem);
+                        while ($objResuutitem = mysqli_fetch_array($objQueryitem)) {
+                            $selectedSale_code[] = $objResuutitem["product_rival"];
+                            $selected = ($_GET['sale_code'] == $objResuutitem["product_rival"]) ? 'selected' : '';
+                            echo '<option value="' . htmlspecialchars($objResuutitem["product_rival"]) . '" ' . $selected . '>'.htmlspecialchars($objResuutitem["product_rival"]).'</option>';
+                        }
+                        ?>
+            </select>
+            <!-- <input type="text" class="form-search-custom-awl" name="product_rival" id="product_rival" value="<?php // echo !empty($_GET['product_rival']) ? htmlspecialchars($_GET['product_rival']) : ''; ?>"> -->
 
 
             <?php 
