@@ -253,7 +253,7 @@ function product_view($percent_id){
             $linkFull .= "&{$key}={$val}";
         }
     }
-    echo $linkFull;
+    // echo $linkFull;
 ?>
             <!-- Pagination -->
         <nav aria-label="Page navigation example">
