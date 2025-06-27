@@ -80,12 +80,10 @@ function product_view($percent_id){
                 <th style="width: 17%;">โรงพยาบาล</th>
                 <th style="width: 12%;">หน่วยงาน</th>
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
-                <th style="width: 44%;">รายละเอียด <img src="assets/images/icon_system/material-symbols--help.svg" style="width: 14px; height: 14px;" alt="" data-bs-toggle="tooltip" data-bs-title="UPDATE ประมาณการขาย ,สรุปใบเสนอราคา,สรุปการขาย,Demo ทดลองสินค้า,ข้อมูลคู่แข่ง,ออกบูธ (Group Presentation)"></th>
-                <th style="width: 10%;">ผู้ติดต่อ</th>
+                <th style="width: 54%;">รายละเอียด <img src="assets/images/icon_system/material-symbols--help.svg" style="width: 14px; height: 14px;" alt="" data-bs-toggle="tooltip" data-bs-title="UPDATE ประมาณการขาย ,สรุปใบเสนอราคา,สรุปการขาย,Demo ทดลองสินค้า,ข้อมูลคู่แข่ง,ออกบูธ (Group Presentation)"></th>
                 <th style="width: 7%;">เขตการขาย</th>
                 <?php } else { ?>
-                <th style="width: 51%;">รายละเอียด <img src="assets/images/icon_system/material-symbols--help.svg" style="width: 14px; height: 14px;" alt="" data-bs-toggle="tooltip" data-bs-title="UPDATE ประมาณการขาย ,สรุปใบเสนอราคา,สรุปการขาย,Demo ทดลองสินค้า,ข้อมูลคู่แข่ง,ออกบูธ (Group Presentation)"></th>
-                <th style="width: 10%;">ผู้ติดต่อ</th>
+                <th style="width: 61%;">รายละเอียด <img src="assets/images/icon_system/material-symbols--help.svg" style="width: 14px; height: 14px;" alt="" data-bs-toggle="tooltip" data-bs-title="UPDATE ประมาณการขาย ,สรุปใบเสนอราคา,สรุปการขาย,Demo ทดลองสินค้า,ข้อมูลคู่แข่ง,ออกบูธ (Group Presentation)"></th>
                 <?php } ?>
             </tr>
         </thead>
@@ -194,6 +192,7 @@ function product_view($percent_id){
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_name'];?></td>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_ward'];?></td>
                 <td style="<?php echo $colorTable;?>" class="text-start px-2">
+                    <?php echo $rowPlan['hospital_contact'];?>
                     <?php if($rowPlan['description_focast'] != ''){ ?><div><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focast'];?></div><?php } ?>
                     <?php if($rowPlan['product_id1'] != '' AND $rowPlan['product_id1'] != '0'){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['product_id1']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
                     <?php if($rowPlan['summary_order'] == '1'){ ?><div><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; </div><?php } ?>
@@ -226,7 +225,6 @@ function product_view($percent_id){
                         ?>
                     <?php } ?>
                 </td>
-                <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['hospital_contact'];?></td>
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <td style="<?php echo $colorTable;?>"><?php echo $rowPlan['sale_area'];?></td>
                 <?php } ?>
