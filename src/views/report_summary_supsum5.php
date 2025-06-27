@@ -57,7 +57,7 @@ $sel = "";
 ?>
 </select>
 <?php } ?>	
-<input type="submit" value="Search"  >	
+<input type="submit" value="Search"  class="btn-custom-awl">	
 </center>
 
 <?php	
