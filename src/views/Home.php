@@ -24,6 +24,17 @@
 </head>
     <!-- ส่วนที่ 1 -->
     <div class="section">
+
+    <!--  -->
+<?php 
+    if($_SESSION['name_show'] == 'นรินทิพย์' || $_SESSION['name_show'] == 'พรรณิภา' || $_SESSION['name_show'] == 'มาลินี' || $_SESSION['name_show']  =='ลักษณาวรรณ' || $_SESSION['name_show'] == 'รุจิรา'){ 
+        include "notify_supsale.php"; 
+    } else if($_SESSION['typelogin'] == 'Sale'){ 
+        include "notify_salehos.php";
+    }
+?>
+    <!--  -->
+
         <h1 data-aos="fade-up">Welcome to ERP Sale Report</h1>
         <p data-aos="fade-up" data-aos-delay="200">
             Allwell
