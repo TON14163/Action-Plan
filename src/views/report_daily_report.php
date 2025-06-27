@@ -236,13 +236,31 @@ function product_view($percent_id){
 <section style="display: flex; justify-content: space-between; align-items: center; ">
 
     <p>พบทั้งหมด <?php echo $total_rows; ?> รายการ : จำนวน <?php echo $total_pages; ?> หน้า : หน้าปัจจุบัน <?php echo $current_page; ?></p>
+<?php
+    // สร้าง query string สำหรับ pagination ให้คงค่าการค้นหาเดิม
+    $query_params = [
+        // 'sale_code'      => isset($sale_code) ? $sale_code : '',
+        'hospital_name'  => isset($_GET['hospital_name']) ? urlencode($_GET['hospital_name']) : '',
+        'hospital_ward'  => isset($_GET['hospital_ward']) ? urlencode($_GET['hospital_ward']) : '',
+        'date_start'     => isset($_GET['date_start']) ? urlencode($_GET['date_start']) : '',
+        'date_end'       => isset($_GET['date_end']) ? urlencode($_GET['date_end']) : '',
+        'product_rival'  => isset($_GET['product_rival']) ? urlencode($_GET['product_rival']) : '',
+    ];
 
+    $linkFull = '';
+    foreach ($query_params as $key => $val) {
+        if ($val !== '') {
+            $linkFull .= "&{$key}={$val}";
+        }
+    }
+    echo $linkFull;
+?>
             <!-- Pagination -->
         <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <!-- ปุ่ม Previous -->
             <li class="page-item <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&page=<?php echo $current_page - 1; ?>">Previous</a>
+                <a class="page-link" href="?sale_code=<?php echo $sale_code;?><?php echo $linkFull;?>&page=<?php echo $current_page - 1; ?>">Previous</a>
             </li>
             <?php
             // จำกัดจำนวนหน้าที่แสดง (เช่น แสดงสูงสุด 5 หน้า)
@@ -260,7 +278,7 @@ function product_view($percent_id){
             if ($start_page > 1) {
             ?>
                 <li class="page-item">
-                    <a class="page-link" href="?sale_code=&page=1">1</a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?><?php echo $linkFull;?>&page=1">1</a>
                 </li>
                 <?php if ($start_page > 2) { ?>
                     <li class="page-item disabled">
@@ -274,7 +292,7 @@ function product_view($percent_id){
             <!-- แสดงหน้าตามช่วง -->
             <?php for ($i = $start_page; $i <= $end_page; $i++) { ?>
                 <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $_GET['hospital_name'];?>&hospital_ward=<?php echo $_GET['hospital_ward'];?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?><?php echo $linkFull;?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
                 </li>
             <?php } ?>
 
@@ -286,13 +304,13 @@ function product_view($percent_id){
                     </li>
                 <?php } ?>
                 <li class="page-item">
-                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $total_pages; ?>"><?php echo $total_pages; ?></a>
+                    <a class="page-link" href="?sale_code=<?php echo $sale_code;?><?php echo $linkFull;?>&page=<?php echo $total_pages; ?>"><?php echo $total_pages; ?></a>
                 </li>
             <?php } ?>
 
             <!-- ปุ่ม Next -->
             <li class="page-item <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?sale_code=<?php echo $sale_code;?>&hospital_name=<?php echo $hospital_name;?>&hospital_ward=<?php echo $hospital_ward;?>&page=<?php echo $current_page + 1; ?>">Next</a>
+                <a class="page-link" href="?sale_code=<?php echo $sale_code;?><?php echo $linkFull;?>&page=<?php echo $current_page + 1; ?>">Next</a>
             </li>
         </ul>
     </nav>
