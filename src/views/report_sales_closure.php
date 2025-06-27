@@ -259,6 +259,7 @@ $sale_code = isset($_GET['sale_code']) ? mysqli_real_escape_string($conn, $_GET[
                     'date_start' => isset($_GET['date_start']) ? $_GET['date_start'] : '',
                     'date_end' => isset($_GET['date_end']) ? $_GET['date_end'] : '',
                     'date_order' => isset($_GET['date_order']) ? $_GET['date_order'] : '',
+                    'date_order2' => isset($_GET['date_order2']) ? $_GET['date_order2'] : '',
                     'hospital_name' => isset($_GET['hospital_name']) ? $_GET['hospital_name'] : '',
                     'sale_code' => $sale_code,
                     'grade_a' => isset($_GET['grade_a']) ? $_GET['grade_a'] : '',
