@@ -197,7 +197,7 @@ function product_view($percent_id){
                     <?php if($rowPlan['description_focast'] != ''){ ?><div><b style="color:#0080c0;">UPDATE ประมาณการขาย : </b><br><?php echo $rowPlan['description_focast'];?></div><?php } ?>
                     <?php if($rowPlan['product_id1'] != '' AND $rowPlan['product_id1'] != '0'){ ?><div><b style="color:#0080c0;">สรุปใบเสนอราคา :</b><br><?php echo product_view($rowPlan['product_id1']);?> <?php echo $rowPlan['unit_product1'];?> <?php echo $rowPlan['unit_name1'];?></div><?php } ?>
                     <?php if($rowPlan['summary_order'] == '1'){ ?><div><b style="color:#0080c0;">สรุปการขาย :</b> &#10003; </div><?php } ?>
-                    <?php if ($rowPlan["description_focastnew"]!='') { ?><div><b style="color:#0080c0;">ประมาณการขายใหม่ :  </b><br><?php echo $objResult["description_focastnew"]; ?></div><?php } ?>
+                    <?php if ($rowPlan["description_focastnew"]!='') { ?><div><b style="color:#0080c0;">ประมาณการขายใหม่ :  </b><br><?php echo $rowPlan["description_focastnew"]; ?></div><?php } ?>
                     <?php $sql = "SELECT cuspre_descript FROM tb_product_delivery WHERE ref_idwork = '".$rowPlan['id_work']."' "; $qsql = mysqli_query($conn,$sql); $vsql = mysqli_fetch_array($qsql); if($vsql['cuspre_descript'] != ''){ ?><div><b style="color:#0080c0;">Demo ทดลองสินค้า :</b><br> <?php echo $vsql['cuspre_descript'];?> </div><?php } ?>
                     <?php
                         $sql1 = "SELECT product_rival,company_rival,rival_brand,rival_model FROM tb_storyrival WHERE refid_work = '".$rowPlan['id_work']."' ";
