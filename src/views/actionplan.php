@@ -1,4 +1,5 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล ?>
+<section id="feature5">
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <?php if(isset($_GET["dallyadd"])){ ?>
         <b style="font-size: 20px;">Daily Report Add</b>
@@ -25,16 +26,16 @@
 <form action="actionplan_list" enctype="multipart/form-data" method="POST">
 <?php if(isset($_GET["id"])){?><input type='hidden' id="id_ref" name="id_ref" value="<?php echo $_GET["id"]; ?>"><?php } ?>
 <?php if(isset($_GET["dallyadd"])){?><input type='hidden' id="dallyadd" name="dallyadd" value="1"><?php } ?>
-<p style="padding: 0px 20px;">
+<p style="padding: 0px 20px;" id="feature2">
     <b>วันที่</b>
     <input type="date" name="date_keyword" id="date_keyword">
-    <button class="btn-custom-awl" style="background-color: #16BE00;">ส่งข้อมูล</button>
+    <button class="btn-custom-awl" style="background-color: #16BE00;" id="feature4">ส่งข้อมูล</button>
 </p>
 <div class="table-responsive px-2">
     <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100">
         <thead>
             <tr>
-                <th data-orderable="false" style="width: 5%;">Visit</th>
+                <th data-orderable="false" style="width: 5%;" ><font id="feature3">Visit</font></th>
                 <th data-orderable="false" style="width: 30%;">โรงพยาบาล</th>
                 <th data-orderable="false" style="width: 20%;">ตึก</th>
                 <th data-orderable="false" style="width: 5%;">ชั้น</th>
@@ -44,6 +45,7 @@
         </thead>
     </table>
 </div>
+</section>
     <script>
     $(document).ready(function() {
         var cus_Keyword = "<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>";
@@ -78,7 +80,7 @@
     });
     </script>
 </form> 
-<span id="cta" class="cta-button" onclick="da1()">เริ่มต้นใช้งาน</span>
+<span id="cta" class="cta-button" style="position: fixed; bottom: 15px; right: 15px; z-index: 9999;" onclick="actionplanDetails()"><img src="assets/images/icon_system/material-symbols--help.svg" style="width: 15px; height: 15px;"  alt="" srcset="" data-bs-toggle="tooltip" data-bs-title="คำอธิบาย"></span>
 <?php 
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';

@@ -33,24 +33,24 @@ if($in_save != 'save'){
 ?>
 <form action="<?php echo $url;?>" method="post">
 <?php if(isset($_GET["id"])){?><input type='hidden' id="id_ref" name="id_ref" value="<?php echo $id_ref; ?>"><?php } ?>
-<div class="table-responsive mt-3 px-2">
+<div class="table-responsive mt-3 px-2" id="feature1">
     <table id="unitTable" class="table-thead-custom-awl table-bordered border-secondary w-100" >
         <thead>
             <tr>
             <?php if(isset($_POST["dallyadd"])){ ?>
-                <th style="width: 10%;">วันที่</th>
+                <th style="width: 10%;"><font id="feature2">วันที่</font></th>
                 <th style="width: 20%;">โรงพยาบาล</th>
                 <th style="width: 10%;">ตึก</th>
                 <th style="width: 10%;">ชั้น</th>
                 <th style="width: 20%;">ward</th>
-                <th style="width: 30%;">แผนงาน</th>
+                <th style="width: 30%;"><font id="feature3">แผนงาน</font></th>
             <?php } else { ?>
-                <th style="width: 10%;">วันที่</th>
+                <th style="width: 10%;"><font id="feature2">วันที่</font></th>
                 <th style="width: 15%;">โรงพยาบาล</th>
                 <th style="width: 10%;">ตึก</th>
                 <th style="width: 10%;">ชั้น</th>
                 <th style="width: 10%;">ward</th>
-                <th style="width: 20%;">แผนงาน</th>
+                <th style="width: 20%;"><font id="feature3">แผนงาน</font></th>
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                 <th style="width: 10%;">Sup</th>
                 <th style="width: 15%;">ผู้รับผิดชอบ</th>
@@ -124,7 +124,7 @@ if($in_save != 'save'){
 <br>
 
 <center>
-<button class="badge rounded-pill" style="background-color: #19D700; color:#FFFFFF; padding-left: 15px; padding-right: 15px; margin-right: 10px; border:0 none;">
+<button class="badge rounded-pill" style="background-color: #19D700; color:#FFFFFF; padding-left: 15px; padding-right: 15px; margin-right: 10px; border:0 none;" id="feature4">
     <img src="assets/images/icon_system/icon-park--save-one.png" style="width:15px; height:15px; color:#FFFFFF;" > &nbsp; บันทึก
 </button>
 </center>
@@ -278,4 +278,5 @@ if($in_save != 'save'){
     }
 
 ?>
-
+<span id="cta" class="cta-button" style="position: fixed; bottom: 15px; right: 15px; z-index: 9999;" onclick="DetailsDemo()"><img src="assets/images/icon_system/material-symbols--help.svg" style="width: 15px; height: 15px;"  alt="" srcset="" data-bs-toggle="tooltip" data-bs-title="คำอธิบาย"></span>
+<script src="src/views/details_pages/actionplan_list_demo.js"></script>
