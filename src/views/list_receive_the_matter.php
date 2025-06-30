@@ -110,7 +110,26 @@ exit; } ?>
     <form action="<?php echo $url;?>" enctype="multipart/form-data" method="get">
         <b>วันที่</b> <input type="date" name="date_start" id="date_start" value="<?php echo !empty($_GET['date_start']) ? htmlspecialchars($_GET['date_start']) : ''; ?>">
         <b>ถึง</b> <input type="date" name="date_end" id="date_end" value="<?php echo !empty($_GET['date_end']) ? htmlspecialchars($_GET['date_end']) : ''; ?>">
-        <?php include 'set_area_select.php'; // แสดงในส่วนของ Select sale  ?>
+        <?php 
+        if($_SESSION['typelogin'] != 'Marketing'){  
+            include 'set_area_select.php'; // แสดงในส่วนของ Select sale 
+        } else if($_SESSION["typelogin"] == 'Marketing'){ ?>
+            <b>Sale</b>
+            <select class="form-select-custom-awl" name="sale_code" id="sale_code">
+                <option value="">Please Select</option>
+                <?php
+                $strSQL6 = "SELECT em_id,name FROM tb_user 
+                WHERE em_id NOT IN ('VMD','IT2','MD1','PRM')
+                ORDER BY head_area ASC;
+                ";
+                $objQuery6 = mysqli_query($conn, $strSQL6);
+                while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
+                    echo '<option value="' . htmlspecialchars($objResuut6["em_id"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["em_id"]) . ' - ' . htmlspecialchars($objResuut6["name"]) . '</option>';
+                }
+                ?>
+            </select>
+            <?php } ?>
+
         <button class="btn-custom-awl">Search</button>
     </form>
 </p>
@@ -140,21 +159,45 @@ exit; } ?>
                                         <b>วันที่ : </b><br>
                                         <input class="form-control" style="width: 100%;" type="date" name="date_salemk" id="date_salemk">
                                         <b>เขตการขาย : </b><br>
+
+                                        <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
                                         <select class="form-select-custom-awl" style="width: 100%;" name="sale_codemkadd" id="sale_codemkadd">
                                             <option value="">Please Select</option>
-                                            <?php
-                                            $strSQL6 = "SELECT sale_code,sale_name FROM tb_team_ss1 
-                                            UNION SELECT sale_code,sale_name FROM tb_team_ss2
-                                            UNION SELECT sale_code,sale_name FROM tb_team_ss3
-                                            UNION SELECT sale_code,sale_name FROM tb_team_sm1 
-                                            ORDER BY sale_code ASC;
-                                            ";
-                                            $objQuery6 = mysqli_query($conn, $strSQL6);
-                                            while ($objResuut6 = mysqli_fetch_array($objQuery6)) {  
-                                                echo '<option value="' . htmlspecialchars($objResuut6["sale_code"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["sale_code"]) . ' - ' . htmlspecialchars($objResuut6["sale_name"]) . '</option>';
-                                            }
+                                            <?php  
+                                                    $selectedFullSup = array();
+                                                    $strSQL5 = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$_SESSION['id']."' ORDER BY m_id ASC ";
+                                                    $objQuery5 = mysqli_query($conn, $strSQL5);
+                                                    while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
+                                                        $strSQL5_1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuut5['m_id']."' ";
+                                                        $objQuery5_1 = mysqli_query($conn, $strSQL5_1);
+                                                        $objResuut5_1 = mysqli_fetch_array($objQuery5_1);
+                                                        $selectedFullSup[] = $objResuut5_1["em_id"];
+
+                                                        $selected = ($objResuut5_1['em_id'] == $sale_code) ? 'selected' : '';
+                                                        echo '<option value="' . htmlspecialchars($objResuut5_1["em_id"]) . '" ' . $selected . '>' . 
+                                                            htmlspecialchars($objResuut5_1["em_id"]) . ' - ' . htmlspecialchars($objResuut5_1["name"]) . 
+                                                            '</option>';
+                                                    }
+                                                    $selectedFullSup_string = "IN ('".implode("','",$selectedFullSup)."')";
                                             ?>
                                         </select>
+                                        <?php } else if($_SESSION["typelogin"] == 'Marketing'){ ?>
+                                            <select class="form-select-custom-awl" style="width: 100%;" name="sale_codemkadd" id="sale_codemkadd">
+                                                <option value="">Please Select</option>
+                                                <?php
+                                                $strSQL61 = "SELECT em_id,name FROM tb_user 
+                                                WHERE em_id NOT IN ('VMD','IT2','MD1','PRM')
+                                                ORDER BY head_area ASC;
+                                                ";
+                                                $objQuery61 = mysqli_query($conn, $strSQL61);
+                                                while ($objResuut61 = mysqli_fetch_array($objQuery61)) {  
+                                                    echo '<option value="' . htmlspecialchars($objResuut61["em_id"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut61["em_id"]) . ' - ' . htmlspecialchars($objResuut61["name"]) . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        <?php } else if($_SESSION["typelogin"] == 'Sale'){ ?>
+                                            <input type="text" style="width: 100%; text-align:center; background-color: #e0e0e0; cursor: no-drop;" name="" id="" value="<?php echo $_SESSION['em_id'];?>" readonly>
+                                        <?php } ?>
 
                                             <label for="customer"><b>ค้นหาลูกค้า : </b></label> <br>
                                             <input style="width: 100%;" type="text" name="cus_keyword" id="cus_keyword" autocomplete="off" placeholder="ระบุข้อมูล . . . " value="<?php echo !empty($_GET['cus_keyword']) ? htmlspecialchars($_GET['cus_keyword']) : ''; ?>" >

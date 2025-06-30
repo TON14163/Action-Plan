@@ -3872,7 +3872,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>
 </tr>
@@ -4025,7 +4025,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send1;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send1;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -4178,7 +4178,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send2;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send2;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 
@@ -4332,7 +4332,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send3;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send3;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>
 </tr>
@@ -4482,7 +4482,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send4;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send4;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 	
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -4633,7 +4633,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send5;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send5;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -4784,7 +4784,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send6;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send6;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 	
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -4933,7 +4933,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send7;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send7;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -5081,7 +5081,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send8;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send8;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 	
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -5231,7 +5231,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send9;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send9;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 	
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -5380,7 +5380,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send10;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send10;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 	
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
@@ -5531,7 +5531,7 @@ $sum_all = $sum_awl+$sum_nbm;
 </td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
 <td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><a href="report_hossummonth1.php?start_date=<?php echo $start_send11;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
+<td align="center" ><a href="report_hossummonth1?start_date=<?php echo $start_send11;?>&sale_code=<?php echo $sale_code;?>"  target="_blank"><font color="black"><?php  echo number_format($sum_all,0).""; ?></font></a></td>	
 
 <td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>

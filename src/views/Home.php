@@ -28,9 +28,9 @@
     <!--  -->
 <?php 
     if($_SESSION['name_show'] == 'นรินทิพย์' || $_SESSION['name_show'] == 'พรรณิภา' || $_SESSION['name_show'] == 'มาลินี' || $_SESSION['name_show']  =='ลักษณาวรรณ' || $_SESSION['name_show'] == 'รุจิรา'){ 
-        include "notify_supsale.php"; 
+        // include "notify_supsale.php";
     } else if($_SESSION['typelogin'] == 'Sale'){ 
-        include "notify_salehos.php";
+        // include "notify_salehos.php";
     }
 ?>
     <!--  -->

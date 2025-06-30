@@ -71,6 +71,9 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
             $selectedFullSupMain[] = $objResuutFull1["em_id"];
         }
         $selectedFullSupMain_string = "IN ('".implode("','",$selectedFullSupMain)."')";
+        // ตัวอย่างการเรียกใช้งาน $_SESSION['selectedFull']
+        // $saleqq_str = isset($_SESSION['selectedFull']) ? $_SESSION['selectedFull'] : "IN ('')";
+        // $strSQL = "SELECT em_id, name FROM tb_user WHERE em_id $saleqq_str ORDER BY head_area DESC ";
 
         @session_start();
         $_SESSION['selectedFull'] = $selectedFullSupMain_string;

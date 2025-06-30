@@ -6171,20 +6171,12 @@ if($end_nd11 !=""){
 $objQuery4 = mysqli_query($conn,$strSQL4) or die ("Error Query [".$strSQL4."]");
 $Num_Rows4 = mysqli_num_rows($objQuery4);
 $objResult4 = mysqli_fetch_array($objQuery4);	
-
 $start_st = substr($start_nd, 0, -3);
 $start_st5 = substr($start_nd5, 0, -3);
-
-	
 $strSQL8 = "SELECT  SUM(target) As target FROM tb_target WHERE month_no >= '".$start_st."' and  month_no <= '".$start_st5."'  $target";
-
 $objQuery8 = mysqli_query($sol,$strSQL8) or die ("Error Query [".$strSQL8."]");
 $objResult8 = mysqli_fetch_array($objQuery8);
-
-	
-	
 ?>	
-	
 
 <tr>
 <td align="center">ยอดรวม</td>
@@ -6193,17 +6185,13 @@ $objResult8 = mysqli_fetch_array($objQuery8);
 <td align="center" bgcolor="#FFFF00"><?php  echo number_format($objResult2['sum_price_product2'],0).""; ?></td>
 <td align="center" bgcolor="#FF6600"><?php  echo number_format($objResult3['sum_price_product2'],0).""; ?></td>
 <td align="center" bgcolor="#FF3333"><?php  echo number_format($objResult4['sum_price_product2'],0).""; ?></td>
-<td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
-<td align="center" ><?php  echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
-<td align="center" ><?php  echo number_format($objResult8['target'],0).""; ?></td>	
+<td align="center"><?php echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2'],0).""; ?></td>
+<td align="center"><?php echo number_format($objResult['sum_price_product2']+$objResult1['sum_price_product2']+$objResult2['sum_price_product2'],0).""; ?></td>
+<td align="center"><?php echo number_format($objResult8['target'],0).""; ?></td>	
 </tr>
-	
-	
 </table>	
 <?php } ?>
-
 </form>
-
 <?php 
     $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
     require_once __DIR__ . '/layouts/Main.php';
