@@ -68,7 +68,9 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
             $strSQLFull1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuutFull['m_id']."' ";
             $objQueryFull1 = mysqli_query($conn, $strSQLFull1);
             $objResuutFull1 = mysqli_fetch_array($objQueryFull1);
-            $selectedFullSupMain[] = $objResuutFull1["em_id"];
+            if($objResuutFull1['name'] != ''){
+                $selectedFullSupMain[] = $objResuutFull1["em_id"];
+            }
         }
         $selectedFullSupMain_string = "IN ('".implode("','",$selectedFullSupMain)."')";
         // ตัวอย่างการเรียกใช้งาน $_SESSION['selectedFull']

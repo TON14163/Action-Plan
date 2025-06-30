@@ -25,8 +25,9 @@
                     $strSQL5_1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuut5['m_id']."' ";
                     $objQuery5_1 = mysqli_query($conn, $strSQL5_1);
                     $objResuut5_1 = mysqli_fetch_array($objQuery5_1);
-                    $selectedFullSup[] = $objResuut5_1["em_id"];
-
+                    if($objResuut5_1['name'] != ''){
+                        $selectedFullSup[] = $objResuut5_1["em_id"];
+                    }
                     $selected = ($objResuut5_1['em_id'] == $sale_code) ? 'selected' : '';
                     echo '<option value="' . htmlspecialchars($objResuut5_1["em_id"]) . '" ' . $selected . '>' . 
                         htmlspecialchars($objResuut5_1["em_id"]) . ' - ' . htmlspecialchars($objResuut5_1["name"]) . 
