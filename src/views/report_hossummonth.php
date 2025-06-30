@@ -1,5 +1,6 @@
 <?php
 ob_start();
+error_reporting(0);
 function DateThaiM($strDate)
 {
     $strYear = date("y", strtotime($strDate)) + 43;

@@ -1,4 +1,5 @@
 <?php ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
+error_reporting(0);
 ?>
 
 <center>
