@@ -60,6 +60,8 @@ $routes = [
     'report_startsup_contact' => 'src/views/report_startsup_contact.php', // รายงานสรุปผลการขายตามช่วงเวลา -> เป็นส่วนของลิ้งค์ ส่วนที่ 1
     'report_startsup_contact1' => 'src/views/report_startsup_contact1.php', // รายงานสรุปผลการขายตามช่วงเวลา -> เป็นส่วนของลิ้งค์ ส่วนที่ 2
     'report_hossummonth1' => 'src/views/report_hossummonth1.php', // รายงานสรุปผลการขายตามช่วงเวลา -> เป็นส่วนของลิ้งค์ ส่วนที่ 2 -> ยอดขายจริง
+    'report_hossummonth' => 'src/views/report_hossummonth.php', // report_summary_salesum -> เป็นส่วนของลิ้งค์
+    'report_start_contact' => 'src/views/report_start_contact.php', // report_summary_salesum -> เป็นส่วนของลิ้งค์
 
     'product_list_controllers' => 'src/controllers/product_list_controllers.php',
     'reportcompetitor' => 'src/controllers/reportcompetitor.php',
