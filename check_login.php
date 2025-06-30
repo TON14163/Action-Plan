@@ -62,7 +62,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
     if($rows == 1){
 
         $selectedFullSupMain = array();
-        $strSQLFull = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$data['id']."' ORDER BY m_id ASC ";
+        $strSQLFull = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$data['id']."' ORDER BY sort_user ASC ";
         $objQueryFull = mysqli_query($conn, $strSQLFull);
         while ($objResuutFull = mysqli_fetch_array($objQueryFull)) {  
             $strSQLFull1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuutFull['m_id']."' ";

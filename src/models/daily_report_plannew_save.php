@@ -47,30 +47,30 @@
     $unit_name1 = UnitNameMain($product_outlistone1);                  // หน่วยสินค้า
     $mode_pro1 = ModeProMain($product_outlistone1);                    // รูปแบบสินค้า
 
-    $num_follow = $_POST['num_follow'];                                // จำนวนการติดตามครั้งที่ ?
-    $date_index = 'date_follow'.$num_follow;                           // วันที่ติดตาม index
-    $date_value = $_POST['date_follow'.$num_follow];                   // วันที่ติดตาม value
-    $plan_work_follow = $_POST['plan_work_follow'.$num_follow];        // แผนงาน
+    // $num_follow = $_POST['num_follow'];                                // จำนวนการติดตามครั้งที่ ?
+    // $date_index = 'date_follow'.$num_follow;                           // วันที่ติดตาม index
+    // $date_value = $_POST['date_follow'.$num_follow];                   // วันที่ติดตาม value
+    // $plan_work_follow = $_POST['plan_work_follow'.$num_follow];        // แผนงาน
+    
+    $date_plan = $_POST['date_plan'];                                // วันที่
+    $plan_work = $_POST['plan_work'];                                // แผนงาน
 
-    // echo $date_index;
-    // echo $date_value;
-    // echo $plan_work_follow;
     $dailyValue = '3';
     $copySql = "INSERT INTO tb_register_data (id_customer, date_plan, sale_name, sale_area, head_area, hospital_name, hospital_buiding, hospital_class, hospital_ward, hospital_ward_search, hospital_contact, hospital_contact1, hospital_contact2, hospital_contact3, hospital_contact4, hospital_contact5, hospital_contact6, hospital_contact7, hospital_contact8, hospital_contact9, hospital_mobile1, hospital_mobile2, hospital_mobile3, hospital_mobile4, hospital_mobile5, hospital_mobile6, hospital_mobile7, hospital_mobile8, hospital_mobile9, hospital_mobile10, email_contact1, email_contact2, email_contact3, email_contact4, email_contact5, email_contact6, email_contact7, email_contact8, email_contact9, email_contact10, contact_ckk, plan_work, product_present, description_work, date_contact, add_date, daily, summary_saleorder, summary_quote, summary_product1, product_id1, remark_pro1, mode_pro1, unit_product1, unit_name1, price_product1, price_unit1, sum_price_product, percent_id, percent_name, month_po, month_id, summary_order, date_request, date_update, date_order, description_order, ckk_follow, id_referent, type_sale, status_reser, ckk_acc, reser_ckk, ckk_st, project_des, support_des, grade_a, type_cus, pre_name, description_focast, description_focastnew, id_newbui, remark_newbui, cus_free, id_ref, objective)
-                SELECT id_customer, '$date_value', sale_name, sale_area, head_area, hospital_name, hospital_buiding, hospital_class, hospital_ward, hospital_ward_search, hospital_contact, hospital_contact1, hospital_contact2, hospital_contact3, hospital_contact4, hospital_contact5, hospital_contact6, hospital_contact7, hospital_contact8, hospital_contact9, hospital_mobile1, hospital_mobile2, hospital_mobile3, hospital_mobile4, hospital_mobile5, hospital_mobile6, hospital_mobile7, hospital_mobile8, hospital_mobile9, hospital_mobile10, email_contact1, email_contact2, email_contact3, email_contact4, email_contact5, email_contact6, email_contact7, email_contact8, email_contact9, email_contact10, contact_ckk, '$plan_work_follow', product_present, description_work, date_contact, add_date, '$dailyValue', summary_saleorder, summary_quote, '$product_onelist', '$product_outlistone1', '$remark_pro1', '$mode_pro1', '$unit_product1', '$unit_name1', '$price_product1', '$price_unit1', '$sum_price_product', '$percent_id', '$percent_code', '$month_po', month_id, summary_order, '$date_request', date_update, date_order, description_order, ckk_follow, '$id_work', type_sale, status_reser, ckk_acc, reser_ckk, ckk_st, project_des, support_des, grade_a, '$type_cus', pre_name, description_focast, '$description_focastnew', id_newbui, remark_newbui, '$cus_free', id_ref, objective FROM tb_register_data WHERE id_work = '" . mysqli_real_escape_string($conn, $id_work) . "'";
+                SELECT id_customer, '$date_plan', sale_name, sale_area, head_area, hospital_name, hospital_buiding, hospital_class, hospital_ward, hospital_ward_search, hospital_contact, hospital_contact1, hospital_contact2, hospital_contact3, hospital_contact4, hospital_contact5, hospital_contact6, hospital_contact7, hospital_contact8, hospital_contact9, hospital_mobile1, hospital_mobile2, hospital_mobile3, hospital_mobile4, hospital_mobile5, hospital_mobile6, hospital_mobile7, hospital_mobile8, hospital_mobile9, hospital_mobile10, email_contact1, email_contact2, email_contact3, email_contact4, email_contact5, email_contact6, email_contact7, email_contact8, email_contact9, email_contact10, contact_ckk, '$plan_work', product_present, description_work, date_contact, add_date, '$dailyValue', summary_saleorder, summary_quote, '$product_onelist', '$product_outlistone1', '$remark_pro1', '$mode_pro1', '$unit_product1', '$unit_name1', '$price_product1', '$price_unit1', '$sum_price_product', '$percent_id', '$percent_code', '$month_po', month_id, summary_order, '$date_request', date_update, date_order, description_order, ckk_follow, '$id_work', type_sale, status_reser, ckk_acc, reser_ckk, ckk_st, project_des, support_des, grade_a, '$type_cus', pre_name, description_focast, '$description_focastnew', id_newbui, remark_newbui, '$cus_free', id_ref, objective FROM tb_register_data WHERE id_work = '" . mysqli_real_escape_string($conn, $id_work) . "'";
     $qcopySql = mysqli_query($conn,$copySql) or die ('Error in query');
     // echo $copySql;
 
 
-    if($num_follow == 1){               // รายการแรกให้สร้างเพิ่มใหม่
-        $strSQL1 =  "INSERT INTO tb_datefollow ($date_index,refid_work) values ('".$date_value."','$id_work')";
-        $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());
-        // echo $strSQL1;
-    } else {                            // ถ้าไม่ใช่รายการแรกให้ทำการอัพเดท
-        $strSQL2 =  "UPDATE tb_datefollow SET $date_index = '".$date_value."' WHERE refid_work = '".$id_work."' ";
-        $objQuery2 = mysqli_query($conn,$strSQL2) or die(mysqli_error());
-        // echo $strSQL2;
-    }
+    // if($num_follow == 1){               // รายการแรกให้สร้างเพิ่มใหม่
+    //     $strSQL1 =  "INSERT INTO tb_datefollow ($date_index,refid_work) values ('".$date_value."','$id_work')";
+    //     $objQuery1 = mysqli_query($conn,$strSQL1) or die(mysqli_error());
+    //     // echo $strSQL1;
+    // } else {                            // ถ้าไม่ใช่รายการแรกให้ทำการอัพเดท
+    //     $strSQL2 =  "UPDATE tb_datefollow SET $date_index = '".$date_value."' WHERE refid_work = '".$id_work."' ";
+    //     $objQuery2 = mysqli_query($conn,$strSQL2) or die(mysqli_error());
+    //     // echo $strSQL2;
+    // }
     // exit;
 
     // หาค่า ID_word ล่าสุด เพื่อไปยังหน้านั้น
@@ -79,7 +79,9 @@
     $nsql_warp = mysqli_num_rows($qsql_warp);
     $row_warp = mysqli_fetch_array($qsql_warp);
     $id_work_warp = $row_warp['id_work'];
-
+    // echo $sql_warp;
+    // exit;
+    
     if ($nsql_warp > 0) {
         $text = 'กำลังดำเนินการกรุณารอสักครู่...';
         require_once __DIR__ . '/../views/Loading_page.php';

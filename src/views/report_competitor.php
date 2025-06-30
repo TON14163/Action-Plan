@@ -2,6 +2,7 @@
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
 require_once __DIR__ . '/../controllers/MainControllersAll.php';
+// echo $_SESSION['selectedFull'];
 ?>
 
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
@@ -47,7 +48,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                     <select class="form-select-custom-awl" name="sale_code" id="sale_code">
                         <option value="">Please Select</option>
                         <?php
-                        $strSQL6 = "SELECT em_id, name FROM tb_user WHERE em_id NOT IN ('IT2','PRM','VMD','MD1') ORDER BY head_area DESC ";
+                        $strSQL6 = "SELECT em_id, name FROM tb_user WHERE em_id NOT IN ('IT2','PRM','VMD','MD1') ORDER BY head_area ASC ";
                         $objQuery6 = mysqli_query($conn, $strSQL6);
                         while ($objResuut6 = mysqli_fetch_array($objQuery6)) {
                             $selectedSale_code[] = $objResuut6["em_id"];
@@ -71,7 +72,7 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                         <option value="">Please Select</option>
                         <?php
                         $saleqq_str = isset($_SESSION['selectedFull']) ? $_SESSION['selectedFull'] : "IN ('')";
-                        $strSQL6 = "SELECT em_id, name FROM tb_user WHERE em_id $saleqq_str ORDER BY head_area DESC ";
+                        $strSQL6 = "SELECT em_id, name FROM tb_user WHERE em_id $saleqq_str ORDER BY em_id ASC ";
                         $objQuery6 = mysqli_query($conn, $strSQL6);
                         while ($objResuut6 = mysqli_fetch_array($objQuery6)) {
                             $selectedSale_code[] = $objResuut6["em_id"];

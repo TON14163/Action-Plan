@@ -19,7 +19,7 @@
         <option value="">Please Select</option>
         <?php  
                 $selectedFullSup = array();
-                $strSQL5 = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$_SESSION['id']."' ORDER BY m_id ASC ";
+                $strSQL5 = "SELECT n_id,m_id FROM user_permissions WHERE n_id = '".$_SESSION['id']."' ORDER BY sort_user ASC ";
                 $objQuery5 = mysqli_query($conn, $strSQL5);
                 while ($objResuut5 = mysqli_fetch_array($objQuery5)) {  
                     $strSQL5_1 = "SELECT em_id,name FROM tb_user WHERE id = '".$objResuut5['m_id']."' ";
