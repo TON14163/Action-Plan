@@ -197,19 +197,8 @@
                 <!--  -->
             </div>
 
-            <?php if($show->showDetails($id_work,'date_follow1') == '' || $show->showDetails($id_work,'date_follow1') == '0000-00-00'){ ?><br><?php } ?>
             <div id="follow-up-list" >
                 <div class="follow-up-item" style="display: flex; align-items: center; width: 100%; margin-bottom: 10px;">
-                    <?php if($show->showDetails($id_work,'date_follow1') == '' || $show->showDetails($id_work,'date_follow1') == '0000-00-00'){ ?>
-                        <div style="margin-right: 10px; background-color:#FFFFFF; border-radius: 8px; width: 20%; padding:14px 10px; text-align: center; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-                            วันที่ติดตามครั้งที่ 1 : <br>
-                            <input type="date" name="date_follow1" class="date_follow">
-                        </div>
-                        <div style="background-color:#FFFFFF; border-radius: 8px; width: 80%; padding: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
-                            แผนงาน : <br>
-                            <textarea name="plan_follow1" style="height: 25px; min-width: 100%;"></textarea>
-                        </div>
-                        <?php } ?>
                 </div>
             </div>
 
