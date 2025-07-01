@@ -21,7 +21,7 @@ if(!empty($_REQUEST['id_work'])){
 </div>
 <!--  -->
             <form action="daily_report_plannew_save" method="post">
-                    <div class="row my-2">
+                    <div class="row my-4">
                         <div class="col-1 text-center">วันที่ : </div>
                         <div class="col-2"> <input style="background-color: #e0e0e0; cursor:no-drop;" type="date" name="date_plan" id="date_plan" value="<?php echo $show->showDetails($id_work,'date_plan');?>" readonly></div>
                         <div class="col-1 text-center">แผนงาน : </div>

@@ -123,32 +123,43 @@
                         <td style="vertical-align: middle; text-align: center; padding:5px;"><input class="text-center" style="background-color: #e0e0e0; cursor:no-drop;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="<?php echo $show->showDetails($id_work,'price_product1');?>" readonly></td>
                     </tr>
                 </table>
-                <div class="d-flex align-items-center justify-content-between mt-4">
-                    <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
-                    <select name="percent_code" id="percent_code" style="width: 100px;">
-                        <option value="">Please Select</option>
-                        <option value="100 %|1" <?php if($show->showDetails($id_work,'percent_name') == '100 %'){ ?> selected <?php } ?>>100 %</option>
-                        <option value="90-99 %|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99 %'){ ?> selected <?php } ?>>90-99 %</option>
-
-                    <?php if($show->showDetails($id_work,'percent_name') != '100 %' AND $show->showDetails($id_work,'percent_name') != '90-99 %'){ ?>
-                        <option value="80-89 %|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89 %'){ ?> selected <?php } ?>>80-89 %</option>
-                        <option value="50-80 %|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80 %'){ ?> selected <?php } ?>>50-80 %</option>
-                        <option value="0-50 %|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50 %'){ ?> selected <?php } ?>>0-50 %</option>
-                    <?php } ?>
-
-                    </select>
-                    <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="<?php echo $show->showDetails($id_work,'month_po');?>">
-                    <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px; background-color: #e0e0e0; cursor:no-drop;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
-                    <label for="inputPassword" class="">วันที่ต้องการสินค้า&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="date_request" id="date_request" value="<?php echo $show->showDetails($id_work,'date_request');?>">
-                    <label for="inputPassword" class="">ประเภท&nbsp;</label>
-                    <select name="type_cus" id="type_cus"  style="width: 151px;">
-                        <option value="">Please Select</option>
-                        <option value="1" <?php if($show->showDetails($id_work,'type_cus') == '1'){ ?> selected <?php } ?>>ProA (Project A+ / A)</option>
-                        <option value="2" <?php if($show->showDetails($id_work,'type_cus') == '2'){ ?> selected <?php } ?>>NewB (New Building)</option>
-                        <option value="3" <?php if($show->showDetails($id_work,'type_cus') == '3'){ ?> selected <?php } ?>>NewF (New Forecast)</option>
-                        <option value="4" <?php if($show->showDetails($id_work,'type_cus') == '4'){ ?> selected <?php } ?>>Pre/B (Present / Booth)</option>
-                        <option value="5" <?php if($show->showDetails($id_work,'type_cus') == '5'){ ?> selected <?php } ?>>ลูกค้าทั่วไป / เจ้าหน้าที่รพ.</option>
-                    </select>
+                <div class="row mt-1">
+                    <div class="col-4 my-2 d-flex justify-content-between">
+                        <label for="inputPassword" class="">เปอร์เซ็นต์&nbsp;</label> 
+                        <select name="percent_code" id="percent_code" style="width: 70%;">
+                            <option value="">Please Select</option>
+                            <option value="100 %|1" <?php if($show->showDetails($id_work,'percent_name') == '100 %'){ ?> selected <?php } ?>>100 %</option>
+                            <option value="90-99 %|2" <?php if($show->showDetails($id_work,'percent_name') == '90-99 %'){ ?> selected <?php } ?>>90-99 %</option>
+                        <?php if($show->showDetails($id_work,'percent_name') != '100 %' AND $show->showDetails($id_work,'percent_name') != '90-99 %'){ ?>
+                            <option value="80-89 %|3" <?php if($show->showDetails($id_work,'percent_name') == '80-89 %'){ ?> selected <?php } ?>>80-89 %</option>
+                            <option value="50-80 %|4" <?php if($show->showDetails($id_work,'percent_name') == '50-80 %'){ ?> selected <?php } ?>>50-80 %</option>
+                            <option value="0-50 %|5" <?php if($show->showDetails($id_work,'percent_name') == '0-50 %'){ ?> selected <?php } ?>>0-50 %</option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col-4 my-2 d-flex justify-content-between">
+                        <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 60%;" type="date" name="month_po" id="month_po" value="<?php echo $show->showDetails($id_work,'month_po');?>">
+                    </div>
+                    <div class="col-4 my-2 d-flex justify-content-between">
+                        <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 70%; background-color: #e0e0e0; cursor:no-drop;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="<?php echo $show->showDetails($id_work,'sum_price_product');?>" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
+                    </div>
+                    <div class="col-4 my-2 d-flex justify-content-between">
+                        <label for="inputPassword" class="">วันที่ต้องการสินค้า&nbsp;</label> <input class="text-center" style="width: 60%;" type="date" name="date_request" id="date_request" value="<?php echo $show->showDetails($id_work,'date_request');?>">
+                    </div>
+                    <div class="col-4 my-2 d-flex justify-content-between">
+                        <label for="inputPassword" class="">ประเภท&nbsp;</label>
+                        <select name="type_cus" id="type_cus"  style="width: 70%;">
+                            <option value="">Please Select</option>
+                            <option value="1" <?php if($show->showDetails($id_work,'type_cus') == '1'){ ?> selected <?php } ?>>ProA (Project A+ / A)</option>
+                            <option value="2" <?php if($show->showDetails($id_work,'type_cus') == '2'){ ?> selected <?php } ?>>NewB (New Building)</option>
+                            <option value="3" <?php if($show->showDetails($id_work,'type_cus') == '3'){ ?> selected <?php } ?>>NewF (New Forecast)</option>
+                            <option value="4" <?php if($show->showDetails($id_work,'type_cus') == '4'){ ?> selected <?php } ?>>Pre/B (Present / Booth)</option>
+                            <option value="5" <?php if($show->showDetails($id_work,'type_cus') == '5'){ ?> selected <?php } ?>>ลูกค้าทั่วไป / เจ้าหน้าที่รพ.</option>
+                        </select>
+                    </div>
+                    <div class="col-4 my-2 d-flex justify-content-between">
+                        <label for="">ผู้แนะนำ : </label><input type="text"  style="width: 70%;" name="pre_name" id="pre_name" value="<?php echo $show->showDetails($id_work,'pre_name');?>" placeholder="Input for text . . .">
+                    </div>
                 </div>
                 <p class="mt-2">
                     <?php if($show->showDetails($id_work,'percent_name') == '100 %' || $show->showDetails($id_work,'percent_name') == '90-99 %'){ ?>

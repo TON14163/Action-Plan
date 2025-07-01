@@ -41,7 +41,6 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
             </select>
 
             <?php 
-            if($_SESSION["typelogin"] == 'Marketing' ){ 
                 $selectedSale_code = array();
                 ?>
                     <b>Sale : &nbsp;</b>
@@ -63,33 +62,6 @@ require_once __DIR__ . '/../controllers/MainControllersAll.php';
                 } else {
                     $selectedSale_code_string = !empty($selectedSale_code) ? "sale_area IN ('".implode("','",$selectedSale_code)."')" : "1=1";
                 }
-
-            } else if($_SESSION['typelogin'] == 'Supervisor'){ 
-                $selectedSale_code = array();
-            ?>
-                <b>Sale : &nbsp;</b>
-                    <select class="form-select-custom-awl" name="sale_code" id="sale_code">
-                        <option value="">Please Select</option>
-                        <?php
-                        $saleqq_str = isset($_SESSION['selectedFull']) ? $_SESSION['selectedFull'] : "IN ('')";
-                        $strSQL6 = "SELECT em_id, name FROM tb_user WHERE em_id $saleqq_str ORDER BY em_id ASC ";
-                        $objQuery6 = mysqli_query($conn, $strSQL6);
-                        while ($objResuut6 = mysqli_fetch_array($objQuery6)) {
-                            $selectedSale_code[] = $objResuut6["em_id"];
-                            $selected = ($_GET['sale_code'] == $objResuut6["em_id"]) ? 'selected' : '';
-                            echo '<option value="' . htmlspecialchars($objResuut6["em_id"]) . '" ' . $selected . '>' . htmlspecialchars($objResuut6["em_id"]) . ' - ' . htmlspecialchars($objResuut6["name"]) . '</option>';
-                        }
-                        ?>
-                    </select>
-            <?php 
-                if(!empty($_GET['sale_code'])) {
-                    $selectedSale_code_string = "sale_area = '" . mysqli_real_escape_string($conn, $_GET['sale_code']) . "'";
-                } else {
-                    $selectedSale_code_string = !empty($selectedSale_code) ? "sale_area IN ('".implode("','",$selectedSale_code)."')" : "1=1";
-                }
-            } else {
-                $selectedSale_code_string = "sale_area = '" . mysqli_real_escape_string($conn, $_SESSION['em_id']) . "'";
-            }
             ?>
 
             

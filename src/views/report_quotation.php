@@ -251,7 +251,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <th style="width: 5%;">จำนวน</th>
                 <th style="width: 7%;">มูลค่า</th>
                 <th style="width: 7%;">ประเภท</th>
-                <th style="width: 10%;">ผู้ติดต่อ</th>
+                <th style="width: 10%;">ผู้แนะนำ</th>
                 <th style="width: 6%;">เปอร์เซ็น</th>
                 <th style="width: 9%;">วันที่ได้ P/O</th>
                 <th style="width: 10%;">วันที่ส่งของ</th>
@@ -322,7 +322,7 @@ $ordered_ranges = ['100 %', '90-99 %', '80-89 %', '50-80 %', '0-50 %'];
                 <td><?php echo $row['unit_product1'] != '0' ? $row['unit_product1'] . ' ' . $row['unit_name1'] : ''; ?></td>
                 <td><?php echo number_format($row['sum_price_product'], 0); ?></td>
                 <td><?php echo htmlspecialchars($type_code); ?></td>
-                <td><?php echo htmlspecialchars($row['hospital_contact']); ?></td>
+                <td><?php echo htmlspecialchars($row['pre_name']); ?></td>
                 <?php echo percentItem($row['percent_id'], $row['percent_name']); ?>
                 <td><?php echo DateThai($row['month_po']); ?></td>
                 <td><?php echo $row['date_request'] != '0000-00-00' ? DateThai($row['date_request']) : ''; ?></td>
