@@ -28,9 +28,30 @@
                         </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="company_rival[]" id="company_rival1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;">
-                            <select class="form-search-custom-awl" style="width: 100%;" name="rival_country[]" id="rival_country1" onclick="Country()">
-                                <option value="">Search</option>
-                            </select>
+                            <div style="width: 100%; position: relative;">
+                                <input type="text" name="rival_country[]" id="rival_country1" placeholder="Please fill out" onclick="CountryView()">
+                                <div id="CountryViewDemo" style="background-color: #FCFCFC; overflow-y:auto; max-height: 200px; position: absolute; z-index: 999;" class="shadow-sm"></div>
+                            </div>
+                            <script>
+                                async function CountryView() {
+                                    try {
+                                        const response = await fetch(`<?php echo $COUNTRY_API;?>`);
+                                        const data = await response.json();
+                                        // แสดงรายชื่อประเทศทั้งหมดในรูปแบบ list
+                                        if (Array.isArray(data) && data.length > 0) {
+                                            document.getElementById('CountryViewDemo').innerHTML = data.map(
+                                                item => `<div>${item.name || item.label || item.value || ''}</div>`
+                                            ).join('');
+                                        } else {
+                                            document.getElementById('CountryViewDemo').textContent = 'ไม่พบข้อมูลประเทศ';
+                                        }
+                                    } catch (error) {
+                                        console.log(error);
+                                        document.getElementById('CountryViewDemo').textContent = 'เกิดข้อผิดพลาด';
+                                    }
+                                }
+                            </script>
+
                         </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_brand[]" id="rival_brand1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_model[]" id="rival_model1" placeholder="Please fill out"></td>
