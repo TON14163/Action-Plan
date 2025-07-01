@@ -28,9 +28,25 @@
                         </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="company_rival[]" id="company_rival1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;">
+                            <!-- <input type="text" name="" id="">
                             <select class="form-search-custom-awl" style="width: 100%;" name="rival_country[]" id="rival_country1" onclick="Country()">
                                 <option value="">Search</option>
-                            </select>
+                            </select> -->
+
+                            <input list="browsers" name="rival_country[]" id="rival_country1" onclick="Country()" >
+                            <datalist id="browsers" style="color: #525252;">
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                                <option value="Edge">ssssssss</option>
+                            </datalist>
                         </td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_brand[]" id="rival_brand1" placeholder="Please fill out"></td>
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="rival_model[]" id="rival_model1" placeholder="Please fill out"></td>
