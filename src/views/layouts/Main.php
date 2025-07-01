@@ -36,7 +36,7 @@
 @media only screen and (max-width: 1080px) { /* 810 แนวตั้ง gen 9 -> For landscape orientation, use: 1080px */
     .portrait_use{
         min-height: 1400px;
-        background-image: linear-gradient(to right bottom, #daf3fb, #dbf0fd, #deecfe, #e4e8fd, #eae4f9, #eadef5, #ebd9f1, #ecd3eb, #e7cae6, #e3c2e1, #deb9dc, #dab1d7);
+        background-color: #FFFFFF; 
         margin:20px 0px; 
         padding:40px;
     }
@@ -44,7 +44,7 @@
 @media only screen and (min-width: 1081px) { /* คอมให้ใช้ตัวนี้เสมอ > 1081px */
     .portrait_use{
         min-height: 50vw;
-        background-image: linear-gradient(to right bottom, #daf3fb, #dbf0fd, #deecfe, #e4e8fd, #eae4f9, #eadef5, #ebd9f1, #ecd3eb, #e7cae6, #e3c2e1, #deb9dc, #dab1d7);
+        background-color: #FFFFFF; 
         margin:20px 0px; 
         padding:40px;
     }
@@ -52,7 +52,7 @@
 
 
 </style>
-<body style="background-image: url('assets/images/bgmain.jpg'); background-repeat: no-repeat; background-size: 100% auto; background-position-y: bottom;">
+<body style="background-image: url('assets/images/background_main.jpg'); background-repeat: no-repeat; background-size: 100% auto; background-position-y: bottom;">
     <?php 
     require_once __DIR__ . '/../partials/NavBar.php';
     require_once __DIR__ . '/../../controllers/DateThai.php';
