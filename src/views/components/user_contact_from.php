@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             <div class="row" style="line-height: 2;">
-                <div class="col-6 d-flex justify-content-between" >
+                <div class="col-lg-6 d-flex justify-content-between" >
                     <div>
                         <div style="display: flex;">
                             <label for="customer"><b>โรงพยาบาล : </b></label> &nbsp;
@@ -21,7 +21,7 @@
                             </div>
                     </div>
                 </div>
-                <div class="col-6 d-flex justify-content-between align-content-center">
+                <div class="col-lg-6 d-flex justify-content-between align-content-center">
                         ประเภทลูกค้า :
                         <div>
                             <input type="radio" name="cus_free" id="Normal" value="1" required> <label for="Normal">Normal</label>
@@ -30,30 +30,30 @@
                             <input type="radio" name="cus_free" id="Null1" value="0" required> <label for="Null1">ไม่ได้เลือก</label>
                         </div>
                     </div>
-                <div class="col-6 d-flex justify-content-between">
+                <div class="col-lg-6 d-flex justify-content-between">
                     <label for="hospital_buiding">ตึก : </label><input type="text" name="hospital_buiding" id="hospital_buiding" required>
                 </div>
-                <div class="col-6 d-flex justify-content-between">
+                <div class="col-lg-6 d-flex justify-content-between">
                     <label for="hospital_class">ชั้น : </label><input type="text" name="hospital_class" id="hospital_class" required>
                 </div>
-                <div class="col-6 d-flex justify-content-between">
+                <div class="col-lg-6 d-flex justify-content-between">
                     <label for="hospital_ward_present">กลุ่ม Ward : </label><input type="text" name="hospital_ward_present" id="hospital_ward_present" required>
                 </div>
-                <div class="col-6 d-flex justify-content-between">
+                <div class="col-lg-6 d-flex justify-content-between">
                     <label for="hospital_ward">Ward : </label><input type="text" name="hospital_ward" id="hospital_ward" required>
                 </div>
-                <div class="col-12"><hr></div>
+                <div class="col-lg-12"><hr style="border:2px dashed #8080c0;"></div>
             
                 <div id="contact-rows">
-                    <div class="contact-row d-flex justify-content-between" data-index="1">
-                    <div class="col-4">
-                        ผู้ติดต่อ 1 : <input type="text" name="hospital_contact1" id="hospital_contact1">
+                    <div class="row" data-index="1">
+                    <div class="col-sm-4 d-flex justify-content-between">
+                        <label for="">ผู้ติดต่อ 1 :</label> <input type="text" name="hospital_contact1" id="hospital_contact1">
                     </div>
-                    <div class="col-4">
-                        เบอร์โทร 1 : <input type="text" name="hospital_mobile1" id="hospital_mobile1">
+                    <div class="col-sm-4 d-flex justify-content-between">
+                        <label for="">เบอร์โทร 1 :</label> <input type="text" name="hospital_mobile1" id="hospital_mobile1">
                     </div>
-                    <div class="col-4">
-                        email 1 : <input type="text" name="email_contact1" id="email_contact1">
+                    <div class="col-sm-4 d-flex justify-content-between">
+                        <label for="">email 1 :</label> <input type="text" name="email_contact1" id="email_contact1">
                     </div>
                     </div>
                 </div>
@@ -85,19 +85,20 @@
         if (rowCount < maxRows) {
         rowCount++;
         const newRow = document.createElement('div');
-        newRow.className = 'contact-row';
+        newRow.className = 'contact-row row';
         newRow.style.display = 'flex';
         newRow.style.justifyContent = 'between';
         newRow.setAttribute('data-index', rowCount);
         newRow.innerHTML = `
-            <div class="col-4">
-            ผู้ติดต่อ ${rowCount} : <input type="text" name="hospital_contact${rowCount}" id="hospital_contact${rowCount}">
+            <hr style="border:2px dashed #8080c0;" class="mt-2">
+            <div class="col-sm-4 d-flex justify-content-between">
+            <label for="">ผู้ติดต่อ ${rowCount} :</label> <input type="text" name="hospital_contact${rowCount}" id="hospital_contact${rowCount}">
             </div>
-            <div class="col-4">
-            เบอร์โทร ${rowCount} : <input type="text" name="hospital_mobile${rowCount}" id="hospital_mobile${rowCount}">
+            <div class="col-sm-4 d-flex justify-content-between">
+            <label for="">เบอร์โทร ${rowCount} :</label> <input type="text" name="hospital_mobile${rowCount}" id="hospital_mobile${rowCount}">
             </div>
-            <div class="col-4">
-            email ${rowCount} : <input type="text" name="email_contact${rowCount}" id="email_contact${rowCount}">
+            <div class="col-sm-4 d-flex justify-content-between">
+            <label for="">email ${rowCount} :</label> <input type="text" name="email_contact${rowCount}" id="email_contact${rowCount}">
             </div>
         `;
         contactRows.appendChild(newRow);

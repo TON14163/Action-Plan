@@ -34,7 +34,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
 
 <body class="text-center" >
 
-    <main class="flex flex-row items-stretch p-10" style="background-color: #F1E1FF;">
+    <main class="flex flex-row items-stretch p-10" style="background-image: url('<?php echo $thisDomain;?>assets/images/bgmain.jpg'); background-repeat: no-repeat; background-size: 100% 100vw; background-position-y: bottom;">
         <section class="basis-2/5 self-stretch rounded-l-lg" style="height:100vh; background-color:#FFFFFF; "><img class="mx-auto h-full w-full object-cover" src="<?php echo $thisDomain;?>assets/images/icon_allwell_name_2D.png" alt="Your Company"></section>
         <section class="basis-3/5 self-stretch rounded-r-lg" style="height:100vh; background-color:#FFFFFF; background-size: 20%; background-repeat: no-repeat; background-position: center center; transition: 1s;" id="imageSection">
         <script>

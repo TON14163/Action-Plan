@@ -17,25 +17,27 @@ if(!empty($_REQUEST['id_work'])){
 }
 ?>
 <div style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; padding:0px 20px; margin: 0px 0px 20px 0px;">
-    <b style="font-size: 20px;">ลงทะเบียน Daily Report</b> <span>( เพิ่มประมาณการขายใหม่ Status <kbd style="background-color: #DDA0DD; width: 10px; max-height: 10px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่สร้างจากประมาณการขาย )</span> 
+    <b style="font-size: 20px;">ลงทะเบียน Daily Report</b> <span>( เพิ่มประมาณการขายใหม่ Status <kbd style="background-color: #EBE4ED; width: 10px; max-height: 10px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ plan ไว้แล้ว )</span> 
 </div>
- <!--  -->
+<!--  -->
             <form action="daily_report_plannew_save" method="post">
-                <span class="my-2">
-                    วันที่ :&nbsp;<input type="date" name="date_plan" id="date_plan" required>
-                    <label for=""> แผนงาน : </label> &nbsp; <input style="width: 50%;" type="text" name="plan_work" id="plan_work" placeholder="รายละเอียดแผนงาน . . ." required> 
-                </span>
+                    <div class="row my-2">
+                        <div class="col-1 text-center">วันที่ : </div>
+                        <div class="col-2"> <input style="background-color: #e0e0e0; cursor:no-drop;" type="date" name="date_plan" id="date_plan" value="<?php echo $show->showDetails($id_work,'date_plan');?>" readonly></div>
+                        <div class="col-1 text-center">แผนงาน : </div>
+                        <div class="col-8"><input style="width: 100%; background-color: #e0e0e0; cursor:no-drop;" type="text" name="plan_work" id="plan_work" value="<?php echo $show->showDetails($id_work,'plan_work');?>" placeholder="รายละเอียดแผนงาน . . ." readonly> </div>
+                    </div>
                 <input type="hidden" name="id_work" id="id_work" value="<?php echo $id_work;?>">
                 <input type="hidden" name="id_customer" id="id_customer" value="<?php echo $show->showDetails($id_work,'id_customer');?>">
                 <input type="hidden" name="cus_free" id="cus_free" value="<?php echo $show->showCustomerLevelNumber($id_work);?>">
-                <table class="table-thead-custom-awl table-bordered border-secondary">
+                <table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%; table-layout: fixed;">
                     <tr>
-                        <th>ลำดับ</th>
-                        <th>รายการสินค้า</th>
-                        <th>หมายเหตุ</th>
-                        <th>จำนวน</th>
-                        <th>ราคา / หน่วย</th>
-                        <th>มูลค่า</th>
+                        <th style="width: 10%;">ลำดับ</th>
+                        <th style="width: 30%;">รายการสินค้า</th>
+                        <th style="width: 30%;">หมายเหตุ</th>
+                        <th style="width: 10%;">จำนวน</th>
+                        <th style="width: 10%;">ราคา / หน่วย</th>
+                        <th style="width: 10%;">มูลค่า</th>
                     </tr>
                     <tr>
                         <td style="padding: 5px;">1</td>
@@ -49,9 +51,9 @@ if(!empty($_REQUEST['id_work'])){
                         <td style="vertical-align: middle; text-align: center; padding:12px 5px 5px 5px;">
                             <textarea style="width:100%; height: 24px; padding:0px;" name="remark_pro1" id="remark_pro1"></textarea>
                         </td>
-                        <td style="padding: 5px;"><input class="text-center" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="" required></td>
-                        <td style="padding: 5px;"><input class="text-center" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="" required></td>
-                        <td style="padding: 5px;"><input class="text-center" style="background-color: #e0e0e0;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="" readonly></td>
+                        <td style="padding: 5px;"><input class="text-center" style="width: 100%;" type="text" name="unit_product1" id="unit_product1" placeholder="0" onchange="CalculatorItem()" value="" required></td>
+                        <td style="padding: 5px;"><input class="text-center" style="width: 100%;" type="text" name="price_unit1" id="price_unit1" placeholder="0.00" onchange="CalculatorItem()" value="" required></td>
+                        <td style="padding: 5px;"><input class="text-center" style="background-color: #e0e0e0; width: 100%; cursor:no-drop;" type="text" name="price_product1" id="price_product1" placeholder="0.00" value="" readonly></td>
                     </tr>
                 </table>
                 <div class="d-flex align-items-center justify-content-between my-4">
@@ -65,7 +67,7 @@ if(!empty($_REQUEST['id_work'])){
                         <option value="0-50 %|5">0-50 %</option>
                     </select>
                     <label for="inputPassword" class="">วันที่จะได้รับ P/O&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="month_po" id="month_po" value="">
-                    <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px; background-color: #e0e0e0;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
+                    <label for="inputPassword" class="">มูลค่าทั้งหมด&nbsp;</label> <input class="text-center" style="width: 100px; background-color: #e0e0e0; cursor:no-drop;" type="text" name="sum_price_product" id="sum_price_product" placeholder="0" value="" data-bs-toggle="tooltip" data-bs-title="จำนวน*ราคาต่อหน่วย" readonly>
                     <label for="inputPassword" class="">วันที่ต้องการสินค้า&nbsp;</label> <input class="text-center" style="width: 143px;" type="date" name="date_request" id="date_request" value="">
                     <label for="inputPassword" class="">ประเภท&nbsp;</label>
                     <select name="type_cus" id="type_cus" style="width: 151px;">

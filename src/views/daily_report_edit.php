@@ -59,7 +59,7 @@ if (!empty($_GET['addPlanPurple'])) {
     if($_GET['addPlanPurple'] == '1'){ ?>
         <div style="position: fixed; top:30px; right: 20px; " class="alert alert-success alert-dismissible fade show" role="alert">
             <img src="assets/images/icon_system/check.png" style="width: 20px; height: 20px;"> 
-            เพิ่มประมาณการขายใหม่ Status <kbd style="background-color: #DDA0DD; width: 10px; max-height: 10px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่สร้างจากประมาณการขาย เรียบร้อยแล้ว
+            เพิ่มประมาณการขายใหม่ Status <kbd style="background-color: #EBE4ED; width: 10px; max-height: 10px; border-radius: 0px; border:1px solid #202020;">&nbsp;</kbd> งานที่ plan ไว้แล้ว
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php } else { ?>

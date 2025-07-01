@@ -52,7 +52,7 @@
 
 
 </style>
-<body>
+<body style="background-image: url('assets/images/bgmain.jpg'); background-repeat: no-repeat; background-size: 100% auto; background-position-y: bottom;">
     <?php 
     require_once __DIR__ . '/../partials/NavBar.php';
     require_once __DIR__ . '/../../controllers/DateThai.php';

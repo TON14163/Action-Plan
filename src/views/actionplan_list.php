@@ -40,20 +40,16 @@ if($in_save != 'save'){
             <?php if(isset($_POST["dallyadd"])){ ?>
                 <th style="width: 10%;"><font id="feature2">วันที่</font></th>
                 <th style="width: 20%;">โรงพยาบาล</th>
-                <th style="width: 10%;">ตึก</th>
-                <th style="width: 10%;">ชั้น</th>
-                <th style="width: 20%;">ward</th>
-                <th style="width: 30%;"><font id="feature3">แผนงาน</font></th>
+                <th style="width: 35%;"><font style="color:#8080c0;">ตึก</font> <font style="color:#8080ff;">ชั้น</font> <font style="color:#0080c0;">ward</font></th>
+                <th style="width: 35%;"><font id="feature3">แผนงาน</font></th>
             <?php } else { ?>
                 <th style="width: 10%;"><font id="feature2">วันที่</font></th>
                 <th style="width: 15%;">โรงพยาบาล</th>
-                <th style="width: 10%;">ตึก</th>
-                <th style="width: 10%;">ชั้น</th>
-                <th style="width: 10%;">ward</th>
-                <th style="width: 20%;"><font id="feature3">แผนงาน</font></th>
+                <th style="width: 23%;"><font style="color:#8080c0;">ตึก</font> <font style="color:#8080ff;">ชั้น</font> <font style="color:#0080c0;">ward</font></th>
+                <th style="width: 35%;"><font id="feature3">แผนงาน</font></th>
                 <?php if($_SESSION['typelogin'] == 'Supervisor'){ ?>
-                <th style="width: 10%;">Sup</th>
-                <th style="width: 15%;">ผู้รับผิดชอบ</th>
+                <th style="width: 5%;">Sup</th>
+                <th style="width: 12%;">ผู้รับผิดชอบ</th>
             <?php } } ?>
                 
             </tr>
@@ -76,18 +72,21 @@ if($in_save != 'save'){
                     ?>
                     <tbody>
                         <tr>
-                            <td style="text-align: center; padding-left: 10px;">
-                                <input type="date" name="in_date[<?php echo htmlspecialchars($itemNew);?>]" id="in_date[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $date_keyword;?>" required>
+                            <td class="py-2 align-middle">
+                                &nbsp;&nbsp;<input class="" type="date" name="in_date[<?php echo htmlspecialchars($itemNew);?>]" id="in_date[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $date_keyword;?>" required>
                                 <input type="hidden" id="id_customer[<?php echo htmlspecialchars($itemNew);?>]" name="id_customer[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $id_customerNew;?>">
-
                                 <input type="hidden" id="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $hospital_classNew;?>">
                                 <input type="hidden" id="hospital_contact1[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_contact1[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo $hospital_contact1New;?>">
                             </td>
-                            <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="customer[<?php echo htmlspecialchars($itemNew);?>]" name="customer[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($customer);?></textarea></td>
-                            <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_buiding[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_buiding[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_buidingNew);?></textarea></td>
-                            <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_classNew);?></textarea></td>
-                            <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_wardNew);?></textarea></td>
-                            <td style="padding:10px 10px 5px 10px; vertical-align: middle;"><textarea style="width: 100%; border: 0 none; padding:4px;" id="plan_work[<?php echo htmlspecialchars($itemNew);?>]" name="plan_work[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_contact1New);?> / <?php echo htmlspecialchars($type_1New);?></textarea></td>
+                            <td class="p-2 align-middle"><textarea style="width: 100%; border: 0 none; padding:4px;" id="customer[<?php echo htmlspecialchars($itemNew);?>]" name="customer[<?php echo htmlspecialchars($itemNew);?>]" rows="4"><?php echo htmlspecialchars($customer);?></textarea></td>
+                            <td class="p-2 align-middle">
+                                <input class="w-100 my-1" style="border: 1px solid #8080c0;" type="text" id="hospital_buiding[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_buiding[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo htmlspecialchars($hospital_buidingNew);?>">
+                                <input class="w-100 my-1" style="border: 1px solid #8080ff;" type="text" id="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo htmlspecialchars($hospital_classNew);?>">
+                                <input class="w-100 my-1" style="border: 1px solid #0080c0;" type="text" id="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" value="<?php echo htmlspecialchars($hospital_wardNew);?>">
+                                <!-- <textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_class[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_classNew);?></textarea> -->
+                                <!-- <textarea style="width: 100%; border: 0 none; padding:4px;" id="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" name="hospital_ward[<?php echo htmlspecialchars($itemNew);?>]" rows="2"><?php echo htmlspecialchars($hospital_wardNew);?></textarea> -->
+                            </td>
+                            <td class="p-2 align-middle"><textarea style="width: 100%; border: 0 none; padding:4px;" id="plan_work[<?php echo htmlspecialchars($itemNew);?>]" name="plan_work[<?php echo htmlspecialchars($itemNew);?>]" rows="4"><?php echo htmlspecialchars($hospital_contact1New);?> / <?php echo htmlspecialchars($type_1New);?></textarea></td>
                             <?php if(isset($_POST["dallyadd"])){ ?>
                                 <input type="hidden" id="dallyadd" name="dallyadd" value="1">
                             <?php } else {
