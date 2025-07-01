@@ -1,6 +1,6 @@
 <form action="<?php echo $_SESSION['url'];?>user_contact_save" method="post" id="myform">
 <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl ">
+    <div class="modal-dialog modal-fullscreen ">
         <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title fs-5" id="editLabel">แก้ไขข้อมูลผู้ติดต่อ</h1>

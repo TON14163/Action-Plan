@@ -1,6 +1,6 @@
 <form action="<?php echo $_SESSION['url'];?>user_contact_save" method="post" id="myform">
 <div class="modal fade" id="add_plus" tabindex="-1" aria-labelledby="add_plusLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl ">
+    <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title fs-5" id="add_plusLabel">เพิ่มข้อมูลผู้ติดต่อ</h1>
