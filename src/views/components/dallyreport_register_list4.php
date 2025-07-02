@@ -7,7 +7,7 @@
     <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse">
         <div class="accordion-body">
             <?php echo $show->InfoList4Table($id_work);?>
-            <div class="table-responsive p-2">
+            <!-- <div class="table-responsive p-2"> -->
                 <table class="table-thead-custom-awl table-bordered border-secondary" style="width: 100%;">
                     <tr>
                         <th style="width: 18%;">ประเภทสินค้า</th>
@@ -30,7 +30,7 @@
                         <td style="padding: 8px;">
                             <div style="width: 100%; position: relative;">
                                 <input type="text" name="rival_country[]" id="rival_country1" placeholder="Please fill out" onclick="CountryView()">
-                                <div id="CountryViewDemo" style="background-color: #FCFCFC; overflow-y:auto; max-height: 200px; position: absolute; z-index: 999;" class="shadow-sm"></div>
+                                <div id="CountryViewDemo" style="background-color: #FCFCFC; overflow:auto; min-height: 50px; position: absolute; z-index: 999;" class="shadow-sm"></div>
                             </div>
                             <script>
                                 async function CountryView() {
@@ -60,7 +60,7 @@
                         <td style="padding: 8px;"><input style="width: 100%;" type="text" name="promotion[]" id="promotion1"></td>
                     </tr>
                 </table>
-            </div>
+            <!-- </div> -->
             <script>
                 // โหลดรายชื่อประเทศครั้งเดียวและเก็บไว้
                 let countryOptions = '';
