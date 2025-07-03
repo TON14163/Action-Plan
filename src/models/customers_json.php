@@ -7,7 +7,7 @@ if($_SESSION['em_id'] != ''){
     
     header('Content-Type: application/json');
     header("Access-Control-Allow-Origin: *"); // ถ้าต้องการอนุญาต CORS
-    if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM') {
+    if ($_SESSION["ext"] == 'IT2' OR  $_SESSION["ext"] == 'PRM' OR $_SESSION["ext"] == 'VMD' OR $_SESSION["ext"] == 'MD1') {
         $cuss = "SELECT distinct customer_name FROM tb_customer_contact WHERE customer_name != '' ORDER BY customer_name ASC ";
     } else if($_SESSION['typelogin'] == 'Supervisor'){
         switch ($_SESSION["head_area"]) {
