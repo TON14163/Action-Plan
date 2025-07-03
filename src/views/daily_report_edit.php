@@ -149,10 +149,10 @@ require_once __DIR__ . '/layouts/Main.php';
 function copyPlan(idCopy) {
     Swal.fire({
         title: "<font color='#FFCC99'>งานที่ Copy งานเดิม !!</font>",
-        text: "คุณแน่ใจว่าต้องการ Copy Plan? กรุณาระบุเหตุผล:",
+        text: "คุณแน่ใจว่าต้องการ Copy Plan? กรุณาระบุแผนงาน:",
         icon: "warning",
         input: "textarea", // Add textarea input
-        inputPlaceholder: "กรุณาระบุเหตุผลสำหรับการคัดลอก...",
+        inputPlaceholder: "กรุณาระบุแผนงานที่ต้องการสำหรับการคัดลอก...",
         inputAttributes: {
             required: true // Ensure the field is marked as required
         },
@@ -163,7 +163,7 @@ function copyPlan(idCopy) {
         cancelButtonText: "Cancel",
         inputValidator: (value) => { // Validate that the textarea is not empty
             if (!value || value.trim() === "") {
-                return "คุณต้องระบุเหตุผล!";
+                return "คุณต้องระบุแผนงาน!";
             }
         }
     }).then((result) => {
