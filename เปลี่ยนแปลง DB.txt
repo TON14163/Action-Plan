@@ -18,7 +18,6 @@ allwell_sol
 
 
 
-
 build: ใช้สำหรับการเปลี่ยนแปลงที่ส่งผลกับระบบ build หรือ dependency ภายนอก เช่น npm, gulp, broccoli เป็นต้น
 feat: ใช้สำหรับการเพิ่มฟีเจอร์ใหม่ลงมาใน Codebase ของเรา
 fix: ใช้สำหรับการแก้ไข Bug ต่าง ๆ ใน Codebase
