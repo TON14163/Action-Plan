@@ -131,5 +131,4 @@
             }
         });
     </script>
-    
 <script src="src/views/details_pages/actionplan_demo.js"></script>

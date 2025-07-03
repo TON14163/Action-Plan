@@ -25,13 +25,6 @@ $countSql = "SELECT COUNT(id_customer) AS total FROM tb_customer_contact";
 // เริ่มต้น WHERE ด้วยเงื่อนไขที่เป็นจริงเสมอ
 $where = " WHERE 1=1"; // ใช้ 1=1 แทน 1 เพื่อความชัดเจน
 
-// if (!empty($saleCode)) {
-//     $where .= " AND sale_area = '".$saleCode."'";
-// } else {
-//     $where .= " AND head_area = 'SS3'";
-//     $saleCode = 'SS3';
-// }
-
 if (!empty($cus_Keyword)) {
     $where .= " AND customer_name = '" . mysqli_real_escape_string($conn, $cus_Keyword) . "' ";
 } else {

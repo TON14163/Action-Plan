@@ -213,7 +213,7 @@
                 </div>
             </div>
 
-            <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer; margin-top: 10px;" data-bs-toggle="tooltip" data-bs-title="เพิ่มวันที่ติดตามนี้จะอยู่ใน Plan ของงานนี้สูงสุด 15 วันที่ติดตามเท่านั้น" onclick="addFollowUp()"> 
+            <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer; margin-top: 10px;" data-bs-toggle="tooltip" data-bs-title="เพิ่มวันที่ติดตามนี้จะอยู่ใน Status Plan งานที่สร้างจากประมาณการขาย " onclick="addFollowUp()">
                 <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มวันติดตตาม
             </span>
 
