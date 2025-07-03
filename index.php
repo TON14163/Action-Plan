@@ -66,7 +66,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
 
             <div class="flex min-h-full flex-col justify-center px-6 lg:px-8">
                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <font class="gloria-hallelujah-regular text-7xl text-violet-900">ERP Allwell<br> Sale Report </font>
+                    <font class="gloria-hallelujah-regular text-7xl text-violet-900">Sale Report </font>
                 </div>
 
                 <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

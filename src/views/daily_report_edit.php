@@ -27,7 +27,7 @@ if(!empty($_REQUEST['id_work'])){
             $text = 'กำลังดำเนินการ Delete ข้อมูลคู่แข่ง กรุณารอสักครู่...';
             require_once __DIR__ . '/../views/Loading_page.php';
             require_once __DIR__ . '/../models/daily_report_deletelist.php';
-            echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work.">"; 
+            echo "<meta http-equiv=refresh content=3;URL=".$_SESSION['thisDomain']."daily_report_edit?id_work=".$id_work."&id_story=".$id_story.">"; 
             mysqli_close($conn);
             exit;
         }

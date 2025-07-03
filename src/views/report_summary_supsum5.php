@@ -2,6 +2,7 @@
 ob_start(); // เปิดใช้งานการเก็บข้อมูล content 
 error_reporting(0);
 
+$yearMain = date('Y');
 ?>
 
 <center><h5>รายงานสรุปผลการขายตามช่วงเวลา (Sup)</h5></center>
@@ -65,13 +66,13 @@ $sale_code=$_POST["sale_code"];
 if($sale_code!=''){	
 if($_POST['sale_code']=='SS1'){
 
-$ddd = " and sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sale_area !='S17'  and sale_area !='S23'  and sale_area !='S24'  and sale_area !='S31' and sale_area !='S32' and sale_area !='SM1' and sale_area !='MM1' ";
+$ddd = " and sale_area !='S11'  and sale_area !='S12' and sale_area !='S13'  and sale_area !='S17'  and sale_area !='S23'  and sale_area !='S24'  and sale_area !='S31' and sale_area !='S32' and sale_area !='SM1' and sale_area !='MM1'   and sale_area !='S33'";
 $target ="  and ckk_type='0' and  zone_code !='S11'  and zone_code !='S12' and zone_code !='S13'  and zone_code !='S17'  and zone_code !='S23'  and zone_code !='S24'";
 $sumall = " and type_arae='1' and  sale_cose !='S11'  and sale_cose !='S12' and sale_cose !='S13'  and sale_cose !='S17'  and sale_cose !='S23'  and sale_cose !='S24'";
 
 } else if($_POST['sale_code']=='SS2'){
 
-$ddd = " and sale_area !='S14'  and sale_area !='S15' and sale_area !='S16'  and sale_area !='S21'  and sale_area !='S22'  and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'  and sale_area !='S32'";
+$ddd = " and sale_area !='S14'  and sale_area !='S15' and sale_area !='S16'  and sale_area !='S21'  and sale_area !='S22'  and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'  and sale_area !='S32'  and sale_area !='S33'";
 $target = " and ckk_type='0' and zone_code !='S14'  and zone_code !='S15' and zone_code !='S16'  and zone_code !='S21'  and zone_code !='S22'";
 $sumall = " and type_arae='1' and  sale_cose !='S14'  and sale_cose !='S15' and sale_cose !='S16'  and sale_cose !='S21'  and sale_cose !='S22'";
 
@@ -83,9 +84,15 @@ $sumall = " and type_arae='2' and sale_cose NOT LIKE '%SOL%'";
 
 } else if($_POST['sale_code']=='All'){
 
-$ddd = " and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'  and sale_area !='S32'";
+$ddd = " and sale_area !='S31' and sale_area !='SM1' and sale_area !='MM1'  and sale_area !='S32'  and sale_area !='S33'";
 $target = " and ckk_type ='0' ";
 $sumall = " and type_arae='1'";
+
+} else if($_POST['sale_code']=='AllS'){
+
+$ddd = "";
+$target = " and ( ckk_type ='0' OR  ckk_type ='4' OR  ckk_type ='3' OR  ckk_type ='7')";
+$sumall = " and ( type_arae='1' OR sale_cose ='S31' OR  sale_cose ='S32' OR sale_cose ='S33' OR sale_cose ='MM1')";
 
 
 }	
@@ -1139,145 +1146,145 @@ $objResult6= mysqli_fetch_array($objQuery6);
 if($_POST["start_send"]!=''){	
 $start_send=$_POST["start_send"];
 }else{
-$start_send = "2025-01-01";
+$start_send = "{$yearMain}-01-01";
 }
 	
 if($_POST["start_send1"]!=''){	
 $start_send1=$_POST["start_send1"];
 }else{
-$start_send1 = "2025-02-01";
+$start_send1 = "{$yearMain}-02-01";
 }
 	
 if($_POST["start_send2"]!=''){	
 $start_send2=$_POST["start_send2"];
 }else{
-$start_send2 = "2025-03-01";
+$start_send2 = "{$yearMain}-03-01";
 }
 	
 if($_POST["start_send3"]!=''){	
 $start_send3=$_POST["start_send3"];
 }else{
-$start_send3 = "2025-04-01";
+$start_send3 = "{$yearMain}-04-01";
 }
 	
 if($_POST["start_send4"]!=''){	
 $start_send4=$_POST["start_send4"];
 }else{
-$start_send4 = "2025-05-01";
+$start_send4 = "{$yearMain}-05-01";
 }
 	
 if($_POST["start_send5"]!=''){	
 $start_send5=$_POST["start_send5"];
 }else{
-$start_send5 = "2025-06-01";
+$start_send5 = "{$yearMain}-06-01";
 }
 	
 if($_POST["start_send6"]!=''){	
 $start_send6=$_POST["start_send6"];
 }else{
-$start_send6 = "2025-07-01";
+$start_send6 = "{$yearMain}-07-01";
 }
 	
 if($_POST["start_send7"]!=''){	
 $start_send7=$_POST["start_send7"];
 }else{
-$start_send7 = "2025-08-01";
+$start_send7 = "{$yearMain}-08-01";
 }
 	
 if($_POST["start_send8"]!=''){	
 $start_send8=$_POST["start_send8"];
 }else{
-$start_send8 = "2025-09-01";
+$start_send8 = "{$yearMain}-09-01";
 }
 	
 if($_POST["start_send9"]!=''){	
 $start_send9=$_POST["start_send9"];
 }else{
-$start_send9 = "2025-10-01";
+$start_send9 = "{$yearMain}-10-01";
 }
 	
 if($_POST["start_send10"]!=''){	
 $start_send10=$_POST["start_send10"];
 }else{
-$start_send10 = "2025-11-01";
+$start_send10 = "{$yearMain}-11-01";
 }
 	
 if($_POST["start_send11"]!=''){	
 $start_send11=$_POST["start_send11"];
 }else{
-$start_send11 = "2025-12-01";
+$start_send11 = "{$yearMain}-12-01";
 }
 	
 if($_POST["end_send"]!=''){	
 $end_send=$_POST["end_send"];
 }else{
-$end_send = "2025-01-31";
+$end_send = "{$yearMain}-01-31";
 }	
 	
 if($_POST["end_send1"]!=''){	
 $end_send1=$_POST["end_send1"];
 }else{
-$end_send1 = "2025-02-29";
+$end_send1 = "{$yearMain}-02-29";
 }	
 
 if($_POST["end_send2"]!=''){	
 $end_send2=$_POST["end_send2"];
 }else{
-$end_send2 = "2025-03-31";
+$end_send2 = "{$yearMain}-03-31";
 }	
 	
 if($_POST["end_send3"]!=''){	
 $end_send3=$_POST["end_send3"];
 }else{
-$end_send3 = "2025-04-30";
+$end_send3 = "{$yearMain}-04-30";
 }	
 		
 if($_POST["end_send4"]!=''){	
 $end_send4=$_POST["end_send4"];
 }else{
-$end_send4 = "2025-05-31";
+$end_send4 = "{$yearMain}-05-31";
 }	
 		
 if($_POST["end_send5"]!=''){	
 $end_send5=$_POST["end_send5"];
 }else{
-$end_send5 = "2025-06-30";
+$end_send5 = "{$yearMain}-06-30";
 }	
 		
 if($_POST["end_send6"]!=''){	
 $end_send6=$_POST["end_send6"];
 }else{
-$end_send6 = "2025-07-31";
+$end_send6 = "{$yearMain}-07-31";
 }	
 		
 if($_POST["end_send7"]!=''){	
 $end_send7=$_POST["end_send7"];
 }else{
-$end_send7 = "2025-08-31";
+$end_send7 = "{$yearMain}-08-31";
 }	
 		
 if($_POST["end_send8"]!=''){	
 $end_send8=$_POST["end_send8"];
 }else{
-$end_send8 = "2025-09-30";
+$end_send8 = "{$yearMain}-09-30";
 }	
 		
 if($_POST["end_send9"]!=''){	
 $end_send9=$_POST["end_send9"];
 }else{
-$end_send9 = "2025-10-30";
+$end_send9 = "{$yearMain}-10-30";
 }	
 		
 if($_POST["end_send10"]!=''){	
 $end_send10=$_POST["end_send10"];
 }else{
-$end_send10 = "2025-11-30";
+$end_send10 = "{$yearMain}-11-30";
 }	
 		
 if($_POST["end_send11"]!=''){	
 $end_send11=$_POST["end_send11"];
 }else{
-$end_send11 = "2025-12-30";
+$end_send11 = "{$yearMain}-12-30";
 }
 
 

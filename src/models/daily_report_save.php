@@ -383,6 +383,7 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
         }
     
         // echo  $current_no_auto;
+        // exit;
 
             if ($h_product_rivalNew != ''){ // and $product_rival != ''
 

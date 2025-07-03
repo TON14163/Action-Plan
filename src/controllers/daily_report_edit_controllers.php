@@ -167,6 +167,7 @@ class DailyReportEdit {
 
         if($nsql > 0){
             $viewMain = "";
+            $numM = 1;
             while($vsql = mysqli_fetch_array($qsql)){
             $viewMain .= "
             <div class='table-responsive p-2'>
@@ -183,7 +184,7 @@ class DailyReportEdit {
                 </tr>
                 <tr>
                     <td style='padding: 8px;'>
-                        <select class='form-search-custom-awl' style='width: 100%;' name='h_product_rival[]' id='h_product_rival1'>
+                        <select class='form-search-custom-awl' style='width: 100%;' name='h_product_rival[]' id='h_product_rival$numM'>
                         <option value=".$vsql['h_product_rival'].">".$vsql['product_rival']."</option>
                             <option value=''>Search</option>";
                             $sql2 = "SELECT id,prorival_name FROM tb_prorival ";
@@ -194,24 +195,27 @@ class DailyReportEdit {
                             $viewMain .="
                         </select>
                     </td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='company_rival[]' id='company_rival1' placeholder='Please fill out' value=".$vsql['company_rival']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='company_rival[]' id='company_rival$numM' placeholder='Please fill out' value=".$vsql['company_rival']."></td>
                     <td style='padding: 8px;'>
-                        <select class='form-search-custom-awl' style='width: 100%;' name='rival_country[]' id='rival_country1' onclick='Country()'>
-                                <option value=".$vsql['rival_country'].">".$vsql['rival_country']."</option>
-                                <option value=''>Search</option>
-                        </select>
+                        <div style='width: 100%; position: relative;'>
+                            <input type='text' name='rival_country[]' id='rival_country$numM' placeholder='Please fill out' oninput='CountryView('rival_country$numM','CountryViewDemo$numM','CountryClose$numM')' value='{$vsql['rival_country']}'>
+                            <div id='CountryClose$numM' onclick='CountryClose('CountryViewDemo$numM','CountryClose$numM')' style='position: absolute; background-color: #FCFCFC; z-index: 999; right:0; top:173px; display:none; color:#ff8080; cursor: pointer;'>
+                                <span class='badge rounded-pill text-bg-danger'>x</span>
+                            </div>
+                            <div id='CountryViewDemo$numM' style='width: 100%; background-color: #FCFCFC; overflow:scroll; overflow-x:hidden; height: 150px; position: absolute; z-index: 998; text-align: left; padding:8px; display:none; font-size: 12px;' class='shadow-sm'></div>
+                        </div>
                     </td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_brand[]' id='rival_brand1' placeholder='Please fill out' value=".$vsql['rival_brand']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_model[]' id='rival_model1' placeholder='Please fill out' value=".$vsql['rival_model']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='number' name='price_to_unit[]' id='price_to_unit1' value=".$vsql['price_to_unit']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='number' name='unit[]' id='unit1' value=".$vsql['unit']."></td>
-                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='promotion[]' id='promotion1' value=".$vsql['promotion']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_brand[]' id='rival_brand$numM' placeholder='Please fill out' value=".$vsql['rival_brand']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='rival_model[]' id='rival_model$numM' placeholder='Please fill out' value=".$vsql['rival_model']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='number' name='price_to_unit[]' id='price_to_unit$numM' value=".$vsql['price_to_unit']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='number' name='unit[]' id='unit$numM' value=".$vsql['unit']."></td>
+                    <td style='padding: 8px;'><input style='width: 100%;' type='text' name='promotion[]' id='promotion$numM' value=".$vsql['promotion']."></td>
                 </tr>
             </table>
             </div>
             <p class='p-2'>
                 หมายเหตุ
-                <textarea class='textarea-form-control' style='width:100%;' name='description[]' id='description1' rows='3'>".$vsql['description']."</textarea>
+                <textarea class='textarea-form-control' style='width:100%;' name='description[]' id='description$numM' rows='3'>".$vsql['description']."</textarea>
             </p>
             <input hidden='text' name='no_auto[]' id='no_auto".$vsql['no_auto']."' value=".$vsql['no_auto'].">
             <input type='hidden' name='id_story[]' id='id_story".$vsql['id_story']."' value=".$vsql['id_story'].">
@@ -234,6 +238,7 @@ $viewMain .= "
 </div>
             <hr style='border: 1px dashed #000;'>
                 ";
+                $numM++;
             }
             return $viewMain;
         } 

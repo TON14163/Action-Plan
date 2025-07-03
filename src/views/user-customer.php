@@ -102,7 +102,7 @@ if (!empty($_GET['noti'])) { ?>
                         "info": "พบทั้งหมด _TOTAL_ รายการ : จำนวน _PAGES_ หน้า : _PAGE_",
                         "infoFiltered": ""
                     }
-                    <?php if($_SESSION["ext"] != 'IT2' OR  $_SESSION["ext"] != 'PRM') { ?>
+                    <?php if($_SESSION["ext"] != 'IT2' AND $_SESSION["ext"] != 'PRM') { ?>
                         ,"initComplete": function() {
                             this.api().column(3).visible(false);
                             this.api().column(8).visible(false);
