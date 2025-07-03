@@ -52,7 +52,7 @@ $totalRowAll = mysqli_fetch_assoc($totalResultAll);
 $recordsTotal = $totalRowAll['total'];
 
 // เพิ่มการเรียงลำดับ
-$sql .= " ORDER BY id_customer DESC ";
+$sql .= " ORDER BY hospital_buiding DESC ";
 
 // จำกัดจำนวนแถว (pagination)
 $sql .= " LIMIT $start, $length";
