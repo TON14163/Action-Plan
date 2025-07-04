@@ -213,15 +213,33 @@
                 </div>
             </div>
 
-            <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer; margin-top: 10px;" data-bs-toggle="tooltip" data-bs-title="เพิ่มวันที่ติดตามนี้จะอยู่ใน Status Plan งานที่สร้างจากประมาณการขาย " onclick="addFollowUp()">
-                <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มวันติดตตาม
-            </span>
+            <div class="d-flex align-items-center">
+                <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer; margin-top: 10px;" data-bs-toggle="tooltip" data-bs-title="เพิ่มวันที่ติดตามนี้จะอยู่ใน Status Plan งานที่สร้างจากประมาณการขาย " onclick="addFollowUp()">
+                    <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มวันติดตตาม
+                </span>
+                &nbsp;&nbsp;
+                <div id="follow-up-del" style="display: none;" onclick="removeFollowUp()">
+                    <div style="display: flex; align-items: center;">
+                        <span class="badge rounded-pill mt-2" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer; " >
+                            <img src="assets/images/icon_system/streamline-block--basic-ui-delete-2.svg" style="width:12px; height:12px; color:#FFFFFF;"> Del ครั้งที่ <font id="follow-up-count"></font>
+                        </span>
+                        <span style="font-size: 10px; color:#ff8040; padding-top:15px;">
+                            ส่วนนี้จะไปเพิ่ม Plan ใหม่
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
 
             <script>
             let followUpCount = <?php echo $numDateFollow;?>;
             function addFollowUp() {
                 followUpCount++;
                 const followUpList = document.getElementById('follow-up-list');
+                const followUpCountView = document.getElementById('follow-up-count');
+                const followUpDel = document.getElementById('follow-up-del');
+                followUpCountView.textContent = followUpCount;
+                followUpDel.style.display = 'block';
                 const div = document.createElement('div');
                 div.className = 'follow-up-item';
                 div.style = "display: flex; align-items: center; width: 100%; margin-bottom: 10px;";
@@ -237,12 +255,28 @@
                 `;
                 followUpList.appendChild(div);
             }
+            function removeFollowUp(){
+                if (followUpCount > 0) {
+                    const followUpList = document.getElementById('follow-up-list');
+                    // Remove the last follow-up item
+                    if (followUpList.lastElementChild) {
+                        followUpList.removeChild(followUpList.lastElementChild);
+                        followUpCount--;
+                        const followUpCountView = document.getElementById('follow-up-count');
+                        followUpCountView.textContent = followUpCount;
+                        // Hide delete button if no follow-up left
+                        if (followUpCount === <?php echo $numDateFollow;?>) {
+                            document.getElementById('follow-up-del').style.display = 'none';
+                        }
+                    }
+                }
+            }
             </script>
 
             <div class="mt-3">
                 <a href="daily_report_edit_plannew?id_work=<?php echo $id_work;?>" rel="noopener noreferrer">
                     <span class="badge rounded-pill" style="background-color:#525252; color:#FFFFFF; padding-left: 10px; padding-right: 15px; cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Status งานที่ plan ไว้แล้ว"> 
-                        <img src="assets/images/icon_system/icon-park--add-one.png" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
+                        <img src="assets/images/icon_system/majesticons--link-circle.svg" style="width:15px; height:15px; color:#FFFFFF;"> เพิ่มประมาณการขายใหม่
                     </span>
                 </a>
             </div>

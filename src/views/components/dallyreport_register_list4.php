@@ -176,7 +176,7 @@
                     newRow.innerHTML = `
                         <label for="list4file${multiNum}_${rowCount}">แนบไฟล์</label>
                         <input style="width: 300px; margin: 5px 0px;" type="file" name="list4file[${multiNum}][]" id="list4file${multiNum}_${rowCount}">
-                        <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer;" onclick="removeFileRow(this)"> - ลบแนบไฟล์ </span>
+                        <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer;" onclick="removeFileRow(this)"> <img src="assets/images/icon_system/streamline-block--basic-ui-delete-2.svg" style="width:12px; height:12px; color:#FFFFFF;"> ลบแนบไฟล์ </span>
                     `;
                     container.appendChild(newRow);
                 }
@@ -260,7 +260,7 @@
                                 <div id="file4RowsContainer${rowCount}"></div>
                             </div>
                             <span>
-                                <span class="badge rounded-pill multi-delete" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer;" onclick="myDeleteFunction4(this)"> - ลบข้อมูลคู่แข่ง</span>
+                                <span class="badge rounded-pill multi-delete" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer;" onclick="myDeleteFunction4(this)"> <img src="assets/images/icon_system/streamline-block--basic-ui-delete-2.svg" style="width:12px; height:12px; color:#FFFFFF;"> ลบข้อมูลคู่แข่ง</span>
                             </span>
                         </div>
                 <input type="hidden" name="no_auto[]" id="no_auto${rowCount}" value="${rowCount}">
