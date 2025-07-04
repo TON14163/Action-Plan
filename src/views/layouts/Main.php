@@ -49,13 +49,10 @@
         padding:40px;
     }
 }
-
-
 </style>
-<body style="background-image: linear-gradient(to right bottom, #daf3fb, #dbf0fd, #deecfe, #e4e8fd, #eae4f9, #eadef5, #ebd9f1, #ecd3eb, #e7cae6, #e3c2e1, #deb9dc, #dab1d7);
-    background-image: url('assets/images/background_main.jpg'); 
+<body style="background-image: url('assets/images/background_main.jpg'); 
     background-repeat: no-repeat; 
-    background-size: 100% 100%; 
+    background-size: 150% 100%; 
     background-position: bottom;">
     <?php 
     require_once __DIR__ . '/../partials/NavBar.php';
