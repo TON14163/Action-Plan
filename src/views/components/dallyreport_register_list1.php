@@ -223,7 +223,7 @@
                         <span class="badge rounded-pill mt-2" style="background-color: #FF0004; color:#FFFFFF; padding: 5px 10px; cursor: pointer; " >
                             <img src="assets/images/icon_system/streamline-block--basic-ui-delete-2.svg" style="width:12px; height:12px; color:#FFFFFF;"> Del ครั้งที่ <font id="follow-up-count"></font>
                         </span>
-                        <span style="font-size: 10px; color:#ff8040; padding-top:15px;">
+                        <span style="font-size: 10px; color:#DDA0DD; padding-top:15px;">
                             ส่วนนี้จะไปเพิ่ม Plan ใหม่
                         </span>
                     </div>
