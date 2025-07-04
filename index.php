@@ -30,13 +30,41 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
     font-weight: 400;
     font-style: normal;
     }
+    @media only screen and (max-width:  1100px){
+        main{
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+        .left-box-login{
+            display: none;
+        }
+        .right-box-login{
+            background-color: #FCFCFC;
+            border-radius: 8px;
+        }
+        .font-custom-size{
+            font-size: 30px;
+        }
+    }
+    @media only screen and (min-width:  1099px) {
+        .left-box-login{
+            display: block;
+        }
+        .right-box-login{
+            background-color: #FCFCFC;
+        }
+        .font-custom-size{
+            font-size: 48px;
+        }
+    }
 </style>
 
 <body class="text-center" >
 
-    <main class="flex flex-row items-stretch p-10" style="background-image: url('<?php echo $thisDomain;?>assets/images/bgmain.jpg'); background-repeat: no-repeat; background-size: 100% 100vw; background-position-y: bottom;">
-        <section class="basis-2/5 self-stretch rounded-l-lg" style="height:100vh; background-color:#FFFFFF; "><img class="mx-auto h-full w-full object-cover" src="<?php echo $thisDomain;?>assets/images/icon_allwell_name_2D.png" alt="Your Company"></section>
-        <section class="basis-3/5 self-stretch rounded-r-lg" style="height:100vh; background-color:#FFFFFF; background-size: 20%; background-repeat: no-repeat; background-position: center center; transition: 1s;" id="imageSection">
+    <main class="flex flex-row items-stretch p-10" style="background-image: url('<?php echo $thisDomain;?>assets/images/bgmain.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-position-y: bottom;">
+        <section class="basis-2/5 self-stretch rounded-l-lg left-box-login" style="height:100vh; background-color:#FFFFFF; "><img class="mx-auto h-full w-full object-cover" src="<?php echo $thisDomain;?>assets/images/icon_allwell_name_2D.png" alt="Your Company"></section>
+        <section class="basis-3/5 self-stretch rounded-r-lg right-box-login" style="height:100vh;  background-size: 20%; background-repeat: no-repeat; background-position: center center; transition: 1s;" id="imageSection">
         <script>
                 // อาร์เรย์ของรูปภาพที่ต้องการสลับ
                 const images = [
@@ -66,7 +94,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
 
             <div class="flex min-h-full flex-col justify-center px-6 lg:px-8">
                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <font class="gloria-hallelujah-regular text-7xl text-violet-900">Sale Report </font>
+                    <font class="gloria-hallelujah-regular text-violet-900 font-custom-size">Sale Report</font>
                 </div>
 
                 <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
