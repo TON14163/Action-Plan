@@ -192,11 +192,11 @@
                             for ($i = 1; $i <= 15; $i++) {
                                 $date_follow = $show->showDetails($id_work, "date_follow{$i}");
                                 if ( (!empty($date_follow) AND $date_follow != '0000-00-00') || !empty($plan_follow) ) {
-                                    echo "ครั้งที่ {$i} : <i style='color:#808080; font-weight:100;'>" . DateThai(htmlspecialchars($date_follow))."</i> ";
+                                    echo "ครั้งที่ {$i} : <i style='color:#808080; font-weight:100; cursor:no-drop;'>" . DateThai(htmlspecialchars($date_follow))."</i> ";
 
                                     $planWorks = json_decode($show->showDetails($id_work,'plan_work_add'), true);
                                     if (is_array($planWorks) && !empty($planWorks[$i-1])) {
-                                        echo " แผนงาน : <i style='color:#808080; font-weight:100;'>" . htmlspecialchars($planWorks[$i-1]).'<input type="hidden" name="plan_follow'.$i.'" id="plan_follow'.$i.'" value="'.htmlspecialchars($planWorks[$i-1]).'"></i>';
+                                        echo " แผนงาน : <i style='color:#808080; font-weight:100; cursor:no-drop;'>" . htmlspecialchars($planWorks[$i-1]).'<input type="hidden" name="plan_follow'.$i.'" id="plan_follow'.$i.'" value="'.htmlspecialchars($planWorks[$i-1]).'" placeholder="รายละเอียดแผนงาน... "></i>';
                                     }
                                     $numDateFollow++;
                                     echo "<br>";
@@ -232,7 +232,7 @@
                     </div>
                     <div style="background-color:#FFFFFF; border-radius: 8px; width: 80%; padding: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
                         แผนงาน : <br>
-                        <textarea name="plan_follow${followUpCount}" style="height: 25px; min-width: 100%;" ระบุข้อมูล...></textarea>
+                        <textarea name="plan_follow${followUpCount}" style="height: 25px; min-width: 100%;" placeholder="รายละเอียดแผนงาน . . . "></textarea>
                     </div>
                 `;
                 followUpList.appendChild(div);

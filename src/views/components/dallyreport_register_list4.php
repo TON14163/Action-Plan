@@ -140,9 +140,9 @@
             </div>
 
             <?php if($show->showStoryrival($id_work,'id_story') == ''){?>
-                <input type="text" name="no_auto[]" id="no_auto1" value="1">
+                <input type="hidden" name="no_auto[]" id="no_auto1" value="1">
             <?php } else { ?>
-                <input type="text" name="no_auto[]" id="no_auto1" value="<?php echo $show->showStoryrivalNo_auto($id_work,'no_auto');?>">
+                <input type="hidden" name="no_auto[]" id="no_auto1" value="<?php echo $show->showStoryrivalNo_auto($id_work,'no_auto');?>">
             <?php } ?>
 
             <?php } ?>

@@ -86,40 +86,6 @@ $email_contact10 = FigString1('email_contact10'); // อีเมลล์
 // dallyreport_register_details2  เลือกสินค้า
 $plan_work = FigString1('plan_work');
 
-$date_follow_update = [];
-$date_follow_insert = [];
-$date_follow_insert_value = [];
-for ($i = 1; $i <= 15; $i++) {
-    ${"date_follow$i"} = FigString1("date_follow$i");
-
-    if(${"date_follow$i"} != ''){
-        $date_follow_update[] = 'date_follow'.$i.' = "'.${"date_follow$i"}.'"';
-        $date_follow_insert[] = 'date_follow'.$i;
-        $date_follow_insert_value[] = '"'.${"date_follow$i"}.'"';
-    }
-
-    ${"plan_follow$i"} = FigString1("plan_follow$i"); // แผนงาน ส่วนที่ 1
-}
-
-$dateFollowUpdateSql = implode(',', $date_follow_update);
-$dateFollowInsertSql = implode(',', $date_follow_insert);
-$dateFollowInsertValueSql = implode(',', $date_follow_insert_value);
-
-// echo $dateFollowInsertSql.'<hr>';
-// echo $dateFollowInsertValueSql.'<hr>';
-// รวมค่า plan_follow1 ถึง plan_follow15 เป็น array
-// แผนงาน ส่วนที่ 2
-$plan_follow_array = [];
-for ($i = 1; $i <= 15; $i++) {
-    $plan_follow_array[] = ${"plan_follow$i"};
-}
-// แปลงเป็น JSON แล้วเก็บไว้ที่ plan_work_add
-// echo '<hr>';
-$plan_work_add = json_encode($plan_follow_array, JSON_UNESCAPED_UNICODE);
-// echo $plan_work_add.'<hr>';
-
-// exit;
-
 $planitemlist = isset($_POST['planitemlist']) ? $_POST['planitemlist'] : []; // check if planitemlist is an array
 $product_present = []; // เอาไว้เก็บค่า JSON objects
 if (!empty($planitemlist)) {
@@ -433,33 +399,78 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
 
 
     // --------------------------------------------------------------------- เก็บข้อมูลลงฐานข้อมูล
+    // วันที่ติดตามครั้งล่าสุด Start Input
+    $date_follow_update = [];
+    $date_follow_insert = [];
+    $date_follow_insert_value = [];
+    for ($i = 1; $i <= 15; $i++) {
+        ${"date_follow$i"} = FigString1("date_follow$i");
 
+        if(${"date_follow$i"} != ''){ // หาค่า ( ครั้งที่ ? ) ไม่ใช่ค่าว่างเก็บลงไปใน array
+            $date_follow_update[] = 'date_follow'.$i.' = "'.${"date_follow$i"}.'"';
+            $date_follow_insert[] = 'date_follow'.$i;
+            $date_follow_insert_value[] = '"'.${"date_follow$i"}.'"';
+        }
+
+        ${"plan_follow$i"} = FigString1("plan_follow$i"); // แผนงาน ส่วนที่ 1 // ส่วนนี้จะเอาแผน  1-15 ไม่สนว่ากรอกมาหรือไม่
+
+        if(${"date_follow$i"} != ''){ // หาค่า ( ครั้งที่ ? ) อีกครั้งเพื่อสร้าง แผนใหม่ตามวันของแต่ละครั้ง ?
+            $sqlChkFollowAdd = "INSERT INTO tb_register_data (id_customer,date_plan,sale_name,sale_area,head_area,hospital_name,hospital_buiding,hospital_class,hospital_ward,hospital_contact,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,plan_work,product_present,add_date,daily,summary_product1,product_id1,remark_pro1,mode_pro1,unit_product1,unit_name1,price_product1,price_unit1,sum_price_product,percent_id,percent_name,month_po,summary_order,date_request,date_update,date_order,type_cus,pre_name,description_focast,description_focastnew,cus_free) 
+            VALUES('".$id_customer."','".${"date_follow$i"}."','".$_SESSION['name_show']."' ,'".$_SESSION['em_id']."','".$_SESSION['head_area']."','".$hospital_name."','".$hospital_buiding."','".$hospital_class."','".$hospital_ward."','".$hospital_contact."','".$hospital_contact1."','".$hospital_contact2."','".$hospital_contact3."','".$hospital_contact4."','".$hospital_contact5."','".$hospital_contact6."','".$hospital_contact7."','".$hospital_contact8."','".$hospital_contact9."','".$hospital_mobile1."','".$hospital_mobile2."','".$hospital_mobile3."','".$hospital_mobile4."','".$hospital_mobile5."','".$hospital_mobile6."','".$hospital_mobile7."','".$hospital_mobile8."','".$hospital_mobile9."','".$hospital_mobile10."','".$email_contact1."','".$email_contact2."','".$email_contact3."','".$email_contact4."','".$email_contact5."','".$email_contact6."','".$email_contact7."','".$email_contact8."','".$email_contact9."','".$email_contact10."','".${"plan_follow$i"}."','".$product_present."','".$addDate."','3','".$product_onelist."','".$product_outlistone1."','".$remark_pro1."','".ModeProMain($product_outlistone1)."','".$unit_product1."','".UnitNameMain($product_outlistone1)."','".$price_product1."','".$price_unit1."','".$sum_price_product."','".$percent_id."','".$percent_code."','".$month_po."','".$summary_order."','".$date_request."','".$date_update."','".$date_order."','".$type_cus."','".$pre_name."','".$description_focast."','".$description_focastnew."','".$cus_free."')";
+            $qSqlChkFollowAdd = mysqli_query($conn,$sqlChkFollowAdd);
+        }
+    }
+
+    $dateFollowUpdateSql = implode(',', $date_follow_update);
+    $dateFollowInsertSql = implode(',', $date_follow_insert);
+    $dateFollowInsertValueSql = implode(',', $date_follow_insert_value);
+
+    // echo $dateFollowInsertSql.'<hr>';        // ส่วน (=col)   insert DB
+    // echo $dateFollowInsertValueSql.'<hr>';   // ส่วน (=value) insert DB
+    // รวมค่า plan_follow1 ถึง plan_follow15 เป็น array
+    // แผนงาน ส่วนที่ 2
+    $plan_follow_array = [];
+    for ($i = 1; $i <= 15; $i++) { // รวมแผน 1-15 ไม่สนว่ากรอกมาหรือไม่ เก็บไว้ในตัวแปร plan_follow_array เพื่อยัดลง DB เป็นก้อน Array เลย
+        $plan_follow_array[] = ${"plan_follow$i"};
+    }
+    // แปลงเป็น JSON แล้วเก็บไว้ที่ plan_work_add
+    $plan_work_add = json_encode($plan_follow_array, JSON_UNESCAPED_UNICODE);
+
+    // วันที่ติดตามครั้งล่าสุด End Input
     if($product_present == '[]'){ $product_present = ''; }
-    // $product_rivalDB = json_encode($product_presentList, JSON_UNESCAPED_UNICODE);
+    // $product_rivalDB = json_encode($product_presentList, JSON_UNESCAPED_UNICODE); // ไม่ใช้แต่เก็บไว้ก่อน
 
     $sqlMainsave3 = "UPDATE tb_customer_contact SET hospital_contact1 = '".$hospital_contact."',hospital_contact2 = '".$hospital_contact1."',hospital_contact3 = '".$hospital_contact2."',hospital_contact4 = '".$hospital_contact3."',hospital_contact5 = '".$hospital_contact4."',hospital_contact6 = '".$hospital_contact5."',hospital_contact7 = '".$hospital_contact6."',hospital_contact8 = '".$hospital_contact7."',hospital_contact9 = '".$hospital_contact8."',hospital_contact10 = '".$hospital_contact9."',hospital_mobile1 = '".$hospital_mobile1."',hospital_mobile2 = '".$hospital_mobile2."',hospital_mobile3 = '".$hospital_mobile3."',hospital_mobile4 = '".$hospital_mobile4."',hospital_mobile5 = '".$hospital_mobile5."',hospital_mobile6 = '".$hospital_mobile6."',hospital_mobile7 = '".$hospital_mobile7."',hospital_mobile8 = '".$hospital_mobile8."',hospital_mobile9 = '".$hospital_mobile9."',hospital_mobile10 = '".$hospital_mobile10."',email_contact1 = '".$email_contact1."',email_contact2 = '".$email_contact2."',email_contact3 = '".$email_contact3."',email_contact4 = '".$email_contact4."',email_contact5 = '".$email_contact5."',email_contact6 = '".$email_contact6."',email_contact7 = '".$email_contact7."',email_contact8 = '".$email_contact8."',email_contact9 = '".$email_contact9."',email_contact10 = '".$email_contact10."',hospital_buiding = '".$hospital_buiding."',hospital_class = '".$hospital_class."',hospital_ward = '".$hospital_ward."' ,type_cus = '".$cus_free."' WHERE id_customer = '".$id_customer."' ";
     
     if($dateFollowUpdateSql != ''){
         $sqlMainsave1 = "UPDATE tb_register_data SET date_plan = '".$date_plan."', description_focast = '".$description_focast."', description_focastnew = '".$description_focastnew."', product_present = '".$product_present."', hospital_contact = '".$hospital_contact."', hospital_contact1 = '".$hospital_contact1."', hospital_contact2 = '".$hospital_contact2."', hospital_contact3 = '".$hospital_contact3."', hospital_contact4 = '".$hospital_contact4."', hospital_contact5 = '".$hospital_contact5."', hospital_contact6 = '".$hospital_contact6."', hospital_contact7 = '".$hospital_contact7."', hospital_contact8 = '".$hospital_contact8."', hospital_contact9 = '".$hospital_contact9."' , hospital_mobile1 = '".$hospital_mobile1."', hospital_mobile2 = '".$hospital_mobile2."', hospital_mobile3 = '".$hospital_mobile3."', hospital_mobile4 = '".$hospital_mobile4."', hospital_mobile5 = '".$hospital_mobile5."', hospital_mobile6 = '".$hospital_mobile6."', hospital_mobile7 = '".$hospital_mobile7."', hospital_mobile8 = '".$hospital_mobile8."', hospital_mobile9 = '".$hospital_mobile9."', hospital_mobile10 = '".$hospital_mobile10."', email_contact1 = '".$email_contact1."', email_contact2 = '".$email_contact2."', email_contact3 = '".$email_contact3."', email_contact4 = '".$email_contact4."', email_contact5 = '".$email_contact5."', email_contact6 = '".$email_contact6."', email_contact7 = '".$email_contact7."', email_contact8 = '".$email_contact8."', email_contact9 = '".$email_contact9."', email_contact10 = '".$email_contact10."', hospital_buiding = '".$hospital_buiding."', hospital_class = '".$hospital_class."' , hospital_ward = '".$hospital_ward."', summary_product1 = '".$product_onelist."',remark_pro1 = '".$remark_pro1."', unit_product1 = '".$unit_product1."', price_product1 = '".$price_product1."', price_unit1 = '".$price_unit1."', product_id1 = '".$product_outlistone1."', percent_name = '".$percent_code."', percent_id = '".$percent_id."', sum_price_product = '".$sum_price_product."', month_po = '".$month_po."', unit_name1 = '".UnitNameMain($product_outlistone1)."', mode_pro1 = '".ModeProMain($product_outlistone1)."', type_cus = '".$type_cus."' ,pre_name = '".$pre_name."', cus_free = '".$cus_free."', date_request = '".$date_request."', head_area = '".$_SESSION['head_area']."', date_update = '".$date_update."', summary_order = '".$summary_order."', date_order = '".$date_order."' ,plan_work = '".$plan_work."',plan_work_add = '".$plan_work_add."' , $dateFollowUpdateSql  WHERE id_work = '".$id_work."' ";
         $sqlMainsave2 = "INSERT INTO tb_regist_realtime (date_plan,description_focast,description_focastnew,product_present,hospital_contact,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,hospital_buiding,hospital_class,hospital_ward,summary_product1,remark_pro1,unit_product1,price_product1,product_id1,percent_name,sum_price_product,month_po,percent_id,unit_name1,price_unit1,mode_pro1,type_cus,pre_name,cus_free,id_work,sale_area,sale_name,hospital_name,date_request,id_customer,date_update,summary_order,date_order,plan_work,plan_work_add,$dateFollowInsertSql) VALUES ('".$date_plan."','".$description_focast."','".$description_focastnew."','".$product_present."','".$hospital_contact."','".$hospital_contact1."','".$hospital_contact2."','".$hospital_contact3."','".$hospital_contact4."','".$hospital_contact5."','".$hospital_contact6."','".$hospital_contact7."','".$hospital_contact8."','".$hospital_contact9."','".$hospital_mobile1."','".$hospital_mobile2."','".$hospital_mobile3."','".$hospital_mobile4."','".$hospital_mobile5."','".$hospital_mobile6."','".$hospital_mobile7."','".$hospital_mobile8."','".$hospital_mobile9."','".$hospital_mobile10."','".$email_contact1."','".$email_contact2."','".$email_contact3."','".$email_contact4."','".$email_contact5."','".$email_contact6."','".$email_contact7."','".$email_contact8."','".$email_contact9."','".$email_contact10."','".$hospital_buiding."','".$hospital_class."' ,'".$hospital_ward."','".$product_onelist."','".$remark_pro1."','".$unit_product1."','".$price_product1."','".$product_outlistone1."','".$percent_code."','".$sum_price_product."','".$month_po."','".$percent_id."','".UnitNameMain($product_outlistone1)."','".$price_unit1."','".ModeProMain($product_outlistone1)."','".$type_cus."','".$pre_name."' ,'".$cus_free."','".$id_work."','".$_SESSION['em_id']."','".$_SESSION['name_show']."','".$hospital_name."','".$date_request."','".$id_customer."','".$date_update."','".$summary_order."','".$date_order."','".$plan_work."','".$plan_work_add."',$dateFollowInsertValueSql)";
+
+        $sqlChkFollow = "SELECT * FROM tb_datefollow WHERE refid_work = '".$id_work."' ";
+        $qsqlChkFollow = mysqli_query($conn,$sqlChkFollow);
+        $nsqlChkFollow = mysqli_num_rows($qsqlChkFollow);
+
+        if($nsqlChkFollow == 0){ // รายการแรกให้สร้างเพิ่มใหม่
+            $follwStrSQL1 =  "INSERT INTO tb_datefollow (refid_work,$dateFollowInsertSql) values ('".$id_work."',$dateFollowInsertValueSql)";
+            $follwObjQuery1 = mysqli_query($conn,$follwStrSQL1) or die(mysqli_error());
+        } else { // ถ้าไม่ใช่รายการแรกให้ทำการอัพเดท
+            $follwStrSQL2 =  "UPDATE tb_datefollow SET $dateFollowUpdateSql WHERE refid_work = '".$id_work."' ";
+            $follwObjQuery2 = mysqli_query($conn,$follwStrSQL2) or die(mysqli_error());
+        }
+
     } else {
         $sqlMainsave1 = "UPDATE tb_register_data SET date_plan = '".$date_plan."', description_focast = '".$description_focast."', description_focastnew = '".$description_focastnew."', product_present = '".$product_present."', hospital_contact = '".$hospital_contact."', hospital_contact1 = '".$hospital_contact1."', hospital_contact2 = '".$hospital_contact2."', hospital_contact3 = '".$hospital_contact3."', hospital_contact4 = '".$hospital_contact4."', hospital_contact5 = '".$hospital_contact5."', hospital_contact6 = '".$hospital_contact6."', hospital_contact7 = '".$hospital_contact7."', hospital_contact8 = '".$hospital_contact8."', hospital_contact9 = '".$hospital_contact9."' , hospital_mobile1 = '".$hospital_mobile1."', hospital_mobile2 = '".$hospital_mobile2."', hospital_mobile3 = '".$hospital_mobile3."', hospital_mobile4 = '".$hospital_mobile4."', hospital_mobile5 = '".$hospital_mobile5."', hospital_mobile6 = '".$hospital_mobile6."', hospital_mobile7 = '".$hospital_mobile7."', hospital_mobile8 = '".$hospital_mobile8."', hospital_mobile9 = '".$hospital_mobile9."', hospital_mobile10 = '".$hospital_mobile10."', email_contact1 = '".$email_contact1."', email_contact2 = '".$email_contact2."', email_contact3 = '".$email_contact3."', email_contact4 = '".$email_contact4."', email_contact5 = '".$email_contact5."', email_contact6 = '".$email_contact6."', email_contact7 = '".$email_contact7."', email_contact8 = '".$email_contact8."', email_contact9 = '".$email_contact9."', email_contact10 = '".$email_contact10."', hospital_buiding = '".$hospital_buiding."', hospital_class = '".$hospital_class."' , hospital_ward = '".$hospital_ward."', summary_product1 = '".$product_onelist."',remark_pro1 = '".$remark_pro1."', unit_product1 = '".$unit_product1."', price_product1 = '".$price_product1."', price_unit1 = '".$price_unit1."', product_id1 = '".$product_outlistone1."', percent_name = '".$percent_code."', percent_id = '".$percent_id."', sum_price_product = '".$sum_price_product."', month_po = '".$month_po."', unit_name1 = '".UnitNameMain($product_outlistone1)."', mode_pro1 = '".ModeProMain($product_outlistone1)."', type_cus = '".$type_cus."' ,pre_name = '".$pre_name."', cus_free = '".$cus_free."', date_request = '".$date_request."', head_area = '".$_SESSION['head_area']."', date_update = '".$date_update."', summary_order = '".$summary_order."', date_order = '".$date_order."' ,plan_work = '".$plan_work."',plan_work_add = '".$plan_work_add."'   WHERE id_work = '".$id_work."' ";
         $sqlMainsave2 = "INSERT INTO tb_regist_realtime (date_plan,description_focast,description_focastnew,product_present,hospital_contact,hospital_contact1,hospital_contact2,hospital_contact3,hospital_contact4,hospital_contact5,hospital_contact6,hospital_contact7,hospital_contact8,hospital_contact9,hospital_mobile1,hospital_mobile2,hospital_mobile3,hospital_mobile4,hospital_mobile5,hospital_mobile6,hospital_mobile7,hospital_mobile8,hospital_mobile9,hospital_mobile10,email_contact1,email_contact2,email_contact3,email_contact4,email_contact5,email_contact6,email_contact7,email_contact8,email_contact9,email_contact10,hospital_buiding,hospital_class,hospital_ward,summary_product1,remark_pro1,unit_product1,price_product1,product_id1,percent_name,sum_price_product,month_po,percent_id,unit_name1,price_unit1,mode_pro1,type_cus,pre_name,cus_free,id_work,sale_area,sale_name,hospital_name,date_request,id_customer,date_update,summary_order,date_order,plan_work,plan_work_add) VALUES ('".$date_plan."','".$description_focast."','".$description_focastnew."','".$product_present."','".$hospital_contact."','".$hospital_contact1."','".$hospital_contact2."','".$hospital_contact3."','".$hospital_contact4."','".$hospital_contact5."','".$hospital_contact6."','".$hospital_contact7."','".$hospital_contact8."','".$hospital_contact9."','".$hospital_mobile1."','".$hospital_mobile2."','".$hospital_mobile3."','".$hospital_mobile4."','".$hospital_mobile5."','".$hospital_mobile6."','".$hospital_mobile7."','".$hospital_mobile8."','".$hospital_mobile9."','".$hospital_mobile10."','".$email_contact1."','".$email_contact2."','".$email_contact3."','".$email_contact4."','".$email_contact5."','".$email_contact6."','".$email_contact7."','".$email_contact8."','".$email_contact9."','".$email_contact10."','".$hospital_buiding."','".$hospital_class."' ,'".$hospital_ward."','".$product_onelist."','".$remark_pro1."','".$unit_product1."','".$price_product1."','".$product_outlistone1."','".$percent_code."','".$sum_price_product."','".$month_po."','".$percent_id."','".UnitNameMain($product_outlistone1)."','".$price_unit1."','".ModeProMain($product_outlistone1)."','".$type_cus."', '".$pre_name."' ,'".$cus_free."','".$id_work."','".$_SESSION['em_id']."','".$_SESSION['name_show']."','".$hospital_name."','".$date_request."','".$id_customer."','".$date_update."','".$summary_order."','".$date_order."','".$plan_work."','".$plan_work_add."')";
     }
-    // echo $sqlMainsave1.'<hr>';
-    // echo $sqlMainsave2.'<hr>';
-    // exit;
     // ส่วนของ  Demo ทดลองสินค้า
     // ให้ Loop ตามการเพิ่ม รุ่นสินค้า
     if($id_pro != ''){
         $sqlList2_1 =  "UPDATE tb_product_delivery SET id_customer = '".$id_customer."',
         ref_idwork = '".$id_work."', hospital_name = '".$hospital_name."', create_date = '".$addDate."', sale_area = '".$_SESSION['em_id']."', add_date = '".$addDate."', add_by = '".$_SESSION['username']."', product_1 = '".$MyProdoctDemoValue."', product_pre = '".$product_present."', cuspre_descript='".$cuspre_descript."'  WHERE id_pro = '".$id_pro."' ";
         $qsqlList2_1 = mysqli_query($conn,$sqlList2_1);
-        // echo $sqlList2_1;
     } else if($id_pro == '' and $MyProdoctDemoValue != ''){
         $sqlList2_2 =  "INSERT INTO tb_product_delivery(id_customer,ref_idwork,hospital_name,create_date,sale_area,add_date,add_by,product_1,product_pre,cuspre_descript) VALUES ('".$id_customer."','".$id_work."','".$hospital_name."','".$addDate."','".$_SESSION['em_id']."','".$addDate."','".$_SESSION['username']."','".$MyProdoctDemoValue."','".$product_present."','".$cuspre_descript."')";
         $qsqlList2_1 = mysqli_query($conn,$sqlList2_2);
-        // echo $sqlList2_2;
     }
 
     // ออกบูธ (Group Presentation)
@@ -474,9 +485,9 @@ $product_present = json_encode($product_present, JSON_UNESCAPED_UNICODE); // แ
     
 // echo $sqlMainsave1; // แก้ไขข้อมูลรายละเอียดที่ Plan ไว้
 $sqlMainsave_1 = mysqli_query($conn,$sqlMainsave1) or die(mysqli_error($conn));
-// // echo $sqlMainsave2; // เก็บเพิ่มไปเรื่อยๆตามการแก้ไขข้อมูล
+// echo $sqlMainsave2; // เก็บเพิ่มไปเรื่อยๆตามการแก้ไขข้อมูล
 $sqlMainsave_2 = mysqli_query($conn,$sqlMainsave2) or die(mysqli_error($conn));
-// // echo $sqlMainsave3; // แก้ไขข้อมูลลูกค้า
+// echo $sqlMainsave3; // แก้ไขข้อมูลลูกค้า
 $sqlMainsave_3 = mysqli_query($conn,$sqlMainsave3) or die(mysqli_error($conn));
 // exit; 
 
