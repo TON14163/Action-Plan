@@ -42,6 +42,10 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
         .right-box-login{
             background-color: #FCFCFC;
             border-radius: 8px;
+            height:87vh;
+        }
+        .right-box-form{
+            height:380px;
         }
         .font-custom-size{
             font-size: 30px;
@@ -53,6 +57,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
         }
         .right-box-login{
             background-color: #FCFCFC;
+            height:100vh;
         }
         .font-custom-size{
             font-size: 48px;
@@ -64,7 +69,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
 
     <main class="flex flex-row items-stretch p-10" style="background-image: url('<?php echo $thisDomain;?>assets/images/bgmain.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-position-y: bottom;">
         <section class="basis-2/5 self-stretch rounded-l-lg left-box-login" style="height:100vh; background-color:#FFFFFF; "><img class="mx-auto h-full w-full object-cover" src="<?php echo $thisDomain;?>assets/images/icon_allwell_name_2D.png" alt="Your Company"></section>
-        <section class="basis-3/5 self-stretch rounded-r-lg right-box-login" style="height:100vh;  background-size: 20%; background-repeat: no-repeat; background-position: center center; transition: 1s;" id="imageSection">
+        <section class="basis-3/5 self-stretch rounded-r-lg right-box-login" style="  background-size: 20%; background-repeat: no-repeat; background-position: center center; transition: 1s;" id="imageSection">
         <script>
                 // อาร์เรย์ของรูปภาพที่ต้องการสลับ
                 const images = [
@@ -97,7 +102,7 @@ if ($domain_only === '127.0.0.1' || $domain_only === $IP_NAME_DOMAIN) {
                     <font class="gloria-hallelujah-regular text-violet-900 font-custom-size">Sale Report</font>
                 </div>
 
-                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm right-box-form">
                     <form class="space-y-6" action="check_login.php" method="POST">
                         <div>
                             <label for="user_id_login" class="block text-sm/6 font-medium text-gray-900 text-left gloria-hallelujah-regular">Username</label>
