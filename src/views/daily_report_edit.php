@@ -86,7 +86,7 @@ setTimeout(function() {
 <div
     style="background-color: #F1E1FF; height: 45px; display: flex; align-items: center; justify-content: space-between; padding:0px 20px; margin: 0px 0px 20px 0px;">
     <b style="font-size: 20px;">ลงทะเบียน Daily Report</b>
-    <span>
+    <span id="feature1">
         <?php
         $dateUpdate = $show->showDetails($id_work, 'date_update');
         if (!empty($dateUpdate)) {
@@ -139,12 +139,12 @@ label {
 <p style="font-size: 12px; color:#FF0004; margin-top: 5px;">
     *หมายเหตุ ห้ามใส่เครื่องหมาย , หรือ " หรือ ' เพราะจะทำให้บันทึกข้อมูลไม่ได้ค่ะ
 </p>
-
+<span id="cta" class="cta-button" style="position: fixed; bottom: 15px; right: 15px; z-index: 9999;" onclick="DetailsDemo()"><img src="assets/images/icon_system/material-symbols--help.svg" style="width: 15px; height: 15px;"  alt="" srcset="" data-bs-toggle="tooltip" data-bs-title="คำอธิบาย"></span>
 <?php
 $content = ob_get_clean(); // เก็บลงที่ตัวแปร content และส่งไปยัง main.php
 require_once __DIR__ . '/layouts/Main.php';
 ?>
-
+<script src="src/views/details_pages/daily_report_edit_demo.js"></script>
 <script>
 function copyPlan(idCopy) {
     Swal.fire({
@@ -254,3 +254,4 @@ function addProductRow(rowNum, fieldName, searchTerm, txtHint, product_twolist) 
 }
 // รายการสินค้า END
 </script>
+

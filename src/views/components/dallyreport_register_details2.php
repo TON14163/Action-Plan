@@ -44,7 +44,7 @@
 
 <hr class="my-4">
 
-<section>
+<section id="feature8">
     <div class="row font-custom-awl-14" style="padding: 0 20px; font-weight: bold;">
         <div class="col-1">เลือกสินค้า</div>
         <div class="col-11">
@@ -167,7 +167,7 @@
         <div class="col-11" >
             <div id="demo_planitem"> </div>
         </div>
-        <div class="col-12 mt-3"><textarea class="textarea-form-control" style="width:100%; background-color: #e0e0e0; cursor:no-drop;" rows="3" name="plan_work" id="plan_work" readonly><?php echo $show->showDetails($id_work,'plan_work');?></textarea></div>
+        <div class="col-12 mt-3" id="feature9"><textarea class="textarea-form-control" style="width:100%; background-color: #e0e0e0; cursor:no-drop;" rows="3" name="plan_work" id="plan_work" readonly><?php echo $show->showDetails($id_work,'plan_work');?></textarea></div>
     </div>
 </section>
 <hr class="my-4">

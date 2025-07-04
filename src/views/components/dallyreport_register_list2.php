@@ -15,7 +15,7 @@
     }
 </style>
 <div class="accordion-item rounded-0 border border-0" style="margin: 20px 0px;">
-    <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;">
+    <p class="accordion-header d-flex align-items-center justify-content-between" style="background-color: #FAFAFA;" id="feature11">
         <span class="rounded-0 border border-0"><input type="checkbox" name="listmain2" id="listmain2" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapse2" value="1"> &nbsp; &nbsp; <label for="listmain2">Demo ทดลองสินค้า</label></span>
         <span id="panelsStayOpen-collapse2" class="accordion-collapse collapse">
         <?php if($_SESSION['typelogin'] != 'Supervisor'){ ?>

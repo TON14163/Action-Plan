@@ -4,7 +4,7 @@
 <input type="hidden" name="present_id" id="present_id" value="<?php echo $show->showBooth($id_work,'present_id');?>">
 <input type="hidden" name="id_story" id="id_story" value="<?php echo $show->showStoryrival($id_work,'refid_work');?>">
 <section>
-    <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;">
+    <div class="row font-custom-awl-14" style="padding: 10px 20px; font-weight: bold;" id="feature2">
         <div class="col-3">
             <div class="row d-flex align-items-center">
                 <label for="" class="col-3 col-form-label">วันที่</label>
@@ -23,12 +23,12 @@
         </div>
         <div class="col-2 d-flex align-items-center">
             <a style="text-decoration: none;" href="customer_salesave?id_work=<?=$id_work;?>" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-title="ไปยังหน้าข้อมูลลูกค้า !!">
-                <span class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
+                <span id="feature3" class="badge rounded-pill" style="background-color: #FF0004; color:#FFFFFF; padding-left: 15px; padding-right: 15px; display: flex; align-items: center;">
                     <img src="assets/images/icon_system/raphael--home.png" style="width:15px; height:15px;"> &nbsp; ดูข้อมูลตึกใหม่
                 </span>
             </a>
         </div>
-        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="Copy แผลนงานเดิม !!"></div>
+        <div class="col-3 text-end" ><img src="assets/images/add-plus.png" id="feature5" style="width: 30px; height: 30px; cursor: pointer;" onclick="copyPlan(<?php if(isset($id_work)){ echo $id_work; } ?>);"  data-bs-toggle="tooltip" data-bs-title="Copy แผลนงานเดิม !!"></div>
 
         <div class="col-3">
             <div class="row d-flex align-items-center">
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 d-flex align-items-center"> 
+        <div class="col-2 d-flex align-items-center" id="feature4"> 
             <?php
             if($show->showCustomerLevelNumber($id_work) != '0'){
                     echo $show->showCustomerLevel($id_work);
@@ -150,7 +150,7 @@
 
     </div>
     <?php if($numC != '10'){?>
-        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="viewcontxt" id="viewcontxt"> <label for="viewcontxt" data-bs-toggle="tooltip" data-bs-title="เพิ่ม ผู้ติดต่อ,เบอร์โทร,E-mail"><b style="font-size: 14px;">เพิ่มเติม</b></label>
+        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="viewcontxt" id="viewcontxt"> <label for="viewcontxt" data-bs-toggle="tooltip" data-bs-title="เพิ่ม ผู้ติดต่อ,เบอร์โทร,E-mail"><b style="font-size: 14px;" id="feature7">เพิ่มเติม</b></label>
     <?php } ?>
         <div style="font-size: 14px; font-weight: bold; display: none;" id="view_contxt" class="row px-3">
 

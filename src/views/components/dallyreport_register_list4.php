@@ -1,5 +1,5 @@
 <div class="accordion-item rounded-0 border border-0" style="margin: 20px 0px;">
-    <p class="accordion-header">
+    <p class="accordion-header" id="feature13">
         <span class="collapsed rounded-0 border border-0" style="background-color: #FAFAFA;">
             <input type="checkbox" name="listmain4" id="listmain4" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapse4" value="1"> &nbsp; <label for="listmain4">&nbsp;&nbsp;ข้อมูลคู่แข่ง</label>
         </span>

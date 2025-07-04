@@ -78,7 +78,7 @@ function DetailsDemo() {
       element: "#feature10",
       popover: {
         title: "Edit",
-        description: "เข้าไปดำเนินการในส่วนของ",
+        description: "เข้าไปดำเนินการในส่วนของรายละเอียดตามใบ",
       },
     },
   ];
